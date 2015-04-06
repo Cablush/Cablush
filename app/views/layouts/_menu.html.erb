@@ -1,0 +1,42 @@
+<div class="header-top">
+	<div class="wrap">
+    <div class="logo">
+		<a href="index.html"> <%= image_tag("logo.png", size: "159x56") %></a>
+	</div>
+	<div class="cssmenu">
+	  <nav id="nav" role="navigation">
+		<a href="#nav" title="Show navigation">Show navigation</a>
+		<a href="#" title="Hide navigation">Hide navigation</a>
+		<ul class="clearfix">
+			<li><%= link_to 'Home', home_index_path %></li>
+			<li><%= link_to 'Lojas', home_lojas_path %></li>
+			<li><%= link_to 'Eventos', home_eventos_path %></li>
+			<li><%= link_to 'Pistas', home_pistas_path %></li>
+			<!--<li><%#= link_to 'Blog', home_blog_path %></li>-->
+			<li><%= link_to 'Contato', new_contact_path %></li>
+			<div class="clear"></div>
+		</ul>
+	    </nav>
+	  </div>
+	  <div class="buttons">
+			<div class="login_btn">
+			<% if usuario_signed_in? %>
+    			<%= current_usuario.nome%>
+    			<%= link_to "Sign out", destroy_usuario_session_path, :method => :delete %>
+    		</div>
+    		<div class="get_btn"></div>
+  			<% else %>
+				<%= link_to "Login / Sign in", home_sign_in_path %> 
+			</div>
+			<div class="get_btn">
+				<%= link_to "sign up", home_sign_up_path %>
+			</div>
+			<% end %>	
+			<div class="clear"></div>
+	   </div>
+     <div class="clear"></div>
+     
+	<h2 class="head"><!-- NOME DA LOJA--><%#= loja.nome %> <%= @title %> </h2>
+	
+ </div>
+</div>

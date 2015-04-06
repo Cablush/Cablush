@@ -1,0 +1,37 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Cablush | :: Cadastro :: </title>
+	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application" , "data-turbolinks-track" => true %> 
+</head>
+
+<body>
+
+<%=render "layouts/menu" %>
+ <div class="content-box">
+ 	<div class="wrap">
+ 		<ul class="events">
+			<li class="active"><a href="index.html">A Cablush</a></li>
+			
+		</ul>
+		<div class="clear"></div>
+ 	</div>
+ </div>
+ <div class="main">
+ 	<div class="wrap">
+ 	    
+		<%= yield %>	
+		
+    </div>
+	<div class="clear"></div>
+</div>
+<%=render "layouts/footer"%>
+</body>
+</html>

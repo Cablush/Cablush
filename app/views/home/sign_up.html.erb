@@ -1,0 +1,31 @@
+<%=render "layouts/menu" %>
+ <div class="content-box">
+ 	<div class="wrap">
+ 		<ul class="events">
+			<li class="active"><a href="#">Bem Vindo </a></li>
+		</ul>
+		<div class="clear"></div>
+ 	</div>
+ </div>
+ <div class="main">
+ 	<div class="wrap">
+ 	    <div style="float: left; padding-left: 30%; width: 40%;"> 
+ 	    <% unless usuario_signed_in? %>
+ 	    <%#form_for(resource, as: resource_name, url: registration_path(resource_name) do |f|%>
+     	    <%= simple_form_for :usuario, :url => registration_path(:usuario)  do |f| %>
+              <%= f.input :nome, label: 'Usuario' %>
+              <%= f.input :email, label: 'Email' %>
+              <%= f.input :password, label: 'Senha' %>
+              <%= f.input :logista,label: 'Sou Logista' , :as => :boolean, class:'checkbox' %>
+              
+              <%= f.button :submit,value: 'Login', label: 'Login', class: 'btn1 btn-primary btn-normal btn-inline' %>
+              
+            <% end %>    
+        <%else%>
+            <% controller.redirect_to root_path(:registered => "true") %>
+        <% end %>
+        </div>
+    </div>
+	<div class="clear"></div>
+</div>
+<%=render "layouts/footer"%>

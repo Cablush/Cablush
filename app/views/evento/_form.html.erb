@@ -1,0 +1,15 @@
+<%= simple_form_for evento_new_path do |f| %>
+  <%= f.input :nome, label: 'Nome da Loja:' %>
+  <%= f.input :facebook, label: 'Link para pagina no Facebook' %>
+  <%= f.input :email, label: 'Email' %>
+  <%= f.input :contato, label: 'Telefone contato' %>
+  <%= f.input :site, label: 'Site do Evento' %>
+  <%= f.input :logo, label: 'Logo do Evento', hint: 'Link para a flyer do evento'  %>\
+  <br/>
+ 
+  <%= f.label 'Descreva a loja em poucas palavras o evento' %><br>
+  <%= f.text_area :descricao, class: 'textarea-box', :input_html => {:maxlength => 250, :cols => 5, :rows => 10 }    %>
+  
+  <%= f.button :submit, value: 'Salvar Evento', label: 'Salvar', class: 'btn1 btn-primary btn-normal btn-inline' %>
+<% end %>
+

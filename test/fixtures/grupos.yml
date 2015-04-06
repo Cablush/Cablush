@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  logo: MyString
+  esporte: MyString
+  eventos_id: 
+  atletas_id: 
+
+two:
+  nome: MyString
+  logo: MyString
+  esporte: MyString
+  eventos_id: 
+  atletas_id: 

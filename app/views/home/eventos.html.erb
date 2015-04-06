@@ -1,0 +1,42 @@
+<script type="text/javascript">
+        $(document).on('pageload', function() {
+  			initialize();
+		});    
+</script>
+	
+	
+<%= render "layouts/menu"%>
+     <div class="map">
+     <%#=image_tag("map.jpg") %>
+      <div id="map-canvas"></div>
+     </div>
+     <div class="content-box">
+     	<div class="wrap">
+     		<ul class="events">
+				<li class="active"><a href="#">Eventos</a></li> 
+			</ul>
+			<div class="content-box-left">
+    				<div class="search_box">
+			  	  <form>
+			  		<%=collection_select(:estado, :id, Estado.all,:id, :nome , {:prompt => 'Selecione Estado'}, {:class=>'frm-field required'}) %>
+		   	 	  </form>
+		   		</div>
+	   			<div class="search_box">
+		   		  <form>
+			  		<%=collection_select(:esporte, :id, Esporte.all,:id, :nome , {:prompt => 'Selecione Esporte'}, {:class=>'frm-field required'}) %>
+		   		  </form>  
+			   </div>
+			</div>
+		</div>
+     	<div class="clear"></div>
+ 	 </div>
+     </div>
+     <div class="main">
+     	<div class="wrap" id="paginate_itens">
+			<%= render "item", itens: @eventos%>
+		</div>
+	   </div>
+	  <div class="clear"></div>
+	</div>
+	<%=render "layouts/footer"%>
+     <%= will_paginate @eventos,remote: true %>

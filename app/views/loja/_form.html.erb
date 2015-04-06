@@ -1,0 +1,19 @@
+<%= simple_form_for loja_new_path do |f| %>
+  <%= f.input :nome, label: 'Nome da Loja:' %>
+  <%= f.input :facebook, label: 'Link para pagina no Facebook' %>
+  <%= f.input :email, label: 'Email' %>
+  <%= f.input :contato, label: 'Telefone' %>
+  <%= f.input :site, label: 'Site da loja' %>
+  <%= f.input :logo, label: 'Logo da loja', hint: 'Link para a logo da loja'  %>
+  <br/>
+  
+ 
+  <%= f.label 'Descreva a loja em poucas palavras a loja' %><br>
+  <%= f.text_area :descricao, class: 'textarea-box', :input_html => {:maxlength => 250, :cols => 5, :rows => 10 }    %>
+  <%#= f.input :descricao, as: :text,class: 'textarea-box', label: 'Descreva a loja em poucas palavras', :input_html => {:maxlength => 250, :cols => 5, :rows => 10 } %>
+  
+  <%= f.input :fundo,label: 'Fundo preto', :as => :boolean, class:'checkbox' %>
+
+  <%= f.button :submit,value: 'Salvar Loja' ,label: 'Salvar' , class: 'btn1 btn-primary btn-normal btn-inline' %>
+<% end %>
+

@@ -1,0 +1,11 @@
+<%if @filter  %>
+    $("#paginate_itens").empty();
+<%end%>
+    $("#paginate_itens").append(" <%= j render "item", itens: @lojas%> ");
+   
+<% if @lojas.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @lojas, :remote => true %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>
