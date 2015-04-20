@@ -27,6 +27,6 @@
 
 production:
   adapter: mysql2
-  database: ruby 
-  user: adminQEsBPBv 
-  password:  tnAHszNkcl8Z  
+  database: ******* 
+  user: ********	 
+  password:  *******
