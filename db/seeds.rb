@@ -22,6 +22,7 @@
     Estado.create(rg: "ES", nome: "Espirito Santo", logo: " ")
     Estado.create(rg: "GO", nome: "Goias", logo: " ")
     Estado.create(rg: "MA", nome: "Maranhao", logo: " ")
+    mg = Estado.create(rg: "MG", nome: "Minas Gerais", logo: " ",cidade: [bh,novaLima,vespasiano,itabirito])
     Estado.create(rg: "MT", nome: "Mato Grosso", logo: " ")
     Estado.create(rg: "MS", nome: "Mato Grosso do Sul", logo: " ")
     Estado.create(rg: "PA", nome: "Para", logo: " ")
@@ -36,10 +37,11 @@
     Estado.create(rg: "RO", nome: "Rondonia", logo: " ")
     Estado.create(rg: "SC", nome: "Santa Catarina", logo: " ")
     Estado.create(rg: "SE", nome: "Sergipe", logo: " ")
+    spEstado = Estado.create(rg: "SP", nome: "Sao Paulo", logo: " ",cidade:[sp])
     Estado.create(rg: "TO", nome: "Tocantins", logo: " ")
     
-    mg = Estado.create(rg: "MG", nome: "Minas Gerais", logo: " ",cidade: [bh,novaLima,vespasiano,itabirito])
-    spEstado = Estado.create(rg: "SP", nome: "Sao Paulo", logo: " ",cidade:[sp])
+    
+    
     
     #Esporte
     skate = Esporte.create(nome: "Skate", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "Longboard")])
@@ -91,18 +93,18 @@
     #Fim das Pistas
     
     #Lojas
-    Loja.create(nome:"Drop SkateShop",fundo: true ,contato: "031 9991-0420", horario:"09:00--18:00", esporte: skate , descricao: "A DROP foi fundada em Janeiro de 2013 por skatistas profissionais, que enxergaram uma certa dificuldade das pessoas" +
- "em adquirirem peças de qualidade a preços acessíveis. ", site: "http://www.dropskateshop.com/",logo:"http://www.dropskateshop.com/front/images/logo.png", local: Local.create(latitude:-19.964037, longitude:-43.944982, logradouro:"Rua Arrudas 542, Santa Lúcia - BH",cidade:bh,estado:mg))
+ #    Loja.create(nome:"Drop SkateShop",fundo: true ,contato: "031 9991-0420", horario:"09:00--18:00", esporte: skate , descricao: "A DROP foi fundada em Janeiro de 2013 por skatistas profissionais, que enxergaram uma certa dificuldade das pessoas" +
+ # "em adquirirem peças de qualidade a preços acessíveis. ", site: "http://www.dropskateshop.com/",logo:"http://www.dropskateshop.com/front/images/logo.png", local: Local.create(latitude:-19.964037, longitude:-43.944982, logradouro:"Rua Arrudas 542, Santa Lúcia - BH",cidade:bh,estado:mg))
 
-   Loja.create(nome:"Hawkshop", contato: "031 7588-7142" , horario:"09:00--18:00",esporte: skate , descricao: "A Hawkshop é uma loja virtual especializada em skate downhill.<br/>Criada em Belo Horizonte com o intuito de fornecer as melhores peças do mercado para todo Brasil.<br/>Nossa meta é crescer o esporte em nosso país e oferecer os melhores produtos para os atletas.", site: "https://hawkshop.com.br/",logo:"lojas_logos/hawkshop.png", local: Local.create(latitude:-19.968706, longitude:-43.945610, logradouro:"Avenida Terra, Santa Lúcia - BH",cidade:bh,estado:mg))
+ #   Loja.create(nome:"Hawkshop", contato: "031 7588-7142" , horario:"09:00--18:00",esporte: skate , descricao: "A Hawkshop é uma loja virtual especializada em skate downhill.<br/>Criada em Belo Horizonte com o intuito de fornecer as melhores peças do mercado para todo Brasil.<br/>Nossa meta é crescer o esporte em nosso país e oferecer os melhores produtos para os atletas.", site: "https://hawkshop.com.br/",logo:"lojas_logos/hawkshop.png", local: Local.create(latitude:-19.968706, longitude:-43.945610, logradouro:"Avenida Terra, Santa Lúcia - BH",cidade:bh,estado:mg))
    
-   Loja.create(nome:"Blunt",contato: "031 3284-2161" , horario:"09:00--18:00",esporte: skate , descricao: "A Blunt skate park esta a 12 (doze) anos no mercado mineiro, com Skate park coberta,com área de Street e banks, skateshop com as melhores marcas nacionais e importadas,lanchonete e estacionamento próprio  ",esporte: skate , site: "https://blunt.com.br/",logo:"lojas_logos/blunt.png", local:  Local.create(latitude:-19.943580, longitude:-43.933578, logradouro:"Rua Montes Claros, 189, Carmo - BH ",cidade:bh,estado:mg))
+ #   Loja.create(nome:"Blunt",contato: "031 3284-2161" , horario:"09:00--18:00",esporte: skate , descricao: "A Blunt skate park esta a 12 (doze) anos no mercado mineiro, com Skate park coberta,com área de Street e banks, skateshop com as melhores marcas nacionais e importadas,lanchonete e estacionamento próprio  ",esporte: skate , site: "https://blunt.com.br/",logo:"lojas_logos/blunt.png", local:  Local.create(latitude:-19.943580, longitude:-43.933578, logradouro:"Rua Montes Claros, 189, Carmo - BH ",cidade:bh,estado:mg))
  
-   Loja.create(nome:"Roll-Laden",contato: "011 99500-2415" , horario:"11:00--17:00", descricao: "Somos uma loja virtual, especializada em Longboard, Downhill, Slalom, Freeride Skateboards. Além de vender o que existe de melhor no mercado mundial nós também andamos de skate e competimos na modalidade Downhill Skate.", site: "https://www.roll-laden.net/",logo:"lojas_logos/rollladen.png")
+ #   Loja.create(nome:"Roll-Laden",contato: "011 99500-2415" , horario:"11:00--17:00", descricao: "Somos uma loja virtual, especializada em Longboard, Downhill, Slalom, Freeride Skateboards. Além de vender o que existe de melhor no mercado mundial nós também andamos de skate e competimos na modalidade Downhill Skate.", site: "https://www.roll-laden.net/",logo:"lojas_logos/rollladen.png")
    
-   Loja.create(nome:"EverBag Skate Longboard Shop",contato: "011 7734.0821" , horario:"09:00--18:00", descricao: "EverBag Skate Longboard Shop ", site: "http://www.everbag.com.br/",logo:"lojas_logos/everbag.png",esporte: skate , local:  Local.create(latitude:-23.478586, longitude:-46.607053, logradouro:"Av. Mazzei, 140 - Vila Mazzei São Paulo - SP Brasil",cidade:sp,estado:spEstado))
+ #   Loja.create(nome:"EverBag Skate Longboard Shop",contato: "011 7734.0821" , horario:"09:00--18:00", descricao: "EverBag Skate Longboard Shop ", site: "http://www.everbag.com.br/",logo:"lojas_logos/everbag.png",esporte: skate , local:  Local.create(latitude:-23.478586, longitude:-46.607053, logradouro:"Av. Mazzei, 140 - Vila Mazzei São Paulo - SP Brasil",cidade:sp,estado:spEstado))
    
-   Loja.create(nome:"BhInline",contato: "031 4141-4477" , horario:"09:00--18:00", descricao: "A BH INLINE é loja de artigos esportivos criada com intuito de facilitar o acesso dos atletas aos equipamentos que seguem em nossa linha de produtos. Trabalhamos com as melhores marcas de equipamentos esportivos do mercado.É uma empresa administrada por atletas praticantes de esportes radicais e esta localizada em Belo Horizonte - Minas Gerais. ", site: "http://www.bhinline.com.br",logo:"",esporte: patins , local:  Local.create(latitude:-19.936890, longitude:-43.935425, logradouro:"Rua: Pernambuco, numero 1070, loja 125 galeria Savassi Point",cidade:bh,estado:mg))
+ #   Loja.create(nome:"BhInline",contato: "031 4141-4477" , horario:"09:00--18:00", descricao: "A BH INLINE é loja de artigos esportivos criada com intuito de facilitar o acesso dos atletas aos equipamentos que seguem em nossa linha de produtos. Trabalhamos com as melhores marcas de equipamentos esportivos do mercado.É uma empresa administrada por atletas praticantes de esportes radicais e esta localizada em Belo Horizonte - Minas Gerais. ", site: "http://www.bhinline.com.br",logo:"",esporte: patins , local:  Local.create(latitude:-19.936890, longitude:-43.935425, logradouro:"Rua: Pernambuco, numero 1070, loja 125 galeria Savassi Point",cidade:bh,estado:mg))
    
    
    
