@@ -54,3 +54,5 @@ gem 'mail_form'
 gem 'simple_form'
 
 gem 'devise'
+#a pedido do openshift
+gem 'turbo-sprockets-rails3'
