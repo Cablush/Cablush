@@ -26,7 +26,7 @@ class HomeController < ApplicationController
   end
   
   def pistas
-    @pistas = Pista.includes(:local).estado(params[:estado]).include().esporte(params[:esporte]).paginate(:page => params[:page]).order(:created_at)
+    @pistas = Pista.includes(:local).estado(params[:estado]).esporte(params[:esporte]).paginate(:page => params[:page]).order(:created_at)
     @filter = params[:filter] || nil
     @title = "Um bom lugar para sua atividade!"
    
