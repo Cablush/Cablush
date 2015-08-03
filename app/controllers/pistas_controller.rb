@@ -1,4 +1,9 @@
-class PistaController < ApplicationController
+class PistasController < ApplicationController
+  
+  def index
+    
+  end
+  
   def new
     if usuario_signed_in? && current_user.logista
       @title = 'Os mano pira nas novas pistas!!'
@@ -26,18 +31,6 @@ class PistaController < ApplicationController
     end
   end
 
-  # DELETE /rotas/1
-  # DELETE /rotas/1.json
-  def destroy
-    @pista = Pista.find(params[:id])
-    @pista.destroy
-
-    respond_to do |format|
-      format.html { redirect_to rotas_url }
-      format.json { head :no_content }
-    end
-  end
-
   def update
      @pista = Pista.find(params[:id])
 
@@ -49,6 +42,16 @@ class PistaController < ApplicationController
         format.html { render action: "edit" }
         format.json { render json: @pista.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def destroy
+    @pista = Pista.find(params[:id])
+    @pista.destroy
+
+    respond_to do |format|
+      format.html { redirect_to rotas_url }
+      format.json { head :no_content }
     end
   end
 end

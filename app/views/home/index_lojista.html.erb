@@ -7,28 +7,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Cablush | :: Cadastro :: </title>
-        <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-        <%= javascript_include_tag "application" , "data-turbolinks-track" => true %> 
+        <title>Cablush | :: Home :: </title>
     </head>
-
     <body>
 
-        <%=render "layouts/menu" %>
+        <%=render "layouts/menu_cadastro" %>
+
+        <div class="map">
+            <%=image_tag("map.jpg")  %>
+        </div>
         <div class="content-box">
             <div class="wrap">
                 <ul class="events">
-                    <li class="active"><a href="index.html">A Cablush</a></li>
-
+                    <li class="active"><a href="#">A Cablush</a></li>
                 </ul>
                 <div class="clear"></div>
             </div>
         </div>
         <div class="main">
             <div class="wrap">
-
-                <%= yield %>	
-
+                <div class="home"> 
+                    Olá	lojista! Aqui você poderá cadastrar a sua loja e seus eventos, para divulgar em nosso site, parceiros e redes sociais.
+                </div>
             </div>
             <div class="clear"></div>
         </div>

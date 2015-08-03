@@ -1,0 +1,19 @@
+<%=render "layouts/menu_cadastro" %>
+<div class="content-box">
+    <div class="wrap">
+        <ul class="events">
+            <li class=""><%= link_to 'Lojas', lojas_path %></li>
+            <li class="active"><a href="#">Editar Loja</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="main">
+    <div class="wrap">
+        <div style="float: left; padding-left: 30%; width: 40%;"> 
+            <%= render "form" %>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<%=render "layouts/footer"%>

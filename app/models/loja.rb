@@ -2,6 +2,7 @@ class Loja < ActiveRecord::Base
   
   #attr_accessible :nome, :logo, :horario, :descricao, :site, :contato, :email
   
+  belongs_to :usuario
   belongs_to :esporte
   belongs_to :local
   
@@ -11,21 +12,21 @@ class Loja < ActiveRecord::Base
   self.per_page = 9
   
 
-def self.esporte(search)
-  if !search.nil? and search.length > 0
-    where(esporte_id: search)
-  else
-    all
+  def self.esporte(search)
+    if !search.nil? and search.length > 0
+      where(esporte_id: search)
+    else
+      all
+    end
   end
-end
 
-def self.estado(search)
-  if !search.nil? and search.length > 0
-    joins(:local).where(locals: {estado_id: search}) 
-  else
-    all
+  def self.estado(search)
+    if !search.nil? and search.length > 0
+      joins(:local).where(locals: {estado_id: search}) 
+    else
+      all
+    end
   end
-end
 
   
 end
