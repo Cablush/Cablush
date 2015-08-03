@@ -1,29 +1,25 @@
 Workspace::Application.routes.draw do
-
   
-  devise_for :usuarios
-   get "pista/new"
-   get "pista/create"
-   get "pista/delete"
-   get "pista/update"
-   get "evento/new"
-   get "evento/create"
-   get "evento/delete"
-   get "evento/update"
-   get "loja/new"
-   get "loja/create"
-   get "loja/delete"
-   get "loja/update"
+  devise_for :usuarios, :controllers => { registrations: 'registrations' }
+  
+  resources :lojas
+  resources :eventos
+  resources :pistas
+#  resources :usuarios
+  
   resources :contacts
   
   match "home/lojas", via: [:get, :post]
-  
   match "home/eventos", via: [:get, :post]
   match "home/pistas", via: [:get, :post]
+  
   get "home/index"
+  get "home/index_lojista"
+  get "home/index_admin"
+  
   get "home/sign_in"
   get "home/sign_up"
-  get "home/cadastro"
+  
   get "home/about"
   get "home/blog"
   
