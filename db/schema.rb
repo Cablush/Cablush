@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150803003742) do
+ActiveRecord::Schema.define(version: 20150815145521) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20150803003742) do
   add_index "amizades", ["usuario_id"], name: "index_amizades_on_usuario_id"
 
   create_table "cidades", force: :cascade do |t|
-    t.string   "nome",       limit: 255
+    t.string   "nome"
     t.integer  "estado_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 20150803003742) do
   add_index "cidades", ["estado_id"], name: "index_cidades_on_estado_id"
 
   create_table "contacts", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
+    t.string   "name"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "esportes", force: :cascade do |t|
-    t.string   "nome",          limit: 255
+    t.string   "nome"
     t.integer  "modalidade_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -51,39 +51,41 @@ ActiveRecord::Schema.define(version: 20150803003742) do
 
   create_table "estados", force: :cascade do |t|
     t.string   "rg",         limit: 2
-    t.string   "nome",       limit: 255
-    t.string   "logo",       limit: 255
+    t.string   "nome"
+    t.string   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "eventos", force: :cascade do |t|
-    t.string   "nome",             limit: 255
-    t.string   "logo",             limit: 255
-    t.string   "descricao",        limit: 255
-    t.boolean  "public",                       default: true
-    t.boolean  "patrocinado",                  default: false
+    t.string   "nome"
+    t.string   "logo"
+    t.string   "descricao"
+    t.boolean  "public",           default: true
+    t.boolean  "patrocinado",      default: false
     t.time     "hora"
     t.date     "data"
-    t.string   "rota",             limit: 255
-    t.string   "contato",          limit: 255
-    t.string   "facebook",         limit: 255
-    t.boolean  "fundo",                        default: false
+    t.string   "rota"
+    t.string   "contato"
+    t.string   "facebook"
+    t.boolean  "fundo",            default: false
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.integer  "participantes_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "usuario_id"
   end
 
   add_index "eventos", ["esporte_id"], name: "index_eventos_on_esporte_id"
   add_index "eventos", ["local_id"], name: "index_eventos_on_local_id"
   add_index "eventos", ["participantes_id"], name: "index_eventos_on_participantes_id"
+  add_index "eventos", ["usuario_id"], name: "index_eventos_on_usuario_id"
 
   create_table "grupos", force: :cascade do |t|
-    t.string   "nome",       limit: 255
-    t.string   "logo",       limit: 255
-    t.string   "esporte",    limit: 255
+    t.string   "nome"
+    t.string   "logo"
+    t.string   "esporte"
     t.integer  "eventos_id"
     t.integer  "atletas_id"
     t.datetime "created_at"
@@ -94,9 +96,9 @@ ActiveRecord::Schema.define(version: 20150803003742) do
   add_index "grupos", ["eventos_id"], name: "index_grupos_on_eventos_id"
 
   create_table "locals", force: :cascade do |t|
-    t.string   "logradouro", limit: 255
-    t.decimal  "latitude",               precision: 15, scale: 10, default: 0.0
-    t.decimal  "longitude",              precision: 15, scale: 10, default: 0.0
+    t.string   "logradouro"
+    t.decimal  "latitude",   precision: 15, scale: 10, default: 0.0
+    t.decimal  "longitude",  precision: 15, scale: 10, default: 0.0
     t.integer  "cidade_id"
     t.integer  "estado_id"
     t.datetime "created_at"
@@ -107,17 +109,17 @@ ActiveRecord::Schema.define(version: 20150803003742) do
   add_index "locals", ["estado_id"], name: "index_locals_on_estado_id"
 
   create_table "lojas", force: :cascade do |t|
-    t.string   "nome",        limit: 255
-    t.string   "logo",        limit: 255
+    t.string   "nome"
+    t.string   "logo"
     t.time     "horario"
     t.text     "descricao"
-    t.string   "site",        limit: 255
-    t.string   "contato",     limit: 255
-    t.string   "email",       limit: 255
-    t.string   "facebook",    limit: 255
-    t.boolean  "fundo",                   default: false
-    t.boolean  "patrocinado",             default: false
-    t.boolean  "virtual",                 default: false
+    t.string   "site"
+    t.string   "contato"
+    t.string   "email"
+    t.string   "facebook"
+    t.boolean  "fundo",       default: false
+    t.boolean  "patrocinado", default: false
+    t.boolean  "virtual",     default: false
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
@@ -130,9 +132,9 @@ ActiveRecord::Schema.define(version: 20150803003742) do
   add_index "lojas", ["usuario_id"], name: "index_lojas_on_usuario_id"
 
   create_table "modalidades", force: :cascade do |t|
-    t.string   "nome",       limit: 255
+    t.string   "nome"
     t.integer  "esporte_id"
-    t.string   "icon",       limit: 255
+    t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -140,38 +142,40 @@ ActiveRecord::Schema.define(version: 20150803003742) do
   add_index "modalidades", ["esporte_id"], name: "index_modalidades_on_esporte_id"
 
   create_table "pista", force: :cascade do |t|
-    t.string   "nome",       limit: 255
+    t.string   "nome"
     t.text     "descricao"
-    t.string   "horario",    limit: 255
-    t.string   "logo",       limit: 255
-    t.string   "contato",    limit: 255
-    t.boolean  "fundo",                  default: false
+    t.string   "horario"
+    t.string   "logo"
+    t.string   "contato"
+    t.boolean  "fundo",      default: false
     t.boolean  "facebook"
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "usuario_id"
   end
 
   add_index "pista", ["esporte_id"], name: "index_pista_on_esporte_id"
   add_index "pista", ["local_id"], name: "index_pista_on_local_id"
+  add_index "pista", ["usuario_id"], name: "index_pista_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
     t.integer  "id_social"
-    t.string   "nome",                   limit: 255
+    t.string   "nome"
     t.integer  "amigos_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.integer  "role"
   end
 

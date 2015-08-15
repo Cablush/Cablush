@@ -1,9 +1,12 @@
 class Evento < ActiveRecord::Base
 #  has_many :participantes :class_name =>'Usuario'
+  belongs_to :usuario
+  belongs_to :esporte
+  belongs_to :local
+
   
-  
-  scope :public, -> { where(public: true) }
-  scope :sponsored, -> { where(patrocinado: true) }
+#  scope :public, -> { where(public: true) }
+#  scope :sponsored, -> { where(patrocinado: true) }
 # scope :estado, lambda { |est_id| joins(:estado).where(id: est_id) }
   
   self.per_page = 9

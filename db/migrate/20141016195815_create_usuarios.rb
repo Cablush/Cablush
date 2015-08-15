@@ -3,7 +3,6 @@ class CreateUsuarios < ActiveRecord::Migration
     create_table :usuarios do |t|
       t.integer :id_social
       t.string :nome
-      t.boolean :logista
       
       t.references :amigos, index: true
       t.timestamps

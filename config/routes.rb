@@ -13,10 +13,12 @@ Workspace::Application.routes.draw do
   match "home/eventos", via: [:get, :post]
   match "home/pistas", via: [:get, :post]
   
+
+  get "lojas/new"
+
   get "home/index"
   get "home/index_lojista"
   get "home/index_admin"
-  
   get "home/sign_in"
   get "home/sign_up"
   

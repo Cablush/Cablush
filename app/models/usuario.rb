@@ -3,6 +3,8 @@ class Usuario < ActiveRecord::Base
   
   has_many :amigos, :class_name =>'Amizade'
   has_many :lojas
+  has_many :eventos
+  has_many :pistas
  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -1,20 +1,19 @@
 class PistasController < ApplicationController
   
   def index
-    
+    if current_usuario.admin?
+      @pistas = Pista.all
+    else
+      @pistas = current_usuario.pistas
+    end    
   end
   
   def new
-    if usuario_signed_in? && current_user.logista
-      @title = 'Os mano pira nas novas pistas!!'
       @pista = Pista.new
        respond_to do |format|
         format.html # new.html.erb
         format.json { render json: @pista }
       end
-    else
-       render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
-    end
   end
 
   def create

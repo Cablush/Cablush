@@ -1,10 +1,10 @@
-<%= simple_form_for evento_new_path do |f| %>
-  <%= f.input :nome, label: 'Nome da Loja:' %>
+<%= simple_form_for @evento do |f| %>
+  <%= f.input :nome, label: 'Nome do Evento:' %>
   <%= f.input :facebook, label: 'Link para pagina no Facebook' %>
-  <%= f.input :email, label: 'Email' %>
+
   <%= f.input :contato, label: 'Telefone contato' %>
-  <%= f.input :site, label: 'Site do Evento' %>
-  <%= f.input :logo, label: 'Logo do Evento', hint: 'Link para a flyer do evento'  %>\
+  <%#= f.input :site, label: 'Site do Evento' %>
+  <%= f.input :logo, label: 'Logo do Evento', hint: 'Link para a flyer do evento'  %>
   <br/>
  
   <%= f.label 'Descreva a loja em poucas palavras o evento' %><br>

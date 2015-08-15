@@ -1,6 +1,7 @@
 class Pista < ActiveRecord::Base
   belongs_to :esporte
   belongs_to :local
+  belongs_to :usuario
   
   #scope :estado, lambda { |est_id| joins(:local).where(locals: {estado_id: est_id}) }
   #scope :esporte, lambda { |esp_id| where(esporte_id: esp_id) }

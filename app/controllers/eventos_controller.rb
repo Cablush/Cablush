@@ -3,8 +3,16 @@ class EventosController < ApplicationController
   before_action :authenticate_usuario!
   before_action :lojista_at_least, :except => :show
   
+  # GET /lojas(.:format)
+  def index
+    if current_usuario.admin?
+      @eventos = Evento.all
+    else
+      @eventos = current_usuario.eventos
+    end
+  end
+  
   def new
-    @title = 'Cadastre seu evento e compartilhe!!'
     @evento = Evento.new
     
     respond_to do |format|
@@ -38,7 +46,6 @@ class EventosController < ApplicationController
   end
   
   def edit
-    @title = 'Cadastre seu evento e compartilhe!!'
     @evento = Evento.find(params[:id])
     
     respond_to do |format|

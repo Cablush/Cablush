@@ -8,10 +8,10 @@
                 <a href="#nav" title="Show navigation">Show navigation</a>
                 <a href="#" title="Hide navigation">Hide navigation</a>
                 <ul class="clearfix">
-                    <!--<li><%#= link_to_if current_usuario.admin?, 'Cadastro de Usuários', usuarios_path %></li>-->
+                    <!-- <li><%#= link_to_if current_usuario.admin?, 'Cadastro de Usuários', usuarios_path %></li> -->
                     <li><%= link_to 'Cadastro de Lojas', lojas_path %></li>
                     <li><%= link_to 'Cadastro de Eventos', eventos_path %></li>
-                    <!--<li><%#= link_to current_usuario.admin?, 'Cadastro de Pistas', pistas_path %></li>-->
+                    <li><%= link_to current_usuario.admin?, 'Cadastro de Pistas', pistas_path %></li>
                     <div class="clear"></div>
                 </ul>
             </nav>
