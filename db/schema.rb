@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150815145521) do
+ActiveRecord::Schema.define(version: 20150803003742) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -74,13 +74,11 @@ ActiveRecord::Schema.define(version: 20150815145521) do
     t.integer  "participantes_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "usuario_id"
   end
 
   add_index "eventos", ["esporte_id"], name: "index_eventos_on_esporte_id"
   add_index "eventos", ["local_id"], name: "index_eventos_on_local_id"
   add_index "eventos", ["participantes_id"], name: "index_eventos_on_participantes_id"
-  add_index "eventos", ["usuario_id"], name: "index_eventos_on_usuario_id"
 
   create_table "grupos", force: :cascade do |t|
     t.string   "nome"
@@ -153,12 +151,10 @@ ActiveRecord::Schema.define(version: 20150815145521) do
     t.integer  "esporte_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "usuario_id"
   end
 
   add_index "pista", ["esporte_id"], name: "index_pista_on_esporte_id"
   add_index "pista", ["local_id"], name: "index_pista_on_local_id"
-  add_index "pista", ["usuario_id"], name: "index_pista_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
     t.integer  "id_social"

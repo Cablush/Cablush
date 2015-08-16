@@ -44,9 +44,6 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 gem 'will_paginate','~> 3.0.6'
 gem 'has_scope'
 
@@ -56,3 +53,7 @@ gem 'simple_form'
 gem 'devise'
 #a pedido do openshift
 gem 'turbo-sprockets-rails3'
+
+group :development do
+  gem 'byebug'
+end
