@@ -4,7 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     super do
-      resource.role = resource.lojista == "1" ? Usuario.lojista : Usuario.esportista
+      if resource.lojista == "1"
+        resource.lojista! 
+      elsif
+        resource.esportista!
+      end
       resource.save
     end
   end
