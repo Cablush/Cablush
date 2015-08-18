@@ -1,7 +1,7 @@
 <div class="header-top">
     <div class="wrap">
         <div class="logo">
-            <a href="index.html"> <%= image_tag("logo.png", size: "200x56") %></a>
+           <%= image_tag("logo.png", size: "200x56") %>
         </div>
         <div class="cssmenu">
             <nav id="nav" role="navigation">
@@ -18,6 +18,9 @@
         </div>
         <div class="buttons">
             <div class="login_btn">
+                <div class="login_name">
+                <%#= link_to perfil_path %>
+                </div>
                 <% if usuario_signed_in? %>
                   <%= link_to "Sign out", destroy_usuario_session_path, :method => :delete %>
               </div>

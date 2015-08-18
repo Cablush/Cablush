@@ -42,8 +42,9 @@
   <div class="field">
     <%= f.label 'Fundo Preto' %>
     <%= f.check_box :fundo %>
+    <%= f.hidden_field :usuario_id, :value => current_usuario.id%>
   </div>
   <div class="actions">
-    <%= f.submit "Salvar Loja", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit "Cadastrar Loja", class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

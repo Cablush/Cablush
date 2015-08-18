@@ -23,5 +23,5 @@ class Usuario < ActiveRecord::Base
   def set_default_role
     self.role ||= :esportista
   end
-  
+
 end

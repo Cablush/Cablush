@@ -1,15 +1,46 @@
-<%= simple_form_for @evento do |f| %>
-  <%= f.input :nome, label: 'Nome do Evento:' %>
-  <%= f.input :facebook, label: 'Link para pagina no Facebook' %>
+<%= form_for(@evento) do |f| %>
+  <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this contact from being saved:</h2>
 
-  <%= f.input :contato, label: 'Telefone contato' %>
-  <%#= f.input :site, label: 'Site do Evento' %>
-  <%= f.input :logo, label: 'Logo do Evento', hint: 'Link para a flyer do evento'  %>
-  <br/>
- 
-  <%= f.label 'Descreva a loja em poucas palavras o evento' %><br>
-  <%= f.text_area :descricao, class: 'textarea-box', :input_html => {:maxlength => 250, :cols => 5, :rows => 10 }    %>
-  
-  <%= f.button :submit, value: 'Salvar Evento', label: 'Salvar', class: 'btn1 btn-primary btn-normal btn-inline' %>
+      <ul>
+      <% @evento.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'Nome do Evento:' %><br>
+    <%= f.text_field :nome, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Link para pagina no Facebook' %><br>
+    <%= f.text_field :facebook, class: 'inputbox'  %>
+  </div>
+  <div class="field">
+    <%= f.label 'Telefone de contato' %><br>
+    <%= f.text_field :contato, class: 'inputbox'  %>
+  </div>
+  <!-- <div class="field">
+    <%#= f.label 'Site do Evento' %><br>
+    <%#= f.text_field :site, class: 'inputbox'  %>
+  </div> -->
+  <div class="field">
+    <%= f.label 'Logo do Evento' %><br>
+    <%= f.text_field :logo, hint: 'Link para o logo da evento', class: 'inputbox'  %>
+  </div>
+  <div class="field">
+    <%= f.label 'Descrição' %><br>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
+  </div>
+  <div class="field">
+    <%= f.label 'Fundo Preto' %>
+    <%= f.check_box :fundo %>
+    <%= f.hidden_field :usuario_id, :value => current_usuario.id%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Cadastrar Evento", class: 'btn1 btn-primary btn-normal btn-inline' %>
+  </div>
 <% end %>
-
