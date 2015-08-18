@@ -32,6 +32,11 @@
     <%= f.text_field :logo, hint: 'Link para o logo da pista', class: 'inputbox'  %>
   </div>
   <div class="field">
+    <%= f.label 'Modalidade da Pista' %><br>
+    <%#= f.collection_select :esporte_id, Esporte.all, :id, :nome,{ :prompt => "Selecione uma Modalidade", :multiple => true} %>
+    <%= f.select :esporte_id, Esporte.all.collect {|x| [x.nome, x.id]}, {:class=> 'textarea-box', :cols => 5}, :multiple => true %>
+  </div>
+  <div class="field">
     <%= f.label 'Descrição' %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
   </div>
