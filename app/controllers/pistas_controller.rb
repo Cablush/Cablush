@@ -20,13 +20,13 @@ class PistasController < ApplicationController
   # POST /pistas(.:format)
   def create
     if current_usuario.admin?
-      @pista = Pista.new(loja_params)
+      @pista = Pista.new(pista_params)
     else
-      @pista = current_usuario.pistas.build(loja_params)
+      @pista = current_usuario.pistas.build(pista_params)
     end
     
     if @pista.save
-      redirect_to lojas_path
+      redirect_to pistas_path
     else
       render 'new'
     end
@@ -54,8 +54,8 @@ class PistasController < ApplicationController
       @pista = current_usuario.pistas.find(params[:id])
     end
 
-    if @pista.update(loja_params)
-      redirect_to lojas_path
+    if @pista.update(pista_params)
+      redirect_to pistas_path
     else
       render 'edit'
     end
@@ -71,13 +71,13 @@ class PistasController < ApplicationController
     
     @pista.destroy
 
-    redirect_to lojas_path
+    redirect_to pistas_path
   end
   
   private
   
   def pista_params
-    params.require(:pista).permit(:nome, :facebook, :email, :contato, :site, :logo, :descricao, :fundo)
+    params.require(:pista).permit(:nome, :facebook, :contato, :horario, :logo, :descricao, :fundo)
   end
   
 end
