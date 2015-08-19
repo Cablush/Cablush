@@ -13,7 +13,7 @@
         <ul>
             <% @pistas.each do |pista| %>
               <li>
-                  <%= link_to pistas.nome, edit_loja_path(pista) %>
+                  <%= link_to pista.nome, edit_pista_path(pista) %>
               </li>
             <% end %>
         </ul>        

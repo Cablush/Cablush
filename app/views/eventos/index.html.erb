@@ -13,7 +13,7 @@
         <ul>
             <% @eventos.each do |evento| %>
               <li>
-                  <%= link_to evento.nome, edit_loja_path(evento) %>
+                  <%= link_to evento.nome, edit_evento_path(evento) %>
               </li>
             <% end %>
         </ul>        

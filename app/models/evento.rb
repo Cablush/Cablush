@@ -3,6 +3,9 @@ class Evento < ActiveRecord::Base
   belongs_to :usuario
   belongs_to :esporte
   belongs_to :local
+  
+  # site: temporário até achar solução para não dar pau no home :P
+  attr_accessor :site
 
   
 #  scope :public, -> { where(public: true) }
