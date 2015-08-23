@@ -54,6 +54,8 @@ gem 'devise'
 #a pedido do openshift
 gem 'turbo-sprockets-rails3'
 
+gem "paperclip", "~> 4.3"
+
 group :development do
   gem 'byebug'
 end

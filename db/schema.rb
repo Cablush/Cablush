@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819013311) do
+ActiveRecord::Schema.define(version: 20150823223250) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -117,14 +117,18 @@ ActiveRecord::Schema.define(version: 20150819013311) do
     t.string   "contato"
     t.string   "email"
     t.string   "facebook"
-    t.boolean  "fundo",       default: false
-    t.boolean  "patrocinado", default: false
-    t.boolean  "virtual",     default: false
+    t.boolean  "fundo",             default: false
+    t.boolean  "patrocinado",       default: false
+    t.boolean  "virtual",           default: false
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "usuario_id"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "lojas", ["esporte_id"], name: "index_lojas_on_esporte_id"
@@ -156,9 +160,9 @@ ActiveRecord::Schema.define(version: 20150819013311) do
     t.integer  "usuario_id"
   end
 
-  add_index "pistas", ["esporte_id"], name: "index_pistas_on_esporte_id"
-  add_index "pistas", ["local_id"], name: "index_pistas_on_local_id"
-  add_index "pistas", ["usuario_id"], name: "index_pistas_on_usuario_id"
+  add_index "pista", ["esporte_id"], name: "index_pista_on_esporte_id"
+  add_index "pista", ["local_id"], name: "index_pista_on_local_id"
+  add_index "pista", ["usuario_id"], name: "index_pista_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
     t.integer  "id_social"

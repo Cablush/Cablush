@@ -1,4 +1,4 @@
-<%= form_for(@loja) do |f| %>
+<%= form_for @loja, html: { multipart: true } do |f| %>
   <% if @loja.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@loja.errors.count, "error") %> prohibited this contact from being saved:</h2>
@@ -29,11 +29,11 @@
   </div>
   <div class="field">
     <%= f.label 'Site da Loja' %><br>
-    <%= f.text_field :site, class: 'inputbox'  %>
+    <%= f.text_field :site, class: 'inputbox'  %> 
   </div>
   <div class="field">
     <%= f.label 'Logo da Loja' %><br>
-    <%= f.text_field :site, hint: 'Link para o logo da loja', class: 'inputbox'  %>
+    <%= f.file_field :logo %>
   </div>
   <div class="field">
     <%= f.label 'Modalidade  da Loja' %><br>

@@ -5,46 +5,44 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <script type="text/javascript">
-  google.maps.event.addDomListener(window, 'load', initialize);
-  $(document).on('pageload', function () {
-      initialize();
-  });
+	google.maps.event.addDomListener(window, 'load', initialize);
+        $(document).on('pageload', function() {
+  			initialize();
+		});    
 </script>
-
+	
 <%= render "layouts/menu"%>
-
-<div class="map">
-    <div id="map-canvas"></div>
-</div>
-
-<div class="content-box">
-    <div class="wrap">
-        <ul class="events">
-            <li class="active"><a href="#">Lojas</a></li> 
-        </ul>
-        <div class="content-box-left">
-            <div class="search_box">
-                <%= form_for home_lojas_path, html: { id: "form_lojas" } ,remote: true  do |f| %>
-                  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-
-                  <%=f.collection_select( :estado, Estado.all,:id, :nome , {:prompt => 'Selecione Estado'}, {:class=>'frm-field required'}) %>
-              </div>
-              <div class="search_box">
-                  <%=f.collection_select( :esporte, Esporte.all,:id, :nome , {:prompt => 'Selecione Esporte'}, {:class=>'frm-field required'}) %>
-              </div>
-            <% end %>
-        </div>
-    </div>
-</div>
-
-<div class="clear"></div>
-
-<div class="main">
-    <div class="wrap" id="paginate_itens">
-        <%= render "item", itens: @lojas%>
-    </div>
-</div>
-<div class="clear"></div>
-
-<%=render "layouts/footer"%>
-<%= will_paginate @lojas, :remote => true  %>
+     <div class="map">
+      <div id="map-canvas"></div>
+     </div>
+     <div class="content-box">
+     	<div class="wrap">
+     		<ul class="events">
+				<li class="active"><a href="#">Lojas</a></li> 
+			</ul>
+			<div class="content-box-left">
+    				 <div class="search_box">
+    				 <%= form_for home_lojas_path, html: { id: "form_lojas" } ,remote: true  do |f| %>
+			  		 <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+			  	 
+			  		<%=f.collection_select( :estado, Estado.all,:id, :nome , {:prompt => 'Selecione Estado'}, {:class=>'frm-field required'}) %>
+			  		</div>
+		   	 	  <div class="search_box">
+			  		<%=f.collection_select( :esporte, Esporte.all,:id, :nome , {:prompt => 'Selecione Esporte'}, {:class=>'frm-field required'}) %>
+			  		</div>
+		   		  <% end %>
+			   </div>
+			</div>
+		</div>
+     	<div class="clear"></div>
+ 	 </div>
+     </div>
+     <div class="main">
+     	<div class="wrap" id="paginate_itens">
+				<%= render "item", itens: @lojas%>
+		</div>
+	   </div>
+     	<div class="clear"></div>
+		</div>
+		<%=render "layouts/footer"%>
+       <%= will_paginate @lojas, :remote => true  %>
