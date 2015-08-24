@@ -1,4 +1,4 @@
-<%= form_for(@evento) do |f| %>
+<%= form_for @evento, html: { multipart: true } do |f| %>
   <% if @evento.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this contact from being saved:</h2>
@@ -29,7 +29,7 @@
   </div> -->
   <div class="field">
     <%= f.label 'Logo do Evento' %><br>
-    <%= f.text_field :logo, hint: 'Link para o logo da evento', class: 'inputbox'  %>
+    <%= f.file_field :logo %>
   </div>
   <div class="field">
     <%= f.label 'Modalidade  do Evento' %><br>

@@ -38,6 +38,7 @@
   <div class="field">
     <%= f.label 'Modalidade  da Loja' %><br>
     <%#= f.collection_select :esporte_id, Esporte.all, :id, :nome,{ :prompt => "Selecione uma Modalidade", :multiple => true} %>
+    
     <%= f.select :esporte_id, Esporte.all.collect {|x| [x.nome, x.id]}, {:class=> 'textarea-box', :cols => 5}, :multiple => true %>
   </div>
   <div class="field">

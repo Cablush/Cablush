@@ -6,7 +6,13 @@ class Loja < ActiveRecord::Base
   belongs_to :esporte
   belongs_to :local
 
-  has_attached_file :logo  
+  has_attached_file :logo, :styles => { :small => "350x200>" },
+                    :url  => "/assets/lojas/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/lojas/:id/:style/:basename.:extension"
+
+  validates_attachment_presence :logo
+  validates_attachment_size :logo, :less_than => 10.megabytes
+  validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
   #scope :estado, lambda { |est_id| joins(:local).where(locals: {estado_id: est_id}) }
   #scope :esporte, lambda { |esp_id| where(esporte_id: esp_id) }
   

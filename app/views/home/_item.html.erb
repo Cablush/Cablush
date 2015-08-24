@@ -7,9 +7,9 @@
         <% unless item.logo.nil? %>
           <center><a href="<%= item.site %>">
               <%if item.fundo? %>
-                <%= image_tag item.logo,:style => "background-color:#000" %>
+                <%= image_tag item.logo.url(:small) ,:style => "background-color:#000" %>
               <% else %>
-                <%= image_tag item.logo %>
+                <%= image_tag item.logo.url(:small) %>
               <% end %>
           </a></center>
           <ul class="m_fb">
@@ -19,9 +19,9 @@
                           <a href="<%= item.facebook ||="#" %>"><%= image_tag "fb.png"%></a>
                       </center>
                   </span>
-                  <% if usuario_signed_in? && current_usuario.logista? %>
-                    <span class="m_23"><a href="#"><%= image_tag("heart.png") %></a></span>
-                  <% end %>
+                  <%# if usuario_signed_in? && current_usuario.logista? %>
+                    <!-- <span class="m_23"><a href="#"><%= image_tag("heart.png") %></a></span> -->
+                  <%# end %>
                   <div class="clear"></div>
               </li>
           </ul>
