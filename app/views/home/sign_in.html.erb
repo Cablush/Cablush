@@ -14,7 +14,7 @@
      	    <%= simple_form_for :usuario, :url => session_path(:usuario)  do |f| %>
               <%= f.input :email, label: 'Email' %>
               <%= f.input :password, label: 'Senha' %>
-              <%= f.input :remember_me, :as => :boolean, class:'checkbox' %>
+              <%#= f.input :remember_me, :as => :boolean, class:'checkbox' %>
               <%= f.button :submit,value: 'Login', label: 'Login', class: 'btn1 btn-primary btn-normal btn-inline' %>
               <%= link_to "Forgot your password?", new_password_path(:usuario), class: 'btn1 btn-primary btn-normal btn-inline' %>
             <% end %>    

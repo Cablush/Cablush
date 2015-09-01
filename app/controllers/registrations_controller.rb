@@ -4,12 +4,17 @@ class RegistrationsController < Devise::RegistrationsController
   
   def create
     super do
+      begin
       if resource.lojista == "1"
         resource.lojista! 
       elsif
         resource.esportista!
       end
-      resource.save
+        resource.save
+      rescue
+        @erro_msg = "ERROR  "
+      end
+      
     end
   end
   
