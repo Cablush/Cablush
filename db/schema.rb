@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824000239) do
+ActiveRecord::Schema.define(version: 20150912145019) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -61,14 +61,14 @@ ActiveRecord::Schema.define(version: 20150824000239) do
     t.string   "nome"
     t.string   "logo"
     t.string   "descricao"
-    t.boolean  "public",            default: true
-    t.boolean  "patrocinado",       default: false
+    t.boolean  "public",                                      default: true
+    t.boolean  "patrocinado",                                 default: false
     t.time     "hora"
     t.date     "data"
     t.string   "rota"
     t.string   "contato"
     t.string   "facebook"
-    t.boolean  "fundo",             default: false
+    t.boolean  "fundo",                                       default: false
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.integer  "participantes_id"
@@ -79,6 +79,9 @@ ActiveRecord::Schema.define(version: 20150824000239) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "endereco"
+    t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
+    t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
   end
 
   add_index "eventos", ["esporte_id"], name: "index_eventos_on_esporte_id"
@@ -121,9 +124,9 @@ ActiveRecord::Schema.define(version: 20150824000239) do
     t.string   "contato"
     t.string   "email"
     t.string   "facebook"
-    t.boolean  "fundo",             default: false
-    t.boolean  "patrocinado",       default: false
-    t.boolean  "virtual",           default: false
+    t.boolean  "fundo",                                       default: false
+    t.boolean  "patrocinado",                                 default: false
+    t.boolean  "virtual",                                     default: false
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
@@ -133,6 +136,9 @@ ActiveRecord::Schema.define(version: 20150824000239) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+    t.text     "endereco"
+    t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
+    t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
   end
 
   add_index "lojas", ["esporte_id"], name: "index_lojas_on_esporte_id"
@@ -155,13 +161,16 @@ ActiveRecord::Schema.define(version: 20150824000239) do
     t.string   "horario"
     t.string   "logo"
     t.string   "contato"
-    t.boolean  "fundo",      default: false
+    t.boolean  "fundo",                                default: false
     t.boolean  "facebook"
     t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "usuario_id"
+    t.text     "endereco"
+    t.decimal  "latitude",   precision: 15, scale: 10, default: 0.0
+    t.decimal  "longitude",  precision: 15, scale: 10, default: 0.0
   end
 
   add_index "pistas", ["esporte_id"], name: "index_pistas_on_esporte_id"
