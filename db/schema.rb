@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150913191306) do
+ActiveRecord::Schema.define(version: 20150913223128) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -69,7 +69,6 @@ ActiveRecord::Schema.define(version: 20150913191306) do
     t.string   "contato"
     t.string   "facebook"
     t.boolean  "fundo",                                       default: false
-    t.integer  "local_id"
     t.integer  "esporte_id"
     t.integer  "participantes_id"
     t.datetime "created_at"
@@ -82,10 +81,13 @@ ActiveRecord::Schema.define(version: 20150913191306) do
     t.text     "endereco"
     t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
     t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
+    t.integer  "estado_id"
+    t.integer  "cidade_id"
   end
 
+  add_index "eventos", ["cidade_id"], name: "index_eventos_on_cidade_id"
   add_index "eventos", ["esporte_id"], name: "index_eventos_on_esporte_id"
-  add_index "eventos", ["local_id"], name: "index_eventos_on_local_id"
+  add_index "eventos", ["estado_id"], name: "index_eventos_on_estado_id"
   add_index "eventos", ["participantes_id"], name: "index_eventos_on_participantes_id"
   add_index "eventos", ["usuario_id"], name: "index_eventos_on_usuario_id"
 
@@ -102,19 +104,6 @@ ActiveRecord::Schema.define(version: 20150913191306) do
   add_index "grupos", ["atletas_id"], name: "index_grupos_on_atletas_id"
   add_index "grupos", ["eventos_id"], name: "index_grupos_on_eventos_id"
 
-  create_table "locals", force: :cascade do |t|
-    t.string   "logradouro"
-    t.decimal  "latitude",   precision: 15, scale: 10, default: 0.0
-    t.decimal  "longitude",  precision: 15, scale: 10, default: 0.0
-    t.integer  "cidade_id"
-    t.integer  "estado_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "locals", ["cidade_id"], name: "index_locals_on_cidade_id"
-  add_index "locals", ["estado_id"], name: "index_locals_on_estado_id"
-
   create_table "lojas", force: :cascade do |t|
     t.string   "nome"
     t.string   "logo"
@@ -127,7 +116,6 @@ ActiveRecord::Schema.define(version: 20150913191306) do
     t.boolean  "fundo",                                       default: false
     t.boolean  "patrocinado",                                 default: false
     t.boolean  "virtual",                                     default: false
-    t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -139,10 +127,13 @@ ActiveRecord::Schema.define(version: 20150913191306) do
     t.text     "endereco"
     t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
     t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
+    t.integer  "estado_id"
+    t.integer  "cidade_id"
   end
 
+  add_index "lojas", ["cidade_id"], name: "index_lojas_on_cidade_id"
   add_index "lojas", ["esporte_id"], name: "index_lojas_on_esporte_id"
-  add_index "lojas", ["local_id"], name: "index_lojas_on_local_id"
+  add_index "lojas", ["estado_id"], name: "index_lojas_on_estado_id"
   add_index "lojas", ["usuario_id"], name: "index_lojas_on_usuario_id"
 
   create_table "modalidades", force: :cascade do |t|
@@ -163,7 +154,6 @@ ActiveRecord::Schema.define(version: 20150913191306) do
     t.string   "contato"
     t.boolean  "fundo",                                default: false
     t.boolean  "facebook"
-    t.integer  "local_id"
     t.integer  "esporte_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -171,10 +161,13 @@ ActiveRecord::Schema.define(version: 20150913191306) do
     t.text     "endereco"
     t.decimal  "latitude",   precision: 15, scale: 10, default: 0.0
     t.decimal  "longitude",  precision: 15, scale: 10, default: 0.0
+    t.integer  "estado_id"
+    t.integer  "cidade_id"
   end
 
+  add_index "pistas", ["cidade_id"], name: "index_pistas_on_cidade_id"
   add_index "pistas", ["esporte_id"], name: "index_pistas_on_esporte_id"
-  add_index "pistas", ["local_id"], name: "index_pistas_on_local_id"
+  add_index "pistas", ["estado_id"], name: "index_pistas_on_estado_id"
   add_index "pistas", ["usuario_id"], name: "index_pistas_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
