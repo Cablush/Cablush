@@ -36,7 +36,8 @@
   </div> 
   <div class="field">
     <%= f.label 'Logo do pista' %><br>
-    <%= f.text_field :logo, hint: 'Link para o logo da pista', class: 'inputbox'  %>
+    <%= f.file_field :logo %>
+    <%#= f.text_field :logo, hint: 'Link para o logo da pista', class: 'inputbox'  %>
   </div>
   <div class="field">
     <%= f.label 'Modalidade da Pista' %><br>

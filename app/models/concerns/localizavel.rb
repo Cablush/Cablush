@@ -3,7 +3,7 @@ module Localizavel
   
   included do   
     belongs_to :estado
-    belongs_to :cidade
+    belongs_to :cidade 
     belongs_to :esporte
     
     per_page = 9
