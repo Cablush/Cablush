@@ -11,8 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
 //= require jquery_ujs
-//= require_tree .
+//= require jquery-ui
 //= require jquery.infinitescroll
+//= require jquery.turbolinks
+//= require autocomplete-rails
 //= require turbolinks
+//= require jquery-readyselector
+//= require_tree .

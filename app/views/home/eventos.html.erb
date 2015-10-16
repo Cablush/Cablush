@@ -1,14 +1,4 @@
-<script type="text/javascript">
-  google.maps.event.addDomListener(window, 'load', initialize);
-  $(document).on('pageload', function () {
-      initialize();
-  });
-</script>
-
-<%= render "layouts/menu"%>
-
 <div class="map">
-    <%#=image_tag("map.jpg") %>
     <div id="map-canvas"></div>
 </div>
 
@@ -18,16 +8,9 @@
             <li class="active"><a href="#">Eventos</a></li> 
         </ul>
         <div class="content-box-left">
-            <div class="search_box">
-                <form>
-                    <%=collection_select(:estado, :id, Estado.all,:id, :nome , {:prompt => 'Selecione Estado'}, {:class=>'frm-field required'}) %>
-                </form>
-            </div>
-            <div class="search_box">
-                <form>
-                    <%=collection_select(:esporte, :id, Esporte.all,:id, :nome , {:prompt => 'Selecione Esporte'}, {:class=>'frm-field required'}) %>
-                </form>  
-            </div>
+          <%= form_for home_eventos_path, html: { id: "form_eventos" } ,remote: true  do |f| %>
+            <%= render "pesquisa_local", f: f %>
+          <% end %>
         </div>
     </div>
     <div class="clear"></div>
@@ -35,11 +18,9 @@
 
 <div class="main">
     <div class="wrap" id="paginate_itens">
-        <%= render "item", itens: @eventos%>
+      <%= render "locais.html", locais: @locais %>
     </div>
+    <div class="clear"></div>
 </div>
 
-<div class="clear"></div>
-
-<%=render "layouts/footer"%>
-<%= will_paginate @eventos,remote: true %>
+<%= will_paginate @locais, :remote => true  %>

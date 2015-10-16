@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150920190026) do
+ActiveRecord::Schema.define(version: 20151001025437) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -42,142 +42,148 @@ ActiveRecord::Schema.define(version: 20150920190026) do
 
   create_table "esportes", force: :cascade do |t|
     t.string   "nome"
-    t.integer  "modalidade_id"
+    t.string   "categoria"
+    t.string   "icone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "esportes", ["modalidade_id"], name: "index_esportes_on_modalidade_id"
+  create_table "esportes_eventos", id: false, force: :cascade do |t|
+    t.integer "evento_id",  null: false
+    t.integer "esporte_id", null: false
+  end
+
+  create_table "esportes_grupos", id: false, force: :cascade do |t|
+    t.integer "grupo_id",   null: false
+    t.integer "esporte_id", null: false
+  end
+
+  create_table "esportes_lojas", id: false, force: :cascade do |t|
+    t.integer "loja_id",    null: false
+    t.integer "esporte_id", null: false
+  end
+
+  create_table "esportes_pistas", id: false, force: :cascade do |t|
+    t.integer "pista_id",   null: false
+    t.integer "esporte_id", null: false
+  end
+
+  create_table "esportes_usuarios", id: false, force: :cascade do |t|
+    t.integer "usuario_id", null: false
+    t.integer "esporte_id", null: false
+  end
 
   create_table "estados", force: :cascade do |t|
     t.string   "rg",         limit: 2
     t.string   "nome"
-    t.string   "logo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "eventos", force: :cascade do |t|
     t.string   "nome"
-    t.string   "logo"
     t.string   "descricao"
-    t.boolean  "public",                                      default: true
-    t.boolean  "patrocinado",                                 default: false
-    t.time     "hora"
     t.date     "data"
-    t.string   "rota"
-    t.string   "contato"
-    t.string   "facebook"
-    t.boolean  "fundo",                                       default: false
-    t.integer  "esporte_id"
-    t.integer  "participantes_id"
+    t.time     "hora"
+    t.string   "cartaz"
+    t.boolean  "fundo",          default: false
+    t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "usuario_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.text     "endereco"
-    t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
-    t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
-    t.integer  "estado_id"
-    t.integer  "cidade_id"
   end
 
-  add_index "eventos", ["cidade_id"], name: "index_eventos_on_cidade_id"
-  add_index "eventos", ["esporte_id"], name: "index_eventos_on_esporte_id"
-  add_index "eventos", ["estado_id"], name: "index_eventos_on_estado_id"
-  add_index "eventos", ["participantes_id"], name: "index_eventos_on_participantes_id"
-  add_index "eventos", ["usuario_id"], name: "index_eventos_on_usuario_id"
+  add_index "eventos", ["responsavel_id"], name: "index_eventos_on_responsavel_id"
+
+  create_table "eventos_grupos", id: false, force: :cascade do |t|
+    t.integer "grupo_id",  null: false
+    t.integer "evento_id", null: false
+  end
+
+  create_table "eventos_lojas", id: false, force: :cascade do |t|
+    t.integer "loja_id",   null: false
+    t.integer "evento_id", null: false
+  end
 
   create_table "grupos", force: :cascade do |t|
     t.string   "nome"
+    t.string   "descricao"
     t.string   "logo"
-    t.string   "esporte"
-    t.integer  "eventos_id"
-    t.integer  "atletas_id"
+    t.boolean  "fundo",          default: false
+    t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "grupos", ["atletas_id"], name: "index_grupos_on_atletas_id"
-  add_index "grupos", ["eventos_id"], name: "index_grupos_on_eventos_id"
+  add_index "grupos", ["responsavel_id"], name: "index_grupos_on_responsavel_id"
+
+  create_table "grupos_usuarios", id: false, force: :cascade do |t|
+    t.integer "grupo_id",   null: false
+    t.integer "usuario_id", null: false
+  end
+
+  create_table "horarios", force: :cascade do |t|
+    t.string   "dias"
+    t.string   "periodo"
+    t.time     "inicio"
+    t.time     "fim"
+    t.integer  "funcionamento_id"
+    t.string   "funcionamento_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "horarios", ["funcionamento_type", "funcionamento_id"], name: "index_horarios_on_funcionamento_type_and_funcionamento_id"
+
+  create_table "locais", force: :cascade do |t|
+    t.decimal  "latitude",         precision: 15, scale: 10, default: 0.0
+    t.decimal  "longitude",        precision: 15, scale: 10, default: 0.0
+    t.string   "logradouro"
+    t.string   "numero"
+    t.string   "complemento"
+    t.string   "bairro"
+    t.string   "cidade"
+    t.string   "estado"
+    t.string   "cep"
+    t.string   "pais"
+    t.integer  "localizavel_id"
+    t.string   "localizavel_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "locais", ["localizavel_type", "localizavel_id"], name: "index_locais_on_localizavel_type_and_localizavel_id"
 
   create_table "lojas", force: :cascade do |t|
     t.string   "nome"
-    t.string   "logo"
-    t.time     "horario"
     t.text     "descricao"
-    t.string   "site"
-    t.string   "contato"
+    t.string   "telefone"
     t.string   "email"
+    t.string   "website"
     t.string   "facebook"
-    t.boolean  "fundo",                                       default: false
-    t.boolean  "patrocinado",                                 default: false
-    t.boolean  "virtual",                                     default: false
-    t.integer  "esporte_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "usuario_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
-    t.text     "endereco"
-    t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
-    t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
-    t.integer  "estado_id"
-    t.integer  "cidade_id"
-  end
-
-  add_index "lojas", ["cidade_id"], name: "index_lojas_on_cidade_id"
-  add_index "lojas", ["esporte_id"], name: "index_lojas_on_esporte_id"
-  add_index "lojas", ["estado_id"], name: "index_lojas_on_estado_id"
-  add_index "lojas", ["usuario_id"], name: "index_lojas_on_usuario_id"
-
-  create_table "modalidades", force: :cascade do |t|
-    t.string   "nome"
-    t.integer  "esporte_id"
-    t.string   "icon"
+    t.string   "logo"
+    t.boolean  "fundo",          default: false
+    t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "modalidades", ["esporte_id"], name: "index_modalidades_on_esporte_id"
+  add_index "lojas", ["responsavel_id"], name: "index_lojas_on_responsavel_id"
 
   create_table "pistas", force: :cascade do |t|
     t.string   "nome"
     t.text     "descricao"
-    t.string   "horario"
-    t.string   "logo"
-    t.string   "contato"
-    t.boolean  "fundo",                                       default: false
-    t.boolean  "facebook"
-    t.integer  "esporte_id"
+    t.string   "foto"
+    t.boolean  "fundo",          default: false
+    t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "usuario_id"
-    t.text     "endereco"
-    t.decimal  "latitude",          precision: 15, scale: 10, default: 0.0
-    t.decimal  "longitude",         precision: 15, scale: 10, default: 0.0
-    t.integer  "estado_id"
-    t.integer  "cidade_id"
-    t.string   "logo_file_name"
-    t.string   "logo_content_type"
-    t.integer  "logo_file_size"
-    t.datetime "logo_updated_at"
   end
 
-  add_index "pistas", ["cidade_id"], name: "index_pistas_on_cidade_id"
-  add_index "pistas", ["esporte_id"], name: "index_pistas_on_esporte_id"
-  add_index "pistas", ["estado_id"], name: "index_pistas_on_estado_id"
-  add_index "pistas", ["usuario_id"], name: "index_pistas_on_usuario_id"
+  add_index "pistas", ["responsavel_id"], name: "index_pistas_on_responsavel_id"
 
   create_table "usuarios", force: :cascade do |t|
     t.integer  "id_social"
     t.string   "nome"
-    t.integer  "amigos_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email",                  default: "", null: false
@@ -196,7 +202,6 @@ ActiveRecord::Schema.define(version: 20150920190026) do
     t.datetime "confirmation_sent_at"
   end
 
-  add_index "usuarios", ["amigos_id"], name: "index_usuarios_on_amigos_id"
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true

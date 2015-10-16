@@ -1,3 +1,7 @@
 class Esporte < ActiveRecord::Base
-  has_many :modalidade
+
+  def full_name
+    categoria + ' - ' + nome
+  end
+  
 end

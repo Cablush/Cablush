@@ -12,18 +12,4 @@ jQuery ->
                             dataType: "script",
                           });
      $(window).scroll()
-
-
-#   $("#_home_lojas_estado").on "change" ->
-#       $.ajax({
-#            url: "home/lojas",
-#            dataType: "script",
-#            data: $("#form_lojas").serialize()
-#          });
-#      $("#form_lojas").submit() 
-
-#   $("#esporte_id").on "change" ->
-#      getSports("id="+$("#esporte_id").val());
-    
-  
      

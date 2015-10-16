@@ -2,7 +2,9 @@ Workspace::Application.routes.draw do
   
   devise_for :usuarios, :controllers => { registrations: 'registrations' }
   
-  resources :lojas
+  resources :lojas do
+    get :autocomplete_loja_nome, :on => :collection
+  end
   resources :eventos
   resources :pistas
 #  resources :usuarios

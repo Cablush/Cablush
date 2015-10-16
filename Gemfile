@@ -22,6 +22,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 gem 'jquery-turbolinks'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -56,6 +57,12 @@ gem 'turbo-sprockets-rails3'
 
 gem "paperclip", "~> 4.3"
 
+gem 'rails4-autocomplete'
+
 group :development do
   gem 'byebug'
+  gem 'rails-erd'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem 'quiet_assets'
 end

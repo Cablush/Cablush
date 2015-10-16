@@ -1,15 +1,4 @@
-<script type="text/javascript">
-  google.maps.event.addDomListener(window, 'load', initialize);
-  $(document).on('pageload', function () {
-      initialize();
-  });
-</script>
-
-<%= render "layouts/menu"%>
-
 <div class="map">
-    <%#=image_tag("map.jpg") %>
-    <!--Mapa do google maps -->
     <div id="map-canvas"></div>
 </div>
 
@@ -19,28 +8,19 @@
             <li class="active"><a href="#">Pistas</a></li> 
         </ul>
         <div class="content-box-left">
-            <%= form_for home_pistas_path, html: { id: "form_pistas" } ,remote: true  do |f| %>
-              <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-              <div class="search_box">
-                  <%=f.collection_select( :estado, Estado.all,:id, :nome , {:prompt => 'Selecione Estado'}, {:class=>'frm-field required'}) %>
-              </div>
-              <div class="search_box">
-                  <%=f.collection_select( :esporte, Esporte.all,:id, :nome , {:prompt => 'Selecione Esporte'}, {:class=>'frm-field required'}) %>
-              </div>
-            <% end %>
+          <%= form_for home_pistas_path, html: { id: "form_pistas" } ,remote: true  do |f| %>
+            <%= render "pesquisa_local", f: f %>
+          <% end %>
         </div>
     </div>
+    <div class="clear"></div>
 </div>
-
-<div class="clear"></div>
 
 <div class="main">
     <div class="wrap" id="paginate_itens">
-        <%= render "item", itens: @pistas %>
+      <%= render "locais.html", locais: @locais %>
     </div>
+    <div class="clear"></div>
 </div>
 
-<div class="clear"></div>
-
-<%=render "layouts/footer"%>
-<%= will_paginate @pistas, :remote => true %>
+<%= will_paginate @locais, :remote => true  %>

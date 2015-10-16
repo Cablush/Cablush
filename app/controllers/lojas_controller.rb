@@ -2,7 +2,9 @@ class LojasController < ApplicationController
   
   before_action :authenticate_usuario!
   before_action :lojista_at_least, :except => :show
-
+  
+  autocomplete :loja, :nome, :extra_data => [:endereco, :cidade, :estado]
+  
   # GET /lojas(.:format)
   def index
     if current_usuario.admin?
@@ -54,7 +56,7 @@ class LojasController < ApplicationController
       @loja = current_usuario.lojas.find(params[:id])
     end
 
-    if @loja.update(loja_params)
+    if @loja.update_attributes(loja_params)
       redirect_to lojas_path
     else
       render 'edit'
@@ -77,7 +79,7 @@ class LojasController < ApplicationController
   private
   
   def loja_params
-    params.require(:loja).permit(:nome, :facebook, :email, :contato, :site, :logo, :descricao, :fundo)
+    params.require(:loja).permit(:nome, :contato, :email, :site, :facebook, :logo, :fundo, :descricao, )
   end
   
 end

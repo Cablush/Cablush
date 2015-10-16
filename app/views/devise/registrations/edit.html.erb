@@ -1,0 +1,37 @@
+<div class="content-box">
+    <div class="wrap">
+        <ul class="events">
+            <li class="active"><a href="#">Editar perfil!</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="wrap">
+        <div style="float: left; padding-left: 30%; width: 40%;"> 
+          <%= simple_form_for :usuario, :url => registration_path(:usuario)  do |f| %>
+            <%= f.input :nome, label: 'Nome' %>
+            <%= f.input :email, label: 'Email' %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Aguardando confirmação para: <%= resource.unconfirmed_email %></div>
+            <% end %>
+            <fieldset>
+              <p>Deixe estes campos em branco caso não queira alterar a senha.</p>
+              <%= f.input :password, label: 'Nova Senha' %>
+              <%= f.input :password_confirmation, label: 'Confirmar Senha' %>
+            </fieldset>
+            <fieldset>
+              <p>Entre sua senha atual para confirmar as alterações.</p>
+              <%= f.input :current_password, label: 'Senha Atual' %>
+            </fieldset>
+            <%= f.button :submit,value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline' %>
+          <% end %>
+          <div>
+            <h3>Cancelar Conta?</h3>
+            <%= button_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Nos de outra chance. :(" }, :method => :delete, :class => 'button right' %>
+          </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

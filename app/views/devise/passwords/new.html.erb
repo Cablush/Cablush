@@ -1,0 +1,22 @@
+<div class="content-box">
+    <div class="wrap">
+        <ul class="events">
+            <li class="active"><a href="#">Alterar senha!</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="wrap">
+        <div style="float: left; padding-left: 30%; width: 40%;"> 
+          <%= simple_form_for :usuario, :url => password_path(:usuario)  do |f| %>
+            <p>Esqueceu a senha? </p>
+            <p>Sem problemas, te enviamos as instruções para alterá-la.</p><br/>
+            <%= f.input :email, label: 'Email' %>
+            <%= f.button :submit, value: 'Alterar senha', label: 'Alterar senha', class: 'btn1 btn-primary btn-normal btn-inline' %>
+          <% end %>    
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>

@@ -4,7 +4,6 @@ class CreateUsuarios < ActiveRecord::Migration
       t.integer :id_social
       t.string :nome
       
-      t.references :amigos, index: true
       t.timestamps
     end
   end

@@ -1,4 +1,9 @@
 class Grupo < ActiveRecord::Base
-  has_many :eventos
-  has_many :atletas :class_name =>'Usuario'
+  
+  belongs_to :responsavel, class_name: "Usuario"
+  
+  has_and_belongs_to_many :esportes
+  has_and_belongs_to_many :usuarios
+  has_and_belongs_to_many :eventos
+  
 end

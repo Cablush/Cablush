@@ -1,10 +1,11 @@
 class Usuario < ActiveRecord::Base
   enum role: {admin: 0, lojista: 1, esportista: 2}
   
-  has_many :amigos, :class_name =>'Amizade'
+  has_many :amigos, class_name: 'Amizade'
   has_many :lojas
   has_many :eventos
   has_many :pistas
+  has_and_belongs_to_many :grupos
  
   # Include default devise modules. Others available are:
   #  :lockable, :timeoutable and :omniauthable

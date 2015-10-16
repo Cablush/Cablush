@@ -345,6 +345,19 @@ ul.events li {
     border: none;
     font-family: 'Dosis', sans-serif;
 }
+.search_box form button, .search_box button {
+    padding: 5px 10px;
+    width: 100%;
+    font-family: "Dosis",sans-serif;
+    font-size: 1em;
+    color: #777;
+    background: #FFF none repeat scroll 0% 0%;
+    outline: medium none;
+    border: medium none;
+}
+.search_box form button:hover, .search_box button:hover {
+    color: #333;
+}
 .textbox {
     float: left;
     background: #FFF;
@@ -2569,6 +2582,17 @@ input.inputbox, input.required, div.k2AccountPage input[type="text"] {
     color:#777
 }
 
+select.selectbox, select.selectmultibox {
+    border: 1px solid #DFDFDF;
+    font-size:1em;
+    color: #777;
+    padding: 5px 10px;
+    outline: none;
+    width:100%;
+    background:#fff;
+    font-family: 'Dosis', sans-serif;
+}
+
 .textarea-box {
     background: #FFF;
     border: 1px solid #DFDFDF;
@@ -3307,9 +3331,9 @@ html, body,map, #map-canvas {
     padding: 0px
 }
 .map{
-    height: 400px;
+    
 }      
-.home{
+.content{
     width:49.8%;
     height:100%;
     float: left;
@@ -3319,4 +3343,69 @@ html, body,map, #map-canvas {
     height:100%;
     float: right;
 }
+.field {
+    padding-bottom: 10px;
+}
+.optional_field {
+    font-style: italic;
+}
 
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://i.stack.imgur.com/FhHRx.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+
+.alert {
+    border: 1px solid;
+    border-radius:10px;
+    margin: 10px;
+    padding:15px 0px 10px 36px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+}
+.alert-notice {
+    color: #00529B;
+    background-color: #e3f7fc;
+    background-image: url('notice.png');
+}
+.alert-success {
+    color: #4F8A10;
+    background-color: #e9ffd9;
+    background-image:url('success.png');
+}
+.alert-alert {
+    color: #9F6000;
+    background-color: #fff8c4;
+    background-image: url('warning.png');
+}
+.alert-error {
+    color:#D8000C;
+    background-color: #ffecec;
+    background-image: url('error.png');
+}

@@ -2,8 +2,9 @@ class CreateEsportes < ActiveRecord::Migration
   def change
     create_table :esportes do |t|
       t.string :nome
-      t.references :modalidade, index: true
-
+      t.string :categoria
+      t.string :icone
+      
       t.timestamps
     end
   end

@@ -23,17 +23,17 @@
         <div class="buttons">
             <% if usuario_signed_in? %>
               <div class="login_name">
-                Olá, <%= current_usuario.nome%>
+                Olá, <%= link_to current_usuario.nome, edit_user_registration_path %>
               </div>
               <div class="login_btn">
-                  <%= link_to "Sign out", destroy_usuario_session_path, :method => :delete %>
+                <%= link_to "Sign out", destroy_usuario_session_path, method: :delete %>
               </div>
             <% else %>
               <div class="login_btn">
-                  <%= link_to "Login / Sign in", home_sign_in_path %> 
+                <%= link_to "Login / Sign in", new_usuario_session_path %> 
               </div>
               <div class="get_btn">
-                  <%= link_to "sign up", home_sign_up_path %>
+                <%= link_to "sign up", new_usuario_registration_path %>
               </div>
             <% end %>	
             <div class="clear"></div>

@@ -1,16 +1,14 @@
 class CreatePista < ActiveRecord::Migration
   def change
-    create_table :pista do |t|
+    create_table :pistas do |t|
       t.string :nome
       t.text :descricao
-      t.string :horario 
-      t.string :logo
-      t.string :contato
+      
+      t.string :foto
       t.boolean :fundo, :default => false
-      t.boolean :facebook
-
-      t.references :local, index: true
-      t.references :esporte, index: true
+      
+      t.references :responsavel, index: true
+      
       t.timestamps
     end
   end

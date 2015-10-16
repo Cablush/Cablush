@@ -1,25 +1,29 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Cablush</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="utf-8">
-        <script data-turbolinks-track="true" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>  
-        <!--<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>-->
-        <!--<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>-->
-
-        <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+        <title><%= full_title(@title) %></title>
+        <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
         <%= javascript_include_tag "application" , "data-turbolinks-track" => true %>
-
-
+        <script data-turbolinks-track="true" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>  
+        <%= csrf_meta_tags %>
+        <%= favicon_link_tag 'favicon.ico' %>
     </head>
-    <body>
+    <body class="<%= controller_name %> <%= action_name %>">
 
+        <%= render "layouts/menu"%>
+        
+        <%= render "layouts/message"%>
+        
         <%= yield %>
 
-        <%= csrf_meta_tags %>
-
+        <%=render "layouts/footer"%>
+        
+        <div class="modal"></div>
     </body>
 </html>
