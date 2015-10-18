@@ -15,3 +15,4 @@
 /log/*.log
 /tmp
 /nbproject/private/secrets.yml
+config/secrets.yml
