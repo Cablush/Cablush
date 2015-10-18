@@ -1,0 +1,7 @@
+<p>Bem vindo <%= @email %>!</p>
+
+<p>Falta pouco para criar seu perfil no Cablush, e começar a interagir com outros esportistas e compartilhar e avaliar seus lugares preferidos para prática de esportes radicais.</p>
+
+<p>Clique no link abaixo para confirmar seu cadastro:</p>
+
+<p><%= link_to 'Confirmar meu cadastro', confirmation_url(@resource, confirmation_token: @token) %></p>

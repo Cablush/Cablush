@@ -1,4 +1,4 @@
-Workspace::Application.configure do
+Cablush::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -13,9 +13,6 @@ Workspace::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -27,20 +24,18 @@ Workspace::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   
-  
-  
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :domain               => 'gmail.com',
-  :user_name            => '*******',
-  :password             => '*****',
-  :authentication       => 'plain',
-  :enable_starttls_auto => true 
-}
-# Para debug apenas, é melhor que a linha abaixo seja adicionado apenas no ambiente de desenvolvimento
-config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: Rails.application.secrets.mail_smtp,
+    port: Rails.application.secrets.mail_port,
+    user_name: Rails.application.secrets.mail_username,
+    password: Rails.application.secrets.mail_password,
+    authentication: Rails.application.secrets.mail_authentication,
+    enable_starttls_auto: true
+  }
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  config.action_mailer.raise_delivery_errors = true
 
-config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 end

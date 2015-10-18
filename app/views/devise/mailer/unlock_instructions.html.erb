@@ -1,0 +1,7 @@
+<p>Olá <%= @resource.email %>!</p>
+
+<p>Seu perfil no Cablush foi bloqueado devido a várias tentativas de acesso sem sucesso.</p>
+
+<p>Clique no link abaixo para desbloquear o seu perfil:</p>
+
+<p><%= link_to 'Desbloquer perfil', unlock_url(@resource, unlock_token: @token) %></p>

@@ -1,0 +1,10 @@
+Contato via site
+Data de envio: <%= Time.now.strftime("%d/%m/%Y %H:%M") %>
+
+Visitante: <%= @contact['name'] %>
+Email: <%= @contact['email'] %>
+
+<% if @contact['subject'].present? %>
+Assunto: <%= @contact['subject'] %>
+<% end %>
+Mensagem: <%= @contact['message'] %>

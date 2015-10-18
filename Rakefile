@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Workspace::Application.load_tasks
+Cablush::Application.load_tasks

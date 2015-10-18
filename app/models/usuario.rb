@@ -8,21 +8,24 @@ class Usuario < ActiveRecord::Base
   has_and_belongs_to_many :grupos
  
   # Include default devise modules. Others available are:
-  #  :lockable, :timeoutable and :omniauthable
-  devise :confirmable, :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :trackable, :validatable
+  #  :timeoutable and :omniauthable
+  devise :registerable, :confirmable, :database_authenticatable,  
+    :recoverable, :rememberable, :lockable, :trackable, :validatable
  
-  #  attr_accessible :email, :password, :password_confirmation
-
   # lojista: utilizado no cadastro para identificar um lojista
   attr_accessor :lojista
 
   after_initialize :set_default_role, :if => :new_record?
+  
+  # send to the delayed_job queue
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
   
   private
   
   def set_default_role
     self.role ||= :esportista
   end
-
+  
 end

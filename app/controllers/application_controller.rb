@@ -13,16 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
   
-  def after_sign_up_path_for(resource)
-    if current_usuario.admin?
-      home_index_admin_path
-    elsif current_usuario.lojista?
-      home_index_lojista_path
-    else
-      home_index_path
-    end
-  end
-
   def after_sign_out_path_for(resource)
     home_index_path
   end

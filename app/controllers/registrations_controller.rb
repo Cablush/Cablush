@@ -5,16 +5,15 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     super do
       begin
-      if resource.lojista == "1"
-        resource.lojista! 
-      elsif
-        resource.esportista!
-      end
-        resource.save
+        if resource.lojista == "1"
+          resource.lojista! 
+        elsif
+          resource.esportista!
+        end
+          resource.save
       rescue
         @erro_msg = "ERROR  "
       end
-      
     end
   end
   
@@ -27,6 +26,10 @@ class RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.for(:account_update) do 
       |u| u.permit(:nome, :email, :current_password, :password, :password_confirmation)
     end
+  end
+  
+  def after_sign_up_path_for(resource)
+      home_index_path
   end
   
 end

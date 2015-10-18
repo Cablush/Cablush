@@ -1,4 +1,8 @@
-Workspace::Application.routes.draw do
+Cablush::Application.routes.draw do
+  
+  require 'sidekiq/web'
+  
+  mount Sidekiq::Web, at: "/sidekiq"
   
   devise_for :usuarios, :controllers => { registrations: 'registrations' }
   
@@ -7,7 +11,6 @@ Workspace::Application.routes.draw do
   end
   resources :eventos
   resources :pistas
-#  resources :usuarios
   
   resources :contacts
   
@@ -18,8 +21,6 @@ Workspace::Application.routes.draw do
   get "home/index"
   get "home/index_lojista"
   get "home/index_admin"
-  get "home/sign_in"
-  get "home/sign_up"
   
   get "home/about"
   get "home/blog"

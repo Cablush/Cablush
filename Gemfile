@@ -5,8 +5,12 @@ gem 'rails', '4.2.3'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
-
 gem 'mysql2'
+
+# Sidekiq allows you to move jobs into the background for asynchronous processing.
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

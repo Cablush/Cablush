@@ -5,28 +5,101 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 */
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
-article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
-ol,ul{list-style:none;margin:0;padding:0;}
-blockquote,q{quotes:none;}
-blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
-table{border-collapse:collapse;border-spacing:0;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, 
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, 
+ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, dl, dt,
+dd, ol, nav ul, nav li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, 
+figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, 
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    font-size:100%;
+    font:inherit;
+    vertical-align:baseline;
+}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, 
+nav, section {
+    display: block;
+}
+ol,ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+blockquote, q {
+    quotes:none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content:'';
+    content:none;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
 /* start editing from here */
-a{text-decoration:none;}
-.txt-rt{text-align:right;}/* text align right */
-.txt-lt{text-align:left;}/* text align left */
-.txt-center{text-align:center;}/* text align center */
-.float-rt{float:right;}/* float right */
-.float-lt{float:left;}/* float left */
-.clear{clear:both;}/* clear float */
-.pos-relative{position:relative;}/* Position Relative */
-.pos-absolute{position:absolute;}/* Position Absolute */
-.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
-.vertical-top{	vertical-align:top;}/* vertical align top */
-.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
-nav.vertical ul li{	display:block;}/* vertical menu */
-nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
-img{max-width:100%;}
+a {
+    text-decoration:none;
+}
+/* text align right */
+.txt-rt {
+    text-align:right;
+}
+/* text align left */
+.txt-lt {
+    text-align:left;
+}
+/* text align center */
+.txt-center {
+    text-align:center;
+}
+/* float right */
+.float-rt {
+    float:right;
+}
+/* float left */
+.float-lt {
+    float:left;
+}
+/* clear float */
+.clear {
+    clear:both;
+}
+/* Position Relative */
+.pos-relative {
+    position:relative;
+}
+/* Position Absolute */
+.pos-absolute {
+    position:absolute;
+}
+/* vertical align baseline */
+.vertical-base {
+    vertical-align:baseline;
+}
+/* vertical align top */
+.vertical-top {
+    vertical-align:top;
+}
+/* Add 5px bottom padding and a underline */
+.underline { 
+    padding-bottom:5px;	
+    border-bottom: 1px solid #eee; 
+    margin:0 0 20px 0;
+}
+/* vertical menu */
+nav.vertical ul li {
+    display:block;
+}
+/* horizontal menu */
+nav.horizontal ul li {
+    display: inline-block;
+}
+img {
+    max-width:100%;
+}
 /*end reset*/
 body{
     font-family: 'Dosis', sans-serif;
@@ -54,105 +127,82 @@ body{
     width: 40.5%;
     float: left;
 }
-#nav
-{
+#nav {
     position: absolute;
 } 
-#nav > a
-{
+#nav > a {
     display: none;
 }
-#nav li
-{
+#nav li {
     position: relative;
 }
-#nav li a
-{
+#nav li a {
     color: #ccc;
     display: block;
 }
-#nav li a:active
-{
+#nav li a:active {
 
 }
 /* first level */
-
-#nav > ul
-{
+#nav > ul {
 
 }
-#nav > ul > li
-{
+#nav > ul > li {
     margin:0 14px;
     height: 100%;
     float: left;
 }
-#nav > ul > li > a
-{
+#nav > ul > li > a {
     height: 100%;
     font-size: 1em; /* 24 */
     line-height: 2.5em; /* 60 (24) */
     text-align: center;
     font-family: 'Montserrat', sans-serif;
 }
-#nav > ul > li:not( :last-child ) > a
-{
+#nav > ul > li:not( :last-child ) > a {
 
 }
-#nav > ul > li:hover > a,
-#nav > ul:not( :hover ) > li.active > a
-{
+#nav > ul > li:hover > a, #nav > ul:not( :hover ) > li.active > a {
     color:#FE2232;
 }
 /* second level */
-#nav li ul
-{
+#nav li ul {
     background-color: #cc470d;
     display: none;
     position: absolute;
     top: 100%;
 }
-#nav li:hover ul
-{
+#nav li:hover ul {
     display: block;
     left: 0;
     right: 0;
 }
-#nav li:not( :first-child ):hover ul
-{
+#nav li:not( :first-child ):hover ul {
     left: -1px;
 }
-#nav li ul a
-{
+#nav li ul a {
     font-size: 1.25em; /* 20 */
     border-top: 1px solid #e15a1f;
     padding: 0.75em; /* 15 (20) */
 }
-#nav li ul li a:hover,
-#nav li ul:not( :hover ) li.active a
-{
+#nav li ul li a:hover, #nav li ul:not( :hover ) li.active a {
 
 }
-@media only screen and ( max-width: 62.5em ) /* 1000 */
-{
-    #nav
-    {
+@media only screen and ( max-width: 62.5em ) /* 1000 */ {
+    #nav {
         width: 100%;
         position: static;
         margin: 0;
     }
 }
 
-@media only screen and ( max-width: 40em ) /* 640 */
-{
-    #nav
-    {
+@media only screen and ( max-width: 40em ) /* 640 */ {
+    #nav {
         position: relative;
         top: auto;
         left: auto;
     }
-    #nav > a
-    {
+    #nav > a {
         width: 3.125em; /* 50 */
         height: 3.125em; /* 50 */
         text-align: left;
@@ -161,63 +211,48 @@ body{
         position: relative;
         font-size:12px;
     }
-    #nav > a:before,
-    #nav > a:after
-    {
+    #nav > a:before, #nav > a:after {
         position: absolute;
         /*--border: 2px solid #fff;
         top: 35%;
         left: 25%;
         right: 25%; --*/
         background:url(../assets/nav_icon.png);
-
     }
-    #nav > a:after
-    {
+    #nav > a:after {
         top: 60%;
     }
-
-    #nav:not( :target ) > a:first-of-type,
-    #nav:target > a:last-of-type
-    {
+    #nav:not( :target ) > a:first-of-type, #nav:target > a:last-of-type {
         display: block;
     }
     /* first level */
-    #nav > ul
-    {
+    #nav > ul {
         height: auto;
         display: none;
         position: absolute;
         left: 0;
         right: 0;
     }
-    #nav:target > ul
-    {
+    #nav:target > ul {
         display: block;
     }
-    #nav > ul > li
-    {
+    #nav > ul > li {
         width: 100%;
         float: none;
     }
-    #nav > ul > li > a
-    {
+    #nav > ul > li > a {
         height: auto;
         text-align: left;
         padding: 0 0.833em; /* 20 (24) */
     }
-    #nav > ul > li:not( :last-child ) > a
-    {
+    #nav > ul > li:not( :last-child ) > a {
         border-right: none;
         border-bottom: 1px solid #585858;
         background: #4D4D4D;
         color: #FFF;
     }
-
     /* second level */
-
-    #nav li ul
-    {
+    #nav li ul {
         position: static;
         padding: 1.25em; /* 20 */
         padding-top: 0;
@@ -257,7 +292,7 @@ body{
 .login_btn a:hover {
     color:#fff;
 }
-.get_btn{
+.get_btn {
     float:left;
 }
 .get_btn a {
@@ -287,7 +322,7 @@ h2.head{
     text-align:center;
     margin-top:2%;
 }
-span.m_1{
+span.m_1 {
     font-family: 'Montserrat', sans-serif;	
 }
 /*--content--*/
@@ -382,7 +417,6 @@ ul.events li {
     width: 87%;
     -webkit-apperance: none;
 }
-
 .reservation{
     float:left;
 }
@@ -399,14 +433,15 @@ ul.events li {
     background:#f4f4f4;
     padding:3% 0;
 }
-/*  GRID OF THREE   ============================================================================= */
+/*  GRID OF THREE */
 .col_1_of_3{
     display: block;
     float:left;
     margin: 1% 0 1% 3.6%;
 }
-.col_1_of_3:first-child { margin-left: 0; }
-
+.col_1_of_3:first-child { 
+    margin-left: 0; 
+}
 .span_1_of_3 {
     width: 30.9%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -505,7 +540,7 @@ h5.m_3{
 }
 /***** Media Quries *****/
 @media only screen and (max-width: 1024px) {
-    .wrap{
+    .wrap {
         width:95%;
     }	
 }
@@ -540,7 +575,9 @@ h5.m_3{
     margin: 0% 0 0% 0.6%;
     background: #F0F0F0;
 }
-.col_1_of_2:first-child { margin-left: 0; }
+.col_1_of_2:first-child { 
+    margin-left: 0; 
+}
 .span_1_of_2 {
     width: 40.6%;
     padding: 4.5%;
@@ -1001,7 +1038,6 @@ h2.head1{
     0% { transform: scale(0.6); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
 }
-
 /*
  100% Height for Opera as the max-height seems to be ignored, not optimal for large screens
  http://bricss.net/post/11230266445/css-hack-to-target-opera
@@ -1069,8 +1105,10 @@ h4.m_5{
     float:left;
     margin: 1% 0 1% 2.6%;
 }
-.col_1_of_4:first-child { margin-left: 0; } /* all browsers except IE6 and lower */
-
+ /* all browsers except IE6 and lower */
+.col_1_of_4:first-child { 
+    margin-left: 0; 
+}
 .span_1_of_4 {
     width:22.8%;
 }
@@ -1093,7 +1131,6 @@ h4.m_5{
         padding:3%;  
     }
 }
-
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 @media only screen and (max-width: 480px) {
     .wrap{
@@ -1149,7 +1186,6 @@ p.m_6{
     }	
 }
 /*  GO FULL WIDTH AT LESS THAN 640 PIXELS */
-
 @media only screen and (max-width: 640px) {
     .wrap{
         width:95%;
@@ -1169,7 +1205,6 @@ p.m_6{
         padding:3%; 
     }
 }
-
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 @media only screen and (max-width: 480px) {
     .wrap{
@@ -1718,7 +1753,6 @@ p.m_12{
     }	
 }
 /*  GO FULL WIDTH AT LESS THAN 640 PIXELS */
-
 @media only screen and (max-width: 640px) and (min-width: 480px) {
     .wrap{
         width:95%;
@@ -2007,7 +2041,6 @@ h5.m_12 a:hover{
         padding:3%;  
     }
 }
-
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 @media only screen and (max-width: 480px) {
 
@@ -2145,7 +2178,6 @@ p.f-text1 {
     }	
 }
 /*  GO FULL WIDTH AT LESS THAN 640 PIXELS */
-
 @media only screen and (max-width: 640px) and (min-width: 480px) {
     .wrap{
         width:95%;
@@ -2581,7 +2613,6 @@ input.inputbox, input.required, div.k2AccountPage input[type="text"] {
     font-size: 1em;
     color:#777
 }
-
 select.selectbox, select.selectmultibox {
     border: 1px solid #DFDFDF;
     font-size:1em;
@@ -2592,7 +2623,6 @@ select.selectbox, select.selectmultibox {
     background:#fff;
     font-family: 'Dosis', sans-serif;
 }
-
 .textarea-box {
     background: #FFF;
     border: 1px solid #DFDFDF;
@@ -2609,7 +2639,6 @@ select.selectbox, select.selectmultibox {
     font-size: 1em;
     color:#777
 }
-
 fieldset.input input[type="submit"] {
     background:#555;
     border: none;
@@ -2619,7 +2648,9 @@ fieldset.input input[type="submit"] {
     font-size: 1.2em;
     font-family: 'Dosis', sans-serif;
 }
-
+div.input {
+    padding-bottom: 10px;
+}
 .input-enviar{
     background:#555;
     border: none;
@@ -2629,7 +2660,6 @@ fieldset.input input[type="submit"] {
     font-size: 1.2em;
     font-family: 'Dosis', sans-serif;
 }
-
 fieldset.input input[type="submit"]:hover {
     background:#FE2232;
 }
