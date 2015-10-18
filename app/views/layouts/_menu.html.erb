@@ -23,7 +23,7 @@
         <div class="buttons">
             <% if usuario_signed_in? %>
               <div class="login_name">
-                Olá, <%= link_to current_usuario.nome, edit_user_registration_path %>
+                Olá, <%= link_to current_usuario.nome, edit_usuario_registration_path %>
               </div>
               <div class="login_btn">
                 <%= link_to "Sign out", destroy_usuario_session_path, method: :delete %>

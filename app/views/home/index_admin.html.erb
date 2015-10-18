@@ -1,38 +1,21 @@
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <%= favicon_link_tag 'favicon.ico' %>
-        <title>Cablush | :: Home :: </title>
-    </head>
-    <body>
+<div class="map">
+    <%=image_tag("map.jpg")  %>
+</div>
 
-        <%=render "layouts/menu_cadastro" %>
+<div class="content-box">
+    <div class="wrap">
+        <ul class="events">
+            <li class="active"><a href="#">A Cablush</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>
 
-        <div class="map">
-            <%=image_tag("map.jpg")  %>
+<div class="main">
+    <div class="wrap">
+        <div class="content"> 
+            Olá administrador! "Com grandes poderes vêm grandes responsabilidades" by Stan Lee
         </div>
-        <div class="content-box">
-            <div class="wrap">
-                <ul class="events">
-                    <li class="active"><a href="#">A Cablush</a></li>
-                </ul>
-                <div class="clear"></div>
-            </div>
-        </div>
-        <div class="main">
-            <div class="wrap">
-                <div class="content"> 
-                    Olá administrador! "Com grandes poderes vêm grandes responsabilidades" by Stan Lee
-                </div>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <%=render "layouts/footer"%>
-    </body>
-</html>
+    </div>
+    <div class="clear"></div>
+</div>

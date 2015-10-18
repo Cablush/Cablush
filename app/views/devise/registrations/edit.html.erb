@@ -27,10 +27,8 @@
             </fieldset>
             <%= f.button :submit,value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline' %>
           <% end %>
-          <div>
-            <h3>Cancelar Conta?</h3>
-            <%= button_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Sentiremos a sua falta. :(" }, :method => :delete, :class => 'button right' %>
-          </div>
+          <br><br>
+          <%= button_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Sentiremos a sua falta. :(" }, :method => :delete, :class => 'btn1 btn-primary btn-normal btn-inline' %>
         </div>
     </div>
     <div class="clear"></div>

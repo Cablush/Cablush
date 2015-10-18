@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= f.label 'Telefone' %><br>
-    <%= f.text_field :contato, class: 'inputbox'  %>
+    <%= f.text_field :telefone, class: 'inputbox'  %>
   </div>
   <div class="field">
     <%= f.label 'Email' %><br>
@@ -27,7 +27,7 @@
   </div>
   <div class="field">
     <%= f.label 'Site' %><br>
-    <%= f.text_field :site, class: 'inputbox'  %> 
+    <%= f.text_field :website, class: 'inputbox'  %> 
   </div>
   <div class="field">
     <%= f.label 'Facebook' %><br>
@@ -47,7 +47,7 @@
   </div>
   <div class="field">
     <%= f.label 'Esportes' %><br>
-    <%= collection_check_boxes(:esporte_id, Esporte.all, :id, :name) %>
+    <%#= collection_check_boxes(:esporte_id, Esporte.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label 'Recuperar endereço de local cadastrado', class: 'optional_field' %><br>
