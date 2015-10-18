@@ -14,5 +14,4 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/nbproject/private/secrets.yml
-config/secrets.yml
+/config/secrets.yml
