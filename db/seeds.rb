@@ -41,11 +41,11 @@ spEstado = Estado.create(rg: "SP", nome: "Sao Paulo", logo: " ",cidade:[sp])
 Estado.create(rg: "TO", nome: "Tocantins", logo: " ")
     
 #Esporte
-skate = Esporte.create(nome: "Skate", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "Longboard")])
-patins = Esporte.create(nome: "Patins")
-bike = Esporte.create(nome: "Bike", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "BMX"),Modalidade.create(nome: "Downhill")])
-futebol = Esporte.create(nome: "Futebol", modalidade: [Modalidade.create(nome: "Salao"), Modalidade.create(nome: "Campo"),Modalidade.create(nome: "Society"),Modalidade.create(nome: "Areia")])
-volei = Esporte.create(nome: "Volei", modalidade: [Modalidade.create(nome: "Praia"), Modalidade.create(nome: "Quadra")])
+# skate = Esporte.create(nome: "Skate", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "Longboard")])
+# patins = Esporte.create(nome: "Patins")
+# bike = Esporte.create(nome: "Bike", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "BMX"),Modalidade.create(nome: "Downhill")])
+# futebol = Esporte.create(nome: "Futebol", modalidade: [Modalidade.create(nome: "Salao"), Modalidade.create(nome: "Campo"),Modalidade.create(nome: "Society"),Modalidade.create(nome: "Areia")])
+# volei = Esporte.create(nome: "Volei", modalidade: [Modalidade.create(nome: "Praia"), Modalidade.create(nome: "Quadra")])
 #Fim do Esporte
     
 #Modalidade
