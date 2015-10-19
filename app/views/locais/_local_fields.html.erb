@@ -1,0 +1,31 @@
+<%= f.hidden_field :latitude %>
+<%= f.hidden_field :longitude %>
+
+<div class="field">
+  <%= f.label 'CEP' %><br>
+  <%= f.text_field :cep, class: 'inputbox' %>
+</div>
+<div class="field">
+  <%= f.label 'Estado' %><br>
+  <%= f.collection_select(:estado, Estado.all, :nome, :nome, {:prompt => 'Selecione o Estado'}, {:class=>'selectbox'}) %>
+</div>
+<div class="field">
+  <%= f.label 'Cidade' %><br>
+  <%= f.collection_select(:cidade, Cidade.all, :nome, :nome, {:prompt => 'Selecione a Cidade'}, {:class=>'selectbox'}) %>
+</div>
+  <div class="field">
+  <%= f.label 'Bairro' %><br>
+  <%= f.text_field :bairro, class: 'inputbox' %>
+</div>
+<div class="field">
+  <%= f.label 'Logradouro' %><br>
+  <%= f.text_field :logradouro, class: 'inputbox' %>
+</div>
+<div class="field">
+  <%= f.label 'Número' %><br>
+  <%= f.text_field :numero, class: 'inputbox' %>
+</div>
+<div class="field">
+  <%= f.label 'Complemento' %><br>
+  <%= f.text_field :complemento, class: 'inputbox' %>
+</div>

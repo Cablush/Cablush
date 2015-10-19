@@ -1,18 +1,5 @@
 <%= form_for @loja, html: { multipart: true } do |f| %>
   
-  <%= f.hidden_field :usuario_id, :value => current_usuario.id%>
-  
-  <% if @loja.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@loja.errors.count, "error") %> erros encontrados ao salvar a loja:</h2>
-      <ul>
-      <% @loja.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  
   <div class="field">
     <%= f.label 'Nome Fantasia' %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
@@ -45,28 +32,29 @@
     <%= f.label 'Descrição' %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
   </div>
-  <div class="field">
-    <%= f.label 'Esportes' %><br>
-    <%#= collection_check_boxes(:esporte_id, Esporte.all, :id, :name) %>
-  </div>
-  <div class="field">
-    <%= f.label 'Recuperar endereço de local cadastrado', class: 'optional_field' %><br>
-    <%= f.autocomplete_field :loja_nome, autocomplete_loja_nome_lojas_path, class: 'inputbox',
-        :update_elements => {:estado=> '#estado', :cidade=> '#cidade', :endereco=> '#endereco'}%>
-  </div>
-  <div class="field">
-    <%= f.label 'Estado' %><br>
-    <%=f.collection_select(:estado_id, Estado.all, :id, :nome, {:prompt => 'Selecione o Estado'}, {:class=>'selectbox'}) %>
-  </div>
-  <div class="field">
-    <%= f.label 'Cidade' %><br>
-    <%=f.collection_select(:cidade_id, Cidade.all, :id, :nome, {:prompt => 'Selecione a Cidade'}, {:class=>'selectbox'}) %>
-  </div>
-  <div class="field">
-    <%= f.label 'Endereco' %><br>
-    <%= f.text_field :endereco, class: 'inputbox'  %>
-  </div>
+  <fieldset class="subfields">
+      <legend>Esportes</legend>
+      <%= hidden_field_tag("loja[esporte_ids][]", nil) %>
+      <ul>
+        <% Esporte.order(:categoria, :nome).each do |esporte| %>
+          <li><%= check_box_tag("loja[esporte_ids][]", esporte.id, esporte.id.in?(@loja.esportes.collect(&:id))) %><%= esporte.full_name %></li>
+        <% end -%>
+      </ul>
+  </fieldset>
+  <fieldset class="subfields">
+      <legend>Endereço</legend>
+      <%= f.fields_for :local do |local| %>
+        <%= render 'locais/local_fields', f: local %>
+      <% end %>
+  </fieldset>
+  <fieldset class="subfields">
+      <legend>Horário de Funcionamento </legend>
+      <%= f.fields_for :horarios do |horario| %>
+        <%= render 'horarios/form_horario', horario: horario %>
+      <% end %>
+  </fieldset>
+  
   <div class="actions">
-    <%= f.submit "Cadastrar Loja", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit "Cadastrar loja", class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

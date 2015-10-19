@@ -9,7 +9,7 @@
 
 <div class="main">
     <div class="wrap">
-        <div style="float: left; padding-left: 30%; width: 40%;"> 
+        <div class="wrap-content"> 
           <% unless usuario_signed_in? %>
             <%= simple_form_for :usuario, :url => session_path(:usuario)  do |f| %>
               <%= f.input :email, label: 'Email' %>

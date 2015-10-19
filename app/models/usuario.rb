@@ -1,4 +1,5 @@
 class Usuario < ActiveRecord::Base
+  
   enum role: {admin: 0, lojista: 1, esportista: 2}
   
   has_many :amigos, class_name: 'Amizade'

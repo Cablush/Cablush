@@ -6,11 +6,11 @@ Cablush::Application.routes.draw do
   
   devise_for :usuarios, :controllers => { registrations: 'registrations' }
   
-  resources :lojas do
-    get :autocomplete_loja_nome, :on => :collection
-  end
+  resources :lojas
   resources :eventos
   resources :pistas
+  
+  #get :autocomplete_local_nome, :on => :collection
   
   resources :contacts
   

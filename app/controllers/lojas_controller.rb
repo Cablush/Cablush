@@ -17,6 +17,8 @@ class LojasController < ApplicationController
   # GET /lojas/new(.:format)
   def new
     @loja = Loja.new
+    @loja.locais.build
+    @loja.horarios.build
   end
 
   # POST /lojas(.:format)

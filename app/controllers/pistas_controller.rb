@@ -15,6 +15,8 @@ class PistasController < ApplicationController
   # GET /pistas/new(.:format)
   def new
     @pista = Pista.new
+    @pista.build_local
+    @pista.horarios.build
   end
 
   # POST /pistas(.:format)
@@ -77,7 +79,11 @@ class PistasController < ApplicationController
   private
   
   def pista_params
-    params.require(:pista).permit(:nome, :facebook, :contato, :horario, :logo, :descricao, :fundo)
+    params.require(:pista)
+          .permit(:nome, :descricao, :foto, :fundo, :esporte_ids,
+              local_attributes: [:id, :latitude, :longitude, :logradoudo, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
+              horarios_attributes: [:id, :dias, :periodo, :inicio, :fim]
+          )
   end
   
 end

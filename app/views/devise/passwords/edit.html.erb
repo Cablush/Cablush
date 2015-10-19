@@ -9,7 +9,7 @@
 
 <div class="main">
     <div class="wrap">
-        <div style="float: left; padding-left: 30%; width: 40%;"> 
+        <div class="wrap-content"> 
           <%= simple_form_for :usuario, :url => password_path(:usuario)  do |f| %>
             <h3>Alterar senha</h3>
             <%= f.input :reset_password_token, :as => :hidden %>

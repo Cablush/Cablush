@@ -6,63 +6,55 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-bh = Cidade.create(nome: "Belo Horizonte")
-novaLima = Cidade.create(nome: "Nova Lima")
-vespasiano = Cidade.create(nome: "Vespasiano")
-sp = Cidade.create(nome:"São Paulo")
-itabirito = Cidade.create(nome:"Itabirito")
-     
-Estado.create(rg: "AC", nome: "Acre", logo: " ")
-Estado.create(rg: "AL", nome: "Alagoas", logo: " ")
-Estado.create(rg: "AP", nome: "Amapa", logo: " ")
-Estado.create(rg: "AM", nome: "Amazonas", logo: " ")
-Estado.create(rg: "BA", nome: "Bahia", logo: " ")
-Estado.create(rg: "CE", nome: "Ceara", logo: " ")
-Estado.create(rg: "DF", nome: "Distrito Federal", logo: " ")
-Estado.create(rg: "ES", nome: "Espirito Santo", logo: " ")
-Estado.create(rg: "GO", nome: "Goias", logo: " ")
-Estado.create(rg: "MA", nome: "Maranhao", logo: " ")
-mg = Estado.create(rg: "MG", nome: "Minas Gerais", logo: " ",cidade: [bh,novaLima,vespasiano,itabirito])
-Estado.create(rg: "MT", nome: "Mato Grosso", logo: " ")
-Estado.create(rg: "MS", nome: "Mato Grosso do Sul", logo: " ")
-Estado.create(rg: "PA", nome: "Para", logo: " ")
-Estado.create(rg: "PB", nome: "Paraiba", logo: " ")
-Estado.create(rg: "PR", nome: "Parana", logo: " ")
-Estado.create(rg: "PE", nome: "Pernambuco", logo: " ")
-Estado.create(rg: "PI", nome: "Piaui", logo: " ")
-Estado.create(rg: "RJ", nome: "Rio de Janeiro", logo: " ")
-Estado.create(rg: "RN", nome: "Rio Grande do Norte", logo: " ")
-Estado.create(rg: "RS", nome: "Rio Grande do Sul", logo: " ")
-Estado.create(rg: "RR", nome: "Roraima", logo: " ")
-Estado.create(rg: "RO", nome: "Rondonia", logo: " ")
-Estado.create(rg: "SC", nome: "Santa Catarina", logo: " ")
-Estado.create(rg: "SE", nome: "Sergipe", logo: " ")
-spEstado = Estado.create(rg: "SP", nome: "Sao Paulo", logo: " ",cidade:[sp])
-Estado.create(rg: "TO", nome: "Tocantins", logo: " ")
-    
-#Esporte
-skate = Esporte.create(nome: "Skate", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "Longboard")])
-patins = Esporte.create(nome: "Patins")
-bike = Esporte.create(nome: "Bike", modalidade: [Modalidade.create(nome: "Street"), Modalidade.create(nome: "BMX"),Modalidade.create(nome: "Downhill")])
-futebol = Esporte.create(nome: "Futebol", modalidade: [Modalidade.create(nome: "Salao"), Modalidade.create(nome: "Campo"),Modalidade.create(nome: "Society"),Modalidade.create(nome: "Areia")])
-volei = Esporte.create(nome: "Volei", modalidade: [Modalidade.create(nome: "Praia"), Modalidade.create(nome: "Quadra")])
-#Fim do Esporte
-    
-#Modalidade
-#longboard = Modalidade.create(nome:"Longboard", esporte:skate)
-#street = Modalidade.create(nome:"Street", esporte:skate)
-    
-#montainBike = Modalidade.create(nome:"Mountain", esporte:bike)
-#bmx = Modalidade.create(nome:"BMX", esporte:bike)
-    
-#voleiDePraia = Modalidade.create(nome:"Praia", esporte:volei)
-#voleiDeQuadra = Modalidade.create(nome:"Quadra", esporte:volei)
-    
-#futebolDeSalao = Modalidade.create(nome:"Salão", esporte:futebol)
-#futebolDeSociet = Modalidade.create(nome:"Society", esporte:futebol)
-#futebolDeCampo = Modalidade.create(nome:"Campo", esporte:futebol)
-#Fim de Modalidade
-    
+# Estados - begin
+estado_ac = Estado.create(rg: "AC", nome: "Acre")
+estado_al = Estado.create(rg: "AL", nome: "Alagoas")
+estado_ap = Estado.create(rg: "AP", nome: "Amapa")
+estado_am = Estado.create(rg: "AM", nome: "Amazonas")
+estado_ba = Estado.create(rg: "BA", nome: "Bahia")
+estado_ce = Estado.create(rg: "CE", nome: "Ceara")
+estado_df = Estado.create(rg: "DF", nome: "Distrito Federal")
+estado_es = Estado.create(rg: "ES", nome: "Espírito Santo")
+estado_go = Estado.create(rg: "GO", nome: "Goias")
+estado_ma = Estado.create(rg: "MA", nome: "Maranhão")
+estado_mg = Estado.create(rg: "MG", nome: "Minas Gerais")
+estado_mt = Estado.create(rg: "MT", nome: "Mato Grosso")
+estado_ms = Estado.create(rg: "MS", nome: "Mato Grosso do Sul")
+estado_pa = Estado.create(rg: "PA", nome: "Pará")
+estado_pb = Estado.create(rg: "PB", nome: "Paraíba")
+estado_pr = Estado.create(rg: "PR", nome: "Paraná")
+estado_pe = Estado.create(rg: "PE", nome: "Pernambuco")
+estado_pi = Estado.create(rg: "PI", nome: "Piauí")
+estado_rj = Estado.create(rg: "RJ", nome: "Rio de Janeiro")
+estado_rn = Estado.create(rg: "RN", nome: "Rio Grande do Norte")
+estado_rs = Estado.create(rg: "RS", nome: "Rio Grande do Sul")
+estado_rr = Estado.create(rg: "RR", nome: "Roraima")
+estado_ro = Estado.create(rg: "RO", nome: "Rondônia")
+estado_sc = Estado.create(rg: "SC", nome: "Santa Catarina")
+estado_se = Estado.create(rg: "SE", nome: "Sergipe")
+estado_sp = Estado.create(rg: "SP", nome: "São Paulo")
+estado_to = Estado.create(rg: "TO", nome: "Tocantins")
+# Estados - end
+
+# Cidades - begin
+Cidade.create(nome: "Belo Horizonte", estado:  estado_mg)
+Cidade.create(nome: "Nova Lima", estado:  estado_mg)
+Cidade.create(nome: "Vespasiano", estado:  estado_mg)
+Cidade.create(nome: "São Paulo", estado:  estado_sp)
+Cidade.create(nome: "Rio de Janeiro", estado:  estado_rj)
+Cidade.create(nome: "Vitória", estado:  estado_es)
+Cidade.create(nome: "Curitiba", estado:  estado_pr)
+Cidade.create(nome: "Florianópolis", estado:  estado_sc)
+Cidade.create(nome: "Porto Alegre", estado:  estado_rs)
+# Cidades - end
+
+# Esportes - begin
+Esporte.create(nome: "Street", categoria: "Skate")
+Esporte.create(nome: "Longboard", categoria: "Skate")
+Esporte.create(nome: "Street", categoria: "Patins")
+Esporte.create(nome: "BMX", categoria: "Bike")
+Esporte.create(nome: "Drift Trike", categoria: "Bike")
+# Esportes - end
     
 #Local 
 #apac = Local.create( latitude:-20.040428, longitude:-43.838011, logradouro:"MG-030 - Nova Lima, MG", cidade:vespasiano, estado:mg)
@@ -102,8 +94,6 @@ volei = Esporte.create(nome: "Volei", modalidade: [Modalidade.create(nome: "Prai
 #   Loja.create(nome:"EverBag Skate Longboard Shop",contato: "011 7734.0821" , horario:"09:00--18:00", descricao: "EverBag Skate Longboard Shop ", site: "http://www.everbag.com.br/",logo:"lojas_logos/everbag.png",esporte: skate , local:  Local.create(latitude:-23.478586, longitude:-46.607053, logradouro:"Av. Mazzei, 140 - Vila Mazzei São Paulo - SP Brasil",cidade:sp,estado:spEstado))
    
 #   Loja.create(nome:"BhInline",contato: "031 4141-4477" , horario:"09:00--18:00", descricao: "A BH INLINE é loja de artigos esportivos criada com intuito de facilitar o acesso dos atletas aos equipamentos que seguem em nossa linha de produtos. Trabalhamos com as melhores marcas de equipamentos esportivos do mercado.É uma empresa administrada por atletas praticantes de esportes radicais e esta localizada em Belo Horizonte - Minas Gerais. ", site: "http://www.bhinline.com.br",logo:"",esporte: patins , local:  Local.create(latitude:-19.936890, longitude:-43.935425, logradouro:"Rua: Pernambuco, numero 1070, loja 125 galeria Savassi Point",cidade:bh,estado:mg))
-   
-   
    
 #end Lojas
  

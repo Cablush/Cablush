@@ -2,8 +2,12 @@ class Loja < ActiveRecord::Base
   
   belongs_to :responsavel, class_name: "Usuario"
   
-  has_many :locais, as: :localizavel
-  has_many :horarios, as: :funcionamento
+  has_many :locais, as: :localizavel, dependent: :destroy
+  accepts_nested_attributes_for :locais
+  
+  has_many :horarios, as: :funcionamento, dependent: :destroy
+  accepts_nested_attributes_for :horarios
+  
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos
   

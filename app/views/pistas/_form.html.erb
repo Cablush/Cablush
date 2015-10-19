@@ -1,67 +1,40 @@
-<script type="text/javascript">
-  google.maps.event.addDomListener(window, 'load', initialize);
-  $(document).on('pageload', function () {
-      initialize();
-  });
-</script>
-
-<%= form_for(@pista) do |f| %>
-  <% if @pista.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pista.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-      <% @pista.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div id="main">
+<%= form_for @pista, html: { multipart: true } do |f| %>
+  
   <div class="field">
-    <%= f.label 'Nome do Pista' %><br>
+    <%= f.label 'Nome' %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Link para pagina no Facebook' %><br>
-    <%= f.text_field :facebook, class: 'inputbox'  %>
-  </div>
-  <div class="field">
-    <%= f.label 'Telefone de contato' %><br>
-    <%= f.text_field :contato, class: 'inputbox'  %>
-  </div>
-  <div class="field">
-    <%= f.label 'Horário de funcionamento' %><br>
-    <%= f.text_field :horario, class: 'inputbox'  %>
-  </div> 
-  <div class="field">
-    <%= f.label 'Logo do pista' %><br>
-    <%= f.file_field :logo %>
-    <%#= f.text_field :logo, hint: 'Link para o logo da pista', class: 'inputbox'  %>
-  </div>
-  <div class="field">
-    <%= f.label 'Modalidade da Pista' %><br>
-    <%#= f.collection_select :esporte_id, Esporte.all, :id, :nome,{ :prompt => "Selecione uma Modalidade", :multiple => true} %>
-    <%= f.select :esporte_id, Esporte.all.collect {|x| [x.nome, x.id]}, {:class=> 'textarea-box', :cols => 5}, :multiple => true %>
+    <%= f.label 'Foto' %><br>
+    <%= f.file_field :foto %>
   </div>
   <div class="field">
     <%= f.label 'Descrição' %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
   </div>
-  </div>
-  <div class="field">
-    <%= f.label 'Local da Pista(Mapa)' %><br>
-    <div class="map">
-      <div id="map-canvas"></div>
-    </div>
-</div>
-  </div>
-  <div class="field">
-    <%= f.label 'Fundo Preto' %>
-    <%= f.check_box :fundo %>
-    <%= f.hidden_field :usuario_id, :value => current_usuario.id%>
-  </div>
+  <fieldset class="subfields">
+      <legend>Esportes</legend>
+      <%= hidden_field_tag('pista[esporte_ids][]', nil) %>
+      <ul>
+        <% Esporte.order(:categoria, :nome).each do |esporte| %>
+          <li><%= check_box_tag('pista[esporte_ids][]', esporte.id, esporte.id.in?(@pista.esportes.collect(&:id))) %><%= esporte.full_name %></li>
+        <% end %>
+      </ul>
+  </fieldset>
+  <fieldset class="subfields">
+      <legend>Endereço</legend>
+      <%= f.fields_for :local do |local| %>
+        <%= render 'locais/local_fields', f: local %>
+      <% end %>
+  </fieldset>
+  <fieldset class="subfields">
+      <legend>Horário de Funcionamento </legend>
+      <%= f.fields_for :horarios do |horario| %>
+        <%= render 'horarios/form_horario', horario: horario %>
+      <% end %>
+  </fieldset>
+
   <div class="actions">
-    <%= f.submit "Cadastrar pista", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit 'Cadastrar pista', class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>
