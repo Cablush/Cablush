@@ -46,6 +46,10 @@ class PistasController < ApplicationController
     else
       @pista = current_usuario.pistas.find(params[:id])
     end
+    
+    if @pista.horarios.empty?
+      @pista.horarios.build
+    end
   end
 
   # PATCH/PUT /pistas/:id(.:format)
@@ -80,8 +84,9 @@ class PistasController < ApplicationController
   
   def pista_params
     params.require(:pista)
-          .permit(:nome, :descricao, :foto, :fundo, :esporte_ids,
-              local_attributes: [:id, :latitude, :longitude, :logradoudo, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
+          .permit(:nome, :descricao, :foto, 
+              esporte_ids: [],
+              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
               horarios_attributes: [:id, :dias, :periodo, :inicio, :fim]
           )
   end

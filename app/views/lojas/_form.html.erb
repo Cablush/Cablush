@@ -43,14 +43,14 @@
   </fieldset>
   <fieldset class="subfields">
       <legend>Endereço</legend>
-      <%= f.fields_for :local do |local| %>
+      <%= f.fields_for :locais do |local| %>
         <%= render 'locais/local_fields', f: local %>
       <% end %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Horário de Funcionamento </legend>
+      <legend>Horário de Funcionamento</legend>
       <%= f.fields_for :horarios do |horario| %>
-        <%= render 'horarios/form_horario', horario: horario %>
+        <%= render 'horarios/horario_fields', f: horario %>
       <% end %>
   </fieldset>
   

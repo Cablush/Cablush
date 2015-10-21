@@ -2666,6 +2666,9 @@ div.input {
 fieldset.input input[type="submit"]:hover {
     background:#e15a1f;
 }
+select.timeselector {
+    width: 48%;
+}
 /*--404--*/
 .page-not-found h1 {
     font-size: 15em;

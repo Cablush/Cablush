@@ -1,7 +1,7 @@
 class Horario < ActiveRecord::Base
   
-  enum dias: {dia_util: 0, final_de_semana: 1}
-  enum periodo: {cheio: 0, meio: 1}
+  enum dia: {dom: "dom", seg: "seg", ter: "ter", qua: "qua", qui: "qui", sex: "sex", sab: "sab", seg_sex: "seg_sex", sab_dom: "sab_dom", seg_dom: "seg_dom"}
+  enum periodo: {todo: "todo", manha: "manha", tarde: "tarde", noite: "noite"}
   
   belongs_to :funcionamento, polymorphic: true
   

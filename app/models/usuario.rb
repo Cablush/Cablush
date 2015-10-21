@@ -1,6 +1,6 @@
 class Usuario < ActiveRecord::Base
   
-  enum role: {admin: 0, lojista: 1, esportista: 2}
+  enum role: [:admin, :lojista, :esportista]
   
   has_many :amigos, class_name: 'Amizade'
   has_many :lojas, foreign_key: "responsavel_id"

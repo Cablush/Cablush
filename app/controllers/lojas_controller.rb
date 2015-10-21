@@ -48,6 +48,14 @@ class LojasController < ApplicationController
     else
       @loja = current_usuario.lojas.find(params[:id])
     end
+    
+    if @loja.locais.empty?
+      @loja.locais.build
+    end
+    
+    if @loja.horarios.empty?
+      @loja.horarios.build
+    end
   end
 
   # PATCH/PUT /lojas/:id(.:format)
@@ -81,7 +89,11 @@ class LojasController < ApplicationController
   private
   
   def loja_params
-    params.require(:loja).permit(:nome, :contato, :email, :site, :facebook, :logo, :fundo, :descricao, )
+    params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
+              esporte_ids: [],
+              locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
+              horarios_attributes: [:id, :dias, :periodo, :inicio, :fim]
+          )
   end
   
 end

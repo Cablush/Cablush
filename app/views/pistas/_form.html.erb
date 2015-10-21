@@ -28,9 +28,9 @@
       <% end %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Horário de Funcionamento </legend>
+      <legend>Horário de Funcionamento</legend>
       <%= f.fields_for :horarios do |horario| %>
-        <%= render 'horarios/form_horario', horario: horario %>
+        <%= render 'horarios/horario_fields', f: horario %>
       <% end %>
   </fieldset>
 

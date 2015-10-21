@@ -6,7 +6,7 @@ class Contact
   attr_accessor :name, :subject, :message, :email
 
 
-VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   validates :name,
             :length => {:in => 2..50}

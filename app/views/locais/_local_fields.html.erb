@@ -7,7 +7,7 @@
 </div>
 <div class="field">
   <%= f.label 'Estado' %><br>
-  <%= f.collection_select(:estado, Estado.all, :nome, :nome, {:prompt => 'Selecione o Estado'}, {:class=>'selectbox'}) %>
+  <%= f.collection_select(:estado, Estado.all, :rg, :nome, {:prompt => 'Selecione o Estado'}, {:class=>'selectbox'}) %>
 </div>
 <div class="field">
   <%= f.label 'Cidade' %><br>

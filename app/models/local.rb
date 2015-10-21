@@ -7,12 +7,12 @@ class Local < ActiveRecord::Base
   belongs_to :pista, -> { where(locais: {localizavel_type: 'Pista'}) }, foreign_key: 'localizavel_id'
   belongs_to :evento, -> { where(locais: {localizavel_type: 'Evento'}) }, foreign_key: 'localizavel_id'
   
-  scope :lojas, -> { joins(loja: :esportes) }
-  scope :pistas, -> { joins(pista: :esportes) }
-  scope :eventos, -> { joins(evento: :esportes) }
+  scope :lojas, -> { joins(:loja) }
+  scope :pistas, -> { joins(:pista) }
+  scope :eventos, -> { joins(:evento) }
   
   def self.lojas_by_estado(estado)
-    joins(loja: :esportes).where(estado: estado)
+    joins(:loja).where(estado: estado)
   end
   
   def self.lojas_by_esporte(esporte_id)
@@ -20,7 +20,7 @@ class Local < ActiveRecord::Base
   end
   
   def self.pistas_by_estado(estado)
-    joins(pista: :esportes).where(estado: estado)
+    joins(:pista).where(estado: estado)
   end
   
   def self.pistas_by_esporte(esporte_id)
@@ -28,7 +28,7 @@ class Local < ActiveRecord::Base
   end
   
   def self.eventos_by_estado(estado)
-    joins(evento: :esportes).where(estado: estado)
+    joins(:evento).where(estado: estado)
   end
   
   def self.eventos_by_esporte(esporte_id)

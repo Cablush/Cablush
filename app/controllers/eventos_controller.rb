@@ -15,6 +15,7 @@ class EventosController < ApplicationController
   # GET /eventos/new(.:format)
   def new
     @evento = Evento.new
+    @evento.build_local
   end
 
   # POST /eventos(.:format)

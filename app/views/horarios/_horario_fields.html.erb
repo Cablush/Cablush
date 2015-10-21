@@ -1,0 +1,16 @@
+<div class="field">
+  <%= f.label 'Dias' %><br>
+  <%= f.collection_select(:dias, Horario.dia, :last, :first, {:prompt => 'Selecione o Dia'}, {:class=>'selectbox'}) %>
+</div>
+<div class="field">
+  <%= f.label 'Período' %><br>
+  <%= f.collection_select(:periodo, Horario.periodos, :last, :first, {:prompt => 'Selecione o Período'}, {:class=>'selectbox'}) %>
+</div>
+<div class="field">
+  <%= f.label 'Início' %><br>
+  <%= f.time_select :inicio,  {prompt: {hour: "Hora início", minute: "Minuto início"}}, {class: 'selectbox timeselector'}%>
+</div>
+<div class="field">
+  <%= f.label 'Fim' %><br>
+  <%= f.time_select :fim,  {prompt: {hour: "Hora fim", minute: "Minuto fim"}}, {class: 'selectbox timeselector'}%>
+</div>
