@@ -6,9 +6,6 @@
     <div class="wrap">
         <ul class="events">
             <li class="active"><a href="#">Pistas</a></li> 
-            <% if usuario_signed_in? && current_usuario.lojista? %>
-              <li><%= link_to 'Cadastro de Pistas', pistas_path %></li>
-            <% end %>
         </ul>
         <div class="content-box-left">
           <%= form_for home_pistas_path, html: { id: "form_pistas" } ,remote: true  do |f| %>

@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_usuario.admin?
-      home_index_admin_path
+      home_cadastros_path
     else
-      home_index_path
+      home_cadastros_path
     end
   end
   

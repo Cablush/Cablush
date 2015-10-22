@@ -17,6 +17,7 @@ Cablush::Application.routes.draw do
   match "home/lojas", via: [:get, :post]
   match "home/eventos", via: [:get, :post]
   match "home/pistas", via: [:get, :post]
+  match "home/cadastros", via: [:get, :post]
   
   get "home/index"
   get "home/index_admin"

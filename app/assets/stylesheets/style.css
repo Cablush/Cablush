@@ -123,12 +123,12 @@ body{
 }
 .logo{
     float:left;
-    width: 30.5%;
+    width: 25%;
 }
 .cssmenu {
-    margin-top: 10px;
+    margin-top: 15px;
     position: relative;
-    width: 40.5%;
+    width: 45%;
     float: left;
 }
 #nav {
@@ -211,7 +211,7 @@ body{
         height: 3.125em; /* 50 */
         text-align: left;
         text-indent: -9999px;
-        background:url(../assets/nav_icon.png)2px #e15a1f;
+        background:url('nav_icon.png') 2px #e15a1f;
         position: relative;
         font-size:12px;
     }
@@ -221,7 +221,7 @@ body{
         top: 35%;
         left: 25%;
         right: 25%; --*/
-        background:url(../assets/nav_icon.png);
+        background:url('nav_icon.png');
     }
     #nav > a:after {
         top: 60%;
@@ -270,8 +270,8 @@ body{
 }
 .buttons{
     float:right;
-    width:26.5%;
-    margin-top: 10px;
+    width:30%;
+    margin-top: 15px;
 }
 .login_btn {
     float: left;
@@ -340,7 +340,7 @@ ul.events{
     margin-top: 10px;
 }
 ul.events li a {
-    color:#ccc;
+    color:#999;
     display: block;
     margin:0 20px;
     font-size:1em;
@@ -352,6 +352,9 @@ ul.events > li.active a, ul.events > li a:hover {
 }
 ul.events li {
     display: inline-block;
+}
+.content-box-left {
+    padding-left: 25%;
 }
 .content-box-right {
     float: right;
@@ -366,7 +369,7 @@ ul.events li {
 .search_box form input[type="submit"] {
     border: none;
     cursor: pointer;
-    background: url(../images/search.png) no-repeat 0px -5px;
+    background: url('search.png') no-repeat 0px -5px;
     position: absolute;
     right: 0;
     width: 31px;
@@ -616,7 +619,7 @@ span.m_3{
 }
 .footer-menu li{
     display: inline-block;
-    background: url(../assets/dot.png)no-repeat 1px 12px;
+    background: url('dot.png')no-repeat 1px 12px;
 }
 .footer-menu li a{
     color: #CCC;
@@ -645,55 +648,55 @@ li.facebook a span {
     height: 40px;
     width: 40px;
     display: block;
-    background: url(../images/img-sprite.png) no-repeat 11px -2px;
+    background: url('img-sprite.png') no-repeat 11px -2px;
 }
 li.facebook a span:hover {
-    background: url(../images/img-sprite.png) no-repeat 11px -32px;
+    background: url('img-sprite.png') no-repeat 11px -32px;
 }
 li.twitter a span {
     height: 40px;
     width: 40px;
     display: block;
-    background: url(../images/img-sprite.png) no-repeat -28px -2px;
+    background: url('img-sprite.png') no-repeat -28px -2px;
 }
 li.twitter a span:hover {
-    background: url(../images/img-sprite.png) no-repeat -28px -32px;
+    background: url('img-sprite.png') no-repeat -28px -32px;
 }
 li.linked a span {
     height: 40px;
     width: 40px;
     display: block;
-    background: url(../images/img-sprite.png) no-repeat -60px -2px;
+    background: url('img-sprite.png') no-repeat -60px -2px;
 }
 li.linked a span:hover {
-    background: url(../images/img-sprite.png) no-repeat -60px -32px;
+    background: url('img-sprite.png') no-repeat -60px -32px;
 }
 li.arrow a span {
     height: 40px;
     width: 40px;
     display: block;
-    background: url(../images/img-sprite.png) no-repeat -87px -2px;
+    background: url('img-sprite.png') no-repeat -87px -2px;
 }
 li.arrow a span:hover {
-    background: url(../images/img-sprite.png) no-repeat -87px -32px;
+    background: url('img-sprite.png') no-repeat -87px -32px;
 }
 li.dot a span {
     height: 40px;
     width:32px;
     display: block;
-    background: url(../images/img-sprite.png) no-repeat -126px -2px;
+    background: url('img-sprite.png') no-repeat -126px -2px;
 }
 li.dot a span:hover {
-    background: url(../images/img-sprite.png) no-repeat -126px -32px;
+    background: url('img-sprite.png') no-repeat -126px -32px;
 }
 li.rss a span {
     height: 40px;
     width: 40px;
     display: block;
-    background: url(../images/img-sprite.png) no-repeat -160px -2px;
+    background: url('img-sprite.png') no-repeat -160px -2px;
 }
 li.rss a span:hover {
-    background: url(../images/img-sprite.png) no-repeat -160px -32px;
+    background: url('img-sprite.png') no-repeat -160px -32px;
 }
 .copy p{
     color:#fff;
@@ -1315,7 +1318,7 @@ ul.latest_post li img{
 }
 .da-thumbs li  article {
     position: absolute;
-    background-image:url(../images/image_hover.png);
+    background-image:url('image_hover.png');
     background-repeat:repeat;
     width: 100%;
     height: 100%;
@@ -1380,7 +1383,7 @@ span.link_post{
     background-color:#e15a1f;
     border-radius:50px;
     cursor:pointer;
-    background-image:url(../images/link_post_icon.png);
+    background-image:url('link_post_icon.png');
     background-repeat:no-repeat;
     background-position:center;
     margin-right:10px;
@@ -1393,7 +1396,7 @@ span.zoom{
     background-color:#e15a1f;
     border-radius:50px;
     cursor:pointer;
-    background-image:url(../images/zoom_icon.png);
+    background-image:url('zoom_icon.png');
     background-repeat:no-repeat;
     background-position:center;
     margin-left:10px;
@@ -1473,7 +1476,7 @@ h4.m_6{
 }
 .video-feed a {
     position: absolute !important;
-    background: url(../images/video.png)#F00 9px 4px;
+    background: url('video.png')#F00 9px 4px;
     text-align: center;
     border-radius: 50%;
     text-decoration: none;
@@ -1670,7 +1673,7 @@ span.rollover {
     -o-transition-duration: 1s;
     -moz-transition-duration: 1s;
     -webkit-transition: -webkit-transform 1s;
-    background: url(../images/plus.png) center center no-repeat rgba(196, 194, 194, 0.36);
+    background: url('plus.png') center center no-repeat rgba(196, 194, 194, 0.36);
     cursor: pointer;
     height: 192px;
     width: 289px;
@@ -1808,7 +1811,7 @@ p.m_12{
     margin: 0 0 0 1.6%;
 }
 ul.sidebar li {
-    list-style-image: url(../images/bg_li.png);
+    list-style-image: url('bg_li.png');
     margin: 0 15px 10px;
     vertical-align: bottom;
 }
@@ -1909,7 +1912,7 @@ ul.list1 span{
     line-height:1.5em;
 }
 ul.list1{
-    margin: 4% 0 6% 0;
+
 }
 h5.m_12{
     margin-bottom:5px;
@@ -1980,7 +1983,7 @@ h5.m_12 a:hover{
     display: block;
     width: 41px;
     height: 38px;
-    background: url(../images/quotes.png) 0 0 no-repeat;
+    background: url('quotes.png') 0 0 no-repeat;
     content: "";
 }
 .testimonials .testi-item .testi-meta {
@@ -2271,7 +2274,7 @@ span.comment-left a:hover{
     margin-bottom: 21px;
 }
 .link {
-    background: url(../images/marker.png) no-repeat 100% 6px;
+    background: url('marker.png') no-repeat 100% 6px;
     display: inline-block;
     padding: 0 15px 0 0;
     line-height: 19px;
@@ -2281,7 +2284,7 @@ span.comment-left a:hover{
     text-transform: uppercase;
 }
 .link:hover{
-    background: url(../images/marker1.png) no-repeat 100% 6px;
+    background: url('marker1.png') no-repeat 100% 6px;
     color:#e15a1f;
 }
 .blog-left{
@@ -2437,7 +2440,7 @@ span.tab-img{
     margin-bottom:5%;
 }
 .link1{
-    background: url(../images/marker.png) no-repeat 100% 6px;
+    background: url('marker.png') no-repeat 100% 6px;
     display: inline-block;
     padding: 0 15px 0 0;
     line-height: 19px;
@@ -2447,7 +2450,7 @@ span.tab-img{
     text-transform: uppercase;
 }
 .link1:hover {
-    background: url(../images/marker1.png) no-repeat 100% 6px;
+    background: url('marker1.png') no-repeat 100% 6px;
     color: #e15a1f;
 }
 .search{
@@ -2470,7 +2473,7 @@ span.tab-img{
     font-family: 'Dosis', sans-serif;
 }
 .search form input[type="submit"] {
-    background: url('../images/search.png') no-repeat 7px 3px;
+    background: url('search.png') no-repeat 7px 3px;
     padding: 4px 14px;
     border: none;
     cursor: pointer;
@@ -2485,7 +2488,7 @@ h2.head4{
     text-transform:uppercase;
 }
 ul.list1 li {
-    list-style-image: url(../images/marker.png);
+    list-style-image: url('marker.png');
     margin: 0 0px 10px 20px;
     vertical-align: bottom;
 }
@@ -2782,7 +2785,7 @@ select.timeselector {
         font-size: 1em;
     }
     .search form input[type="submit"] {
-        background: url('../images/search.png') no-repeat -2px 3px;
+        background: url('search.png') no-repeat -2px 3px;
     }
     .resp-tab-item {
         width: 32.9999%;
@@ -2836,7 +2839,7 @@ select.timeselector {
         font-size: 1em;
     }
     .search form input[type="submit"] {
-        background: url('../images/search.png') no-repeat -2px 3px;
+        background: url('search.png') no-repeat -2px 3px;
     }
     .resp-tab-item {
         width: 32.9999%;
@@ -2920,7 +2923,7 @@ select.timeselector {
         font-size: 1em;
     }
     .search form input[type="submit"] {
-        background: url('../images/search.png') no-repeat -2px 3px;
+        background: url('search.png') no-repeat -2px 3px;
     }
     .resp-tab-item {
         width: 32.9999%;
@@ -3054,7 +3057,7 @@ select.timeselector {
         font-size: 1em;
     }
     .search form input[type="submit"] {
-        background: url('../images/search.png') no-repeat -2px 3px;
+        background: url('search.png') no-repeat -2px 3px;
     }
     .resp-tab-item {
         width: 32.9999%;
@@ -3206,7 +3209,7 @@ select.timeselector {
         font-size: 1em;
     }
     .search form input[type="submit"] {
-        background: url('../images/search.png') no-repeat -2px 3px;
+        background: url('search.png') no-repeat -2px 3px;
     }
     .resp-tab-item {
         width: 32.9999%;
@@ -3361,7 +3364,7 @@ select.timeselector {
         width:100%;
     }
 }
-html, body,map, #map-canvas {
+html, body, map, #map-canvas {
     height: 100%;
     margin: 0px;
     padding: 0px

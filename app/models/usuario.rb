@@ -18,9 +18,9 @@ class Usuario < ActiveRecord::Base
 
   after_initialize :set_default_role, :if => :new_record?
   
-  # send to the delayed_job queue
+  # send the message now
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    devise_mailer.send(notification, self, *args).deliver_now
   end
   
   private

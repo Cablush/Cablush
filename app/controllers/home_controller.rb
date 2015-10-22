@@ -52,8 +52,15 @@ class HomeController < ApplicationController
     @title = "Melhores atividades fisicas, lugares e eventos"
   end
   
-  def cadastro
-    @title = "Cadastre sua loja e seu evento aqui!"
+  def cadastros
+    if current_usuario.admin?
+      @title = "Olá Administrador! \"Com grandes poderes vêm grandes responsabilidades\" by Stan Lee!"
+    elsif current_usuario.lojista?
+      @title = "Olá Lojista! Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!"
+    else 
+      @title = "Olá" + current_usuario.nome + "! Ajude seu esporte, divulge as lojas, pistas e eventos em sua região!"
+    end
+    
     unless usuario_signed_in?
       render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
     end

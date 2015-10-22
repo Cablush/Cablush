@@ -6,9 +6,6 @@
     <div class="wrap">
         <ul class="events">
             <li class="active"><a href="#">Lojas</a></li>
-            <% if usuario_signed_in? && current_usuario.lojista? %>
-              <li><%= link_to 'Cadastro de Lojas', lojas_path %></li>
-            <% end %>
         </ul>
         <div class="content-box-left">
           <%= form_for home_lojas_path, html: { id: "form_lojas" } ,remote: true do |f| %>

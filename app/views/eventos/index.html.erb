@@ -9,7 +9,7 @@
 </div>
 <div class="main">
     <div class="wrap">
-        <ul>
+        <ul class="list1">
             <% @eventos.each do |evento| %>
               <li>
                   <%= link_to evento.nome, edit_evento_path(evento) %>

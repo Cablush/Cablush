@@ -15,6 +15,9 @@
                     <li><%= link_to 'Pistas', home_pistas_path %></li>
                     <!--<li><%#= link_to 'Blog', home_blog_path %></li>-->
                     <li><%= link_to 'Contato', new_contact_path %></li>
+                    <% if usuario_signed_in? %>
+                      <li><%= link_to 'Cadastros', home_cadastros_path %></li>
+                    <% end %>
                     <div class="clear"></div>
                 </ul>
             </nav>
@@ -23,7 +26,7 @@
         <div class="buttons">
             <% if usuario_signed_in? %>
               <div class="login_name">
-                Olá, <%= link_to current_usuario.nome, edit_usuario_registration_path %>
+                Olá, <%= current_usuario.nome %>
               </div>
               <div class="login_btn">
                 <%= link_to "Sign out", destroy_usuario_session_path, method: :delete %>

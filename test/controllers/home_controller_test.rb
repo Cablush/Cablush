@@ -27,9 +27,4 @@ class HomeControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get perfil" do
-    get :perfil
-    assert_response :success
-  end
-
 end

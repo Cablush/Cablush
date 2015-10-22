@@ -1,6 +1,7 @@
 var google;
 var map;
 var markers = [];
+
 function initialize() {
     var mapOptions = {
         zoom: 4,
@@ -18,7 +19,7 @@ function applyMarker(markers) {
         var location = markers[i];
         var latLng = new google.maps.LatLng(location[0], location[1]);
         var marker = new google.maps.Marker({
-            position: latLng,
+            position: latLng
         });
         marker.setMap(map);
     }
@@ -33,6 +34,6 @@ google.maps.event.addDomListener(window, 'load', function () {
 });
 
 // LOJAS
-$('home lojas').ready(function() {
+$('home lojas, home pistas, home eventos').ready(function() {
   initialize();
 });
