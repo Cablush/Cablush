@@ -3369,9 +3369,14 @@ html, body, map, #map-canvas {
     margin: 0px;
     padding: 0px
 }
-.map{
-    
-}      
+#map-canvas {
+    height: 400px;
+    width: 90%;
+    margin: 0px auto;
+}
+#map-canvas img {
+    width: 100%;
+}
 .wrap-content {
     float: left; 
     padding-left: 30%; 

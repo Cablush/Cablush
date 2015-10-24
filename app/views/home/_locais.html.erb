@@ -53,11 +53,5 @@
   <% if locais.length == (i+1) %>
     <div class="clear"></div>
   <% end %>
-
-  <script type="text/javascript" >
-    <% unless local.latitude.nil? and local.longitude.nil? %>
-      setMarker(<%= local.latitude %>,<%= local.longitude %>);
-    <% end %>
-  </script>
   
 <% end %>
