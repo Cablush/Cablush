@@ -57,7 +57,7 @@ class Local < ActiveRecord::Base
   end
   
   def evento?
-    localizavel_type == 'Eventos'
+    localizavel_type == 'Evento'
   end
   
 end

@@ -9,6 +9,22 @@
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
   </div>
   <div class="field">
+    <%= f.label 'Data:' %><br>
+    <%= f.text_field :data, id: 'evento_data', class: 'inputbox' %>
+    <script type="text/javascript">
+      $(function () {
+        $("#evento_data").datepicker({
+            dateFormat:'dd/mm/yy',
+            language: 'pt-BR'
+        });
+      });
+    </script>
+  </div>
+  <div class="field">
+    <%= f.label 'Hora:' %><br>
+    <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}}, {class: 'selectbox timeselector'}%>
+  </div>
+  <div class="field">
     <%= f.label 'Site' %><br>
     <%= f.text_field :website, class: 'inputbox'  %> 
   </div>
@@ -18,7 +34,8 @@
   </div>
   <div class="field">
     <%= f.label 'Flyer' %><br>
-    <%= f.file_field :flyer %>
+    <%= f.file_field :flyer %><br>
+    <%= image_tag @evento.flyer.url(:small), :class => @evento.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
     <%= f.label 'Fundo Preto' %>

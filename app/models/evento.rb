@@ -24,7 +24,7 @@ class Evento < ActiveRecord::Base
   #  scope :sponsored, -> { where(patrocinado: true) }
   
   def horario
-    data + " " + hora
+    data.strftime('%d/%m/%Y') + " às " + hora.strftime('%H:%M')
   end
   
 end

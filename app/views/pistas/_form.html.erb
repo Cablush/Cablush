@@ -18,7 +18,8 @@
   </div>
   <div class="field">
     <%= f.label 'Foto' %><br>
-    <%= f.file_field :foto %>
+    <%= f.file_field :foto %><br>
+    <%= image_tag @pista.foto.url(:small), :class => @pista.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
     <%= f.label 'Fundo Preto' %>

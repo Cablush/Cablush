@@ -3387,7 +3387,7 @@ select.timeselector {
         width:100%;
     }
 }
-html, body, map, #map-canvas {
+html, body, map, #map-canvas, #map-canvas-cad {
     height: 100%;
     margin: 0px;
     padding: 0px
@@ -3398,6 +3398,14 @@ html, body, map, #map-canvas {
     margin: 0px auto;
 }
 #map-canvas img {
+    width: 100%;
+}
+#map-canvas-cad {
+    height: 240px;
+    width: 100%;
+    margin: 0px auto;
+}
+#map-canvas-cad img {
     width: 100%;
 }
 .infoContent {
