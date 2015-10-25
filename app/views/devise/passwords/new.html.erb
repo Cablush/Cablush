@@ -10,12 +10,15 @@
 <div class="main">
     <div class="wrap">
         <div class="wrap-content"> 
-          <%= simple_form_for :usuario, :url => password_path(:usuario)  do |f| %>
-            <p>Esqueceu a senha? </p>
+            <h3>Esqueceu a senha? </h3>
             <p>Sem problemas, te enviamos as instruções para alterá-la.</p><br/>
-            <%= f.input :email, label: 'Email' %>
-            <%= f.button :submit, value: 'Alterar senha', label: 'Alterar senha', class: 'btn1 btn-primary btn-normal btn-inline' %>
-          <% end %>    
+            <%= simple_form_for :usuario, :url => password_path(:usuario)  do |f| %>
+              <%= devise_error_messages! %>              
+
+              <%= f.input :email, label: 'Email' %>
+            
+              <%= f.button :submit, value: 'Alterar senha', label: 'Alterar senha', class: 'btn1 btn-primary btn-normal btn-inline' %>
+            <% end %>    
         </div>
     </div>
     <div class="clear"></div>

@@ -1954,6 +1954,19 @@ h5.m_12 a:hover{
 .btn1:hover{
     background: #e15a1f;
 }
+.lnk1 {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.lnk1:hover {
+    color: #e15a1f;
+}
+.cancel_link {
+    float: right;
+    padding-top: 16px;
+}
 .testimonials{
     margin-top: 6%;
 }

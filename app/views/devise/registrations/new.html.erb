@@ -12,11 +12,14 @@
         <div class="wrap-content"> 
           <% unless usuario_signed_in? %>
             <%= simple_form_for :usuario, :url => registration_path(:usuario)  do |f| %>
+              <%= devise_error_messages! %>
+            
               <%= f.input :nome, label: 'Nome' %>
               <%= f.input :email, label: 'Email' %>
               <%= f.input :password, label: 'Senha' %>
               <%= f.input :password_confirmation, label: 'Confirmar Senha' %>
               <%= f.input :lojista, label: 'Sou Lojista (será verificado posteriormente)', :as => :boolean, class: 'checkbox' %>
+              
               <%= f.button :submit, value: 'Cadastrar', label: 'Cadastrar', class: 'btn1 btn-primary btn-normal btn-inline' %>
             <% end %>    
           <%else%>

@@ -16,6 +16,7 @@
               <%= f.input :password, label: 'Senha' %>
               <%= f.input :remember_me, :as => :boolean, class:'checkbox' %>
               <%= f.button :submit,value: 'Login', label: 'Login', class: 'btn1 btn-primary btn-normal btn-inline' %>
+            
               <%= link_to "Esqueci a senha", new_password_path(:usuario), class: 'btn1 btn-primary btn-normal btn-inline' %>
             <% end %>    
           <%else%>
