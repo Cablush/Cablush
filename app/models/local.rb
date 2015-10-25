@@ -48,4 +48,16 @@ class Local < ActiveRecord::Base
     ender
   end
   
+  def loja?
+    localizavel_type == 'Loja'
+  end
+  
+  def pista?
+    localizavel_type == 'Pista'
+  end
+  
+  def evento?
+    localizavel_type == 'Eventos'
+  end
+  
 end

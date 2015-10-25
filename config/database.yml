@@ -20,6 +20,6 @@ test:
 
 production:
     adapter: mysql2
-    database: <%= ENV['CABLUSH_DB_DATABASE'] %>
-    user: <%= ENV['CABLUSH_DB_USERNAME'] %>
-    password: <%= ENV['CABLUSH_DB_PASSWORD'] %>
+    database: <%= Rails.application.secrets.db_database %>
+    user: <%= Rails.application.secrets.db_username %>
+    password: <%= Rails.application.secrets.db_password %>

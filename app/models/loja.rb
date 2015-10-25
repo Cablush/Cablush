@@ -15,15 +15,22 @@ class Loja < ActiveRecord::Base
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos
   
-  #attr_accessible :nome, :logo, :horario, :descricao, :site, :contato, :email
+  has_attached_file :logo, 
+                    :styles => { 
+                      :small => "340x200>",
+                      :original => "800x600>"
+                    },
+                    :path => "/lojas/:id/:basename_:style.:extension"
 
-  #has_attached_file :logo, :styles => { :small => "350x200>" },
-  #                  :url  => "/assets/lojas/:id/:style/:basename.:extension",
-  #                  :path => ":rails_root/public/assets/lojas/:id/:style/:basename.:extension"
-
-  #validates_attachment_presence :logo
-  #validates_attachment_size :logo, :less_than => 10.megabytes
-  #validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
-  #scope :esporte, lambda { |esp_id| where(esporte_id: esp_id) }
+  validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png']
+  validates_attachment_file_name :logo, :matches => [/PNG\Z/, /png\Z/, /JPE?G\Z/, /jpe?g\Z/]
+  validates_attachment :logo, :size => { :in => 0..5.megabytes }
+  
+  def contato
+    contato = telefone
+    contato += " / " if contato.present?
+    contato += email
+    return contato
+  end
   
 end

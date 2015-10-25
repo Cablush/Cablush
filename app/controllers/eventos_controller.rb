@@ -1,7 +1,7 @@
 class EventosController < ApplicationController
   
   before_action :authenticate_usuario!
-  before_action :lojista_at_least, :except => :show
+  #before_action :lojista_at_least, :except => :show
   
   # GET /eventos(.:format)
   def index
@@ -78,7 +78,11 @@ class EventosController < ApplicationController
   private
   
   def evento_params
-    params.require(:evento).permit(:nome, :facebook, :contato, :logo, :descricao, :fundo)
+    params.require(:evento)
+          .permit(:nome, :descricao, :data, :hora, :website, :facebook, :flyer, 
+              esporte_ids: [],
+              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]
+          )
   end
 
 end

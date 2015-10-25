@@ -9,15 +9,22 @@ class Evento < ActiveRecord::Base
                               
   has_and_belongs_to_many :esportes
   
-  #has_attached_file :logo, :styles => { :small => "350x200>" , :big =>"750x500" },
-  #  :url  => "/assets/eventos/:id/:style/:basename.:extension",
-  #  :path => ":rails_root/public/assets/eventos/:id/:style/:basename.:extension"
+  has_attached_file :flyer, 
+                    :styles => { 
+                      :small => "340x200>",
+                      :original => "800x600>"
+                    },
+                    :path => "/eventos/:id/:basename_:style.:extension"
 
-  #validates_attachment_presence :logo
-  #validates_attachment_size :logo, :less_than => 10.megabytes
-  #validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
+  validates_attachment_content_type :flyer, :content_type => ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png']
+  validates_attachment_file_name :flyer, :matches => [/PNG\Z/, /png\Z/, /JPE?G\Z/, /jpe?g\Z/]
+  validates_attachment :flyer, :size => { :in => 0..5.megabytes }
   
   #  scope :public, -> { where(public: true) }
   #  scope :sponsored, -> { where(patrocinado: true) }
+  
+  def horario
+    data + " " + hora
+  end
   
 end

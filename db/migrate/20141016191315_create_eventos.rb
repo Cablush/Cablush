@@ -5,9 +5,8 @@ class CreateEventos < ActiveRecord::Migration
       t.string :descricao
       t.date :data
       t.time :hora
-      
-      t.string :cartaz
-      t.boolean :fundo, :default => false
+      t.string :website
+      t.string :facebook
       
       t.references :responsavel, index: true
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001025437) do
+ActiveRecord::Schema.define(version: 20151024231414) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -85,11 +85,16 @@ ActiveRecord::Schema.define(version: 20151001025437) do
     t.string   "descricao"
     t.date     "data"
     t.time     "hora"
-    t.string   "cartaz"
-    t.boolean  "fundo",          default: false
+    t.string   "website"
+    t.string   "facebook"
     t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "flyer_file_name"
+    t.string   "flyer_content_type"
+    t.integer  "flyer_file_size"
+    t.datetime "flyer_updated_at"
+    t.boolean  "fundo",              default: false
   end
 
   add_index "eventos", ["responsavel_id"], name: "index_eventos_on_responsavel_id"
@@ -160,11 +165,14 @@ ActiveRecord::Schema.define(version: 20151001025437) do
     t.string   "email"
     t.string   "website"
     t.string   "facebook"
-    t.string   "logo"
-    t.boolean  "fundo",          default: false
     t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
+    t.boolean  "fundo",             default: false
   end
 
   add_index "lojas", ["responsavel_id"], name: "index_lojas_on_responsavel_id"
@@ -172,11 +180,16 @@ ActiveRecord::Schema.define(version: 20151001025437) do
   create_table "pistas", force: :cascade do |t|
     t.string   "nome"
     t.text     "descricao"
-    t.string   "foto"
-    t.boolean  "fundo",          default: false
+    t.string   "website"
+    t.string   "facebook"
     t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+    t.boolean  "fundo",             default: false
   end
 
   add_index "pistas", ["responsavel_id"], name: "index_pistas_on_responsavel_id"

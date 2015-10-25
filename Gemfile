@@ -57,9 +57,10 @@ gem 'simple_form'
 
 gem 'devise'
 #a pedido do openshift
-gem 'turbo-sprockets-rails3'
+#gem 'turbo-sprockets-rails3'
 
-gem "paperclip", "~> 4.3"
+gem "paperclip"
+gem "aws-sdk", "~> 1.6"
 
 gem 'rails4-autocomplete'
 
@@ -69,4 +70,5 @@ group :development do
   gem "better_errors"
   gem "binding_of_caller"
   gem 'quiet_assets'
+  gem "fakes3"
 end

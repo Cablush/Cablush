@@ -1,7 +1,7 @@
 class LojasController < ApplicationController
   
   before_action :authenticate_usuario!
-  before_action :lojista_at_least, :except => :show
+  #before_action :lojista_at_least, :except => :show
   
   autocomplete :loja, :nome, :extra_data => [:endereco, :cidade, :estado]
   

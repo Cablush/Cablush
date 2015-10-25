@@ -8,9 +8,6 @@ class CreateLojas < ActiveRecord::Migration
       t.string :website
       t.string :facebook
       
-      t.string :logo
-      t.boolean :fundo, :default => false
-      
       t.references :responsavel, index: true
       
       t.timestamps

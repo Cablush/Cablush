@@ -1,0 +1,38 @@
+<div class="title">
+  <% if local.localizavel.website.present? %>
+    <%= link_to url_with_protocol(local.localizavel.website), :target => '_blank' do %>
+      <% if local.localizavel.flyer.exists? %>
+        <%= image_tag local.localizavel.flyer.url(:thumb), :class => local.localizavel.fundo? ? "fundo" : nil %>
+      <% else %>
+        <%= local.localizavel.nome %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <% if local.localizavel.flyer.exists? %>
+      <%= image_tag local.localizavel.flyer.url(:thumb), :class => local.localizavel.fundo? ? "fundo" : nil %>
+    <% else %>
+      <%= local.localizavel.nome %>
+    <% end %>
+  <% end %>
+</div>  
+
+<div class="social">
+  <ul>
+    <% if local.localizavel.facebook.present? %>
+      <li>
+        <span class="m_22">
+          <%= link_to url_with_protocol(local.localizavel.facebook), target: '_blank' do %>
+            <%= image_tag "fb.png"%>
+          <% end %>
+        </span>
+        <div class="clear"></div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="desc">
+    <h4 class="m_2"><%= local.localizavel.horario %></h4>
+    <h5 class="m_3"><%= local.endereco.gsub(/\\n/, '<br>').html_safe %></h5>
+    <p><%= local.localizavel.descricao %></p>
+</div>

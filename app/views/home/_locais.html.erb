@@ -4,46 +4,13 @@
   <% end %>
 
     <div class="col_1_of_3 span_1_of_3">
-      <center>
-        <% if local.localizavel.has_attribute? :site and local.localizavel.site.present? %>
-          <a href="<%= local.site %>">
-        <% end %>
-          <% if local.localizavel.has_attribute? :logo and local.localizavel.logo.present? %>
-            <% if local.localizavel.fundo? %>
-              <%= image_tag local.localizavel.logo.url(:small) ,:style => "background-color:#000" %>
-            <% else %>
-              <%= image_tag local.localizavel.logo.url(:small) %>
-            <% end %>        
-          <% elsif %>
-            <%= local.localizavel.nome %>
-          <% end %>
-        <% if local.localizavel.has_attribute? :site and local.localizavel.site.present? %>
-          </a>
-        <% end %>
-      </center>
-      <ul class="m_fb">
-        <li>
-          <% if local.localizavel.has_attribute? :facebook and local.localizavel.facebook.present? %>
-            <span class="m_22">
-              <center>
-                <a href="<%= local.localizavel.facebook ||="#" %>"><%= image_tag "fb.png"%></a>
-              </center>
-            </span>
-          <% end %>
-          <%# if usuario_signed_in? && current_usuario.logista? %>
-            <!-- <span class="m_23"><a href="#"><%= image_tag("heart.png") %></a></span> -->
-          <%# end %>
-          <div class="clear"></div>
-        </li>
-      </ul>
-        <div class="desc">
-          <h3><%= local.localizavel.nome %></h3>
-          <% if local.localizavel.has_attribute? :telefone and local.localizavel.telefone.present? %>
-            <h4 class="m_2"><%= local.localizavel.telefone %></h4>
-          <% end %>
-          <h5 class="m_3"><%= local.endereco.gsub(/\\n/, '<br>').html_safe %></h5>
-          <p><%= local.localizavel.descricao %></p>
-        </div>
+      <% if local.loja? %>
+        <%= render "local_loja.html", local: local %>
+      <% elsif local.pista? %>
+        <%= render "local_pista.html", local: local %>
+      <% elsif local.evento? %>
+        <%= render "local_evento.html", local: local %>
+      <% end %>
     </div>
 
   <% if (i+1) % 3 == 0 %> 

@@ -3,9 +3,8 @@ class CreatePista < ActiveRecord::Migration
     create_table :pistas do |t|
       t.string :nome
       t.text :descricao
-      
-      t.string :foto
-      t.boolean :fundo, :default => false
+      t.string :website
+      t.string :facebook
       
       t.references :responsavel, index: true
       

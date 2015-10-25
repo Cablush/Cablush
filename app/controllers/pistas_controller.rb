@@ -1,7 +1,7 @@
 class PistasController < ApplicationController
   
   before_action :authenticate_usuario!
-  before_action :lojista_at_least, :except => :show
+  #before_action :lojista_at_least, :except => :show
 
   # GET /pistas(.:format)
   def index
@@ -84,7 +84,7 @@ class PistasController < ApplicationController
   
   def pista_params
     params.require(:pista)
-          .permit(:nome, :descricao, :foto, 
+          .permit(:nome, :descricao, :website, :facebook, :foto, 
               esporte_ids: [],
               local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
               horarios_attributes: [:id, :dias, :periodo, :inicio, :fim]

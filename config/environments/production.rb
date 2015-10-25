@@ -87,4 +87,15 @@ Cablush::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  # Paperclip Amazon S3 configuration
+  config.paperclip_defaults = {
+    storage: :s3,
+    s3_credentials: {
+      bucket: Rails.application.secrets.aws_s3_bucket,
+      access_key_id: Rails.application.secrets.aws_access_key_id,
+      secret_access_key: Rails.application.secrets.aws_secret_access_key
+    }
+  }
+  
 end

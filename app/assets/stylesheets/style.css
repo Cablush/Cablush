@@ -456,16 +456,18 @@ ul.events li {
     -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background:#fff;
 }
+.title {
+    padding: 5%;
+}
+.fundo {
+    background: #000;
+}
 .desc{
     background:#fff;
-    padding:8% 5% 5% 5%;
+    padding: 5%;
 }
 .span_1_of_3  h3{
     margin-bottom:10px;
-}
-ul.m_fb{
-    position:relative;
-    margin-top: -50px;
 }
 span.m_22{
     float: left;
@@ -3418,6 +3420,15 @@ html, body, map, #map-canvas {
     border-bottom: 1px solid #DFDFDF;
     position: relative;
     top: -10px;
+}
+.subfields.collapsible legend {
+    cursor: pointer;
+}
+span.tip {
+    font-size: 0.8em;
+    font-style: italic;
+    font-stretch: condensed;
+    color: #666;
 }
 .optional_field {
     font-style: italic;

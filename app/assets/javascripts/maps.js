@@ -32,7 +32,7 @@ var clearMarkers = function() {
 
 function createInfoWindow(title, text, logo) {
     var content = '<div class="infoContent"><h1 class="infoHeading">' + title + '</h1>'
-                + (logo !== null ? '<div clas="infoLogo">' + logo + '</div>' : '')
+                //+ (logo !== null ? '<div clas="infoLogo">' + logo + '</div>' : '')
                 + '<div class="infoBody">' + text + '</div>'
                 + '</div>';
     var infowindow = new google.maps.InfoWindow({

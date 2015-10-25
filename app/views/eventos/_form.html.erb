@@ -1,51 +1,45 @@
 <%= form_for @evento, html: { multipart: true } do |f| %>
-  <% if @evento.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@evento.errors.count, "error") %> prohibited this contact from being saved:</h2>
-
-      <ul>
-      <% @evento.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  
   <div class="field">
-    <%= f.label 'Nome do Evento:' %><br>
+    <%= f.label 'Nome:' %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
-  </div>
-  <div class="field">
-    <%= f.label 'Link para pagina no Facebook' %><br>
-    <%= f.text_field :facebook, class: 'inputbox'  %>
-  </div>
-  <div class="field">
-    <%= f.label 'Telefone de contato' %><br>
-    <%= f.text_field :contato, class: 'inputbox'  %>
-  </div>
-  <!-- <div class="field">
-    <%#= f.label 'Site do Evento' %><br>
-    <%#= f.text_field :site, class: 'inputbox'  %>
-  </div> -->
-  <div class="field">
-    <%= f.label 'Logo do Evento' %><br>
-    <%= f.file_field :logo %>
-  </div>
-  <div class="field">
-    <%= f.label 'Modalidade  do Evento' %><br>
-    <%#= f.collection_select :esporte_id, Esporte.all, :id, :nome,{ :prompt => "Selecione uma Modalidade", :multiple => true} %>
-    <%= f.select :esporte_id, Esporte.all.collect {|x| [x.nome, x.id]}, {:class=> 'textarea-box', :cols => 5}, :multiple => true %>
   </div>
   <div class="field">
     <%= f.label 'Descrição' %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
   </div>
   <div class="field">
+    <%= f.label 'Site' %><br>
+    <%= f.text_field :website, class: 'inputbox'  %> 
+  </div>
+  <div class="field">
+    <%= f.label 'Facebook' %><br>
+    <%= f.text_field :facebook, class: 'inputbox'  %>
+  </div>
+  <div class="field">
+    <%= f.label 'Flyer' %><br>
+    <%= f.file_field :flyer %>
+  </div>
+  <div class="field">
     <%= f.label 'Fundo Preto' %>
     <%= f.check_box :fundo %>
-    <%= f.hidden_field :usuario_id, :value => current_usuario.id%>
   </div>
+  <fieldset class="subfields">
+      <legend>Esportes</legend>
+      <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
+      <ul>
+        <% Esporte.order(:categoria, :nome).each do |esporte| %>
+          <li><%= check_box_tag('evento[esporte_ids][]', esporte.id, esporte.id.in?(@evento.esportes.collect(&:id))) %><%= esporte.full_name %></li>
+        <% end %>
+      </ul>
+  </fieldset>
+  <fieldset class="subfields">
+      <legend>Endereço</legend>
+      <%= f.fields_for :local do |local| %>
+        <%= render 'locais/local_fields', f: local %>
+      <% end %>
+  </fieldset>
   <div class="actions">
-    <%= f.submit "Cadastrar Evento", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

@@ -14,15 +14,15 @@ class Pista < ActiveRecord::Base
   
   has_and_belongs_to_many :esportes
   
-  #scope :esporte, lambda { |esp_id| where(esporte_id: esp_id) }
+  has_attached_file :foto, 
+                    :styles => { 
+                      :small => "340x200>",
+                      :original => "800x600>"
+                    },
+                    :path => "/pistas/:id/:basename_:style.:extension"
 
-  #has_attached_file :logo, :styles => { :small => "350x200>" },
-  #                  :url  => "/assets/pistas/:id/:style/:basename.:extension",
-  #                  :path => ":rails_root/public/assets/pistas/:id/:style/:basename.:extension"
-
-  #validates_attachment_presence :logo
-  #validates_attachment_size :logo, :less_than => 10.megabytes
-  #validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
-  #scope :esporte, lambda { |esp_id| where(esporte_id: esp_id) }
+  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png']
+  validates_attachment_file_name :foto, :matches => [/PNG\Z/, /png\Z/, /JPE?G\Z/, /jpe?g\Z/]
+  validates_attachment :foto, :size => { :in => 0..5.megabytes }
     
 end
