@@ -9,6 +9,12 @@ class Evento < ActiveRecord::Base
                               
   has_and_belongs_to_many :esportes
   
+  before_create :set_uuid
+  
+  def to_param
+    uuid
+  end
+  
   has_attached_file :flyer, 
                     :styles => { 
                       :small => "340x200>",
@@ -25,6 +31,12 @@ class Evento < ActiveRecord::Base
   
   def horario
     data.strftime('%d/%m/%Y') + " às " + hora.strftime('%H:%M')
+  end
+  
+  private
+  
+  def set_uuid
+    self.uuid = SecureRandom.uuid
   end
   
 end

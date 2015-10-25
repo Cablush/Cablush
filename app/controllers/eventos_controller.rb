@@ -35,24 +35,24 @@ class EventosController < ApplicationController
   
   # GET /eventos/:id(.:format)
   def show
-    @evento = Evento.find(params[:id])
+    @evento = Evento.find_by_uuid!(params[:id])
   end
 
   # GET /eventos/:id/edit(.:format)
   def edit
     if current_usuario.admin?
-      @evento = Evento.find(params[:id])
+      @evento = Evento.find_by_uuid!(params[:id])
     else
-      @evento = current_usuario.eventos.find(params[:id])
+      @evento = current_usuario.eventos.find_by_uuid!(params[:id])
     end
   end
 
   # PATCH/PUT /eventos/:id(.:format)
   def update
     if current_usuario.admin?
-      @evento = Evento.find(params[:id])
+      @evento = Evento.find_by_uuid!(params[:id])
     else
-      @evento = current_usuario.eventos.find(params[:id])
+      @evento = current_usuario.eventos.find_by_uuid!(params[:id])
     end
 
     if @evento.update(evento_params)
@@ -65,9 +65,9 @@ class EventosController < ApplicationController
   # DELETE /eventos/:id(.:format)
   def destroy
     if current_usuario.admin?
-      @evento = Evento.find(params[:id])
+      @evento = Evento.find_by_uuid!(params[:id])
     else
-      @evento = current_usuario.eventos.find(params[:id])
+      @evento = current_usuario.eventos.find_by_uuid!(params[:id])
     end
     
     @evento.destroy

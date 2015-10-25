@@ -36,15 +36,15 @@ class PistasController < ApplicationController
   
   # GET /pistas/:id(.:format)
   def show
-    @pista = Pista.find(params[:id])
+    @pista = Pista.find_by_uuid!(params[:id])
   end
 
   # GET /pistas/:id/edit(.:format)
   def edit
     if current_usuario.admin?
-      @pista = Pista.find(params[:id])
+      @pista = Pista.find_by_uuid!(params[:id])
     else
-      @pista = current_usuario.pistas.find(params[:id])
+      @pista = current_usuario.pistas.find_by_uuid!(params[:id])
     end
     
     if @pista.horarios.empty?
@@ -55,9 +55,9 @@ class PistasController < ApplicationController
   # PATCH/PUT /pistas/:id(.:format)
   def update
     if current_usuario.admin?
-      @pista = Pista.find(params[:id])
+      @pista = Pista.find_by_uuid!(params[:id])
     else
-      @pista = current_usuario.pistas.find(params[:id])
+      @pista = current_usuario.pistas.find_by_uuid!(params[:id])
     end
 
     if @pista.update(pista_params)
@@ -70,9 +70,9 @@ class PistasController < ApplicationController
   # DELETE /pistas/:id(.:format)
   def destroy
     if current_usuario.admin?
-      @pista = Pista.find(params[:id])
+      @pista = Pista.find_by_uuid!(params[:id])
     else
-      @pista = current_usuario.pistas.find(params[:id])
+      @pista = current_usuario.pistas.find_by_uuid!(params[:id])
     end
     
     @pista.destroy

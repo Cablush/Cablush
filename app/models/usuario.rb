@@ -20,6 +20,12 @@ class Usuario < ActiveRecord::Base
 
   after_initialize :set_default_role, :if => :new_record?
   
+  before_create :set_uuid
+  
+  def to_param
+    uuid
+  end
+  
   # send the message now
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_now
@@ -33,6 +39,10 @@ class Usuario < ActiveRecord::Base
   
   def set_default_role
     self.role ||= :esportista
+  end
+  
+  def set_uuid
+    self.uuid = SecureRandom.uuid
   end
   
 end

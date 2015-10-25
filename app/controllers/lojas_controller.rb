@@ -38,15 +38,15 @@ class LojasController < ApplicationController
   
   # GET /lojas/:id(.:format)
   def show
-    @loja = Loja.find(params[:id])
+    @loja = Loja.find_by_uuid!(params[:id])
   end
 
   # GET /lojas/:id/edit(.:format)
   def edit
     if current_usuario.admin?
-      @loja = Loja.find(params[:id])
+      @loja = Loja.find_by_uuid!(params[:id])
     else
-      @loja = current_usuario.lojas.find(params[:id])
+      @loja = current_usuario.lojas.find_by_uuid!(params[:id])
     end
     
     if @loja.locais.empty?
@@ -61,9 +61,9 @@ class LojasController < ApplicationController
   # PATCH/PUT /lojas/:id(.:format)
   def update
     if current_usuario.admin?
-      @loja = Loja.find(params[:id])
+      @loja = Loja.find_by_uuid!(params[:id])
     else
-      @loja = current_usuario.lojas.find(params[:id])
+      @loja = current_usuario.lojas.find_by_uuid!(params[:id])
     end
 
     if @loja.update_attributes(loja_params)
@@ -76,9 +76,9 @@ class LojasController < ApplicationController
   # DELETE /lojas/:id(.:format)
   def destroy
     if current_usuario.admin?
-      @loja = Loja.find(params[:id])
+      @loja = Loja.find_by_uuid!(params[:id])
     else
-      @loja = current_usuario.lojas.find(params[:id])
+      @loja = current_usuario.lojas.find_by_uuid!(params[:id])
     end
     
     @loja.destroy

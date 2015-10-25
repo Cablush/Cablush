@@ -15,6 +15,12 @@ class Loja < ActiveRecord::Base
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos
   
+  before_create :set_uuid
+  
+  def to_param
+    uuid
+  end
+  
   has_attached_file :logo, 
                     :styles => { 
                       :small => "340x200>",
@@ -31,6 +37,12 @@ class Loja < ActiveRecord::Base
     contato += " / " if contato.present?
     contato += email
     return contato
+  end
+  
+  private
+  
+  def set_uuid
+    self.uuid = SecureRandom.uuid
   end
   
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151024231414) do
+ActiveRecord::Schema.define(version: 20151025210726) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -95,9 +95,11 @@ ActiveRecord::Schema.define(version: 20151024231414) do
     t.integer  "flyer_file_size"
     t.datetime "flyer_updated_at"
     t.boolean  "fundo",              default: false
+    t.string   "uuid",                               null: false
   end
 
   add_index "eventos", ["responsavel_id"], name: "index_eventos_on_responsavel_id"
+  add_index "eventos", ["uuid"], name: "index_eventos_on_uuid", unique: true
 
   create_table "eventos_grupos", id: false, force: :cascade do |t|
     t.integer "grupo_id",  null: false
@@ -173,9 +175,11 @@ ActiveRecord::Schema.define(version: 20151024231414) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
     t.boolean  "fundo",             default: false
+    t.string   "uuid",                              null: false
   end
 
   add_index "lojas", ["responsavel_id"], name: "index_lojas_on_responsavel_id"
+  add_index "lojas", ["uuid"], name: "index_lojas_on_uuid", unique: true
 
   create_table "pistas", force: :cascade do |t|
     t.string   "nome"
@@ -190,9 +194,11 @@ ActiveRecord::Schema.define(version: 20151024231414) do
     t.integer  "foto_file_size"
     t.datetime "foto_updated_at"
     t.boolean  "fundo",             default: false
+    t.string   "uuid",                              null: false
   end
 
   add_index "pistas", ["responsavel_id"], name: "index_pistas_on_responsavel_id"
+  add_index "pistas", ["uuid"], name: "index_pistas_on_uuid", unique: true
 
   create_table "usuarios", force: :cascade do |t|
     t.integer  "id_social"
@@ -216,11 +222,13 @@ ActiveRecord::Schema.define(version: 20151024231414) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "role"
+    t.string   "uuid",                                null: false
   end
 
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   add_index "usuarios", ["unlock_token"], name: "index_usuarios_on_unlock_token", unique: true
+  add_index "usuarios", ["uuid"], name: "index_usuarios_on_uuid", unique: true
 
 end
