@@ -4,15 +4,26 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(resource)
-    if current_usuario.admin?
-      home_cadastros_path
-    else
-      home_cadastros_path
-    end
+    home_cadastros_path
   end
   
   def after_sign_out_path_for(resource)
     home_index_path
+  end
+  
+  def unauthorized
+    @title = "Acesso não autorizado, por favor efetue login e tente novamente."
+    return :file => File.join(Rails.root, 'public/401'), :formats => [:html], :status => 401
+  end
+  
+  def forbidden
+    @title = "Acesso não permitido."
+    return :file => File.join(Rails.root, 'public/403'), :formats => [:html], :status => 403
+  end
+  
+  def not_found
+    @title = "Página não encontrada."
+    return :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404
   end
   
   protected

@@ -53,16 +53,16 @@ class HomeController < ApplicationController
   end
   
   def cadastros
-    if current_usuario.admin?
-      @title = "Olá Administrador! \"Com grandes poderes vêm grandes responsabilidades\" by Stan Lee!"
-    elsif current_usuario.lojista?
-      @title = "Olá Lojista! Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!"
-    else 
-      @title = "Olá" + current_usuario.nome + "! Ajude seu esporte, divulge as lojas, pistas e eventos em sua região!"
-    end
-    
     unless usuario_signed_in?
-      render :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404, :layout => false
+      render unauthorized
+    else
+      if current_usuario.admin?
+        @title = "Olá Administrador! \"Com grandes poderes vêm grandes responsabilidades\" by Stan Lee!"
+      elsif current_usuario.lojista?
+        @title = "Olá Lojista! Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!"
+      else 
+        @title = "Olá " + current_usuario.first_name + "! Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!"
+      end
     end
   end
 
