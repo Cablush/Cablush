@@ -22,7 +22,8 @@
   </div>
   <div class="field">
     <%= f.label 'Logo' %><br>
-    <%= f.file_field :logo %>
+    <%= f.file_field :logo %><br>
+    <%= image_tag @loja.logo.url(:small), :class => @loja.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
     <%= f.label 'Fundo Preto' %>

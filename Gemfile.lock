@@ -95,6 +95,8 @@ GEM
     fakes3 (0.2.1)
       builder
       thor
+    font-awesome-rails (4.4.0.0)
+      railties (>= 3.2, < 5.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     has_scope (0.6.0)
@@ -247,6 +249,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise
   fakes3
+  font-awesome-rails
   has_scope
   jbuilder (~> 1.2)
   jquery-rails

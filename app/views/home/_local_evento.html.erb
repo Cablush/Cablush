@@ -1,31 +1,26 @@
 <div class="title">
-  <% if local.localizavel.website.present? %>
-    <%= link_to url_with_protocol(local.localizavel.website), :target => '_blank' do %>
+    <%= local.localizavel.nome %>
+    <div>
       <% if local.localizavel.flyer.exists? %>
-        <%= image_tag local.localizavel.flyer.url(:thumb), :class => local.localizavel.fundo? ? "fundo" : nil %>
-      <% else %>
-        <%= local.localizavel.nome %>
+        <%= image_tag local.localizavel.flyer.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %>
       <% end %>
-    <% end %>
-  <% else %>
-    <% if local.localizavel.flyer.exists? %>
-      <%= image_tag local.localizavel.flyer.url(:thumb), :class => local.localizavel.fundo? ? "fundo" : nil %>
-    <% else %>
-      <%= local.localizavel.nome %>
-    <% end %>
-  <% end %>
+    </div>
 </div>  
 
 <div class="social">
   <ul>
+    <% if local.localizavel.website.present? %>
+      <li>
+        <%= link_to url_with_protocol(local.localizavel.website), :target => '_blank' do %>
+          <i class="fa fa-link fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
     <% if local.localizavel.facebook.present? %>
       <li>
-        <span class="m_22">
-          <%= link_to url_with_protocol(local.localizavel.facebook), target: '_blank' do %>
-            <%= image_tag "fb.png"%>
-          <% end %>
-        </span>
-        <div class="clear"></div>
+        <%= link_to url_with_protocol(local.localizavel.facebook), target: '_blank' do %>
+          <i class="fa fa-facebook-square fa-2x"></i>
+        <% end %>
       </li>
     <% end %>
   </ul>

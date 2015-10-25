@@ -23,6 +23,8 @@ module Cablush
     config.autoload_paths += Dir[File.join(Rails.root, "lib", "core_ext", "*.rb")].each {|l| require l }
     
     config.active_job.queue_adapter = :sidekiq
+    
+    config.paperclip = config_for :paperclip
       
   end
 end

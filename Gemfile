@@ -64,6 +64,8 @@ gem "aws-sdk", "~> 1.6"
 
 gem 'rails4-autocomplete'
 
+gem "font-awesome-rails"
+
 group :development do
   gem 'byebug'
   gem 'rails-erd'

@@ -444,6 +444,7 @@ ul.events li {
     display: block;
     float:left;
     margin: 1% 0 1% 3.6%;
+    position: relative;
 }
 .col_1_of_3:first-child { 
     margin-left: 0; 
@@ -458,6 +459,7 @@ ul.events li {
 }
 .title {
     padding: 5%;
+    text-align: center;
 }
 .fundo {
     background: #000;
@@ -636,15 +638,21 @@ span.m_3{
     margin-top: 10px;
 }
 .social{
-    float:right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
-.social ul li:first-child, ol li:first-child {
-    margin-top: 0px;
-    margin-left: 0;
+.social ul {
+    display:table-row;
 }
-.social li {
-    background: none;
-    display: inline-block;
+.social ul li {
+    list-style-type: none;
+    margin: 10px;
+    vertical-align: middle;
+}
+.social ul li a {
+    display:table-cell;
+    vertical-align: middle;
 }
 li.facebook a span {
     height: 40px;

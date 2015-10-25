@@ -16,10 +16,10 @@ class Evento < ActiveRecord::Base
                     },
                     :path => "/eventos/:id/:basename_:style.:extension"
 
-  validates_attachment_content_type :flyer, :content_type => ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png']
-  validates_attachment_file_name :flyer, :matches => [/PNG\Z/, /png\Z/, /JPE?G\Z/, /jpe?g\Z/]
-  validates_attachment :flyer, :size => { :in => 0..5.megabytes }
-  
+  validates_attachment :flyer, 
+    :size => { :in => 0..5.megabytes },
+    :content_type => { :content_type => /^image\/(jpeg|png)$/ }
+    
   #  scope :public, -> { where(public: true) }
   #  scope :sponsored, -> { where(patrocinado: true) }
   

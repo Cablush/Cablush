@@ -22,9 +22,9 @@ class Loja < ActiveRecord::Base
                     },
                     :path => "/lojas/:id/:basename_:style.:extension"
 
-  validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png']
-  validates_attachment_file_name :logo, :matches => [/PNG\Z/, /png\Z/, /JPE?G\Z/, /jpe?g\Z/]
-  validates_attachment :logo, :size => { :in => 0..5.megabytes }
+  validates_attachment :logo, 
+    :size => { :in => 0..5.megabytes },
+    :content_type => { :content_type => /^image\/(jpeg|png)$/ }
   
   def contato
     contato = telefone

@@ -17,12 +17,12 @@ class Pista < ActiveRecord::Base
   has_attached_file :foto, 
                     :styles => { 
                       :small => "340x200>",
-                      :original => "800x600>"
+                      :original => "1024x768>"
                     },
                     :path => "/pistas/:id/:basename_:style.:extension"
 
-  validates_attachment_content_type :foto, :content_type => ['image/jpeg', 'image/jpg', 'image/pjpeg', 'image/png', 'image/x-png']
-  validates_attachment_file_name :foto, :matches => [/PNG\Z/, /png\Z/, /JPE?G\Z/, /jpe?g\Z/]
-  validates_attachment :foto, :size => { :in => 0..5.megabytes }
+  validates_attachment :foto, 
+    :size => { :in => 0..5.megabytes },
+    :content_type => { :content_type => /^image\/(jpeg|png)$/ }
     
 end
