@@ -24,8 +24,7 @@ class Pista < ActiveRecord::Base
                     :styles => { 
                       :small => "340x200>",
                       :original => "1024x768>"
-                    },
-                    :path => "/pistas/:id/:basename_:style.:extension"
+                    }
 
   validates_attachment :foto, 
     :size => { :in => 0..5.megabytes },

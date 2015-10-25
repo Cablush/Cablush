@@ -19,8 +19,7 @@ class Evento < ActiveRecord::Base
                     :styles => { 
                       :small => "340x200>",
                       :original => "800x600>"
-                    },
-                    :path => "/eventos/:id/:basename_:style.:extension"
+                    }
 
   validates_attachment :flyer, 
     :size => { :in => 0..5.megabytes },
