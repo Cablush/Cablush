@@ -57,11 +57,11 @@ class HomeController < ApplicationController
       render unauthorized
     else
       if current_usuario.admin?
-        @title = "Olá Administrador! \"Com grandes poderes vêm grandes responsabilidades\" by Stan Lee!"
+        @title = "Olá Administrador!<br> \"Com grandes poderes vêm grandes responsabilidades\" by Stan Lee!".html_safe
       elsif current_usuario.lojista?
-        @title = "Olá Lojista! Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!"
+        @title = "Olá Lojista!<br> Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!".html_safe
       else 
-        @title = "Olá " + current_usuario.first_name + "! Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!"
+        @title = ("Olá " + current_usuario.first_name + "!<br> Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!").html_safe
       end
     end
   end
