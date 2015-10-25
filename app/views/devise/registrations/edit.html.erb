@@ -16,18 +16,29 @@
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Aguardando confirmação para: <%= resource.unconfirmed_email %></div>
             <% end %>
-            <fieldset>
-              <p>Deixe estes campos em branco caso não queira alterar a senha.</p>
-              <%= f.input :password, label: 'Nova Senha' %>
-              <%= f.input :password_confirmation, label: 'Confirmar Senha' %>
+            <fieldset class="subfields">
+                <legend>Esportes favoritos</legend>
+                <%= hidden_field_tag("usuario[esporte_ids][]", nil) %>
+                <ul>
+                  <% Esporte.order(:categoria, :nome).each do |esporte| %>
+                    <li><%= check_box_tag("usuario[esporte_ids][]", esporte.id, esporte.id.in?(@usuario.esportes.collect(&:id))) %><%= esporte.full_name %></li>
+                  <% end -%>
+                </ul>
             </fieldset>
-            <fieldset>
-              <p>Entre sua senha atual para confirmar as alterações.</p>
-              <%= f.input :current_password, label: 'Senha Atual' %>
+            <fieldset class="subfields collapsible">
+                <legend>Alterar senha <span class="tip">(Clique aqui para alterar sua senha atual)</span></legend>
+                <div class="content">
+                  <%= f.input :password, label: 'Nova Senha' %>
+                  <%= f.input :password_confirmation, label: 'Confirmar Senha' %>
+                </div>
             </fieldset>
-            <%= f.button :submit,value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline' %>
+            <fieldset class="subfields">
+                <legend>Confirmar alterações <span class="tip">(Insira sua senha atual para confirmar as alterações)</span></legend>
+                <%= f.input :current_password, label: 'Senha Atual' %>
+            </fieldset>
+            <%= f.button :submit, value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline' %>
           <% end %>
-          <br><br>
+          <br><br><br>
           <%= button_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Sentiremos a sua falta. :(" }, :method => :delete, :class => 'btn1 btn-primary btn-normal btn-inline' %>
         </div>
     </div>

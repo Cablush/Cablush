@@ -6,6 +6,8 @@ class Usuario < ActiveRecord::Base
   has_many :lojas, foreign_key: "responsavel_id"
   has_many :eventos, foreign_key: "responsavel_id"
   has_many :pistas, foreign_key: "responsavel_id"
+  
+  has_and_belongs_to_many :esportes
   has_and_belongs_to_many :grupos
  
   # Include default devise modules. Others available are:
@@ -21,6 +23,10 @@ class Usuario < ActiveRecord::Base
   # send the message now
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_now
+  end
+  
+  def first_name
+    nome.partition(" ").first
   end
   
   private
