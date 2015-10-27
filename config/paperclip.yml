@@ -1,4 +1,4 @@
-development: &development
+development:
     storage: :s3
     bucket: <%= Rails.application.secrets.aws_s3_bucket %>
     s3_host_name: "localhost"
@@ -8,14 +8,10 @@ development: &development
     hash_secret: <%= Rails.application.secrets.paperclip_secret%>
     path: "/:class/:uuid/:hash_:style.:extension"
 
-test: *development
-
-production: &production
+production:
     storage: :s3
     bucket: <%= Rails.application.secrets.aws_s3_bucket %>
     url: ":s3_domain_url"
     hash_data: ":class/:attachment/:id/:updated_at"
     hash_secret: <%= Rails.application.secrets.paperclip_secret%>
     path: "/:class/:uuid/:hash_:style.:extension"
-
-staging: *production
