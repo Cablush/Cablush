@@ -21,5 +21,5 @@ test:
 production:
     adapter: mysql2
     database: <%= Rails.application.secrets.db_database %>
-    user: <%= Rails.application.secrets.db_username %>
+    username: <%= Rails.application.secrets.db_username %>
     password: <%= Rails.application.secrets.db_password %>
