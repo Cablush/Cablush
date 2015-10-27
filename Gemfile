@@ -3,10 +3,6 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-gem 'mysql2'
-
 # Sidekiq allows you to move jobs into the background for asynchronous processing.
 gem 'sidekiq'
 gem 'sinatra', require: false
@@ -67,10 +63,12 @@ gem 'rails4-autocomplete'
 gem "font-awesome-rails"
 
 group :production do
+  gem 'mysql2', '~> 0.3.18'
   gem 'passenger'
 end
 
 group :development do
+  gem 'sqlite3'
   gem 'byebug'
   gem 'rails-erd'
   gem "better_errors"
