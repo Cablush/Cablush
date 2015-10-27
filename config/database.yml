@@ -20,6 +20,9 @@ test:
 
 production:
     adapter: mysql2
+    reconnect: false
+    pool: 5
     database: <%= Rails.application.secrets.db_database %>
+    host: <%= Rails.application.secrets.db_host %>
     username: <%= Rails.application.secrets.db_username %>
     password: <%= Rails.application.secrets.db_password %>
