@@ -66,6 +66,10 @@ gem 'rails4-autocomplete'
 
 gem "font-awesome-rails"
 
+group :production do
+  gem 'passenger'
+end
+
 group :development do
   gem 'byebug'
   gem 'rails-erd'

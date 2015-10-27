@@ -1,10 +1,10 @@
 class ContactMailer < ActionMailer::Base
-  default :from => '"Cablush" <no-reply@cablush.com>'
+  default :from => '"Cablush" <cablush@cablush.com>'
 
   def contact_message(contact)
     @contact = contact
     mail(
-      :to => 'contact@cablush.com', 
+      :to => 'cablush@cablush.com', 
       :subject => 'Contato via site'
     )
   end
