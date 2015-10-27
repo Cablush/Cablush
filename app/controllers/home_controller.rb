@@ -21,7 +21,7 @@ class HomeController < ApplicationController
     @locais = @locais.eventos_by_esporte(params[:esporte]) if params[:esporte].present?
     
     @filter = params[:filter] || nil
-    @title = "Veja o que esta acontecendo e participe!"
+    @title = "Veja o que está acontecendo e participe!"
     
     respond_to do |format|
       format.html { @locais}
