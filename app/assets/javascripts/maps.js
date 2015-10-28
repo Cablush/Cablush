@@ -1,4 +1,4 @@
-// COMMON FUNCTIONS
+/* COMMON FUNCTIONS */
 var createImage = function(url) {
     var image = {
         url: url,
@@ -30,7 +30,7 @@ var createInfoWindow = function(title, text, logo) {
     return infowindow;
 };
 
-// PESQUISAS (LOJAS, PISTAS e EVENTOS)
+/* PESQUISAS (LOJAS, PISTAS e EVENTOS) */
 var map;
 var markers = [];
 var locations = [];
@@ -76,9 +76,10 @@ var initMap = function() {
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     setLocations();
     centerMap();
+    $('#map-canvas').css({'height': "400px" });
 };
 
-// CADASTROS (LOJAS, PISTAS e EVENTOS)
+/* CADASTROS (LOJAS, PISTAS e EVENTOS) */
 var marker;
 
 var setCoords = function(latitude, longitude) {
@@ -160,7 +161,7 @@ var initMapCad = function() {
     });
 };
 
-// INDEX
+/* INDEX */
 $(".home.index").ready(function () {
     
     var showStaticMap = function(location) {
@@ -173,7 +174,7 @@ $(".home.index").ready(function () {
                     + (document.URL.contains("localhost") 
                         ? "&markers=color:0xE15A1F%7C" + position
                         : "&markers=icon:http://www.cablush.com/assets/cablush_21_30.png%7C" + position)
-                    + "&key=AIzaSyDf2xE7rx47Ug-jAR2TgAycilb9Nmj6SyE";
+                    + "&key=" + window.api_key;
         document.getElementById("map-canvas").innerHTML = "<img src='"+img_url+"'>";
     };
     

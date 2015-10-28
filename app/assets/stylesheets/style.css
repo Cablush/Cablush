@@ -101,16 +101,13 @@ nav.vertical ul li {
 nav.horizontal ul li {
     display: inline-block;
 }
-img {
-    max-width:100%;
-}
 /*end reset*/
 body{
     font-family: 'Dosis', sans-serif;
     background:#F0EFEE;
 }
 .wrap{
-    width:80%;
+    width:90%;
     margin:0 auto;
     -moz-transition:all .2s linear;
     -webkit-transition:all .2s linear; 
@@ -2706,7 +2703,7 @@ select.timeselector {
     -o-text-shadow: 1px 1px 6px #aaa;
 }
 /*--responsive deisign--*/
-@media (max-width:1366px){
+@media (max-width:1366px) {
     .wrap{
         width:90%;
     }
@@ -2728,7 +2725,7 @@ select.timeselector {
     }
 }
 @media (max-width:1280px){
-    .wrap{
+    .wrap {
         width:90%;
     }
     .textbox {
@@ -2760,7 +2757,7 @@ select.timeselector {
     }
 }
 @media (max-width:1024px){
-    .wrap{
+    .wrap {
         width:90%;
     }
     .buttons {
@@ -2823,7 +2820,7 @@ select.timeselector {
     }
 }
 @media (max-width:800px){
-    .wrap{
+    .wrap {
         width:90%;
     }
     .textbox {
@@ -2909,7 +2906,7 @@ select.timeselector {
     }
 }
 @media (max-width:640px){
-    .wrap{
+    .wrap {
         width:90%;
     }
     .textbox {
@@ -3038,7 +3035,7 @@ select.timeselector {
     }
 }
 @media (max-width:480px){
-    .wrap{
+    .wrap {
         width:90%;
     }
     .textbox {
@@ -3190,7 +3187,7 @@ select.timeselector {
     }
 }
 @media (max-width:320px){
-    .wrap{
+    .wrap {
         width:90%;
     }
     .textbox {
@@ -3393,7 +3390,6 @@ html, body, map, #map-canvas, #map-canvas-cad {
     padding: 0px
 }
 #map-canvas {
-    height: 400px;
     width: 90%;
     margin: 0px auto;
 }

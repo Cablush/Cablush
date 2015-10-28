@@ -32,5 +32,5 @@
     <%= f.hidden_field :latitude, id: 'local_latitude' %>
     <%= f.hidden_field :longitude, id: 'local_longitude' %>
     <div id="map-canvas-cad"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyDf2xE7rx47Ug-jAR2TgAycilb9Nmj6SyE&callback=initMapCad" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=<%= Rails.application.secrets.js_api_key %>&callback=initMapCad" async defer></script>
 </div>
