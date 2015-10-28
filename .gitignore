@@ -14,6 +14,11 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/config/secrets.yml
-/nbproject/private/
 /public/system/cablush_dev/
+/public/assets
+
+# Ignore secrets
+/config/secrets.yml
+
+# Ignore the IDE privates
+/nbproject/private/
