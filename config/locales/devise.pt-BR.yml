@@ -12,6 +12,7 @@ pt-BR:
       invalid: 'E-mail ou senha inválidos.'
       invalid_token: 'O token de autenticação não é válido.'
       locked: 'Sua conta está bloqueada.'
+      last_attempt: "Você tem mais uma chance antes de sua conta ser bloqueadad. Qualque problema entre em contato conosco"
       not_found_in_database: 'E-mail ou senha inválidos.'
       timeout: 'Sua sessão expirou, por favor, efetue login novamente para continuar.'
       unauthenticated: 'Para continuar, efetue login ou registre-se.'
@@ -58,3 +59,10 @@ pt-BR:
       not_saved:
         one: "Não foi possível salvar %{resource}: 1 erro"
         other: "Não foi possível salvar %{resource}: %{count} erros."
+   activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "Email em branco ou invalido!"      
