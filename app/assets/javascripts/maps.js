@@ -162,39 +162,40 @@ var initMapCad = function() {
 };
 
 /* INDEX */
-$(".home.index").ready(function () {
-    
-    var showStaticMap = function(location) {
-        var position = "Belo Horizonte, Minas Gerasil, Brazil";
-        if (location !== null) {
-            position = location.coords.latitude + "," + location.coords.longitude;
-        }
-        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + position
-                    + "&zoom=10&size=600x200&scale=2"
-                    + (document.URL.contains("localhost") 
-                        ? "&markers=color:0xE15A1F%7C" + position
-                        : "&markers=icon:http://www.cablush.com/assets/cablush_21_30.png%7C" + position)
-                    + "&key=" + window.api_key;
-        document.getElementById("map-canvas").innerHTML = "<img src='"+img_url+"'>";
-    };
-    
-    var geoError = function(error) {
-        console.log("Geolocation error:" + error.code);
-        showStaticMap();
-    };
-    
-    var geoOptions = {
-        maximumAge: 600000,
-        timeout: 10000
-    };
+$(function() {
+    if ($('body.home.index').length > 0) {
+        var showStaticMap = function(location) {
+            var position = "Belo Horizonte, Minas Gerasil, Brazil";
+            if (location !== null) {
+                position = location.coords.latitude + "," + location.coords.longitude;
+            }
+            var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + position
+                        + "&zoom=10&size=600x200&scale=2"
+                        + (document.URL.contains("localhost") 
+                            ? "&markers=color:0xE15A1F%7C" + position
+                            : "&markers=icon:http://www.cablush.com/assets/cablush_21_30.png%7C" + position)
+                        + "&key=" + window.api_key;
+            document.getElementById("map-canvas").innerHTML = "<img src='"+img_url+"'>";
+        };
 
-    var initStaticMap = function() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showStaticMap, geoError, geoOptions);
-        } else {
+        var geoError = function(error) {
+            console.log("Geolocation error:" + error.code);
             showStaticMap();
-        }
-    };
-    
-    initStaticMap();
+        };
+
+        var geoOptions = {
+            maximumAge: 600000,
+            timeout: 10000
+        };
+
+        var initStaticMap = function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showStaticMap, geoError, geoOptions);
+            } else {
+                showStaticMap();
+            }
+        };
+
+        initStaticMap();
+    }
 });

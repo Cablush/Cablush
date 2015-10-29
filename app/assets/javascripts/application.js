@@ -20,8 +20,5 @@
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-pt-BR
 //= require jquery.infinitescroll
-//= require jquery.turbolinks
 //= require autocomplete-rails
-//= require turbolinks
-//= require jquery-readyselector
 //= require_tree .

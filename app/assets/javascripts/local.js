@@ -1,4 +1,4 @@
-function search(url, estado, esporte) {
+var search = function (url, estado, esporte) {
     $.ajax({
         url: url,
         dataType: "script",
@@ -8,9 +8,9 @@ function search(url, estado, esporte) {
             filter: true
         }
     });
-}
+};
 
-$(document).ready(function () {
+$(function () {
     
     // LOJAS $('home lojas')
     $("#_home_lojas_estado, #_home_lojas_esporte").on('change', function () {

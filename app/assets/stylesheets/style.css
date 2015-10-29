@@ -3518,3 +3518,8 @@ body.loading .modal {
     background-color: #ffecec;
     background-image: url('error.png');
 }
+
+html.turbolinks-progress-bar::before {
+  background-color: #e15a1f !important;
+  height: 5px !important;
+}
