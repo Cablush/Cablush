@@ -2,7 +2,9 @@
     <%= local.localizavel.nome %>
     <div>
       <% if local.localizavel.foto.exists? %>
-        <%= image_tag local.localizavel.foto.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %> 
+        <%= link_to local.localizavel.foto.url(:original),:rel => "lightbox" do %>
+          <%= image_tag local.localizavel.foto.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %>
+        <% end %>
       <% end %>
     </div>
 </div>  

@@ -2,7 +2,9 @@
     <%= local.localizavel.nome %>
     <div>
       <% if local.localizavel.flyer.exists? %>
-        <%= image_tag local.localizavel.flyer.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %>
+        <%= link_to local.localizavel.flyer.url(:original),:rel => "lightbox" do %>
+          <%= image_tag local.localizavel.flyer.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %>
+        <% end %>
       <% end %>
     </div>
 </div>  
