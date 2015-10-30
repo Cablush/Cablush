@@ -19,15 +19,20 @@ var createCustomMarker = function(map, title, position) {
     return marker;
 };
 
-var createInfoWindow = function(title, text, logo) {
+var createInfoContent = function(title, text, logo) {
     var content = '<div class="infoContent"><h1 class="infoHeading">' + title + '</h1>'
                 //+ (logo !== null ? '<div clas="infoLogo">' + logo + '</div>' : '')
                 + '<div class="infoBody">' + text + '</div>'
                 + '</div>';
-    var infowindow = new google.maps.InfoWindow({
-        content: content
+    return content;
+};
+
+var bindInfoWindow = function(marker, map, infoWindow, content) {
+    google.maps.event.addListener(marker, 'click', function() {
+        infoWindow.close();
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
     });
-    return infowindow;
 };
 
 /* PESQUISAS (LOJAS, PISTAS e EVENTOS) */
@@ -44,16 +49,15 @@ var clearMarkers = function() {
 
 var setLocations = function() {
     clearMarkers();
+    var infoWindow = new google.maps.InfoWindow();
     for (var i = 0; i < locations.length; i++) {
         var local = locations[i];
         if (local.latitude !== '0.0' && local.longitude !== '0.0') {
             var position = new google.maps.LatLng(local.latitude, local.longitude);
             var marker = createCustomMarker(map, local.localizavel.nome, position);
+            var infoContent = createInfoContent(local.localizavel.nome, local.localizavel.descricao, local.localizavel.logo);
+            bindInfoWindow(marker, map, infoWindow, infoContent);
             markers.push(marker);
-            var info = createInfoWindow(local.localizavel.nome, local.localizavel.descricao, local.localizavel.logo);
-            marker.addListener('click', function() {
-                info.open(map, marker);
-            });            
         }
     }
 };

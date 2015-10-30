@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     @locais = @locais.lojas_by_esporte(params[:esporte]) if params[:esporte].present?
     
     @filter = params[:filter] || nil
-    @title = "Encontre a loja mais proxima de você!"
+    @title = "Encontre a loja mais próxima de você!"
     
     respond_to do |format|
       format.html {@locais}
