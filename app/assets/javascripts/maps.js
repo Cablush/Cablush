@@ -51,7 +51,7 @@ var setLocations = function() {
             var marker = createCustomMarker(map, local.localizavel.nome, position);
             markers.push(marker);
             var info = createInfoWindow(local.localizavel.nome, local.localizavel.descricao, local.localizavel.logo);
-            google.maps.event.addListener(marker, 'click', function() {
+            marker.addListener('click', function() {
                 info.open(map, marker);
             });            
         }
