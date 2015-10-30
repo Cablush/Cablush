@@ -14,7 +14,7 @@ var createCustomMarker = function(map, title, position) {
         position: position,
         map: map,
         title: title,
-        icon: createImage("/assets/cablush_21_30.png")
+        icon: createImage(window.maps_mark)
     });
     return marker;
 };
@@ -69,6 +69,7 @@ var centerMap = function() {
 };
 
 var initMap = function() {
+    $('#map-canvas').css({'height': "400px" });
     var mapOptions = {
         center: new google.maps.LatLng(-19.9025412, -44.0340903),
         zoom: 10
@@ -76,21 +77,27 @@ var initMap = function() {
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     setLocations();
     centerMap();
-    $('#map-canvas').css({'height': "400px" });
 };
 
 /* CADASTROS (LOJAS, PISTAS e EVENTOS) */
 var marker;
 
-var setCoords = function(latitude, longitude) {
-    $('#local_latitude').val(latitude);
-    $('#local_longitude').val(longitude);
-};
-
 var setMarker = function(map, position) {
     marker = createCustomMarker(map, "", position);
     map.setCenter(marker.getPosition());
     map.setZoom(15);
+};
+
+var removeMarker = function() {
+    if (marker) {
+        marker.setMap(null);
+        marker = null;
+    }
+};
+
+var setCoords = function(latitude, longitude) {
+    $('#local_latitude').val(latitude);
+    $('#local_longitude').val(longitude);
 };
 
 var getAddress = function() {
@@ -153,11 +160,13 @@ var initMapCad = function() {
         setMarker(map, position);
     }
     $('.geotrigger').on('change paste', function() {
-        if (marker) {
-            marker.setMap(null);
-            marker = null;
-        }
+        removeMarker();
         geocodeAddress(geocoder, map);
+    });
+    map.addListener('click', function(e) {
+        removeMarker();
+        setMarker(map, e.latLng);
+        setCoords(e.latLng.lat(), e.latLng.lng());
     });
 };
 
@@ -166,14 +175,13 @@ $(function() {
     if ($('body.home.index').length > 0) {
         var showStaticMap = function(location) {
             var position = "Belo Horizonte, Minas Gerasil, Brazil";
-            if (location !== null) {
+            if (location != null) {
                 position = location.coords.latitude + "," + location.coords.longitude;
             }
+            $('#map-canvas').css({'height': "400px" });
             var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + position
                         + "&zoom=10&size=600x200&scale=2"
-                        + (document.URL.contains("localhost") 
-                            ? "&markers=color:0xE15A1F%7C" + position
-                            : "&markers=icon:http://www.cablush.com/assets/cablush_21_30.png%7C" + position)
+                        + "&markers=icon:http://www.cablush.com" + window.maps_mark + "%7C" + position
                         + "&key=" + window.api_key;
             document.getElementById("map-canvas").innerHTML = "<img src='"+img_url+"'>";
         };
