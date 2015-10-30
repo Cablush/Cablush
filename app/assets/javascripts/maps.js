@@ -178,7 +178,6 @@ $(function() {
             if (location != null) {
                 position = location.coords.latitude + "," + location.coords.longitude;
             }
-            $('#map-canvas').css({'height': "400px" });
             var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + position
                         + "&zoom=10&size=600x200&scale=2"
                         + "&markers=icon:http://www.cablush.com" + window.maps_mark + "%7C" + position
