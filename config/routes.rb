@@ -1,6 +1,12 @@
 Cablush::Application.routes.draw do
   
   require 'sidekiq/web'
+  namespace :api do
+    namespace :v1 do
+      resources :lojas
+      resources :pistas
+    end
+  end
   
   mount Sidekiq::Web, at: "/sidekiq"
   
