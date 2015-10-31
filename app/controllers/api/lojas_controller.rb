@@ -1,11 +1,23 @@
 class Api::LojasController < ApplicationController
-	def index
-		nome 	= params[:nome]
-		estado  = params[:estado]
-		esporte = params[:esporte]
-        @lojas = Loja.all
-        respond_to do |format|
-  			format.json { render json: @lojas }
+	
+  # GET /lojas
+  def index
+    @lojas = Loja.find_like_name(loja_params['nome'])
+    @lojas = @lojas.find_by_estado(loja_params['estado'])
+    @lojas = @lojas.find_by_esporte_id(loja_params['esporte'])
+    
+    respond_to do |format|
+      format.json { render json: @lojas, 
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :include => { :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id]}}
+      }
 		end
-  	end
+  end
+  
+  private
+  
+  def loja_params
+    params.permit(:nome, :estado, :esporte)
+  end
+  
 end
