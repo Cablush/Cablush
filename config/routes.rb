@@ -2,10 +2,9 @@ Cablush::Application.routes.draw do
   
   require 'sidekiq/web'
   namespace :api do
-    namespace :v1 do
-      resources :lojas
-      resources :pistas
-    end
+      resources :lojas, :defaults => { :format => 'json' }
+      resources :pistas, :defaults => { :format => 'json' }
+      resources :eventos, :defaults => { :format => 'json' }
   end
   
   mount Sidekiq::Web, at: "/sidekiq"
