@@ -36,7 +36,7 @@ class HomeController < ApplicationController
     @locais = @locais.pistas_by_esporte(params[:esporte]) if params[:esporte].present?
     
     @filter = params[:filter] || nil
-    @title = "Onde praticar"
+    @title = "Onde praticar."
    
     respond_to do |format|
       format.html { @locais}
@@ -49,7 +49,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @title = "Esportes, lugares e eventos"
+    @title = "Esportes, lugares e eventos."
   end
   
   def cadastros
