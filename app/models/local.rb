@@ -11,29 +11,29 @@ class Local < ActiveRecord::Base
   scope :pistas, -> { joins(:pista) }
   scope :eventos, -> { joins(:evento) }
   
-  def self.lojas_by_estado(estado)
-    joins(:loja).where(estado: estado)
-  end
+  scope :lojas_by_estado, ->(estado) {
+    lojas.where(estado: estado)
+  }
   
-  def self.lojas_by_esporte(esporte_id)
+  scope :lojas_by_esporte, ->(esporte_id) {
     joins(loja: :esportes).where(esportes: {id: esporte_id})
-  end
+  }
   
-  def self.pistas_by_estado(estado)
-    joins(:pista).where(estado: estado)
-  end
+  scope :pistas_by_estado, ->(estado) {
+    pistas.where(estado: estado)
+  }
   
-  def self.pistas_by_esporte(esporte_id)
+  scope :pistas_by_esporte, ->(esporte_id) {
     joins(pista: :esportes).where(esportes: {id: esporte_id})
-  end
+  }
   
-  def self.eventos_by_estado(estado)
-    joins(:evento).where(estado: estado)
-  end
+  scope :eventos_by_estado, ->(estado) {
+    eventos.where(estado: estado)
+  }
   
-  def self.eventos_by_esporte(esporte_id)
+  scope :eventos_by_esporte, ->(esporte_id) {
     joins(evento: :esportes).where(esportes: {id: esporte_id})
-  end
+  }
   
   def endereco
     ender = ''
