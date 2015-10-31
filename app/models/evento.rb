@@ -21,6 +21,18 @@ class Evento < ActiveRecord::Base
                       :original => "800x600>"
                     }
 
+  scope :find_like_name, ->(nome) {
+    where('eventos.nome LIKE ?', "%#{nome}%") if nome.present?
+  }
+  
+  scope :find_by_estado, ->(estado) {
+    joins(:locais).where(locais: {estado: estado}) if estado.present?
+  }
+  
+  scope :find_by_esporte_id, ->(esporte_id) {
+    joins(:esportes).where(esportes: {id: esporte_id}) if esporte_id.present?
+  }
+
   validates_attachment :flyer, 
     :size => { :in => 0..5.megabytes },
     :content_type => { :content_type => /^image\/(jpeg|png)$/ }
