@@ -1,17 +1,23 @@
 class Api::PistasController < ApplicationController
-	def index
-		puts params[:nome]
-      nome 	= params[:nome] || ""
-	  estado  = params[:estado] || ""
-	  esporte = params[:esporte] || ""
-	  unless nome.nil? || nome.empty?
-      	@pistas = Pista.all
-      else
-      	@pistas = Pista.find_by_nome(nome) || []
-      end
-      respond_to do |format|
-  			format.json { render json: @pistas }
-	  end
-  	end
+  
+  # GET /pistas
+  def index
+    @pistas = Pista.find_like_name(evento_params['nome'])
+    @pistas = @pistas.find_by_estado(evento_params['estado'])
+    @pistas = @pistas.find_by_esporte_id(evento_params['esporte'])
+    
+    respond_to do |format|
+      format.json { render json: @pistas, 
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :include => { :local => {:except => [:id, :created_at, :updated_at, :localizavel_id]}}
+      }
+    end
+  end
+  
+  private
+  
+  def evento_params
+    params.permit(:nome, :estado, :esporte)
+  end
 end
 
