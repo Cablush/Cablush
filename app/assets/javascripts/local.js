@@ -10,7 +10,29 @@ var search = function (url, estado, esporte) {
     });
 };
 
+var setAddress = function(data) {
+    $('#local_estado').val(data.estado);
+    $('#local_cidade').val(data.cidade);
+    $('#local_bairro').val(data.bairro);
+    $('#local_logradouro').val(data.logradouro);
+    $('#local_logradouro').trigger('change');
+};
+
 $(function () {
+    
+    // CADASTRO Pesquisa endereço por CEP
+    $('#local_cep').on('change', function () {
+        $.getJSON("http://api.postmon.com.br/v1/cep/" + $(this).val(), function(data) {
+            setAddress(data);
+        });
+    });
+    
+    // CADASTRO Autocomplete Cidade
+    $('#local_cidade').bind('railsAutocomplete.select', function(event, data) {
+        if (data.item.estado !== $('#local_estado').val()) {
+            $('#local_estado').val(data.item.estado);
+        }
+    });
     
     // LOJAS $('home lojas')
     $("#_home_lojas_estado, #_home_lojas_esporte").on('change', function () {

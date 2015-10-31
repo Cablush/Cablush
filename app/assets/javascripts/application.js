@@ -19,6 +19,7 @@
 //= require jquery-ui/position
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-pt-BR
+//= require jquery-ui/autocomplete
 //= require jquery.infinitescroll
 //= require autocomplete-rails
 //= require lightbox

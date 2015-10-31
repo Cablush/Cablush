@@ -105,27 +105,14 @@ var setCoords = function(latitude, longitude) {
 };
 
 var getAddress = function() {
-    var addressArray = new Array(5);
-    $('.geocode').each(function() {
-        var id = $(this).attr('id').split("_").pop();
-        switch (id) {
-            case 'logradouro':
-                addressArray[0] = $(this).val();
-            break;
-            case 'numero':
-                addressArray[1] = $(this).val();
-            break;
-            case 'bairro':
-                addressArray[2] = $(this).val();
-            break;
-            case 'cidade':
-                addressArray[3] = $(this).find('option:selected').text();
-            break;
-            case 'estado':
-                addressArray[4] = $(this).find('option:selected').text();
-            break;
-        }
-    });
+    var addressArray = new Array();
+    
+    addressArray.push($('#local_logradouro').val());
+    addressArray.push($('#local_numero').val());
+    addressArray.push($('#local_bairro').val());
+    addressArray.push($('#local_cidade').val());
+    addressArray.push($('#local_estado').find('option:selected').text());
+    
     return addressArray.filter(function(val) { 
         return val !== null && 0 !== val.length; 
     }).join(", ");

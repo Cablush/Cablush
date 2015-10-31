@@ -1,30 +1,30 @@
 <div class="field">
   <%= f.label 'CEP' %><br>
-  <%= f.text_field :cep, class: 'inputbox' %>
+  <%= f.text_field :cep, id: 'local_cep', class: 'inputbox' %>
 </div>
 <div class="field">
   <%= f.label 'Estado' %><br>
-  <%= f.collection_select(:estado, Estado.all, :rg, :nome, {:prompt => 'Selecione o Estado'}, {:class=>'selectbox geocode'}) %>
+  <%= f.collection_select(:estado, Estado.all, :rg, :nome, {:prompt => 'Selecione o Estado'}, {:id => 'local_estado', :class => 'selectbox'}) %>
 </div>
 <div class="field">
   <%= f.label 'Cidade' %><br>
-  <%= f.collection_select(:cidade, Cidade.all, :nome, :nome, {:prompt => 'Selecione a Cidade'}, {:class=>'selectbox geocode'}) %>
+  <%= f.autocomplete_field :cidade, autocomplete_cidade_nome_lojas_path, :fields => {:estado => '#local_estado'}, id: 'local_cidade', class: 'inputbox' %>
 </div>
   <div class="field">
   <%= f.label 'Bairro' %><br>
-  <%= f.text_field :bairro, class: 'inputbox geocode' %>
+  <%= f.text_field :bairro, id: 'local_bairro', class: 'inputbox' %>
 </div>
 <div class="field">
   <%= f.label 'Logradouro' %><br>
-  <%= f.text_field :logradouro, class: 'inputbox geocode geotrigger' %>
+  <%= f.text_field :logradouro, id: 'local_logradouro', class: 'inputbox geotrigger' %>
 </div>
 <div class="field">
   <%= f.label 'Número' %><br>
-  <%= f.text_field :numero, class: 'inputbox geocode geotrigger' %>
+  <%= f.text_field :numero, id: 'local_numero', class: 'inputbox geotrigger' %>
 </div>
 <div class="field">
   <%= f.label 'Complemento' %><br>
-  <%= f.text_field :complemento, class: 'inputbox' %>
+  <%= f.text_field :complemento, id: 'local_complemento', class: 'inputbox' %>
 </div>
 
 <div class="field">

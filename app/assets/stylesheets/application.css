@@ -13,6 +13,7 @@
  *= require jquery-ui/core
  *= require jquery-ui/theme
  *= require jquery-ui/datepicker
+ *= require jquery-ui/autocomplete
  *= require lightbox
  *= require_tree .
  */

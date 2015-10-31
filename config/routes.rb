@@ -11,13 +11,17 @@ Cablush::Application.routes.draw do
   
   devise_for :usuarios, :controllers => { registrations: 'registrations' }
   
-  resources :lojas
-  resources :eventos
-  resources :pistas
+  resources :lojas do 
+    get :autocomplete_cidade_nome, :on => :collection
+  end
+  resources :eventos do 
+    get :autocomplete_cidade_nome, :on => :collection
+  end
+  resources :pistas do 
+    get :autocomplete_cidade_nome, :on => :collection
+  end
   
-  #get :autocomplete_local_nome, :on => :collection
-  
-  resources :contacts
+  resources :contacts, only: [:index, :new, :create]
   
   match "home/lojas", via: [:get, :post]
   match "home/eventos", via: [:get, :post]

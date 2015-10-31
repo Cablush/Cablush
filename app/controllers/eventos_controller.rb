@@ -1,5 +1,7 @@
 class EventosController < ApplicationController
   
+  include LocalAutocompletes
+  
   before_action :authenticate_usuario!
   #before_action :lojista_at_least, :except => :show
   
