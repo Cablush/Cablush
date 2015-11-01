@@ -54,5 +54,6 @@ Esporte.create(nome: "Longboard", categoria: "skate")
 Esporte.create(nome: "Street", categoria: "patins")
 Esporte.create(nome: "BMX", categoria: "bike")
 Esporte.create(nome: "Drift Trike", categoria: "bike")
+Esporte.create(nome: "MTB", categoria: "bike")
 # Esportes - end
 

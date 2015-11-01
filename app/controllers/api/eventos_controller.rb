@@ -2,7 +2,7 @@ class Api::EventosController < ApplicationController
 	
   # GET /eventos
   def index
-    @eventos = Evento.find_like_name(evento_params['nome'])
+    @eventos = Evento.visible.find_like_name(evento_params['nome'])
     @eventos = @eventos.find_by_estado(evento_params['estado'])
     @eventos = @eventos.find_by_esporte_id(evento_params['esporte'])
     

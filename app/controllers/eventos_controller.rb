@@ -81,7 +81,7 @@ class EventosController < ApplicationController
   
   def evento_params
     params.require(:evento)
-          .permit(:nome, :descricao, :data, :hora, :website, :facebook, :flyer, 
+          .permit(:nome, :descricao, :data, :hora, :data_fim, :website, :facebook, :flyer, 
               esporte_ids: [],
               local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]
           )

@@ -9,7 +9,7 @@ class Local < ActiveRecord::Base
   
   scope :lojas, -> { joins(:loja) }
   scope :pistas, -> { joins(:pista) }
-  scope :eventos, -> { joins(:evento) }
+  scope :eventos, -> { joins(:evento).where('eventos.data_fim >= ?', Date.today) }
   
   scope :lojas_by_estado, ->(estado) {
     lojas.where(estado: estado)
