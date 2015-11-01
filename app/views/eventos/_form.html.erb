@@ -10,7 +10,7 @@
   </div>
   <div class="field">
     <%= f.label 'Data' %><br>
-    <%= f.text_field :data, id: 'evento_data', class: 'inputbox' %>
+    <%= f.text_field :data, id: 'evento_data', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
         $("#evento_data").datepicker({
@@ -27,7 +27,7 @@
   </div>
   <div class="field">
     <%= f.label 'Data Fim' %><br>
-    <%= f.text_field :data_fim, id: 'evento_data_fim', class: 'inputbox' %>
+    <%= f.text_field :data_fim, id: 'evento_data_fim', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
         $("#evento_data_fim").datepicker({

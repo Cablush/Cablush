@@ -21,6 +21,7 @@
 //= require jquery-ui/datepicker-pt-BR
 //= require jquery-ui/autocomplete
 //= require jquery.infinitescroll
+//= require jquery.mask
 //= require autocomplete-rails
 //= require lightbox
 //= require_tree .
