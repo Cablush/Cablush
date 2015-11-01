@@ -1,5 +1,7 @@
 class Local < ActiveRecord::Base
 
+  after_save :save_cidade
+  
   belongs_to :localizavel, polymorphic: true
   
   # Permite fazer join com os modelos localizaveis
@@ -58,6 +60,14 @@ class Local < ActiveRecord::Base
   
   def evento?
     localizavel_type == 'Evento'
+  end
+  
+  private
+  
+  def save_cidade
+    if cep.present? && cidade.present? && estado.present?
+      Cidade.save?(cidade, estado)
+    end
   end
   
 end
