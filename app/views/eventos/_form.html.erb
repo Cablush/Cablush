@@ -1,12 +1,14 @@
 <%= form_for @evento, html: { multipart: true } do |f| %>
   
+  <%= render "layouts/error_messages", :target => @evento %>
+
   <div class="field">
     <%= f.label 'Nome' %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
   </div>
   <div class="field">
     <%= f.label 'Descrição' %><br>
-    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 250, :cols => 5, :rows => 10 %>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
   </div>
   <div class="field">
     <%= f.label 'Data' %><br>

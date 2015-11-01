@@ -15,6 +15,16 @@ class Evento < ActiveRecord::Base
     uuid
   end
   
+  validates :nome, presence: true, length: { maximum: 50 }
+  validates :descricao, length: { maximum: 500 }
+  validates :data, presence: true
+  validates :hora, presence: true
+  validates :website, length: { maximum: 50 }
+  validates :facebook, length: { maximum: 50 }
+  validates :data_fim, presence: true
+  validates_associated :local
+  validates :esportes, presence: true
+  
   has_attached_file :flyer, 
                     :styles => { 
                       :small => "340x200>",

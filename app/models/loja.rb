@@ -21,6 +21,16 @@ class Loja < ActiveRecord::Base
     uuid
   end
   
+  validates :nome, presence: true, length: { maximum: 50 }
+  validates :descricao, presence: true, length: { maximum: 500 }
+  validates :telefone, length: { maximum: 20 }
+  validates :email, length: { maximum: 50 }, 
+                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :website, length: { maximum: 50 }
+  validates :facebook, length: { maximum: 50 }
+  validates_associated :locais
+  validates :esportes, presence: true
+  
   has_attached_file :logo, 
                     :styles => { 
                       :small => "340x200>",

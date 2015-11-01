@@ -1,3 +1,9 @@
+// Default to JSON responses for remote calls
+$.ajaxSetup({
+    dataType: 'json'
+});
+
+// Loading...
 $body = $("body");
 
 $(document).on({
@@ -10,12 +16,12 @@ $(document).on({
 });
 
 $(function() {
+    
     // Collapsible Fieldset
     $('fieldset.collapsible .content').hide();
     $('fieldset.collapsible legend').click(function(){
         $(this).parent().find('.content').slideToggle("slow");
     });
-    
     
     // Field Masks
     var brTelMaskBehavior = function (val) {
@@ -29,4 +35,5 @@ $(function() {
     $('.maskTel').mask(brTelMaskBehavior, brOptions);
     $(".maskCep").mask('00000-000');
     $(".maskData").mask('00/00/0000');
+    
 });

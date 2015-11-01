@@ -1,5 +1,16 @@
 class Local < ActiveRecord::Base
-
+  
+  validates :latitude, presence: true
+  validates :longitude, presence: true
+  validates :logradouro, presence: true, length: { maximum: 50 }
+  validates :numero, length: { maximum: 10 }
+  validates :complemento, length: { maximum: 20 }
+  validates :bairro, length: { maximum: 50 }
+  validates :cidade, presence: true, length: { maximum: 50 }
+  validates :estado, presence: true, length: { maximum: 2 }
+  validates :cep, length: { maximum: 10 }
+  validates :pais, length: { maximum: 2 }
+  
   after_save :save_cidade
   
   belongs_to :localizavel, polymorphic: true

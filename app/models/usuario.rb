@@ -26,6 +26,10 @@ class Usuario < ActiveRecord::Base
     uuid
   end
   
+  validates :nome, presence: true, length: { maximum: 50 }
+  validates :email, presence: true, uniqueness: true, length: { maximum: 50 },
+                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  
   # send the message now
   def send_devise_notification(notification, *args)
     devise_mailer.send(notification, self, *args).deliver_now

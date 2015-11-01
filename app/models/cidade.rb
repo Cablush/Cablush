@@ -1,4 +1,5 @@
 class Cidade < ActiveRecord::Base
+
   belongs_to :estado
   
   scope :find_like_nome, ->(nome) {

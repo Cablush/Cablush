@@ -3436,6 +3436,12 @@ html, body, map, #map-canvas, #map-canvas-cad {
 .field {
     padding-bottom: 10px;
 }
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+    width: 100%;
+}
 .subfields {
     border-top: 1px solid #DFDFDF;
     padding-bottom: 10px;
@@ -3497,6 +3503,10 @@ body.loading .modal {
     padding:15px 0px 10px 36px;
     background-repeat: no-repeat;
     background-position: 10px center;
+}
+.alert h2 {
+    font-weight: bold;
+    padding-bottom: 5px;
 }
 .alert-notice {
     color: #00529B;

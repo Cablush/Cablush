@@ -6,7 +6,7 @@ class Pista < ActiveRecord::Base
   accepts_nested_attributes_for :local, 
                                 reject_if: proc { |attributes| attributes['logradouro'].blank? },
                                 allow_destroy: true
-  
+    
   has_many :horarios, as: :funcionamento, dependent: :destroy
   accepts_nested_attributes_for :horarios, 
                                 reject_if: proc { |attributes| attributes['dias'].blank? },
@@ -19,6 +19,13 @@ class Pista < ActiveRecord::Base
   def to_param
     uuid
   end
+  
+  validates :nome, presence: true, length: { maximum: 50 }
+  validates :descricao, length: { maximum: 500 }
+  validates :website, length: { maximum: 50 }
+  validates :facebook, length: { maximum: 50 }
+  validates_associated :local
+  validates :esportes, presence: true
   
   has_attached_file :foto, 
                     :styles => { 
