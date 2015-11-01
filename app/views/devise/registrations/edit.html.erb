@@ -10,7 +10,7 @@
 <div class="main">
     <div class="wrap">
         <div class="wrap-content"> 
-          <%= simple_form_for :usuario, :url => registration_path(:usuario), html: { method: :put }  do |f| %>
+          <%= simple_form_for :usuario, :url => registration_path(:usuario), html: { method: :put, autocomplete: 'off' }  do |f| %>
             <%= devise_error_messages! %>
             
             <%= f.input :nome, label: 'Nome' %>
@@ -33,7 +33,7 @@
             <fieldset class="subfields collapsible">
                 <legend>Alterar senha <span class="tip">(Clique aqui para alterar sua senha atual)</span></legend>
                 <div class="content">
-                  <%= f.input :password, label: 'Nova Senha', autocomplete: "off" %>
+                  <%= f.input :password, label: 'Nova Senha', autocomplete: "off", readonly: true, input_html: {onFocus: "this.removeAttribute('readonly');"} %>
                   <%= f.input :password_confirmation, label: 'Confirmar Senha', autocomplete: "off" %>
                 </div>
             </fieldset>

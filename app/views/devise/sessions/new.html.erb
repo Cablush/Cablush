@@ -11,7 +11,7 @@
     <div class="wrap">
         <div class="wrap-content"> 
           <% unless usuario_signed_in? %>
-            <%= simple_form_for :usuario, :url => session_path(:usuario)  do |f| %>
+            <%= simple_form_for :usuario, :url => session_path(:usuario) do |f| %>
               <%= f.input :email, label: 'Email' %>
               <%= f.input :password, label: 'Senha' %>
               <%= f.input :remember_me, :as => :boolean, class:'checkbox' %>

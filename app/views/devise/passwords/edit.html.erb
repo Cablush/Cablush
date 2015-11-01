@@ -12,12 +12,12 @@
         <div class="wrap-content"> 
             <h3>Alterar senha</h3>
             <p>Entre com uma nova senha.</p><br/>
-            <%= simple_form_for :usuario, :url => password_path(:usuario)  do |f| %>
+            <%= simple_form_for :usuario, :url => password_path(:usuario), html: { method: :put, autocomplete: 'off' }  do |f| %>
               <%= devise_error_messages! %>
             
               <%= f.input :reset_password_token, :as => :hidden %>
-              <%= f.input :password, label: 'Nova Senha' %>
-              <%= f.input :password_confirmation, label: 'Confirmar Senha' %>
+              <%= f.input :password, label: 'Nova Senha', autocomplete: "off", readonly: true, input_html: {onFocus: "this.removeAttribute('readonly');"} %>
+              <%= f.input :password_confirmation, label: 'Confirmar Senha', autocomplete: "off" %>
             
               <%= f.button :submit, value: 'Alterar senha', label: 'Alterar senha', class: 'btn1 btn-primary btn-normal btn-inline' %>
             <% end %>
