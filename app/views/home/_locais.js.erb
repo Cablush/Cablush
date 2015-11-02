@@ -3,6 +3,7 @@
 <% end %>
 
 $("#paginate_itens").append(" <%= j render "locais.html", locais: @locais %> ");
+loadLocations();
 
 <% if @locais.next_page %>
   $('.pagination').replaceWith('<%= j will_paginate @locais, :remote => true %>');

@@ -48,7 +48,6 @@ var clearMarkers = function() {
 };
 
 var setLocations = function() {
-    clearMarkers();
     var infoWindow = new google.maps.InfoWindow();
     for (var i = 0; i < locations.length; i++) {
         var local = locations[i];
@@ -72,6 +71,12 @@ var centerMap = function() {
     }
 };
 
+var loadLocations = function() {
+    clearMarkers();
+    setLocations();
+    centerMap();
+};
+
 var initMap = function() {
     $('#map-canvas').css({'height': "400px" });
     var mapOptions = {
@@ -79,8 +84,7 @@ var initMap = function() {
         zoom: 10
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    setLocations();
-    centerMap();
+    loadLocations();
 };
 
 /* CADASTROS (LOJAS, PISTAS e EVENTOS) */
