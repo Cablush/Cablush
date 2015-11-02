@@ -3,14 +3,10 @@ class Pista < ActiveRecord::Base
   belongs_to :responsavel, class_name: "Usuario"
   
   has_one :local, as: :localizavel, dependent: :destroy
-  accepts_nested_attributes_for :local, 
-                                reject_if: proc { |attributes| attributes['logradouro'].blank? },
-                                allow_destroy: true
+  accepts_nested_attributes_for :local, allow_destroy: true
     
   has_many :horarios, as: :funcionamento, dependent: :destroy
-  accepts_nested_attributes_for :horarios, 
-                                reject_if: proc { |attributes| attributes['dias'].blank? },
-                                allow_destroy: true
+  accepts_nested_attributes_for :horarios, allow_destroy: true
   
   has_and_belongs_to_many :esportes
   
@@ -24,6 +20,7 @@ class Pista < ActiveRecord::Base
   validates :descricao, length: { maximum: 500 }
   validates :website, length: { maximum: 50 }
   validates :facebook, length: { maximum: 50 }
+  validates :local, presence: true
   validates_associated :local
   validates :esportes, presence: true
   

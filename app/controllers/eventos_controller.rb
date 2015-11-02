@@ -47,6 +47,10 @@ class EventosController < ApplicationController
     else
       @evento = current_usuario.eventos.find_by_uuid!(params[:id])
     end
+    
+    if @evento.local.empty?
+      @evento.build_local
+    end
   end
 
   # PATCH/PUT /eventos/:id(.:format)
