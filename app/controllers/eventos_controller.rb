@@ -48,7 +48,7 @@ class EventosController < ApplicationController
       @evento = current_usuario.eventos.find_by_uuid!(params[:id])
     end
     
-    if @evento.local.empty?
+    if @evento.local.blank?
       @evento.build_local
     end
   end

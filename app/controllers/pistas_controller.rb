@@ -49,7 +49,7 @@ class PistasController < ApplicationController
       @pista = current_usuario.pistas.find_by_uuid!(params[:id])
     end
     
-    if @pista.local.empty?
+    if @pista.local.blank?
       @pista.build_local
     end
     
