@@ -1,6 +1,6 @@
 <div class="title">
     <%= local.localizavel.nome %>
-    <div>
+    <div class="foto">
       <% if local.localizavel.foto.exists? %>
         <%= link_to local.localizavel.foto.url(:original),:rel => "lightbox" do %>
           <%= image_tag local.localizavel.foto.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %>

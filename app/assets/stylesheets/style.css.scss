@@ -457,15 +457,20 @@ ul.events li {
     background:#fff;
 }
 .title {
-    padding: 5%;
     text-align: center;
+    padding: 5% 5% 0;
+    color: #E05A1F;
+    font-size: 1.1em;
+}
+.foto, .flyer {
+    padding-top: 5%;
 }
 .fundo {
     background: #000;
 }
 .desc{
     background:#fff;
-    padding: 5%;
+    padding: 0 5% 5%;
 }
 .span_1_of_3  h3{
     margin-bottom:10px;
@@ -638,8 +643,8 @@ span.m_3{
 }
 .social{
     position: absolute;
-    top: 30px;
-    right: 0px;
+    top: 5%;
+    right: -10px;
 }
 .social ul {
     display:table-row;
@@ -3413,6 +3418,7 @@ html, body, map, #map-canvas, #map-canvas-cad {
     padding-bottom: 5px;
     font-weight: bold;
     font-size: 1.1em;
+    color: #E05A1F;
 }
 .infoContent .infoLogo {
     

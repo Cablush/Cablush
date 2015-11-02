@@ -1,6 +1,6 @@
 <div class="title">
     <%= local.localizavel.nome %>
-    <div>
+    <div class="flyer">
       <% if local.localizavel.flyer.exists? %>
         <%= link_to local.localizavel.flyer.url(:original),:rel => "lightbox" do %>
           <%= image_tag local.localizavel.flyer.url(:small), :class => local.localizavel.fundo? ? "fundo" : nil %>
