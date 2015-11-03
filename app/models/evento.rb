@@ -17,8 +17,8 @@ class Evento < ActiveRecord::Base
   validates :descricao, length: { maximum: 500 }
   validates :data, presence: true
   validates :hora, presence: true
-  validates :website, length: { maximum: 50 }
-  validates :facebook, length: { maximum: 50 }
+  validates :website, length: { maximum: 150 }
+  validates :facebook, length: { maximum: 150 }
   validates :data_fim, presence: true
   validates :local, presence: true
   validates_associated :local

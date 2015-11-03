@@ -22,8 +22,8 @@ class Loja < ActiveRecord::Base
   validates :telefone, length: { maximum: 20 }
   validates :email, length: { maximum: 50 }, allow_blank: true,
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-  validates :website, length: { maximum: 50 }
-  validates :facebook, length: { maximum: 50 }
+  validates :website, length: { maximum: 150 }
+  validates :facebook, length: { maximum: 150 }
   validates :locais, presence: true
   validates_associated :locais
   validates :esportes, presence: true
