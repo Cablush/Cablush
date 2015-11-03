@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @locais = @locais.lojas_by_estado(params[:estado]) if params[:estado].present?
     @locais = @locais.lojas_by_esporte(params[:esporte]) if params[:esporte].present?
     
-    @filter = params[:filter] || nil
+    @clear = params[:filter] && params[:page].blank? || nil
     @title = "Encontre a loja mais próxima de você!"
     
     respond_to do |format|
@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     @locais = @locais.eventos_by_estado(params[:estado]) if params[:estado].present?
     @locais = @locais.eventos_by_esporte(params[:esporte]) if params[:esporte].present?
     
-    @filter = params[:filter] || nil
+    @clear = params[:filter] && params[:page].blank? || nil
     @title = "Veja o que está acontecendo e participe!"
     
     respond_to do |format|
@@ -35,7 +35,7 @@ class HomeController < ApplicationController
     @locais = @locais.pistas_by_estado(params[:estado]) if params[:estado].present?
     @locais = @locais.pistas_by_esporte(params[:esporte]) if params[:esporte].present?
     
-    @filter = params[:filter] || nil
+    @clear = params[:filter] && params[:page].blank? || nil
     @title = "Onde praticar."
    
     respond_to do |format|

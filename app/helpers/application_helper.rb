@@ -12,4 +12,12 @@ module ApplicationHelper
     /^http/i.match(url) ? url : "http://#{url}"
   end
   
+  def locais_to_json(locais)
+    raw locais.to_json(
+      :except => [:id, :created_at, :updated_at, :localizavel_id], 
+      :include => {:localizavel => { 
+        :except => [:id, :created_at, :updated_at, :responsavel_id], 
+      }})
+  end
+  
 end

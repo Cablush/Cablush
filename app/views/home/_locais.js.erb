@@ -1,13 +1,14 @@
-<% if @filter %>
+<% if @clear %>
   $("#paginate_itens").empty();
+  CablushShowMap.clearLocations();
 <% end %>
 
 $("#paginate_itens").append(" <%= j render "locais.html", locais: @locais %> ");
-loadLocations();
+CablushShowMap.loadLocations(<%= locais_to_json @locais %>);
 
 <% if @locais.next_page %>
-  $('.pagination').replaceWith('<%= j will_paginate @locais, :remote => true %>');
+  $('.wrap_paginate').html('<%= j will_paginate @locais, :remote => true %>');
 <% else %>
-  $(window).off('scroll');
-  $('.pagination').remove();
+  <%#*$(window).off('scroll');%>
+  $('.wrap_paginate').html('');
 <% end %>

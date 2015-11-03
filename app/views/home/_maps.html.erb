@@ -2,5 +2,9 @@
     <div id="map-canvas">
         <%= image_tag("map.jpg") %>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=<%= Rails.application.secrets.js_api_key %>&callback=initMap" async defer></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            CablushShowMap.init($('#map-canvas')[0], <%= locais_to_json locais %>);
+        });
+    </script>
 </div>

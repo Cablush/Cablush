@@ -22,6 +22,7 @@
 //= require jquery-ui/autocomplete
 //= require jquery.infinitescroll
 //= require jquery.mask
+//= require jquery.cookie
 //= require autocomplete-rails
 //= require lightbox
 //= require_tree .

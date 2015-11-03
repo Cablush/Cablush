@@ -1,4 +1,4 @@
-<%= render "maps.html" %>
+<%= render "maps.html", locais: @locais %>
 
 <div class="content-box">
     <div class="wrap">
@@ -22,4 +22,6 @@
     <div class="clear"></div>
 </div>
 
-<%= will_paginate @locais, :remote => true  %>
+<div class="wrap_paginate">
+  <%= will_paginate @locais, :remote => true  %>
+</div>

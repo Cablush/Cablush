@@ -32,5 +32,35 @@
     <%= f.hidden_field :latitude, id: 'local_latitude' %>
     <%= f.hidden_field :longitude, id: 'local_longitude' %>
     <div id="map-canvas-cad"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3&key=<%= Rails.application.secrets.js_api_key %>&callback=initMapCad" async defer></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            var getAddress = function() {
+                var addressArray = new Array();
+
+                addressArray.push($('#local_logradouro').val());
+                addressArray.push($('#local_numero').val());
+                addressArray.push($('#local_bairro').val());
+                addressArray.push($('#local_cidade').val());
+                addressArray.push($('#local_estado').find('option:selected').text());
+
+                return addressArray.filter(function(val) { 
+                    return val !== null && 0 !== val.length; 
+                }).join(", ");
+            };
+            
+            CablushSelectMap.setCoords = function(latitude, longitude){
+                $('#local_latitude').val(latitude);
+                $('#local_longitude').val(longitude);
+            };
+
+            $('.geotrigger').on('change paste', function() {
+                CablushSelectMap.setAddress(getAddress());
+            });
+            
+            CablushSelectMap.init($('#map-canvas-cad')[0], 
+                                  $('#local_latitude').val(), 
+                                  $('#local_longitude').val());
+        });
+    </script>
 </div>

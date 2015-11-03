@@ -9,12 +9,3 @@
       <% end %>
     </div>
 <% end %>
-
-<script type="text/javascript">
-    locations = <%= raw locais.to_json(
-                  :except => [:id, :created_at, :updated_at, :localizavel_id], 
-                  :include => {:localizavel => { 
-                      :except => [:id, :created_at, :updated_at, :responsavel_id], 
-                  }}
-                ) %>;
-</script>

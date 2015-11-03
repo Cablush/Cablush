@@ -2,6 +2,11 @@
     <div id="map-canvas">
       <%= image_tag("map.jpg") %>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            CablushStaticMap.show($("#map-canvas")[0]);
+        });
+    </script>
 </div>
 
 <div class="content-box">
@@ -28,7 +33,9 @@
         </div>
         <div class="timeline"> 
             <a class="twitter-timeline"  href="https://twitter.com/hashtag/cablush" data-widget-id="568492493831143424" data-chrome="nofooter transparent">cablush Tweets</a>
-            <script>!function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https'; if (!d.getElementById(id)){js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }}(document, "script", "twitter-wjs");</script>
+            <script type="text/javascript">
+              !function(d, s, id){var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https'; if (!d.getElementById(id)){js = d.createElement(s); js.id = id; js.src = p + "://platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs); }}(document, "script", "twitter-wjs");
+            </script>
         </div>
     </div>
     <div class="clear"></div>
