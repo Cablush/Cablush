@@ -57,6 +57,7 @@ var CablushSelectMap = (function(CablushMap, CablushLocation) {
         var geocoder = new google.maps.Geocoder();
         geocoder.geocode({'address': address}, function(results, status) {
             if (status === google.maps.GeocoderStatus.OK) {
+                _removeMarker();
                 _setMarker(results[0].geometry.location);
                 CablushSelectMap.setCoords(_marker.getPosition().lat(), _marker.getPosition().lng());
             } else {
