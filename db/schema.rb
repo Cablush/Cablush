@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101011252) do
+ActiveRecord::Schema.define(version: 20151106125616) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -81,12 +81,12 @@ ActiveRecord::Schema.define(version: 20151101011252) do
   end
 
   create_table "eventos", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "descricao"
+    t.string   "nome",               limit: 50
+    t.string   "descricao",          limit: 500
     t.date     "data"
     t.time     "hora"
-    t.string   "website"
-    t.string   "facebook"
+    t.string   "website",            limit: 150
+    t.string   "facebook",           limit: 150
     t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -94,8 +94,8 @@ ActiveRecord::Schema.define(version: 20151101011252) do
     t.string   "flyer_content_type"
     t.integer  "flyer_file_size"
     t.datetime "flyer_updated_at"
-    t.boolean  "fundo",              default: false
-    t.string   "uuid",                               null: false
+    t.boolean  "fundo",                          default: false
+    t.string   "uuid",                                           null: false
     t.date     "data_fim"
   end
 
@@ -143,16 +143,16 @@ ActiveRecord::Schema.define(version: 20151101011252) do
   add_index "horarios", ["funcionamento_type", "funcionamento_id"], name: "index_horarios_on_funcionamento_type_and_funcionamento_id"
 
   create_table "locais", force: :cascade do |t|
-    t.decimal  "latitude",         precision: 15, scale: 10, default: 0.0
-    t.decimal  "longitude",        precision: 15, scale: 10, default: 0.0
-    t.string   "logradouro"
-    t.string   "numero"
-    t.string   "complemento"
-    t.string   "bairro"
-    t.string   "cidade"
-    t.string   "estado"
-    t.string   "cep"
-    t.string   "pais"
+    t.decimal  "latitude",                     precision: 15, scale: 10, default: 0.0
+    t.decimal  "longitude",                    precision: 15, scale: 10, default: 0.0
+    t.string   "logradouro",       limit: 100
+    t.string   "numero",           limit: 10
+    t.string   "complemento",      limit: 25
+    t.string   "bairro",           limit: 100
+    t.string   "cidade",           limit: 100
+    t.string   "estado",           limit: 2
+    t.string   "cep",              limit: 10
+    t.string   "pais",             limit: 2
     t.integer  "localizavel_id"
     t.string   "localizavel_type"
     t.datetime "created_at"
@@ -162,12 +162,12 @@ ActiveRecord::Schema.define(version: 20151101011252) do
   add_index "locais", ["localizavel_type", "localizavel_id"], name: "index_locais_on_localizavel_type_and_localizavel_id"
 
   create_table "lojas", force: :cascade do |t|
-    t.string   "nome"
-    t.text     "descricao"
-    t.string   "telefone"
-    t.string   "email"
-    t.string   "website"
-    t.string   "facebook"
+    t.string   "nome",              limit: 50
+    t.string   "descricao",         limit: 500
+    t.string   "telefone",          limit: 20
+    t.string   "email",             limit: 50
+    t.string   "website",           limit: 150
+    t.string   "facebook",          limit: 150
     t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -175,18 +175,18 @@ ActiveRecord::Schema.define(version: 20151101011252) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
-    t.boolean  "fundo",             default: false
-    t.string   "uuid",                              null: false
+    t.boolean  "fundo",                         default: false
+    t.string   "uuid",                                          null: false
   end
 
   add_index "lojas", ["responsavel_id"], name: "index_lojas_on_responsavel_id"
   add_index "lojas", ["uuid"], name: "index_lojas_on_uuid", unique: true
 
   create_table "pistas", force: :cascade do |t|
-    t.string   "nome"
-    t.text     "descricao"
-    t.string   "website"
-    t.string   "facebook"
+    t.string   "nome",              limit: 50
+    t.string   "descricao",         limit: 500
+    t.string   "website",           limit: 150
+    t.string   "facebook",          limit: 150
     t.integer  "responsavel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -194,8 +194,8 @@ ActiveRecord::Schema.define(version: 20151101011252) do
     t.string   "foto_content_type"
     t.integer  "foto_file_size"
     t.datetime "foto_updated_at"
-    t.boolean  "fundo",             default: false
-    t.string   "uuid",                              null: false
+    t.boolean  "fundo",                         default: false
+    t.string   "uuid",                                          null: false
   end
 
   add_index "pistas", ["responsavel_id"], name: "index_pistas_on_responsavel_id"
