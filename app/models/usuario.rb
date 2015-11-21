@@ -1,4 +1,6 @@
 class Usuario < ActiveRecord::Base
+
+  include DeviseTokenAuth::Concerns::User
   
   enum role: [:admin, :lojista, :esportista]
   
@@ -13,7 +15,8 @@ class Usuario < ActiveRecord::Base
   # Include default devise modules. Others available are:
   #  :timeoutable and :omniauthable
   devise :registerable, :confirmable, :database_authenticatable,  
-    :recoverable, :rememberable, :lockable, :trackable, :validatable
+    :recoverable, :rememberable, :lockable, :trackable, :validatable, 
+    :omniauthable
  
   # lojista: utilizado no cadastro para identificar um lojista
   attr_accessor :lojista

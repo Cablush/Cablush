@@ -59,6 +59,13 @@ gem 'mail_form'
 gem 'simple_form'
 
 gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth'
+#gem 'omniauth-facebook'
+#gem 'omniauth-google-oauth2'
+
+gem 'activerecord-session_store'
+
 #a pedido do openshift
 #gem 'turbo-sprockets-rails3'
 

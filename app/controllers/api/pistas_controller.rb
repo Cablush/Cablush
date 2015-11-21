@@ -1,4 +1,4 @@
-class Api::PistasController < ApplicationController
+class Api::PistasController < Api::ApiController
   
   # GET /pistas
   def index

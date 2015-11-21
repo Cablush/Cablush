@@ -1,4 +1,4 @@
-class Api::EventosController < ApplicationController
+class Api::EventosController < Api::ApiController
 	
   # GET /eventos
   def index

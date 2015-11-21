@@ -1,4 +1,4 @@
-class Api::LojasController < ApplicationController
+class Api::LojasController < Api::ApiController
 	
   # GET /lojas
   def index

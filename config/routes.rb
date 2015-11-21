@@ -1,15 +1,16 @@
 Cablush::Application.routes.draw do
   
   require 'sidekiq/web'
+  mount Sidekiq::Web, at: "/sidekiq"
+  
+  devise_for :usuarios, :controllers => { registrations: 'registrations' }
+  
   namespace :api do
+      mount_devise_token_auth_for "Usuario", at: 'auth'
       resources :lojas, :defaults => { :format => 'json' }
       resources :pistas, :defaults => { :format => 'json' }
       resources :eventos, :defaults => { :format => 'json' }
   end
-  
-  mount Sidekiq::Web, at: "/sidekiq"
-  
-  devise_for :usuarios, :controllers => { registrations: 'registrations' }
   
   resources :lojas do 
     get :autocomplete_cidade_nome, :on => :collection
