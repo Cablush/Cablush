@@ -24,7 +24,8 @@
   </div>
   <div class="field">
     <%= f.label "Mensagem" %><br>
-    <%= f.text_area :message, class: 'textarea-box'  %>
+    <%= f.text_area :message, class: 'textarea-box', :maxlength => 1000, :cols => 5, :rows => 10 %>
+    <div class="textcount"><span>1000</span> caracteres restantes</div>
   </div>
   <br/>
   <div class="actions">

@@ -21,5 +21,12 @@ $(function() {
             $('#local_estado').val(data.item.estado);
         }
     });
+    
+    $('.textarea-box').on('keyup change', function() {
+        if ($(this).parent().find('.textcount > span').length) {
+            $(this).parent().find('.textcount > span')
+                    .text($(this).attr('maxlength') - $(this).val().length);
+        }
+    });
 
 });
