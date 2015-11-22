@@ -26,7 +26,7 @@
         <div class="buttons">
             <% if usuario_signed_in? %>
               <div class="login_name">
-                Olá, <%= current_usuario.nome %>
+                Olá, <%= current_usuario.first_name %>
               </div>
               <div class="login_btn">
                 <%= link_to "Sign out", destroy_usuario_session_path, method: :delete %>

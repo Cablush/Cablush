@@ -14,7 +14,7 @@
             <%= devise_error_messages! %>
             
             <%= f.input :nome, label: 'Nome' %>
-            <%= f.input :email, label: 'Email' %>
+            <%= f.input :email, label: 'Email', :readonly => true %>
             
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Aguardando confirmação para: <%= resource.unconfirmed_email %></div>
