@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151121212509) do
+ActiveRecord::Schema.define(version: 20151122152952) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -130,14 +130,20 @@ ActiveRecord::Schema.define(version: 20151121212509) do
   end
 
   create_table "horarios", force: :cascade do |t|
-    t.string   "dias"
-    t.string   "periodo"
     t.time     "inicio"
     t.time     "fim"
     t.integer  "funcionamento_id"
     t.string   "funcionamento_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "seg"
+    t.boolean  "ter"
+    t.boolean  "qua"
+    t.boolean  "qui"
+    t.boolean  "sex"
+    t.boolean  "sab"
+    t.boolean  "dom"
+    t.string   "detalhes",           limit: 100
   end
 
   add_index "horarios", ["funcionamento_type", "funcionamento_id"], name: "index_horarios_on_funcionamento_type_and_funcionamento_id"

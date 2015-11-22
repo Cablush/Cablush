@@ -5,8 +5,8 @@ class Loja < ActiveRecord::Base
   has_many :locais, as: :localizavel, dependent: :destroy
   accepts_nested_attributes_for :locais, allow_destroy: true
   
-  has_many :horarios, as: :funcionamento, dependent: :destroy
-  accepts_nested_attributes_for :horarios, allow_destroy: true
+  has_one :horario, as: :funcionamento, dependent: :destroy
+  accepts_nested_attributes_for :horario, allow_destroy: true
   
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos

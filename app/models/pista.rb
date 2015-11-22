@@ -5,8 +5,8 @@ class Pista < ActiveRecord::Base
   has_one :local, as: :localizavel, dependent: :destroy
   accepts_nested_attributes_for :local, allow_destroy: true
     
-  has_many :horarios, as: :funcionamento, dependent: :destroy
-  accepts_nested_attributes_for :horarios, allow_destroy: true
+  has_one :horario, as: :funcionamento, dependent: :destroy
+  accepts_nested_attributes_for :horario, allow_destroy: true
   
   has_and_belongs_to_many :esportes
   

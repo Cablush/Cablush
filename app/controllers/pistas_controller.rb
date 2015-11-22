@@ -18,7 +18,7 @@ class PistasController < ApplicationController
   def new
     @pista = Pista.new
     @pista.build_local
-    @pista.horarios.build
+    @pista.build_horario
   end
 
   # POST /pistas(.:format)
@@ -53,8 +53,8 @@ class PistasController < ApplicationController
       @pista.build_local
     end
     
-    if @pista.horarios.empty?
-      @pista.horarios.build
+    if @pista.horario.blank?
+      @pista.build_horario
     end
   end
 
@@ -93,7 +93,7 @@ class PistasController < ApplicationController
           .permit(:nome, :descricao, :website, :facebook, :foto, 
               esporte_ids: [],
               local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horarios_attributes: [:id, :dias, :periodo, :inicio, :fim]
+              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes]
           )
   end
   

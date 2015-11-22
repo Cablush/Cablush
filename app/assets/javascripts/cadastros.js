@@ -28,5 +28,6 @@ $(function() {
                     .text($(this).attr('maxlength') - $(this).val().length);
         }
     });
+    $('.textarea-box').trigger('change');
 
 });

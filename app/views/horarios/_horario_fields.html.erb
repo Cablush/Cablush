@@ -1,10 +1,12 @@
 <div class="field">
   <%= f.label 'Dias' %><br>
-  <%= f.collection_select(:dias, Horario.dia, :last, :first, {:prompt => 'Selecione o Dia'}, {:class=>'selectbox'}) %>
-</div>
-<div class="field">
-  <%= f.label 'Período' %><br>
-  <%= f.collection_select(:periodo, Horario.periodos, :last, :first, {:prompt => 'Selecione o Período'}, {:class=>'selectbox'}) %>
+  <%= f.check_box :seg %><%= f.label 'Seg' %>
+  <%= f.check_box :ter %><%= f.label 'Ter' %>
+  <%= f.check_box :qua %><%= f.label 'Qua' %>
+  <%= f.check_box :qui %><%= f.label 'Qui' %>
+  <%= f.check_box :sex %><%= f.label 'Sex' %>
+  <%= f.check_box :sab %><%= f.label 'Sab' %>
+  <%= f.check_box :dom %><%= f.label 'Dom' %>
 </div>
 <div class="field">
   <%= f.label 'Início' %><br>
@@ -13,4 +15,9 @@
 <div class="field">
   <%= f.label 'Fim' %><br>
   <%= f.time_select :fim,  {prompt: {hour: "Hora fim", minute: "Minuto fim"}}, {class: 'selectbox timeselector'}%>
+</div>
+<div class="field">
+  <%= f.label 'Detalhes' %><br>
+  <%= f.text_area :detalhes, class: 'textarea-box', :maxlength => 100, :cols => 5, :rows => 2 %>
+  <div class="textcount"><span>100</span> caracteres restantes</div>
 </div>

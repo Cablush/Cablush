@@ -18,7 +18,7 @@ class LojasController < ApplicationController
   def new
     @loja = Loja.new
     @loja.locais.build
-    @loja.horarios.build
+    @loja.build_horario
   end
 
   # POST /lojas(.:format)
@@ -53,8 +53,8 @@ class LojasController < ApplicationController
       @loja.locais.build
     end
     
-    if @loja.horarios.empty?
-      @loja.horarios.build
+    if @loja.horario.blank?
+      @loja.build_horario
     end
   end
 
@@ -92,7 +92,7 @@ class LojasController < ApplicationController
     params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
               esporte_ids: [],
               locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horarios_attributes: [:id, :dias, :periodo, :inicio, :fim]
+              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes]
           )
   end
   
