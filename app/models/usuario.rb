@@ -23,6 +23,8 @@ class Usuario < ActiveRecord::Base
 
   after_initialize :set_default_role, :if => :new_record?
   
+  before_validation :set_token_auths
+  
   before_create :set_uuid
   
   def to_param
@@ -50,6 +52,11 @@ class Usuario < ActiveRecord::Base
   
   def set_uuid
     self.uuid = SecureRandom.uuid
+  end
+  
+  def set_token_auths
+    self.provider = 'email' if self.provider.blank?
+    self.uid = self.email if self.uid.blank?
   end
   
 end
