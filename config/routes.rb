@@ -10,6 +10,7 @@ Cablush::Application.routes.draw do
       resources :lojas, :defaults => { :format => 'json' }
       resources :pistas, :defaults => { :format => 'json' }
       resources :eventos, :defaults => { :format => 'json' }
+      resources :esportes, :defaults => { :format => 'json' }
   end
   
   resources :lojas do 

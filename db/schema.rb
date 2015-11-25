@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 20151122152952) do
   add_index "amizades", ["amigo_id"], name: "index_amizades_on_amigo_id"
   add_index "amizades", ["usuario_id"], name: "index_amizades_on_usuario_id"
 
+  create_table "api_keys", force: :cascade do |t|
+    t.string   "access_token"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
     t.integer  "estado_id"
@@ -240,13 +246,11 @@ ActiveRecord::Schema.define(version: 20151122152952) do
     t.datetime "locked_at"
     t.integer  "role"
     t.string   "uuid",                                null: false
-    t.string   "auth_token"
     t.string   "provider",                            null: false
     t.string   "uid",                    default: "", null: false
     t.string   "tokens"
   end
 
-  add_index "usuarios", ["auth_token"], name: "index_usuarios_on_auth_token", unique: true
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
