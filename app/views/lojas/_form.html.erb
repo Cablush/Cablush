@@ -38,23 +38,18 @@
   </div>
   <fieldset class="subfields">
       <legend>Esportes</legend>
-      <%= hidden_field_tag("loja[esporte_ids][]", nil) %>
-      <ul>
-        <% Esporte.order(:categoria, :nome).each do |esporte| %>
-          <li><%= check_box_tag("loja[esporte_ids][]", esporte.id, esporte.id.in?(@loja.esportes.collect(&:id))) %><%= esporte.full_name %></li>
-        <% end -%>
-      </ul>
+      <%= render 'esportes/esportes_fields', f: f, esportes: @loja.esportes %>
   </fieldset>
   <fieldset class="subfields">
       <legend>Endereço</legend>
-      <%= f.fields_for :locais do |local| %>
-        <%= render 'locais/local_fields', f: local %>
+      <%= f.fields_for :locais do |local_form| %>
+        <%= render 'locais/local_fields', f: local_form %>
       <% end %>
   </fieldset>
   <fieldset class="subfields">
       <legend>Horário de Funcionamento</legend>
-      <%= f.fields_for :horario do |h| %>
-        <%= render 'horarios/horario_fields', f: h %>
+      <%= f.fields_for :horario do |horario_form| %>
+        <%= render 'horarios/horario_fields', f: horario_form %>
       <% end %>
   </fieldset>
   

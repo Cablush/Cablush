@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def lojas
     @locais = Local.lojas.paginate(:page => params[:page], :per_page => 9)
     @locais = @locais.lojas_by_estado(params[:estado]) if params[:estado].present?
-    @locais = @locais.lojas_by_esporte(params[:esporte]) if params[:esporte].present?
+    @locais = @locais.lojas_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
     
     @clear = params[:filter] && params[:page].blank? || nil
     @title = "Encontre a loja mais próxima de você!"
@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   def eventos
     @locais = Local.eventos.paginate(:page => params[:page], :per_page => 9)
     @locais = @locais.eventos_by_estado(params[:estado]) if params[:estado].present?
-    @locais = @locais.eventos_by_esporte(params[:esporte]) if params[:esporte].present?
+    @locais = @locais.eventos_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
     
     @clear = params[:filter] && params[:page].blank? || nil
     @title = "Veja o que está acontecendo e participe!"
@@ -33,7 +33,7 @@ class HomeController < ApplicationController
   def pistas
     @locais = Local.pistas.paginate(:page => params[:page], :per_page => 9)
     @locais = @locais.pistas_by_estado(params[:estado]) if params[:estado].present?
-    @locais = @locais.pistas_by_esporte(params[:esporte]) if params[:esporte].present?
+    @locais = @locais.pistas_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
     
     @clear = params[:filter] && params[:page].blank? || nil
     @title = "Onde praticar."

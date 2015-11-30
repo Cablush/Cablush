@@ -30,12 +30,7 @@
   </div>
   <fieldset class="subfields">
       <legend>Esportes</legend>
-      <%= hidden_field_tag('pista[esporte_ids][]', nil) %>
-      <ul>
-        <% Esporte.order(:categoria, :nome).each do |esporte| %>
-          <li><%= check_box_tag('pista[esporte_ids][]', esporte.id, esporte.id.in?(@pista.esportes.collect(&:id))) %><%= esporte.full_name %></li>
-        <% end %>
-      </ul>
+      <%= render 'esportes/esportes_fields', f: f, esportes: @pista.esportes %>
   </fieldset>
   <fieldset class="subfields">
       <legend>Endereço</legend>

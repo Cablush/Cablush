@@ -1,6 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   
-  before_filter :configure_permitted_parameters
+  include EsporteAutocompletes
+  
+  before_action :configure_permitted_parameters
   
   def create
     super do
@@ -15,6 +17,11 @@ class RegistrationsController < Devise::RegistrationsController
         @erro_msg = "Ocorreu um erro ao salvar usuário, por favor tente novamente!"
       end
     end
+  end
+  
+  def update
+    update_esporte_ids(params["usuario"])
+    super
   end
   
   protected

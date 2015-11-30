@@ -61,11 +61,7 @@
   <fieldset class="subfields">
       <legend>Esportes</legend>
       <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
-      <ul>
-        <% Esporte.order(:categoria, :nome).each do |esporte| %>
-          <li><%= check_box_tag('evento[esporte_ids][]', esporte.id, esporte.id.in?(@evento.esportes.collect(&:id))) %><%= esporte.full_name %></li>
-        <% end %>
-      </ul>
+      <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
   </fieldset>
   <fieldset class="subfields">
       <legend>Endereço</legend>

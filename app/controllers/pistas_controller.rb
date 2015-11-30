@@ -1,6 +1,6 @@
 class PistasController < ApplicationController
   
-  include LocalAutocompletes
+  include LocalAutocompletes, EsporteAutocompletes
   
   before_action :authenticate_usuario!
   #before_action :lojista_at_least, :except => :show
@@ -23,6 +23,8 @@ class PistasController < ApplicationController
 
   # POST /pistas(.:format)
   def create
+    update_esporte_ids(params[:loja])
+    
     if current_usuario.admin?
       @pista = Pista.new(pista_params)
     else
@@ -66,6 +68,8 @@ class PistasController < ApplicationController
       @pista = current_usuario.pistas.find_by_uuid!(params[:id])
     end
 
+    update_esporte_ids(params[:loja])
+    
     if @pista.update(pista_params)
       redirect_to pistas_path
     else
@@ -93,8 +97,7 @@ class PistasController < ApplicationController
           .permit(:nome, :descricao, :website, :facebook, :foto, 
               esporte_ids: [],
               local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes]
-          )
+              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
   end
   
 end

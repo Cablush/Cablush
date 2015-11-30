@@ -1,10 +1,10 @@
 class LojasController < ApplicationController
   
-  include LocalAutocompletes
+  include LocalAutocompletes, EsporteAutocompletes
   
   before_action :authenticate_usuario!
   #before_action :lojista_at_least, :except => :show
-    
+  
   # GET /lojas(.:format)
   def index
     if current_usuario.admin?
@@ -23,6 +23,8 @@ class LojasController < ApplicationController
 
   # POST /lojas(.:format)
   def create
+    update_esporte_ids(params[:loja])
+    
     if current_usuario.admin?
       @loja = Loja.new(loja_params)
     else
@@ -65,8 +67,10 @@ class LojasController < ApplicationController
     else
       @loja = current_usuario.lojas.find_by_uuid!(params[:id])
     end
-
-    if @loja.update_attributes(loja_params)
+    
+    update_esporte_ids(params[:loja])
+    
+    if @loja.update(loja_params)
       redirect_to lojas_path
     else
       render 'edit'
@@ -92,8 +96,7 @@ class LojasController < ApplicationController
     params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
               esporte_ids: [],
               locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes]
-          )
+              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
   end
   
 end

@@ -1,6 +1,6 @@
 class EventosController < ApplicationController
   
-  include LocalAutocompletes
+  include LocalAutocompletes, EsporteAutocompletes
   
   before_action :authenticate_usuario!
   #before_action :lojista_at_least, :except => :show
@@ -22,6 +22,8 @@ class EventosController < ApplicationController
 
   # POST /eventos(.:format)
   def create
+    update_esporte_ids(params[:loja])
+    
     if current_usuario.admin?
       @evento = Evento.new(evento_params)
     else
@@ -61,6 +63,8 @@ class EventosController < ApplicationController
       @evento = current_usuario.eventos.find_by_uuid!(params[:id])
     end
 
+    update_esporte_ids(params[:loja])
+    
     if @evento.update(evento_params)
       redirect_to eventos_path
     else
@@ -87,8 +91,7 @@ class EventosController < ApplicationController
     params.require(:evento)
           .permit(:nome, :descricao, :data, :hora, :data_fim, :website, :facebook, :flyer, 
               esporte_ids: [],
-              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]
-          )
+              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais])
   end
 
 end

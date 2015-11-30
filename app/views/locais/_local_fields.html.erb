@@ -4,11 +4,13 @@
 </div>
 <div class="field">
   <%= f.label 'Estado' %><br>
-  <%= f.collection_select(:estado, Estado.all, :rg, :nome, {:prompt => 'Selecione o Estado'}, {:id => 'local_estado', :class => 'selectbox'}) %>
+  <%= f.collection_select(:estado, Estado.all, :rg, :nome, 
+    {:prompt => 'Selecione o Estado'}, {:id => 'local_estado', :class => 'selectbox'}) %>
 </div>
 <div class="field">
   <%= f.label 'Cidade' %><br>
-  <%= f.autocomplete_field :cidade, autocomplete_cidade_nome_lojas_path, :fields => {:estado => '#local_estado'}, id: 'local_cidade', class: 'inputbox' %>
+  <%= f.autocomplete_field :cidade, autocomplete_cidade_nome_lojas_path, 
+    :fields => {:estado => '#local_estado'}, id: 'local_cidade', class: 'inputbox' %>
 </div>
   <div class="field">
   <%= f.label 'Bairro' %><br>

@@ -358,6 +358,14 @@ ul.events li {
     width:65.5%;
     margin-top: 1px;
 }
+.search_box_clear {
+    float: left;
+    margin-right: 1.6%;
+    padding-top: 6px;
+    font-family: "Dosis",sans-serif;
+    font-size: 1em;
+    color: #777;
+}
 .search_box {
     float: left;
     border:1px solid #ddd;
@@ -1966,6 +1974,28 @@ h5.m_12 a:hover{
 .btn1:hover{
     background: #e15a1f;
 }
+.btn_auto {
+    display: inline-block;
+    width: 15px;
+    font-size: 1em;
+    font-weight: 400 !important;
+    color: #FFF;
+    cursor: pointer;
+    background: #3C3D3D none repeat scroll 0% 0%;
+    box-sizing: content-box;
+    text-shadow: none !important;
+    height: auto;
+    margin-bottom: 0px;
+    padding: 4px;
+    transition: all 0.3s ease 0s;
+    line-height: 24px !important;
+    vertical-align: middle;
+    text-align: center;
+    border: medium none;
+}
+.btn_auto:hover{
+    background: #e15a1f;
+}
 .lnk1 {
     background: none;
     border: none;
@@ -2629,6 +2659,9 @@ ul.list1 li a:hover{
     color: #777;
     line-height: 2.8em;
     font-size: 1em;
+}
+input.inputbox_auto {
+    width: 94% !important;
 }
 input.inputbox, input.required, div.k2AccountPage input[type="text"] {
     background: #FFF;

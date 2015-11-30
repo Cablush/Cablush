@@ -14,12 +14,15 @@ Cablush::Application.routes.draw do
   end
   
   resources :lojas do 
+    get :autocomplete_esporte_nome, :on => :collection
     get :autocomplete_cidade_nome, :on => :collection
   end
   resources :eventos do 
+    get :autocomplete_esporte_nome, :on => :collection
     get :autocomplete_cidade_nome, :on => :collection
   end
   resources :pistas do 
+    get :autocomplete_esporte_nome, :on => :collection
     get :autocomplete_cidade_nome, :on => :collection
   end
   

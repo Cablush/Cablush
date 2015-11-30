@@ -32,6 +32,10 @@ class Local < ActiveRecord::Base
     joins(loja: :esportes).where(esportes: {id: esporte_id})
   }
   
+  scope :lojas_by_esporte_categoria, ->(categoria) {
+    joins(loja: :esportes).where(esportes: {categoria: categoria}).distinct
+  }
+  
   scope :pistas_by_estado, ->(estado) {
     pistas.where(estado: estado)
   }
@@ -40,12 +44,20 @@ class Local < ActiveRecord::Base
     joins(pista: :esportes).where(esportes: {id: esporte_id})
   }
   
+  scope :pistas_by_esporte_categoria, ->(categoria) {
+    joins(pista: :esportes).where(esportes: {categoria: categoria}).distinct
+  }
+  
   scope :eventos_by_estado, ->(estado) {
     eventos.where(estado: estado)
   }
   
   scope :eventos_by_esporte, ->(esporte_id) {
     joins(evento: :esportes).where(esportes: {id: esporte_id})
+  }
+  
+  scope :eventos_by_esporte_categoria, ->(categoria) {
+    joins(evento: :esportes).where(esportes: {categoria: categoria}).distinct
   }
   
   def endereco
