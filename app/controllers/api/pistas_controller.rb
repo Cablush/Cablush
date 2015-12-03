@@ -25,6 +25,7 @@ class Api::PistasController < Api::ApiController
   def create
     @usuario = Usuario.find_by_uid(pista_params['uid'])
     @pista = @usuario.pistas.build(pista_params['pista'])
+    puts @usuario;
         
     if @pista.save
       respond_to do |format|
@@ -41,7 +42,7 @@ class Api::PistasController < Api::ApiController
   private
   
   def pista_params
-    params.permit(:nome, :estado, :esporte)
+    params.permit(:nome, :estado, :esporte, :descricao,:telefone, :email, :facebook, :website, :fundo, :uuid)
   end
 end
 
