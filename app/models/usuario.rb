@@ -44,6 +44,12 @@ class Usuario < ActiveRecord::Base
     nome.partition(" ").first
   end
   
+  def token_validation_response
+    self.as_json(except: [
+      :id, :tokens, :created_at, :updated_at
+    ])
+  end
+  
   private
   
   def set_default_role
