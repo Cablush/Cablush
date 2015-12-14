@@ -43,11 +43,11 @@ class Loja < ActiveRecord::Base
   }
   
   scope :find_by_estado, ->(estado) {
-    joins(:locais).where(locais: {estado: estado}) if estado.present?
+    joins(:local).where('locais.estado = ?', estado) if estado.present?
   }
   
-  scope :find_by_esporte_id, ->(esporte_id) {
-    joins(:esportes).where(esportes: {id: esporte_id}) if esporte_id.present?
+  scope :find_by_esporte_categoria, ->(categoria) {
+    joins(:esportes).where(esportes: {categoria: categoria}).distinct if categoria.present?
   }
   
   def contato

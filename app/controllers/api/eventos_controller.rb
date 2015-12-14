@@ -2,16 +2,16 @@ class Api::EventosController < Api::ApiController
 	
   # GET /eventos
   def index
-    @eventos = Evento.visible.find_like_name(evento_params['nome'])
-    @eventos = @eventos.find_by_estado(evento_params['estado'])
-    @eventos = @eventos.find_by_esporte_id(evento_params['esporte'])
+    eventos = Evento.visible.find_like_name(params['nome'])
+    eventos = eventos.find_by_estado(params['estado'])
+    eventos = eventos.find_by_esporte_categoria(params['esporte'])
     
-    respond_to do |format|
-      format.json { render json: @eventos, 
+    render json: eventos, 
         :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-        :include => { :local => {:except => [:id, :created_at, :updated_at, :localizavel_id]}}
-      }
-		end
+        :include => {
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+          :esportes => {:except => [:created_at, :updated_at]}
+        }
   end
   
   # POST /eventos(.:format)
@@ -26,9 +26,8 @@ class Api::EventosController < Api::ApiController
       render json: evento, 
         :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
         :include => {
-          :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-          :esportes => {:except => [:created_at, :updated_at]},
-          :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+          :esportes => {:except => [:created_at, :updated_at]}
         }
     else
       render json: evento.errors
@@ -39,12 +38,11 @@ class Api::EventosController < Api::ApiController
   def show
     evento = Evento.find_by_uuid!(params[:id])
     render json: evento, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-      :include => {
-        :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-        :esportes => {:except => [:created_at, :updated_at]},
-        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-      }
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :include => {
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+          :esportes => {:except => [:created_at, :updated_at]}
+        }
   end
   
   # PATCH/PUT /eventos/:id
@@ -59,9 +57,8 @@ class Api::EventosController < Api::ApiController
       render json: evento, 
         :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
         :include => {
-          :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-          :esportes => {:except => [:created_at, :updated_at]},
-          :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+          :esportes => {:except => [:created_at, :updated_at]}
         }
     else
       render json: evento.errors
@@ -73,8 +70,7 @@ class Api::EventosController < Api::ApiController
   def evento_params
     params.require(:evento).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
               esporte_ids: [],
-              locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
+              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais])
   end
 
 end

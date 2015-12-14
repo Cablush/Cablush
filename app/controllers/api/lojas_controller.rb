@@ -6,7 +6,7 @@ class Api::LojasController < Api::ApiController
   def index
     lojas = Loja.find_like_name(params['nome'])
     lojas = lojas.find_by_estado(params['estado'])
-    lojas = lojas.find_by_esporte_id(params['esporte'])
+    lojas = lojas.find_by_esporte_categoria(params['esporte'])
     
     render json: lojas, 
       :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],

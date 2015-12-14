@@ -2,16 +2,17 @@ class Api::PistasController < Api::ApiController
   
   # GET /pistas
   def index
-    @pistas = Pista.find_like_name(pista_params['nome'])
-    @pistas = @pistas.find_by_estado(pista_params['estado'])
-    @pistas = @pistas.find_by_esporte_id(pista_params['esporte'])
+    pistas = Pista.find_like_name(params['nome'])
+    pistas = pistas.find_by_estado(params['estado'])
+    pistas = pistas.find_by_esporte_categoria(params['esporte'])
     
-    respond_to do |format|
-      format.json { render json: @pistas, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-        :include => { :local => {:except => [:id, :created_at, :updated_at, :localizavel_id]}}
+    render json: pistas, 
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :include => { 
+        :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+        :esportes => {:except => [:created_at, :updated_at]},
+        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
       }
-    end
   end
 
   # POST /pistas(.:format)
@@ -25,8 +26,8 @@ class Api::PistasController < Api::ApiController
     if pista.save
       render json: pista, 
         :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-        :include => {
-          :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+        :include => { 
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
           :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
         }
@@ -40,8 +41,8 @@ class Api::PistasController < Api::ApiController
     pista = Pista.find_by_uuid!(params[:id])
     render json: pista, 
       :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-      :include => {
-        :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+      :include => { 
+        :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
         :esportes => {:except => [:created_at, :updated_at]},
         :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
       }
@@ -58,8 +59,8 @@ class Api::PistasController < Api::ApiController
     if pista.update(pista_params)
       render json: pista, 
         :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-        :include => {
-          :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+        :include => { 
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
           :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
         }
