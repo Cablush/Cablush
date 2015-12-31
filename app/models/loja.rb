@@ -43,7 +43,7 @@ class Loja < ActiveRecord::Base
   }
   
   scope :find_by_estado, ->(estado) {
-    joins(:local).where('locais.estado = ?', estado) if estado.present?
+    joins(:locais).where('locais.estado = ?', estado) if estado.present?
   }
   
   scope :find_by_esporte_categoria, ->(categoria) {

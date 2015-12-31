@@ -1,5 +1,7 @@
 class Api::EventosController < Api::ApiController
-	
+
+  before_action :authenticate_usuario!, only: [:create, :update]
+
   # GET /eventos
   def index
     eventos = Evento.visible.find_like_name(params['nome'])
@@ -7,6 +9,17 @@ class Api::EventosController < Api::ApiController
     eventos = eventos.find_by_esporte_categoria(params['esporte'])
     
     render json: eventos, 
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :include => {
+          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+          :esportes => {:except => [:created_at, :updated_at]}
+        }
+  end
+  
+  # GET /eventos/:id
+  def show
+    evento = Evento.find_by_uuid!(params[:id])
+    render json: evento, 
         :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
         :include => {
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
@@ -32,17 +45,6 @@ class Api::EventosController < Api::ApiController
     else
       render json: evento.errors
     end
-  end
-  
-  # GET /eventos/:id
-  def show
-    evento = Evento.find_by_uuid!(params[:id])
-    render json: evento, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-        :include => {
-          :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-          :esportes => {:except => [:created_at, :updated_at]}
-        }
   end
   
   # PATCH/PUT /eventos/:id

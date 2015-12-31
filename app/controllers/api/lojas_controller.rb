@@ -1,6 +1,6 @@
 class Api::LojasController < Api::ApiController
 	
-  before_action :authenticate_usuario!
+  before_action :authenticate_usuario!, only: [:create, :update]
   
   # GET /lojas
   def index
@@ -9,6 +9,18 @@ class Api::LojasController < Api::ApiController
     lojas = lojas.find_by_esporte_categoria(params['esporte'])
     
     render json: lojas, 
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :include => {
+        :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+        :esportes => {:except => [:created_at, :updated_at]},
+        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
+      }
+  end
+  
+  # GET /lojas/:id
+  def show
+    loja = Loja.find_by_uuid!(params[:id])
+    render json: loja, 
       :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
       :include => {
         :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
@@ -36,18 +48,6 @@ class Api::LojasController < Api::ApiController
     else
       render json: loja.errors
     end
-  end
-  
-  # GET /lojas/:id
-  def show
-    loja = Loja.find_by_uuid!(params[:id])
-    render json: loja, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-      :include => {
-        :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-        :esportes => {:except => [:created_at, :updated_at]},
-        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-      }
   end
   
   # PATCH/PUT /lojas/:id

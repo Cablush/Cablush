@@ -1,5 +1,7 @@
 class Api::PistasController < Api::ApiController
   
+  before_action :authenticate_usuario!, only: [:create, :update]
+  
   # GET /pistas
   def index
     pistas = Pista.find_like_name(params['nome'])
@@ -7,6 +9,18 @@ class Api::PistasController < Api::ApiController
     pistas = pistas.find_by_esporte_categoria(params['esporte'])
     
     render json: pistas, 
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :include => { 
+        :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
+        :esportes => {:except => [:created_at, :updated_at]},
+        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
+      }
+  end
+  
+  # GET /pistas/:id
+  def show
+    pista = Pista.find_by_uuid!(params[:id])
+    render json: pista, 
       :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
       :include => { 
         :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
@@ -34,18 +48,6 @@ class Api::PistasController < Api::ApiController
     else
       render json: pista.errors
     end
-  end
-  
-  # GET /pistas/:id
-  def show
-    pista = Pista.find_by_uuid!(params[:id])
-    render json: pista, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
-      :include => { 
-        :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-        :esportes => {:except => [:created_at, :updated_at]},
-        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-      }
   end
   
   # PATCH/PUT /pistas/:id

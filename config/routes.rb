@@ -7,7 +7,8 @@ Cablush::Application.routes.draw do
   
   namespace :api do
       mount_devise_token_auth_for 'Usuario', at: 'auth', controllers: {
-          sessions: 'api/sessions'
+          sessions: 'api/sessions',
+          registrations: 'api/registrations'
       }
       resources :lojas, :defaults => { :format => 'json' }
       resources :pistas, :defaults => { :format => 'json' }
