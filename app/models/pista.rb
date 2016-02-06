@@ -45,6 +45,13 @@ class Pista < ActiveRecord::Base
   scope :find_by_esporte_categoria, ->(categoria) {
     joins(:esportes).where(esportes: {categoria: categoria}).distinct if categoria.present?
   }
+  
+  def foto_url
+    url = foto.url(:original)
+    if !url.include? "missing.png"
+      url.sub /\?\d+$/, ''
+    end
+  end
 
   private
   

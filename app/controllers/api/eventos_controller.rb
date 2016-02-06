@@ -9,7 +9,8 @@ class Api::EventosController < Api::ApiController
     eventos = eventos.find_by_esporte_categoria(params['esporte'])
     
     render json: eventos, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],
+        :methods => [:flyer_url],
         :include => {
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]}
@@ -20,7 +21,8 @@ class Api::EventosController < Api::ApiController
   def show
     evento = Evento.find_by_uuid!(params[:id])
     render json: evento, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],
+        :methods => [:flyer_url],
         :include => {
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]}
@@ -37,7 +39,8 @@ class Api::EventosController < Api::ApiController
     
     if evento.save
       render json: evento, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],
+        :methods => [:flyer_url],
         :include => {
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]}
@@ -57,7 +60,8 @@ class Api::EventosController < Api::ApiController
     
     if evento.update(evento_params)
       render json: evento, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],
+        :methods => [:flyer_url],
         :include => {
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]}
@@ -70,7 +74,7 @@ class Api::EventosController < Api::ApiController
   private
   
   def evento_params
-    params.require(:evento).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
+    params.require(:evento).permit(:nome, :telefone, :email, :website, :facebook, :flyer, :fundo, :descricao, 
               esporte_ids: [],
               local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais])
   end

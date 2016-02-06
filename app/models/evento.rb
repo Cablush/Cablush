@@ -55,6 +55,13 @@ class Evento < ActiveRecord::Base
     data.strftime('%d/%m/%Y') + " às " + hora.strftime('%H:%M')
   end
   
+  def flyer_url
+    url = flyer.url(:original)
+    if !url.include? "missing.png"
+      url.sub /\?\d+$/, ''
+    end
+  end
+  
   private
   
   def set_uuid

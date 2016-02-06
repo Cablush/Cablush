@@ -9,7 +9,8 @@ class Api::PistasController < Api::ApiController
     pistas = pistas.find_by_esporte_categoria(params['esporte'])
     
     render json: pistas, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
+      :methods => [:foto_url],
       :include => { 
         :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
         :esportes => {:except => [:created_at, :updated_at]},
@@ -21,7 +22,8 @@ class Api::PistasController < Api::ApiController
   def show
     pista = Pista.find_by_uuid!(params[:id])
     render json: pista, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
+      :methods => [:foto_url],
       :include => { 
         :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
         :esportes => {:except => [:created_at, :updated_at]},
@@ -39,7 +41,8 @@ class Api::PistasController < Api::ApiController
     
     if pista.save
       render json: pista, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
+        :methods => [:foto_url],
         :include => { 
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
@@ -60,7 +63,8 @@ class Api::PistasController < Api::ApiController
     
     if pista.update(pista_params)
       render json: pista, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
+        :methods => [:foto_url],
         :include => { 
           :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
@@ -74,7 +78,7 @@ class Api::PistasController < Api::ApiController
   private
   
   def pista_params
-    params.require(:pista).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
+    params.require(:pista).permit(:nome, :telefone, :email, :website, :facebook, :foto, :fundo, :descricao, 
               esporte_ids: [],
               locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
               horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])

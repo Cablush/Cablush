@@ -9,7 +9,8 @@ class Api::LojasController < Api::ApiController
     lojas = lojas.find_by_esporte_categoria(params['esporte'])
     
     render json: lojas, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+      :methods => [:logo_url],
       :include => {
         :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
         :esportes => {:except => [:created_at, :updated_at]},
@@ -21,7 +22,8 @@ class Api::LojasController < Api::ApiController
   def show
     loja = Loja.find_by_uuid!(params[:id])
     render json: loja, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+      :methods => [:logo_url],
       :include => {
         :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
         :esportes => {:except => [:created_at, :updated_at]},
@@ -39,7 +41,8 @@ class Api::LojasController < Api::ApiController
     
     if loja.save
       render json: loja, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+        :methods => [:logo_url],
         :include => {
           :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
@@ -60,7 +63,8 @@ class Api::LojasController < Api::ApiController
     
     if loja.update(loja_params)
       render json: loja, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_updated_at],
+        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+        :methods => [:logo_url],
         :include => {
           :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},

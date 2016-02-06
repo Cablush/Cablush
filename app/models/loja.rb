@@ -57,6 +57,13 @@ class Loja < ActiveRecord::Base
     return contato
   end
   
+  def logo_url
+    url = logo.url(:original)
+    if !url.include? "missing.png"
+      url.sub /\?\d+$/, ''
+    end
+  end
+  
   private
   
   def set_uuid
