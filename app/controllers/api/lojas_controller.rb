@@ -1,6 +1,6 @@
 class Api::LojasController < Api::ApiController
 	
-  before_action :authenticate_usuario!, only: [:my, :create, :update]
+  before_action :authenticate_usuario!, only: [:mine, :create, :update]
   
   # GET /lojas
   def index
@@ -20,7 +20,7 @@ class Api::LojasController < Api::ApiController
   
   # GET /lojas/mine
   def mine
-    lojas = current_usuario.lojas
+    lojas = Loja.where(responsavel_id: current_usuario.id)
     
     render json: lojas, 
       :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],

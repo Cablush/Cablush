@@ -1,6 +1,6 @@
 class Api::EventosController < Api::ApiController
 
-  before_action :authenticate_usuario!, only: [:my, :create, :update]
+  before_action :authenticate_usuario!, only: [:mine, :create, :update]
 
   # GET /eventos
   def index
@@ -19,7 +19,7 @@ class Api::EventosController < Api::ApiController
   
   # GET /eventos/mine
   def mine
-    eventos = current_usuario.eventos
+    eventos = Evento.visible.where(responsavel_id: current_usuario.id)
     
     render json: eventos, 
         :except => [:id, :created_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],

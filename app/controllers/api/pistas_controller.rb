@@ -1,6 +1,6 @@
 class Api::PistasController < Api::ApiController
   
-  before_action :authenticate_usuario!, only: [:my, :create, :update]
+  before_action :authenticate_usuario!, only: [:mine, :create, :update]
   
   # GET /pistas
   def index
@@ -20,7 +20,7 @@ class Api::PistasController < Api::ApiController
   
   # GET /pistas/mine
   def mine
-    pistas = current_usuario.pistas
+    pistas = Pista.where(responsavel_id: current_usuario.id)
     
     render json: pistas, 
       :except => [:id, :created_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
