@@ -26,6 +26,9 @@ module Cablush
     config.active_job.queue_adapter = :sidekiq
     
     config.paperclip = config_for :paperclip
+    
+    # 3.3 Error handling in transaction callbacks
+    config.active_record.raise_in_transactional_callbacks = true
       
   end
 end
