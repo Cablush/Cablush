@@ -56,10 +56,13 @@ class Evento < ActiveRecord::Base
   end
   
   def flyer_url
-    url = flyer.url(:original)
-    if !url.include? "missing.png"
-      url.sub /\?\d+$/, ''
+    if flyer.exists?
+      flyer.url(:original).sub /\?\d+$/, ''
     end
+  end
+  
+  def responsavel_uuid
+    responsavel.uuid
   end
   
   private

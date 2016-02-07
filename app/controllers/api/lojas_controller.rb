@@ -1,6 +1,6 @@
 class Api::LojasController < Api::ApiController
 	
-  before_action :authenticate_usuario!, only: [:create, :update]
+  before_action :authenticate_usuario!, only: [:my, :create, :update]
   
   # GET /lojas
   def index
@@ -9,7 +9,7 @@ class Api::LojasController < Api::ApiController
     lojas = lojas.find_by_esporte_categoria(params['esporte'])
     
     render json: lojas, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+      :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
       :methods => [:logo_url],
       :include => {
         :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
@@ -18,12 +18,13 @@ class Api::LojasController < Api::ApiController
       }
   end
   
-  # GET /lojas/:id
-  def show
-    loja = Loja.find_by_uuid!(params[:id])
-    render json: loja, 
-      :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
-      :methods => [:logo_url],
+  # GET /lojas/mine
+  def mine
+    lojas = current_usuario.lojas
+    
+    render json: lojas, 
+      :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+      :methods => [:logo_url, :responsavel_uuid],
       :include => {
         :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
         :esportes => {:except => [:created_at, :updated_at]},
@@ -41,8 +42,8 @@ class Api::LojasController < Api::ApiController
     
     if loja.save
       render json: loja, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
-        :methods => [:logo_url],
+        :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+        :methods => [:logo_url, :responsavel_uuid],
         :include => {
           :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
@@ -63,8 +64,8 @@ class Api::LojasController < Api::ApiController
     
     if loja.update(loja_params)
       render json: loja, 
-        :except => [:id, :created_at, :updated_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
-        :methods => [:logo_url],
+        :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
+        :methods => [:logo_url, :responsavel_uuid],
         :include => {
           :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
           :esportes => {:except => [:created_at, :updated_at]},
@@ -78,7 +79,7 @@ class Api::LojasController < Api::ApiController
   private
   
   def loja_params
-    params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, 
+    params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, :updated_at,
               esporte_ids: [],
               locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
               horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])

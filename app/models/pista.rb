@@ -47,15 +47,18 @@ class Pista < ActiveRecord::Base
   }
   
   def foto_url
-    url = foto.url(:original)
-    if !url.include? "missing.png"
-      url.sub /\?\d+$/, ''
+    if foto.exists?
+      foto.url(:original).sub /\?\d+$/, ''
     end
   end
-
+  
+  def responsavel_uuid
+    responsavel.uuid
+  end
+  
   private
   
-  def set_uuid
+  def set_uuid 
     self.uuid = SecureRandom.uuid
   end
   

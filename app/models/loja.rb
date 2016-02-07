@@ -58,10 +58,13 @@ class Loja < ActiveRecord::Base
   end
   
   def logo_url
-    url = logo.url(:original)
-    if !url.include? "missing.png"
-      url.sub /\?\d+$/, ''
+    if logo.exists?
+      logo.url(:original).sub /\?\d+$/, ''
     end
+  end
+  
+  def responsavel_uuid
+    responsavel.uuid
   end
   
   private

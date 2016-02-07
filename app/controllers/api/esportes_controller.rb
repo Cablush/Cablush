@@ -2,11 +2,10 @@ class Api::EsportesController < Api::ApiController
 	
   # GET /esportes
   def index
-    @esportes = Esporte.all
+    esportes = Esporte.all
     
-    respond_to do |format|
-      format.json { render json: @esportes}
-		end
+    render json: esportes, 
+      :except => [:created_at, :updated_at]
   end
   
   private
