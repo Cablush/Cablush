@@ -54,12 +54,12 @@ class Api::PistasController < Api::ApiController
     end
   end
   
-  # PATCH/PUT /pistas/:id
+  # PATCH/PUT /pistas/:uuid
   def update
     if current_usuario.admin?
-      pista = Pista.find_by_uuid!(params[:id])
+      pista = Pista.find_by_uuid!(params[:uuid])
     else
-      pista = current_usuario.pistas.find_by_uuid!(params[:id])
+      pista = current_usuario.pistas.find_by_uuid!(params[:uuid])
     end
     
     if pista.update(pista_params)
@@ -79,10 +79,10 @@ class Api::PistasController < Api::ApiController
   private
   
   def pista_params
-    params.require(:pista).permit(:nome, :telefone, :email, :website, :facebook, :foto, :fundo, :descricao, :updated_at,
+    params.require(:pista).permit(:uuid, :nome, :telefone, :email, :website, :facebook, :foto, :fundo, :descricao, :updated_at,
               esporte_ids: [],
-              locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
+              locais_attributes: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
+              horario_attributes: [:seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
   end
 
 end

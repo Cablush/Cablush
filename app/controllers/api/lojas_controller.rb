@@ -54,12 +54,12 @@ class Api::LojasController < Api::ApiController
     end
   end
   
-  # PATCH/PUT /lojas/:id
+  # PATCH/PUT /lojas/:uuid
   def update
     if current_usuario.admin?
-      loja = Loja.find_by_uuid!(params[:id])
+      loja = Loja.find_by_uuid!(params[:uuid])
     else
-      loja = current_usuario.lojas.find_by_uuid!(params[:id])
+      loja = current_usuario.lojas.find_by_uuid!(params[:uuid])
     end
     
     if loja.update(loja_params)
@@ -79,10 +79,10 @@ class Api::LojasController < Api::ApiController
   private
   
   def loja_params
-    params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, :updated_at,
+    params.require(:loja).permit(:uuid, :nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, :updated_at,
               esporte_ids: [],
-              locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
+              locais_attributes: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
+              horario_attributes: [:seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
   end
   
 end

@@ -51,12 +51,12 @@ class Api::EventosController < Api::ApiController
     end
   end
   
-  # PATCH/PUT /eventos/:id
+  # PATCH/PUT /eventos/:uuid
   def update
     if current_usuario.admin?
-      evento = Evento.find_by_uuid!(params[:id])
+      evento = Evento.find_by_uuid!(params[:uuid])
     else
-      evento = current_usuario.eventos.find_by_uuid!(params[:id])
+      evento = current_usuario.eventos.find_by_uuid!(params[:uuid])
     end
     
     if evento.update(evento_params)
@@ -75,9 +75,9 @@ class Api::EventosController < Api::ApiController
   private
   
   def evento_params
-    params.require(:evento).permit(:nome, :telefone, :email, :website, :facebook, :flyer, :fundo, :descricao, :updated_at,
+    params.require(:evento).permit(:uuid, :nome, :telefone, :email, :website, :facebook, :flyer, :fundo, :descricao, :updated_at,
               esporte_ids: [],
-              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais])
+              local_attributes: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais])
   end
 
 end
