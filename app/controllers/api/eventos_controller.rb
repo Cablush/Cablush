@@ -1,6 +1,6 @@
 class Api::EventosController < Api::ApiController
 
-  before_action :authenticate_usuario!, only: [:mine, :create, :update]
+  before_action :authenticate_usuario!, only: [:mine, :create, :update, :upload]
 
   # GET /eventos
   def index
@@ -32,59 +32,61 @@ class Api::EventosController < Api::ApiController
   
   # PATCH/PUT /eventos/:uuid
   def update
-    if current_usuario.admin?
-      evento = Evento.find_by_uuid!(params[:uuid])
-    else
-      evento = current_usuario.eventos.find_by_uuid!(params[:uuid])
-    end
+    evento = Evento.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
+    evento = build_evento(evento)
     
-    if evento.update(build_evento)
+    if evento.save
+      render_success evento
+    else
+      render_error evento
+    end
+  end
+  
+  # POST /eventos/:uuid/upload
+  def upload
+    evento = Evento.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
+    
+    if evento.update(params[:flyer])
       render_success evento
     else
       render_error evento
     end
   end
 
+
   private
   
-  def build_evento
+  def build_evento(evento)
     # get the permitted parameters
-    evento_attributes = params.permit(:uuid, :nome, :telefone, :email, :website, :facebook, :flyer, :fundo, :descricao, :updated_at,
+    evento_attributes = params.permit(:nome, :descricao, :data, :hora, :website, :facebook, :responsavel_uuid, :uuid, :data_fim,
         esportes: [:id],
         local: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]
       )
     
     # extract nested objects
+    responsavel_uuid = evento_attributes.delete("responsavel_uuid")
     esporte_attributes = evento_attributes.delete("esportes")
-    local_attributes = evento_attributes.delete("locais")
+    local_attributes = evento_attributes.delete("local")
     
-    # create the object
-    evento = Evento.new(evento_attributes)
+    # create a new object or update if it exists
+    if (evento.nil?)
+      evento = Evento.new(evento_attributes)
+    else
+      evento.assign_attributes(evento_attributes)
+    end
     evento.esporte_ids = esporte_attributes.map{|e| e["id"]}
-    evento.locais = Local.new(local_attributes)
+    evento.local = Local.new(local_attributes)
     return evento
   end
   
   def render_eventos(eventos)
-    render json: eventos, 
-      :except => [:id, :created_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],
-      :methods => [:flyer_url, :responsavel_uuid],
-      :include => {
-        :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-        :esportes => {:except => [:created_at, :updated_at]}
-      }
+    render json: eventos
   end
   
   def render_success(evento)
     render json: {
         success: true,
-        data: evento, 
-          :except => [:id, :created_at, :responsavel_id, :flyer_file_name, :flyer_content_type, :flyer_file_size, :flyer_updated_at],
-          :methods => [:flyer_url, :responsavel_uuid],
-          :include => {
-            :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-            :esportes => {:except => [:created_at, :updated_at]}
-          }
+        data: evento
       }
   end
   

@@ -3,20 +3,26 @@ Cablush::Application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web, at: "/sidekiq"
   
-  devise_for :usuarios, controllers: { registrations: 'registrations' }#, skip: :sessions
+  devise_for :usuarios, controllers: { registrations: 'registrations' }
   
   namespace :api do
       mount_devise_token_auth_for 'Usuario', at: 'auth', controllers: {
           registrations: 'api/registrations'
       }
-      resources :lojas, only: [:index, :create, :update], defaults: { format: 'json' } do
+      resources :lojas, only: [:index, :create, :update], 
+                        param: :uuid, defaults: { format: 'json' } do
         get :mine, on: :collection
+        post :upload, on: :member
       end
-      resources :pistas, only: [:index, :create, :update], defaults: { format: 'json' } do
+      resources :pistas, only: [:index, :create, :update], 
+                         param: :uuid, defaults: { format: 'json' } do
         get :mine, on: :collection
+        post :upload, on: :member
       end
-      resources :eventos, only: [:index, :create, :update], defaults: { format: 'json' } do
+      resources :eventos, only: [:index, :create, :update], 
+                          param: :uuid, defaults: { format: 'json' } do
         get :mine, on: :collection
+        post :upload, on: :member
       end
       resources :esportes, only: [:index], defaults: { format: 'json' }
   end

@@ -1,6 +1,6 @@
 class Api::LojasController < Api::ApiController
   
-  before_action :authenticate_usuario!, only: [:mine, :create, :update]
+  before_action :authenticate_usuario!, only: [:mine, :create, :update, :upload]
   
   # GET /lojas
   def index
@@ -32,13 +32,21 @@ class Api::LojasController < Api::ApiController
   
   # PATCH/PUT /lojas/:uuid
   def update
-    if current_usuario.admin?
-      loja = Loja.find_by_uuid!(params[:uuid])
-    else
-      loja = current_usuario.lojas.find_by_uuid!(params[:uuid])
-    end
+    loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
+    loja = build_loja(loja)
     
-    if loja.update(build_loja)
+    if loja.save 
+      render_success loja
+    else
+      render_error loja
+    end
+  end
+  
+  # POST /lojas/:uuid/upload
+  def upload
+    loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
+    
+    if loja.update(params[:logo])
       render_success loja
     else
       render_error loja
@@ -47,21 +55,26 @@ class Api::LojasController < Api::ApiController
 
   private
   
-  def build_loja
+  def build_loja(loja)
     # get the permitted parameters
-    loja_attributes = params.permit(:uuid, :nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao, :updated_at,
+    loja_attributes = params.permit(:nome, :descricao, :telefone, :email, :website, :facebook, :responsavel_uuid, :uuid,
         esportes: [:id],
-        horario: [:seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes],
+        horario: [:inicio, :fim, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :detalhes],
         locais: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]
       )
     
     # extract nested objects
+    responsavel_uuid = loja_attributes.delete("responsavel_uuid")
     esporte_attributes = loja_attributes.delete("esportes")
     horario_attributes = loja_attributes.delete("horario")
     locais_attributes = loja_attributes.delete("locais")
     
-    # create the object
-    loja = Loja.new(loja_attributes)
+    # create a new object or update if it exists
+    if (loja.nil?)
+      loja = Loja.new(loja_attributes)
+    else
+      loja.assign_attributes(loja_attributes)
+    end
     loja.esporte_ids = esporte_attributes.map{|e| e["id"]}
     loja.horario = Horario.new(horario_attributes)
     loja.locais = locais_attributes.map{|l| Local.new(l)}
@@ -69,27 +82,13 @@ class Api::LojasController < Api::ApiController
   end
   
   def render_lojas(lojas)
-    render json: lojas, 
-      :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
-      :methods => [:logo_url, :responsavel_uuid],
-      :include => {
-        :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-        :esportes => {:except => [:created_at, :updated_at]},
-        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-      }
+    render json: lojas
   end
   
   def render_success(loja)
     render json: {
         success: true,
-        data: loja, 
-          :except => [:id, :created_at, :responsavel_id, :logo_file_name, :logo_content_type, :logo_file_size, :logo_updated_at],
-          :methods => [:logo_url, :responsavel_uuid],
-          :include => {
-            :locais => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-            :esportes => {:except => [:created_at, :updated_at]},
-            :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-          }
+        data: loja
       }
   end
   

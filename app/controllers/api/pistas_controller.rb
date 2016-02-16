@@ -1,6 +1,6 @@
 class Api::PistasController < Api::ApiController
   
-  before_action :authenticate_usuario!, only: [:mine, :create, :update]
+  before_action :authenticate_usuario!, only: [:mine, :create, :update, :upload]
   
   # GET /pistas
   def index
@@ -32,13 +32,21 @@ class Api::PistasController < Api::ApiController
   
   # PATCH/PUT /pistas/:uuid
   def update
-    if current_usuario.admin?
-      pista = Pista.find_by_uuid!(params[:uuid])
-    else
-      pista = current_usuario.pistas.find_by_uuid!(params[:uuid])
-    end
+    pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
+    pista = build_pista(pista)
     
-    if pista.update(build_pista)
+    if pista.save pista
+      render_success pista
+    else
+      render_error pista
+    end
+  end
+  
+  # POST /pistas/:uuid/upload
+  def upload
+    pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
+    
+    if pista.update(params[:foto])
       render_success pista
     else
       render_error pista
@@ -47,49 +55,40 @@ class Api::PistasController < Api::ApiController
 
   private
   
-  def build_pista
+  def build_pista(pista)
     # get the permitted parameters
-    pista_attributes = params.permit(:uuid, :nome, :telefone, :email, :website, :facebook, :foto, :fundo, :descricao, :updated_at,
+    pista_attributes = params.permit(:nome, :descricao, :website, :facebook, :responsavel_uuid, :uuid,
         esportes: [:id],
-        horario: [:seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes],
+        horario: [:inicio, :fim, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :detalhes],
         local: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]
       )
     
     # extract nested objects
+    responsavel_uuid = pista_attributes.delete("responsavel_uuid")
     esporte_attributes = pista_attributes.delete("esportes")
     horario_attributes = pista_attributes.delete("horario")
-    local_attributes = pista_attributes.delete("locais")
+    local_attributes = pista_attributes.delete("local")
     
-    # create the object
-    pista = Pista.new(pista_attributes)
+    # create a new object or update if it exists
+    if (pista.nil?)
+      pista = Pista.new(pista_attributes)
+    else
+      pista.assign_attributes(pista_attributes)
+    end
     pista.esporte_ids = esporte_attributes.map{|e| e["id"]}
     pista.horario = Horario.new(horario_attributes)
-    pista.locais = Local.new(local_attributes)
+    pista.local = Local.new(local_attributes)
     return pista
   end
   
   def render_pistas(pistas)
-    render json: pistas, 
-      :except => [:id, :created_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
-      :methods => [:foto_url, :responsavel_uuid],
-      :include => { 
-        :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-        :esportes => {:except => [:created_at, :updated_at]},
-        :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-      }
+    render json: pistas
   end
   
   def render_success(pista)
     render json: {
         success: true,
-        data: pista, 
-          :except => [:id, :created_at, :responsavel_id, :foto_file_name, :foto_content_type, :foto_file_size, :foto_updated_at],
-          :methods => [:foto_url, :responsavel_uuid],
-          :include => { 
-            :local => {:except => [:id, :created_at, :updated_at, :localizavel_id, :localizavel_type]},
-            :esportes => {:except => [:created_at, :updated_at]},
-            :horario => {:except => [:id, :created_at, :updated_at, :funcionamento_id, :funcionamento_type]}
-          }
+        data: pista
       }
   end
   
