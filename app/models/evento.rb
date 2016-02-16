@@ -65,6 +65,16 @@ class Evento < ActiveRecord::Base
     responsavel.uuid
   end
   
+  def as_json(options={})
+    super(:only => [:nome, :descricao, :data, :hora, :website, :facebook, :uuid, :data_fim],
+          :methods => [:flyer_url, :responsavel_uuid],
+          :include => {
+            :local => {:except => [:id, :localizavel_id, :localizavel_type, :created_at, :updated_at]},
+            :esportes => {:except => [:created_at, :updated_at]}
+          }
+    )
+  end
+  
   private
   
   def set_uuid

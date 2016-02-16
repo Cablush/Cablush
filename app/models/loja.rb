@@ -67,6 +67,17 @@ class Loja < ActiveRecord::Base
     responsavel.uuid
   end
   
+  def as_json(options={})
+    super(:only => [:nome, :descricao, :telefone, :email, :website, :facebook, :uuid],
+          :methods => [:logo_url, :responsavel_uuid],
+          :include => {
+            :locais => {:except => [:id, :localizavel_id, :localizavel_type, :created_at, :updated_at]},
+            :esportes => {:except => [:created_at, :updated_at]},
+            :horario => {:except => [:id, :funcionamento_id, :funcionamento_type, :created_at, :updated_at]}
+          }
+    )
+  end
+  
   private
   
   def set_uuid
