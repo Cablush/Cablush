@@ -55,7 +55,7 @@ class Api::LojasController < Api::ApiController
 
   private
   
-  def build_loja(loja)
+  def build_loja(*loja)
     # get the permitted parameters
     loja_attributes = params.permit(:nome, :descricao, :telefone, :email, :website, :facebook, :responsavel_uuid, :uuid,
         esportes: [:id],

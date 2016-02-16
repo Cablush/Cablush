@@ -55,7 +55,7 @@ class Api::PistasController < Api::ApiController
 
   private
   
-  def build_pista(pista)
+  def build_pista(*pista)
     # get the permitted parameters
     pista_attributes = params.permit(:nome, :descricao, :website, :facebook, :responsavel_uuid, :uuid,
         esportes: [:id],

@@ -56,7 +56,7 @@ class Api::EventosController < Api::ApiController
 
   private
   
-  def build_evento(evento)
+  def build_evento(*evento)
     # get the permitted parameters
     evento_attributes = params.permit(:nome, :descricao, :data, :hora, :website, :facebook, :responsavel_uuid, :uuid, :data_fim,
         esportes: [:id],
