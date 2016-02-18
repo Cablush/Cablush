@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151122152952) do
+ActiveRecord::Schema.define(version: 20160218115733) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -23,12 +23,6 @@ ActiveRecord::Schema.define(version: 20151122152952) do
 
   add_index "amizades", ["amigo_id"], name: "index_amizades_on_amigo_id"
   add_index "amizades", ["usuario_id"], name: "index_amizades_on_usuario_id"
-
-  create_table "api_keys", force: :cascade do |t|
-    t.string   "access_token"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -228,12 +222,12 @@ ActiveRecord::Schema.define(version: 20151122152952) do
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                               default: "", null: false
+    t.string   "encrypted_password",                  default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                       default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -241,16 +235,18 @@ ActiveRecord::Schema.define(version: 20151122152952) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.integer  "failed_attempts",        default: 0,  null: false
+    t.integer  "failed_attempts",                     default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.integer  "role"
-    t.string   "uuid",                                null: false
-    t.string   "provider",                            null: false
-    t.string   "uid",                    default: "", null: false
-    t.string   "tokens"
+    t.string   "uuid",                                             null: false
+    t.string   "auth_token"
+    t.string   "provider",                                         null: false
+    t.string   "uid",                                 default: "", null: false
+    t.string   "tokens",                 limit: 1280
   end
 
+  add_index "usuarios", ["auth_token"], name: "index_usuarios_on_auth_token", unique: true
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
