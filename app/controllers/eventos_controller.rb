@@ -24,11 +24,7 @@ class EventosController < ApplicationController
   def create
     update_esporte_ids(params[:loja])
     
-    if current_usuario.admin?
-      @evento = Evento.new(evento_params)
-    else
-      @evento = current_usuario.eventos.build(evento_params)
-    end
+    @evento = current_usuario.eventos.build(evento_params)
     
     if @evento.save
       redirect_to eventos_path

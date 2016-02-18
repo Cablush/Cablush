@@ -25,11 +25,7 @@ class LojasController < ApplicationController
   def create
     update_esporte_ids(params[:loja])
     
-    if current_usuario.admin?
-      @loja = Loja.new(loja_params)
-    else
-      @loja = current_usuario.lojas.build(loja_params)
-    end
+    @loja = current_usuario.lojas.build(loja_params)
     
     if @loja.save
       redirect_to lojas_path

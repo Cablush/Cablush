@@ -25,11 +25,7 @@ class PistasController < ApplicationController
   def create
     update_esporte_ids(params[:loja])
     
-    if current_usuario.admin?
-      @pista = Pista.new(pista_params)
-    else
-      @pista = current_usuario.pistas.build(pista_params)
-    end
+    @pista = current_usuario.pistas.build(pista_params)
     
     if @pista.save
       redirect_to pistas_path
