@@ -120,12 +120,12 @@ body{
 }
 .logo{
     float:left;
-    width: 25%;
+    width: 20%;
 }
 .cssmenu {
     margin-top: 15px;
     position: relative;
-    width: 45%;
+    width: 50%;
     float: left;
 }
 #nav {
@@ -259,21 +259,28 @@ body{
         padding-top: 0;
     }
 }
+.buttons {
+    float: right;
+    width: 30%;
+    margin-top: 15px;
+    position: relative;
+}
 .login_name {
-    float:left;
     margin-right:3.6%;
     color: #ccc;
     padding: 10px;
-}
-.buttons{
-    float:right;
-    width:30%;
-    margin-top: 15px;
+    right: 105px;
+    position: absolute;
 }
 .login_btn {
-    float: left;
+    right: 133px;
+    position: absolute;
 }
-.login_btn a {
+.logout_btn {
+    right: 0px;
+    position: absolute;
+}
+.login_btn a, .logout_btn a {
     font-family: 'Montserrat', sans-serif;	
     display: inline-block;
     font-size:0.8125em;
@@ -290,11 +297,12 @@ body{
     -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
-.login_btn a:hover {
+.login_btn a:hover, .logout_btn a:hover {
     color:#fff;
 }
 .get_btn {
-    float:left;
+    position: absolute;
+    right: 0px;
 }
 .get_btn a {
     font-family: 'Montserrat', sans-serif;	
@@ -302,8 +310,8 @@ body{
     font-size:0.8125em;
     color: #fff;
     background:#fe2232;
-    border:none;
-    padding:12px 20px;
+    border: 1px solid #fe2232;
+    padding:10px 20px;
     text-transform: uppercase;
     border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -326,11 +334,44 @@ h2.head{
 span.m_1 {
     font-family: 'Montserrat', sans-serif;	
 }
+
 /*--content--*/
-.content-box{
+.content-box {
     padding: 10px 0 0 0;
     background:#fff;
     height:39px;
+}
+.main{
+    background:#f4f4f4;
+    padding:10px 0;
+}
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex-wrap .content-box {
+    padding: 10px 0 0 0;
+    background:#fff;
+    height:39px;
+    width: 50%;
+    float: left;
+}
+.flex-wrap .main{
+    background:#f4f4f4;
+    padding:10px 0;
+    width: 50%;
+    float: left;
+}
+.wrap-content {
+    float: left; 
+    padding-left: 30%; 
+    width: 40%;
+}
+.content {
+    height:100%;
+    float: left;
+}
+.twitter-timeline {    
 }
 ul.events{
     float:left;
@@ -352,11 +393,6 @@ ul.events li {
 }
 .content-box-left {
     padding-left: 25%;
-}
-.content-box-right {
-    float: right;
-    width:65.5%;
-    margin-top: 1px;
 }
 .search_box_clear {
     float: left;
@@ -400,6 +436,7 @@ ul.events li {
     background: #FFF none repeat scroll 0% 0%;
     outline: medium none;
     border: medium none;
+    white-space: nowrap;
 }
 .search_box form button:hover, .search_box button:hover {
     color: #333;
@@ -440,10 +477,7 @@ ul.events li {
     color: #999;
     font-family: 'Dosis', sans-serif;
 }
-.main{
-    background:#f4f4f4;
-    padding:3% 0;
-}
+
 /*  GRID OF THREE */
 .row {
     -moz-column-width: 21em;
@@ -560,7 +594,7 @@ h5.m_3{
     margin: 10px 0;
     line-height: 1.5em;
 }
-/***** Media Quries *****/
+/***** Media Queries *****/
 @media only screen and (max-width: 1024px) {
     .wrap {
         width:95%;
@@ -580,7 +614,6 @@ h5.m_3{
 }
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 @media only screen and (max-width: 480px) {
-
     .wrap{
         width:95%;
     }		
@@ -2513,7 +2546,7 @@ span.tab-img{
 .search{
     position:relative;
     background:#E4E4E4;
-    padding: 5px 0;
+    /*padding: 5px 0;*/
     margin-bottom: 7%;
 }
 .search form input[type="text"] {
@@ -2742,13 +2775,11 @@ select.timeselector {
     -webkit-text-shadow: 1px 1px 6px #aaa;
     -o-text-shadow: 1px 1px 6px #aaa;
 }
-/*--responsive deisign--*/
+
+/*--responsive design--*/
 @media (max-width:1366px) {
     .wrap{
         width:90%;
-    }
-    .buttons {
-        width: 28.5%;
     }
     .textbox {
         width: 30.5%;
@@ -2777,7 +2808,7 @@ select.timeselector {
     #nav > ul > li {
         margin: 0 12px;
     }
-    .login_btn a {
+    .login_btn a, .logout_btn a {
         padding: 8px 15px;
     }
     .get_btn a {
@@ -2786,25 +2817,16 @@ select.timeselector {
     span.middle {
         font-size: 1em;
     }
-    .buttons {
-        width: 28.5%;
-    }
-    .logo {
-        width: 26.5%;
-    }
-    .cssmenu {
-        width: 43.5%;
-    }
 }
 @media (max-width:1024px){
     .wrap {
         width:90%;
     }
-    .buttons {
-        width:30.5%;
-    }
     .logo {
-        width: 24.5%;
+        width: 23%;
+    }
+    .buttons {
+        width: 27%;
     }
     .textbox {
         width: 30.5%;
@@ -2815,12 +2837,18 @@ select.timeselector {
     #nav > ul > li {
         margin: 0 6px;
     }
-    .login_btn a {
+    .login_name {
+        right: 88px;
+    }
+    .login_btn {
+        right: 110px;
+    }
+    .login_btn a, .logout_btn a {
         padding: 8px 15px;
         font-size: 0.7em;
     }
     .get_btn a {
-        padding: 10px 15px;
+        padding: 8px 15px;
         font-size: 0.7em;
     }
     span.middle {
@@ -2837,9 +2865,6 @@ select.timeselector {
     }
     .search_box {
         width: 21%;
-    }
-    .content-box-right {
-        width: 70.5%;
     }
     .span_1_of_3 h3 a {
         font-size: 1em;
@@ -2858,6 +2883,9 @@ select.timeselector {
     .da-thumbs li article h3 {
         padding: 55px 0 10px 0;
     }
+    .twitter-timeline {    
+        width: 400px !important;
+    }
 }
 @media (max-width:800px){
     .wrap {
@@ -2870,14 +2898,6 @@ select.timeselector {
     .list1_desc {
         width:73.5%;
     }
-    .login_btn a {
-        padding: 8px 15px;
-        font-size: 0.7em;
-    }
-    .get_btn a {
-        padding: 10px 15px;
-        font-size: 0.7em;
-    }
     span.middle {
         display: none;
     }
@@ -2889,11 +2909,6 @@ select.timeselector {
     }
     .search_box {
         width: 21%;
-    }
-    .content-box-right {
-        width: 100%;
-        float: none;
-        margin-top:10px;
     }
     .span_1_of_3 h3 a {
         font-size: 1em;
@@ -2908,11 +2923,6 @@ select.timeselector {
     span.rollover {
         height: 107px;
         width: 159px;
-    }
-    ul.events {
-        float: none;
-        width: 100%;
-        margin-top: 0px;
     }
     ul.events > li.active a, ul.events > li a:hover {
         border-bottom: 2px solid #e15a1f;
@@ -2934,15 +2944,20 @@ select.timeselector {
     .search form input[type="text"] {
         width: 78.33%;
     }
+    .logo {
+        width: 100%;
+    }
     .cssmenu {
-        width: 58%;
-        float: right;
+        width: 65%;
     }
     .buttons {
-        width:100%;
+        width:35%;
     }
-    .login_btn {
-        margin-right: 60.6%;
+    .content-box-left {
+        padding-left: 10%;
+    }
+    .twitter-timeline {    
+        width: 100% !important;
     }
 }
 @media (max-width:640px){
@@ -2956,12 +2971,6 @@ select.timeselector {
     .list1_desc {
         width:73.5%;
     }
-    .login_btn a {
-        padding: 8px 15px;
-    }
-    .get_btn a {
-        padding: 10px 15px;
-    }
     span.middle {
         display: none;
     }
@@ -2971,13 +2980,14 @@ select.timeselector {
     ul.events li a {
         margin: 0 9px;
     }
-    .search_box {
-        width: 21%;
+    .content-box-left {
+        padding-left: 0;
     }
-    .content-box-right {
-        width: 100%;
-        float: none;
-        margin-top:10px;
+    .search_box {
+        width: 23%;
+    }
+    .search_box form button, .search_box button {
+        padding: 5px;
     }
     .span_1_of_3 h3 a {
         font-size: 1em;
@@ -2992,11 +3002,6 @@ select.timeselector {
     span.rollover {
         height: 201px;
         width: 300px;
-    }
-    ul.events {
-        float: none;
-        width: 100%;
-        margin-top: 0px;
     }
     ul.events > li.active a, ul.events > li a:hover {
         border-bottom: 2px solid #e15a1f;
@@ -3032,27 +3037,29 @@ select.timeselector {
         width:100%;
     }
     .cssmenu {
-        width: 56%;
+        width: 40%;
         float:left;
         margin-top:0;
     }
     .buttons {
-        width:100%;
-        display: inline-flex;
+        width: 50%;
+        float: left;
+        position: absolute;
+        left: 75px;
     }
     .logo {
-        width: 20.5%;
+        width: 34%;
         float: right;
         margin-top:10px;
     }
-    .login_btn {
-        margin-right:0;
-        float: none;
-        width:100%;
+    .login_name, .login_btn {
+        left: 0px;
+        position: relative;
+        float: left;
     }
-    .get_btn {
-        float: none;
-        width:100%;
+    .logout_btn, .get_btn {
+        position: relative;
+        float: left;
     }
     .header-top {
         padding:0;
@@ -3073,6 +3080,20 @@ select.timeselector {
     #nav > ul > li > a:hover{
         color:#e15a1f;
     }
+    .flex-wrap .content-box {
+        width: 100%;
+        float: none;
+    }
+    .flex-wrap .main{
+        width: 100%;
+        float: none;
+    }
+    .flex-wrap .order_3 {
+        order: 3;
+    }
+    .flex-wrap .order_4 {
+        order: 4;
+    }
 }
 @media (max-width:480px){
     .wrap {
@@ -3087,11 +3108,11 @@ select.timeselector {
     #nav > ul > li {
         margin: 0 0px;
     }
-    .login_btn a {
+    .login_btn a, .logout_btn a {
         padding:7px 10px;
     }
     .get_btn a {
-        padding:8px 10px;
+        padding:7px 10px;
     }
     span.middle {
         display: none;
@@ -3102,16 +3123,24 @@ select.timeselector {
     h2.head {
         font-size:1.2em;
     }
+    ul.events {
+        margin-top: 78px;
+    }
+    .flex-wrap ul.events {
+        margin-top: 10px;
+    }
     ul.events li a {
         margin: 0 9px;
     }
-    .search_box {
-        width: 21%;
+    .content-box {
+        height: 106px;
     }
-    .content-box-right {
-        width: 100%;
-        float: none;
-        margin-top:10px;
+    .search_box_clear {
+        /*padding-left: 15%;*/
+    }
+    .search_box {
+        width: 48%;
+        float: right;
     }
     .span_1_of_3 h3 a {
         font-size: 1em;
@@ -3126,11 +3155,6 @@ select.timeselector {
     span.rollover {
         height: 201px;
         width: 300px;
-    }
-    ul.events {
-        float: none;
-        width: 100%;
-        margin-top: 0px;
     }
     ul.events > li.active a, ul.events > li a:hover {
         border-bottom: 2px solid #e15a1f;
@@ -3179,20 +3203,22 @@ select.timeselector {
         width:100%;
     }
     .cssmenu {
-        width: 56%;
+        width: 40%;
         float:left;
         margin-top:0;
     }
     .buttons {
-        width:100%;
+        width:38%;
     }
     .logo {
-        width: 25.5%;
+        width: 46%;
         float: right;
         margin-top: 10px;
     }
-    .login_btn {
-        margin-right: 42.6%;
+    .login_btn, .login_name  {
+        margin-right: 0px;
+    }
+    .get_btn, .logout_btn {
     }
     .header-top {
         padding:0;
@@ -3216,15 +3242,6 @@ select.timeselector {
         float: none;
         text-align: center;
     }
-    .login_btn {
-        margin-right:0;
-        float: none;
-        width:100%;
-    }
-    .get_btn {
-        float: none;
-        width:100%;
-    }
 }
 @media (max-width:320px){
     .wrap {
@@ -3239,11 +3256,11 @@ select.timeselector {
     #nav > ul > li {
         margin: 0 6px;
     }
-    .login_btn a {
+    .login_btn a, .logout_btn a {
         padding: 5px 11px;
     }
     .get_btn a {
-        padding:6px 11px;
+        padding:5px 11px;
     }
     span.middle {
         display: none;
@@ -3256,14 +3273,6 @@ select.timeselector {
     }
     ul.events li a {
         margin: 0 9px;
-    }
-    .search_box {
-        width: 21%;
-    }
-    .content-box-right {
-        width: 100%;
-        float: none;
-        margin-top:10px;
     }
     .span_1_of_3 h3 a {
         font-size: 1em;
@@ -3278,11 +3287,6 @@ select.timeselector {
     span.rollover {
         height: 170px;
         width: 254px;
-    }
-    ul.events {
-        float: none;
-        width: 100%;
-        margin-top: 0px;
     }
     ul.events > li.active a, ul.events > li a:hover {
         border-bottom: 2px solid #e15a1f;
@@ -3331,20 +3335,20 @@ select.timeselector {
         width:90%;
     }
     .cssmenu {
-        width: 56%;
-        float:left;
-        margin-top:0;
+        width: 45%;
+        margin-top: 13px;
+        float: left;
+        position: absolute;
     }
     .buttons {
-        width:100%;
+        position: relative;
+        left: 0px;
+        width: 100%;
+        margin-top: 0px;
     }
     .logo {
-        width:30.5%;
-        float: right;
-        margin-top:7px;
-    }
-    .login_btn {
-        margin-right:6.6%;
+        width: 68%;
+        margin-top: 7px;
     }
     .header-top {
         padding:0;
@@ -3414,16 +3418,9 @@ select.timeselector {
     h2.head4{
         font-size: 1.2em;
     }
-    .login_btn {
-        margin-right:0;
-        float: none;
-        width:100%;
-    }
-    .get_btn {
-        float: none;
-        width:100%;
-    }
 }
+/*--responsive design--*/
+
 html, body, map, #map-canvas, #map-canvas-cad {
     height: 100%;
     margin: 0px;
@@ -3458,21 +3455,6 @@ html, body, map, #map-canvas, #map-canvas-cad {
 }
 .infoContent .infoBody {
     
-}
-.wrap-content {
-    float: left; 
-    padding-left: 30%; 
-    width: 40%;
-}
-.content{
-    width:49.8%;
-    height:100%;
-    float: left;
-}
-.timeline{
-    width:49.8%;
-    height:100%;
-    float: right;
 }
 .field {
     padding-bottom: 10px;
