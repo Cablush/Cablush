@@ -1,9 +1,9 @@
 <div class="content-box">
     <div class="wrap">
         <ul class="events">
-            <li><%= link_to 'Cadastros', home_cadastros_path %></li>
+            <li><%= link_to 'Cadastros', cadastros_path %></li>
             <li class="active"><a href="#">Pistas</a></li>
-            <li><%= link_to 'Nova Pista', new_pista_path %></li>
+            <li><%= link_to 'Nova Pista', cadastros_new_pista_path %></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -13,7 +13,7 @@
         <ul class="list1">
             <% @pistas.each do |pista| %>
               <li>
-                  <%= link_to pista.nome, edit_pista_path(pista) %>
+                  <%= link_to pista.nome, cadastros_edit_pista_path(pista) %>
               </li>
             <% end %>
         </ul>        

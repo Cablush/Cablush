@@ -1,9 +1,9 @@
 <div class="content-box">
     <div class="wrap">
         <ul class="events">
-            <li><%= link_to 'Cadastros', home_cadastros_path %></li>
+            <li><%= link_to 'Cadastros', cadastros_path %></li>
             <li class="active"><a href="#">Lojas</a></li>
-            <li><%= link_to 'Nova loja', new_loja_path %></li>
+            <li><%= link_to 'Nova loja', cadastros_new_loja_path %></li>
         </ul>
         <div class="clear"></div>
     </div>
@@ -13,7 +13,7 @@
         <ul class="list1">
             <% @lojas.each do |loja| %>
               <li>
-                  <%= link_to loja.nome, edit_loja_path(loja) %>
+                  <%= link_to loja.nome, cadastros_edit_loja_path(loja) %>
               </li>
             <% end %>
         </ul>        

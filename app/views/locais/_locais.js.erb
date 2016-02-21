@@ -1,9 +1,13 @@
+<% flash.each do |message_type, message| %>
+  $("#flash_messages").html('<div class="alert alert-<%= message_type %>"><%= message %></div>');
+<% end %>
+
 <% if @clear %>
   $("#paginate_itens").empty();
   CablushShowMap.clearLocations();
 <% end %>
 
-$("#paginate_itens").append(" <%= j render "locais.html", locais: @locais %> ");
+$("#paginate_itens").append(' <%= j render "locais/locais.html", locais: @locais %> ');
 CablushShowMap.loadLocations(<%= locais_to_json @locais %>);
 
 <% if @locais.next_page %>

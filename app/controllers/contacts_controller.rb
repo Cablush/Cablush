@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
-  
-  def new
+
+  def index
     @title = "Dúvidas, sugestões ou parcerias. Entre em contato conosco!" 
     @contact = Contact.new
   end
@@ -11,12 +11,12 @@ class ContactsController < ApplicationController
 
     if @contact.valid?
       ContactMailer.contact_message(params[:contact]).deliver_later
-      flash[:notice] = 'Mensagem enviada com sucesso'
-      redirect_to :action => 'new'
+      flash.now[:notice] = 'Mensagem enviada com sucesso'
+      redirect_to contact_path
       return  
     end
 
-    render :action => 'new'
+    render 'index'
   end
   
 end

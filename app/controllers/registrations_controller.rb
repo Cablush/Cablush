@@ -37,7 +37,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
   
   def after_sign_up_path_for(resource)
-      home_index_path
+      index_path
   end
   
   def after_update_path_for(resource)

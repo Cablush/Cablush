@@ -1,7 +1,7 @@
 <div class="header-top">
     <div class="wrap">
         <div class="logo">
-            <a href="<%=home_index_path%>"> <%= image_tag("logo.png", size: "200x56") %></a>
+            <a href="<%=index_path%>"> <%= image_tag("logo.png", size: "200x56") %></a>
         </div>
         
         <div class="cssmenu">
@@ -9,14 +9,15 @@
                 <a href="#nav" title="Show navigation">Show navigation</a>
                 <a href="#" title="Hide navigation">Hide navigation</a>
                 <ul class="clearfix">
-                    <li><%= link_to 'Home', home_index_path %></li>
-                    <li><%= link_to 'Lojas', home_lojas_path %></li>
-                    <li><%= link_to 'Eventos', home_eventos_path %></li>
-                    <li><%= link_to 'Pistas', home_pistas_path %></li>
-                    <!--<li><%#= link_to 'Blog', home_blog_path %></li>-->
-                    <li><%= link_to 'Contato', new_contact_path %></li>
+                    <li><%= link_to 'Inicio', index_path %></li>
+                    <li><%= link_to 'Lojas', lojas_path %></li>
+                    <li><%= link_to 'Eventos', eventos_path %></li>
+                    <li><%= link_to 'Pistas', pistas_path %></li>
+                    <!--<li><%#= link_to 'Blog', blog_path %></li>-->
+                    <li><%= link_to 'Contato', contact_path %></li>
+                    <li><%= link_to 'Sobre', about_path %></li>
                     <% if usuario_signed_in? %>
-                      <li><%= link_to 'Cadastros', home_cadastros_path %></li>
+                      <li><%= link_to 'Cadastros', cadastros_path %></li>
                     <% end %>
                     <div class="clear"></div>
                 </ul>
@@ -28,7 +29,7 @@
               <div class="login_name">
                 Olá, <%= current_usuario.first_name %>
               </div>
-              <div class="login_btn">
+              <div class="logout_btn">
                 <%= link_to "Sign out", destroy_usuario_session_path, method: :delete %>
               </div>
             <% else %>

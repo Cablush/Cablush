@@ -28,7 +28,7 @@ DeviseTokenAuth.setup do |config|
   # the API knows where to redirect users after successful email confirmation. 
   # If this param is set, the API will redirect to this value when 
   # no value is provided by the client.
-  config.default_confirm_success_url = "/home/index"
+  config.default_confirm_success_url = "/index"
   
   # By default this value is expected to be sent by the client so that the API 
   # knows where to redirect users after successful password resets. If this 

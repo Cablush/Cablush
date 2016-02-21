@@ -1,55 +1,15 @@
 class HomeController < ApplicationController
  
-  def lojas
-    @locais = Local.lojas.paginate(:page => params[:page], :per_page => 9)
-    @locais = @locais.lojas_by_estado(params[:estado]) if params[:estado].present?
-    @locais = @locais.lojas_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
-    
-    @clear = params[:filter] && params[:page].blank? || nil
-    @title = "Encontre a loja mais próxima de você!"
-    
-    respond_to do |format|
-      format.html {@locais}
-      format.js {@locais}
-      format.json {render :json => @locais.to_json}
-    end
-  end
-
-  def eventos
-    @locais = Local.eventos.paginate(:page => params[:page], :per_page => 9)
-    @locais = @locais.eventos_by_estado(params[:estado]) if params[:estado].present?
-    @locais = @locais.eventos_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
-    
-    @clear = params[:filter] && params[:page].blank? || nil
-    @title = "Veja o que está acontecendo e participe!"
-    
-    respond_to do |format|
-      format.html { @locais}
-      format.js { @locais }
-      format.json { render :json => @locais.to_json }
-    end
-  end
-  
-  def pistas
-    @locais = Local.pistas.paginate(:page => params[:page], :per_page => 9)
-    @locais = @locais.pistas_by_estado(params[:estado]) if params[:estado].present?
-    @locais = @locais.pistas_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
-    
-    @clear = params[:filter] && params[:page].blank? || nil
-    @title = "Onde praticar."
-   
-    respond_to do |format|
-      format.html { @locais}
-      format.js { @locais }
-      format.json { render :json => @locais.to_json }
-    end
-  end
-  
-  def blog
-  end
-
   def index
     @title = "Esportes, lugares e eventos."
+  end
+  
+  def about
+    @title = "Sobre o Cablush"
+  end
+
+  def blog
+    @title = "Blog do Cablush"
   end
   
   def cadastros

@@ -2,8 +2,28 @@ class PistasController < ApplicationController
   
   include LocalAutocompletes, EsporteAutocompletes
   
-  before_action :authenticate_usuario!
+  before_action :authenticate_usuario!, :except => :search
   #before_action :lojista_at_least, :except => :show
+  
+  # GET /pistas(.:format)
+  def search
+    @locais = Local.pistas.paginate(:page => params[:page], :per_page => 9)
+    @locais = @locais.pistas_by_estado(params[:estado]) if params[:estado].present?
+    @locais = @locais.pistas_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
+    
+    @clear = params[:filter] && params[:page].blank? || nil
+    @title = "Onde praticar?"
+    
+    if @locais.empty?
+      flash.now[:alert] = 'Nenhuma pista encontrada! Cadastre-se no Cablush e divulge as pistas da sua cidade!'
+    end
+   
+    respond_to do |format|
+      format.html { @locais }
+      format.js { @locais }
+      format.json { render json: @locais.to_json }
+    end
+  end
 
   # GET /pistas(.:format)
   def index

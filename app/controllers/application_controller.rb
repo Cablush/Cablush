@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session # TODO , if: Proc.new { |c| c.request.format == 'application/json' }
 
   def after_sign_in_path_for(resource)
-    home_cadastros_path
+    cadastros_path
   end
   
   def after_sign_out_path_for(resource)
-    home_index_path
+    index_path
   end
   
   def unauthorized

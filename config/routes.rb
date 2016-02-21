@@ -27,32 +27,31 @@ Cablush::Application.routes.draw do
       resources :esportes, only: [:index], defaults: { format: 'json' }
   end
   
-  resources :lojas do 
-    get :autocomplete_esporte_nome, on: :collection
-    get :autocomplete_cidade_nome, on: :collection
+  namespace :cadastros do
+    resources :lojas do 
+      get :autocomplete_esporte_nome, on: :collection
+      get :autocomplete_cidade_nome, on: :collection
+    end
+    resources :eventos do 
+      get :autocomplete_esporte_nome, on: :collection
+      get :autocomplete_cidade_nome, on: :collection
+    end
+    resources :pistas do 
+      get :autocomplete_esporte_nome, on: :collection
+      get :autocomplete_cidade_nome, on: :collection
+    end
   end
-  resources :eventos do 
-    get :autocomplete_esporte_nome, on: :collection
-    get :autocomplete_cidade_nome, on: :collection
-  end
-  resources :pistas do 
-    get :autocomplete_esporte_nome, on: :collection
-    get :autocomplete_cidade_nome, on: :collection
-  end
   
-  resources :contacts, only: [:index, :new, :create]
+  resources :contacts, only: [:index, :create]
   
-  match "home/lojas", via: [:get, :post]
-  match "home/eventos", via: [:get, :post]
-  match "home/pistas", via: [:get, :post]
-  match "home/cadastros", via: [:get, :post]
-  
-  get "home/index"
-  get "home/index_admin"
-  
-  get "home/about"
-  get "home/blog"
-  
+  match "index", to: "home#index", via: [:get]
+  match "lojas", to: "lojas#search", via: [:get, :post]
+  match "eventos", to: "eventos#search", via: [:get, :post]
+  match "pistas", to: "pistas#search", via: [:get, :post]
+  match "contact", to: "contacts#index", via: [:get]
+  match "about", to: "home#about", via: [:get]
+  match "cadastros", to: "home#cadastros", via: [:get, :post]
+    
   # You can have the root of your site routed with "root"
   root 'home#index'
 

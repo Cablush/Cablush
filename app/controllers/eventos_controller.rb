@@ -2,8 +2,28 @@ class EventosController < ApplicationController
   
   include LocalAutocompletes, EsporteAutocompletes
   
-  before_action :authenticate_usuario!
+  before_action :authenticate_usuario!, :except => :search
   #before_action :lojista_at_least, :except => :show
+  
+  # GET /eventos(.:format)
+  def search
+    @locais = Local.eventos.paginate(:page => params[:page], :per_page => 9)
+    @locais = @locais.eventos_by_estado(params[:estado]) if params[:estado].present?
+    @locais = @locais.eventos_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
+    
+    @clear = params[:filter] && params[:page].blank? || nil
+    @title = "Veja o que está acontecendo e participe!"
+    
+    if @locais.empty?
+      flash.now[:alert] = 'Nenhum evento encontrado! Cadastre-se no Cablush e divulge os eventos da sua região!'
+    end
+    
+    respond_to do |format|
+      format.html { @locais }
+      format.js { @locais }
+      format.json { render json: @locais.to_json }
+    end
+  end
   
   # GET /eventos(.:format)
   def index

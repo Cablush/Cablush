@@ -1,6 +1,7 @@
 $(function() {
     
     var searchLocal = function (url, estado, esporte) {
+        $("#flash_messages").html('');
         $.ajax({
             url: url,
             dataType: "script",
@@ -12,34 +13,34 @@ $(function() {
         });
     };
     
-    // LOJAS $('home lojas')
-    $("#_home_lojas_estado, #_home_lojas_esporte").on('change', function () {
-        searchLocal("lojas", $("#_home_lojas_estado").val(), $("#_home_lojas_esporte").val());
+    // LOJAS $('lojas')
+    $("#_lojas_estado, #_lojas_esporte").on('change', function () {
+        searchLocal("lojas", $("#_lojas_estado").val(), $("#_lojas_esporte").val());
     });
     
     $('#limpar_campos').on('click', function () {
-        $('#_home_lojas_estado').val('');
-        $('#_home_lojas_esporte').val('').trigger('change');
+        $('#_lojas_estado').val('');
+        $('#_lojas_esporte').val('').trigger('change');
     });
     
-    // PISTAS $('home pistas')
-    $("#_home_pistas_estado, #_home_pistas_esporte").on('change', function () {
-        searchLocal("pistas", $("#_home_pistas_estado").val(), $("#_home_pistas_esporte").val());
-    });
-    
-    $('#limpar_campos').on('click', function () {
-        $('#_home_pistas_estado').val('');
-        $('#_home_pistas_esporte').val('').trigger('change');
-    });
-    
-    // EVENTOS $('home eventos')
-    $("#_home_eventos_estado, #_home_eventos_esporte").on('change', function () {
-        searchLocal("eventos", $("#_home_eventos_estado").val(), $("#_home_eventos_esporte").val());
+    // PISTAS $('pistas')
+    $("#_pistas_estado, #_pistas_esporte").on('change', function () {
+        searchLocal("pistas", $("#_pistas_estado").val(), $("#_pistas_esporte").val());
     });
     
     $('#limpar_campos').on('click', function () {
-        $('#_home_eventos_estado').val('');
-        $('#_home_eventos_esporte').val('').trigger('change');
+        $('#_pistas_estado').val('');
+        $('#_pistas_esporte').val('').trigger('change');
+    });
+    
+    // EVENTOS $('eventos')
+    $("#_eventos_estado, #_eventos_esporte").on('change', function () {
+        searchLocal("eventos", $("#_eventos_estado").val(), $("#_eventos_esporte").val());
+    });
+    
+    $('#limpar_campos').on('click', function () {
+        $('#_eventos_estado').val('');
+        $('#_eventos_esporte').val('').trigger('change');
     });
     
     // Pagination
