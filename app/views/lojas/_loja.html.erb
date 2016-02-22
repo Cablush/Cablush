@@ -1,0 +1,32 @@
+<div class="title">
+  <% if loja.logo.exists? %>
+    <%= image_tag loja.logo.url(:small), :class => loja.fundo? ? "fundo" : nil %>
+  <% else %>
+    <%= loja.nome %>
+  <% end %>
+</div>  
+
+<div class="social">
+  <ul>
+    <% if loja.website.present? %>
+      <li>
+        <%= link_to url_with_protocol(loja.website), :target => '_blank' do %>
+          <i class="fa fa-link fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
+    <% if loja.facebook.present? %>
+      <li>
+        <%= link_to url_with_protocol(loja.facebook), target: '_blank' do %>
+          <i class="fa fa-facebook-square fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="desc">
+    <h4 class="m_2"><%= loja.contato %></h4>
+    <h5 class="m_3"><%= local.endereco.gsub(/\\n/, '<br>').html_safe %></h5>
+    <p><%= loja.descricao %></p>
+</div>

@@ -1,0 +1,35 @@
+<div class="title">
+    <%= evento.nome %>
+    <div class="flyer">
+      <% if evento.flyer.exists? %>
+        <%= link_to evento.flyer.url(:original),:rel => "lightbox" do %>
+          <%= image_tag evento.flyer.url(:small), :class => evento.fundo? ? "fundo" : nil %>
+        <% end %>
+      <% end %>
+    </div>
+</div>  
+
+<div class="social">
+  <ul>
+    <% if evento.website.present? %>
+      <li>
+        <%= link_to url_with_protocol(evento.website), :target => '_blank' do %>
+          <i class="fa fa-link fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
+    <% if evento.facebook.present? %>
+      <li>
+        <%= link_to url_with_protocol(evento.facebook), target: '_blank' do %>
+          <i class="fa fa-facebook-square fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="desc">
+    <h4 class="m_2"><%= evento.horario %></h4>
+    <h5 class="m_3"><%= local.endereco.gsub(/\\n/, '<br>').html_safe %></h5>
+    <p><%= evento.descricao %></p>
+</div>

@@ -1,0 +1,34 @@
+<div class="title">
+    <%= pista.nome %>
+    <div class="foto">
+      <% if pista.foto.exists? %>
+        <%= link_to pista.foto.url(:original),:rel => "lightbox" do %>
+          <%= image_tag pista.foto.url(:small), :class => pista.fundo? ? "fundo" : nil %>
+        <% end %>
+      <% end %>
+    </div>
+</div>  
+
+<div class="social">
+  <ul>
+    <% if pista.website.present? %>
+      <li>
+        <%= link_to url_with_protocol(pista.website), :target => '_blank' do %>
+          <i class="fa fa-link fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
+    <% if pista.facebook.present? %>
+      <li>
+        <%= link_to url_with_protocol(pista.facebook), target: '_blank' do %>
+          <i class="fa fa-facebook-square fa-2x"></i>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="desc">
+    <h5 class="m_3"><%= local.endereco.gsub(/\\n/, '<br>').html_safe %></h5>
+    <p><%= pista.descricao %></p>
+</div>
