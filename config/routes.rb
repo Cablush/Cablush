@@ -5,6 +5,7 @@ Cablush::Application.routes.draw do
   
   devise_for :usuarios, controllers: { registrations: 'registrations' }
   
+  # API
   namespace :api do
       mount_devise_token_auth_for 'Usuario', at: 'auth', controllers: {
           registrations: 'api/registrations'
@@ -27,31 +28,34 @@ Cablush::Application.routes.draw do
       resources :esportes, only: [:index], defaults: { format: 'json' }
   end
   
+  # CADASTRO
   namespace :cadastros do
-    resources :lojas do 
+    resources :lojas, param: :uuid do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
     end
-    resources :eventos do 
+    resources :eventos, param: :uuid do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
     end
-    resources :pistas do 
+    resources :pistas, param: :uuid do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
     end
   end
   
+  # PESQUISA
+  resources :lojas, only: [:index, :show], param: :uuid
+  resources :eventos, only: [:index, :show], param: :uuid
+  resources :pistas, only: [:index, :show], param: :uuid
+  
   resources :contacts, only: [:index, :create]
   
   match "index", to: "home#index", via: [:get]
-  match "lojas", to: "lojas#search", via: [:get, :post]
-  match "eventos", to: "eventos#search", via: [:get, :post]
-  match "pistas", to: "pistas#search", via: [:get, :post]
   match "contact", to: "contacts#index", via: [:get]
   match "about", to: "home#about", via: [:get]
-  match "cadastros", to: "home#cadastros", via: [:get, :post]
-    
+  match "cadastros", to: "home#cadastros", via: [:get]
+  
   # You can have the root of your site routed with "root"
   root 'home#index'
 

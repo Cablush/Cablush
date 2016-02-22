@@ -1,22 +1,27 @@
+<%= render "locais/maps.html", locais: @locais %>
+
 <div class="content-box">
     <div class="wrap">
         <ul class="events">
-            <li><%= link_to 'Cadastros', cadastros_path %></li>
-            <li class="active"><a href="#">Eventos</a></li>
-            <li><%= link_to 'Novo Evento', cadastros_new_evento_path %></li>
+            <li class="active"><a href="#">Eventos</a></li> 
         </ul>
-        <div class="clear"></div>
-    </div>
-</div>
-<div class="main">
-    <div class="wrap">
-        <ul class="list1">
-            <% @eventos.each do |evento| %>
-              <li>
-                  <%= link_to evento.nome, cadastros_edit_evento_path(evento) %>
-              </li>
-            <% end %>
-        </ul>        
+        <div class="content-box-left">
+          <%= form_for eventos_path, html: { id: "form_eventos" } ,remote: true  do |f| %>
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <%= render "locais/pesquisa_estado_esporte", f: f %>
+          <% end %>
+        </div>
     </div>
     <div class="clear"></div>
+</div>
+
+<div class="main">
+    <div class="wrap row" id="paginate_itens">
+      <%= render "locais/locais.html", locais: @locais %>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="wrap_paginate">
+  <%= will_paginate @locais, :remote => true  %>
 </div>
