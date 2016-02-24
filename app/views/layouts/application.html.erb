@@ -14,7 +14,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <%= favicon_link_tag 'favicon.ico' %>
     </head>
     <body class="<%= controller_name %> <%= action_name %>">
-
+        
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        
         <%= render "layouts/menu"%>
         
         <%= render "layouts/message"%>
