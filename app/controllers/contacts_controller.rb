@@ -1,12 +1,12 @@
 class ContactsController < ApplicationController
 
   def index
-    @title = "Dúvidas, sugestões ou parcerias. Entre em contato conosco!" 
+    @title = "Dúvidas, sugestões ou parcerias.<br/>Entre em contato conosco!".html_safe
     @contact = Contact.new
   end
 
   def create
-    @title = "Dúvidas, sugestões ou parcerias. Entre em contato conosco!" 
+    @title = "Dúvidas, sugestões ou parcerias.<br/>Entre em contato conosco!".html_safe
     @contact = Contact.new(params[:contact])
 
     if @contact.valid?
