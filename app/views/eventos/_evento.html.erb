@@ -9,25 +9,6 @@
     </div>
 </div>  
 
-<div class="social">
-  <ul>
-    <% if evento.website.present? %>
-      <li>
-        <%= link_to url_with_protocol(evento.website), :target => '_blank' do %>
-          <i class="fa fa-link fa-2x"></i>
-        <% end %>
-      </li>
-    <% end %>
-    <% if evento.facebook.present? %>
-      <li>
-        <%= link_to url_with_protocol(evento.facebook), target: '_blank' do %>
-          <i class="fa fa-facebook-square fa-2x"></i>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
 <div class="desc">
     <%= evento.descricao %>
 </div>
