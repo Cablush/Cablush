@@ -51,8 +51,14 @@ class Evento < ActiveRecord::Base
   #  scope :public, -> { where(public: true) }
   #  scope :sponsored, -> { where(patrocinado: true) }
   
+  def datas
+    datas_tmp = data.strftime('%d/%m/%Y')
+    datas_tmp = datas_tmp.try_append(data_fim.strftime('%d/%m/%Y'), " A ")
+    datas_tmp
+  end
+  
   def horario
-    data.strftime('%d/%m/%Y') + " às " + hora.strftime('%H:%M')
+    hora.strftime('%H:%M')
   end
   
   def flyer_url

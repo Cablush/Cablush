@@ -65,12 +65,12 @@ class Local < ActiveRecord::Base
     ender = ender.try_append(logradouro)
     ender = ender.try_append(numero, ', ')
     ender = ender.try_append(complemento, ', ')
-    ender = ender.try_append(bairro, ', ')
+    ender = ender.try_append(bairro, '\n')
     ender = ender.try_append(cidade, '\n')
     ender = ender.try_append(estado, ' / ')
     ender = ender.try_append(cep, '\n')
     ender = ender.try_append(pais, '\n')
-    ender
+    ender.gsub(/\\n/, '<br>').html_safe
   end
   
   def loja?

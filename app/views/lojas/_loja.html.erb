@@ -4,29 +4,47 @@
   <% else %>
     <%= loja.nome %>
   <% end %>
-</div>  
+</div>
 
-<div class="social">
+<div class="desc">
+    <%= loja.descricao %>
+</div>
+
+<div class="local_attr">
   <ul>
+    <% if loja.telefone.present? %>
+      <li>
+        <i class="fa fa-phone"></i>
+        <%=  loja.telefone %>
+      </li>
+    <% end %>
+    <% if loja.email.present? %>
+      <li>
+        <i class="fa fa-envelope"></i>
+        <%=  loja.email %>
+      </li>
+    <% end %>
     <% if loja.website.present? %>
       <li>
         <%= link_to url_with_protocol(loja.website), :target => '_blank' do %>
-          <i class="fa fa-link fa-2x"></i>
+          <i class="fa fa-link"></i>
+          <%=  loja.website %>
         <% end %>
       </li>
     <% end %>
     <% if loja.facebook.present? %>
       <li>
         <%= link_to url_with_protocol(loja.facebook), target: '_blank' do %>
-          <i class="fa fa-facebook-square fa-2x"></i>
+          <i class="fa fa-facebook-square"></i>
+          <%=  loja.facebook %>
         <% end %>
       </li>
     <% end %>
+    <% if local.endereco.present? %>
+      <li>
+        <i class="fa fa-building attr_ico"></i>
+        <span class="attr_txt"><%=  local.endereco %></span>
+      </li>
+    <% end %>
   </ul>
-</div>
-
-<div class="desc">
-    <h4 class="m_2"><%= loja.contato %></h4>
-    <h5 class="m_3"><%= local.endereco.gsub(/\\n/, '<br>').html_safe %></h5>
-    <p><%= loja.descricao %></p>
 </div>
