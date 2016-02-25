@@ -20,8 +20,10 @@
     <% end %>
     <% if loja.email.present? %>
       <li>
-        <i class="fa fa-envelope"></i>
-        <%=  loja.email %>
+        <%= mail_to loja.email do %>
+          <i class="fa fa-envelope"></i>
+          <%=  loja.email %>
+        <% end %>
       </li>
     <% end %>
     <% if loja.website.present? %>
