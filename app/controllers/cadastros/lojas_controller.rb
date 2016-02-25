@@ -12,6 +12,7 @@ class Cadastros::LojasController < ApplicationController
     else
       @lojas = current_usuario.lojas
     end
+    @title = "Você já cadastrou " + @lojas.length.to_s + " lojas."
   end
   
   # GET /lojas/new(.:format)
@@ -19,6 +20,7 @@ class Cadastros::LojasController < ApplicationController
     @loja = Loja.new
     @loja.locais.build
     @loja.build_horario
+    @title = "Entre com os dados da nova loja."
   end
 
   # POST /lojas(.:format)
@@ -54,6 +56,7 @@ class Cadastros::LojasController < ApplicationController
     if @loja.horario.blank?
       @loja.build_horario
     end
+    @title = ("Você esta editando a loja<br/> \"" + @loja.nome + "\"").html_safe;
   end
 
   # PATCH/PUT /lojas/:uuid(.:format)

@@ -12,6 +12,7 @@ class Cadastros::PistasController < ApplicationController
     else
       @pistas = current_usuario.pistas
     end
+    @title = "Você já cadastrou " + @pistas.length.to_s + " pistas."
   end
   
   # GET /pistas/new(.:format)
@@ -19,6 +20,7 @@ class Cadastros::PistasController < ApplicationController
     @pista = Pista.new
     @pista.build_local
     @pista.build_horario
+    @title = "Entre com os dados da nova pista."
   end
 
   # POST /pistas(.:format)
@@ -54,6 +56,7 @@ class Cadastros::PistasController < ApplicationController
     if @pista.horario.blank?
       @pista.build_horario
     end
+    @title = ("Você esta editando a pista<br/> \"" + @pista.nome + "\"").html_safe;
   end
 
   # PATCH/PUT /pistas/:uuid(.:format)

@@ -3,7 +3,11 @@ Cablush::Application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web, at: "/sidekiq"
   
-  devise_for :usuarios, controllers: { registrations: 'registrations' }
+  devise_for :usuarios, controllers: { 
+      registrations: 'registrations', 
+      sessions: 'sessions', 
+      passwords: 'passwords' 
+  }
   
   # API
   namespace :api do

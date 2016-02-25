@@ -12,12 +12,14 @@ class Cadastros::EventosController < ApplicationController
     else
       @eventos = current_usuario.eventos
     end
+    @title = "Você já cadastrou " + @eventos.length.to_s + " eventos."
   end
   
   # GET /eventos/new(.:format)
   def new
     @evento = Evento.new
     @evento.build_local
+    @title = "Entre com os dados do novo evento."
   end
 
   # POST /eventos(.:format)
@@ -49,6 +51,7 @@ class Cadastros::EventosController < ApplicationController
     if @evento.local.blank?
       @evento.build_local
     end
+    @title = ("Você esta editando o evento<br/> \"" + @evento.nome + "\"").html_safe;
   end
 
   # PATCH/PUT /eventos/:uuid(.:format)

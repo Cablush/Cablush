@@ -4,6 +4,11 @@ class RegistrationsController < Devise::RegistrationsController
   
   before_action :configure_permitted_parameters
   
+  def new
+    @title = "Bem vindo esportista, <br/>faça o cadastro para compartilhar seus locais favoritos!".html_safe
+    super
+  end
+  
   def create
     super do
       begin
@@ -17,6 +22,11 @@ class RegistrationsController < Devise::RegistrationsController
         @erro_msg = "Ocorreu um erro ao salvar usuário, por favor tente novamente!"
       end
     end
+  end
+  
+  def edit
+    @title = (current_usuario.nome + ",<br/> aqui você pode editar seu dados cadastrais<br/> e informações pessoais.").html_safe
+    super
   end
   
   def update
