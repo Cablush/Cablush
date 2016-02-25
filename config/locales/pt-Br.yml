@@ -1,0 +1,22 @@
+--- 
+pt-BR: 
+  articles: 
+    edit: 
+      title: "Add article"
+    index: 
+      title: "List of articles"
+    new: 
+      title: "New article"
+  forms: 
+    buttons: 
+      edit: Edit
+      submit: Submit
+    messages: 
+      success: "Operation succeeded!"
+  menu: 
+    new_article: "Add an article"
+  view: 
+    home: 
+      index: 
+        description1: "Cablush é um site colaborativo, para lhe ajudar a encontrar lojas, eventos e lugares para praticar o seu esporte favorito. Não importa onde, sempre tem uma loja uma galera ou um pista esperando você para praticar seu esporte, e nós lhe ajudaremos a encontrar."
+        
