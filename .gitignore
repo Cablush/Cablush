@@ -16,6 +16,7 @@
 /tmp
 /public/system/cablush_dev/
 /public/assets
+/public/sitemap*
 
 # Ignore secrets
 /config/secrets.yml

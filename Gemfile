@@ -51,6 +51,7 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 gem 'mina'
+gem 'sitemap_generator'
 
 gem 'will_paginate','~> 3.0.6'
 gem 'has_scope'
