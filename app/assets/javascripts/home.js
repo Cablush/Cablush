@@ -15,7 +15,7 @@ $(function() {
     
     // LOJAS $('lojas')
     $("#_lojas_estado, #_lojas_esporte").on('change', function () {
-        searchLocal("lojas", $("#_lojas_estado").val(), $("#_lojas_esporte").val());
+        searchLocal("/lojas", $("#_lojas_estado").val(), $("#_lojas_esporte").val());
     });
     
     $('#limpar_campos').on('click', function () {
@@ -25,7 +25,7 @@ $(function() {
     
     // PISTAS $('pistas')
     $("#_pistas_estado, #_pistas_esporte").on('change', function () {
-        searchLocal("pistas", $("#_pistas_estado").val(), $("#_pistas_esporte").val());
+        searchLocal("/pistas", $("#_pistas_estado").val(), $("#_pistas_esporte").val());
     });
     
     $('#limpar_campos').on('click', function () {
@@ -35,7 +35,7 @@ $(function() {
     
     // EVENTOS $('eventos')
     $("#_eventos_estado, #_eventos_esporte").on('change', function () {
-        searchLocal("eventos", $("#_eventos_estado").val(), $("#_eventos_esporte").val());
+        searchLocal("/eventos", $("#_eventos_estado").val(), $("#_eventos_esporte").val());
     });
     
     $('#limpar_campos').on('click', function () {
