@@ -1,6 +1,6 @@
 <div class="title">
   <% if loja.logo.exists? %>
-    <%= image_tag loja.logo.url(:small), :class => loja.fundo? ? "fundo" : nil %>
+    <%= image_tag loja.logo.url(:small), class: loja.fundo? ? "fundo" : nil, alt: loja.nome %>
   <% else %>
     <%= loja.nome %>
   <% end %>
