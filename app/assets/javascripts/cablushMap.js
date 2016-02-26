@@ -51,6 +51,10 @@ var CablushMap = (function($) {
             modal: true,
             width: 425,
             resizable: false,
+            position: { 
+                my: "center top", 
+                at: "center top", 
+                of: ".map" },
             close: function(event, ui) {
                 $(".modal").html("");
             }
