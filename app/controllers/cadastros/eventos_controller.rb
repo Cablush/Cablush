@@ -8,9 +8,9 @@ class Cadastros::EventosController < ApplicationController
   # GET /eventos(.:format)
   def index
     if current_usuario.admin?
-      @eventos = Evento.all
+      @eventos = Evento.all.order('data DESC')
     else
-      @eventos = current_usuario.eventos
+      @eventos = current_usuario.eventos.order('data DESC')
     end
     @title = "Você já cadastrou " + @eventos.length.to_s + " eventos."
   end

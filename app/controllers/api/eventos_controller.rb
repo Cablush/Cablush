@@ -4,7 +4,7 @@ class Api::EventosController < Api::ApiController
 
   # GET /eventos
   def index
-    eventos = Evento.visible.find_like_name(params['nome'])
+    eventos = Evento.visible_ordered.find_like_name(params['nome'])
     eventos = eventos.find_by_estado(params['estado'])
     eventos = eventos.find_by_esporte_categoria(params['esporte'])
     
@@ -13,7 +13,7 @@ class Api::EventosController < Api::ApiController
   
   # GET /eventos/mine
   def mine
-    eventos = Evento.visible.where(responsavel_id: current_usuario.id)
+    eventos = Evento.visible_ordered.where(responsavel_id: current_usuario.id)
     
     render_eventos eventos
   end

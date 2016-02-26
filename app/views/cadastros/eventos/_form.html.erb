@@ -19,7 +19,11 @@
         $("#evento_data").datepicker({
             dateFormat:'dd/mm/yy',
             language: 'pt-BR',
-            minDate: 0
+            minDate: 0,
+            onSelect: function(dateText, inst) {
+                $("#evento_data_fim").datepicker("option", "minDate", dateText);
+                $("#evento_data_fim").datepicker("setDate", dateText);
+            }
         });
       });
     </script>

@@ -30,7 +30,7 @@ class Evento < ActiveRecord::Base
                       :original => "800x600>"
                     }
                     
-  scope :visible, -> { where('eventos.data_fim >= ?', Date.today) }
+  scope :visible_ordered, -> { where('eventos.data_fim >= ?', Date.today).order('data') }
 
   scope :find_like_name, ->(nome) {
     where('eventos.nome LIKE ?', "%#{nome}%") if nome.present?
