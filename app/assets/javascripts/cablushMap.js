@@ -50,7 +50,10 @@ var CablushMap = (function($) {
             autoOpen: false,
             modal: true,
             width: 400,
-            resizable: false
+            resizable: false,
+            close: function(event, ui) {
+                $(".modal").html("");
+            }
         }).dialog("widget").find(".ui-dialog-title").hide();
     };
     
