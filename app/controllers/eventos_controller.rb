@@ -23,6 +23,12 @@ class EventosController < ApplicationController
   # GET /eventos/:uuid(.:format)
   def show
     @evento = Evento.find_by_uuid!(params[:uuid])
+    
+    respond_to do |format|
+      format.html { render layout: 'modal' }
+      format.js { @evento }
+      format.json { render json: @evento.to_json }
+    end
   end
 
 end

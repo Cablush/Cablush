@@ -1,4 +1,4 @@
-var CablushMap = (function() {
+var CablushMap = (function($) {
     
     var createMap = function(callbackName){
         var script = document.createElement('script');
@@ -31,7 +31,7 @@ var CablushMap = (function() {
 
     var createInfoContent = function(title, text, logo) {
         var content = '<div class="infoContent"><h1 class="infoHeading">' + title + '</h1>'
-                    //+ (logo !== null ? '<div clas="infoLogo">' + logo + '</div>' : '')
+                    //+ (logo !== null ? '<div clas="infoLogo"><img alt="' + title + '" src="' + logo + '"></div>' : '')
                     + '<div class="infoBody">' + text + '</div>'
                     + '</div>';
         return content;
@@ -45,12 +45,30 @@ var CablushMap = (function() {
         });
     };
     
+    var initDialog = function() {
+        $(".modal").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 400,
+            resizable: false
+        }).dialog("widget").find(".ui-dialog-title").hide();
+    };
+    
+    var bindDialog = function(marker, map, url) {
+        google.maps.event.addListener(marker, 'click', function() {
+            $(".modal").load(url);
+            $(".modal").dialog("open");
+        });
+    };
+    
     return {
         createMap: createMap,
         createImage: createImage,
         createCustomMarker: createCustomMarker,
         createInfoContent: createInfoContent,
-        bindInfoWindow: bindInfoWindow
+        bindInfoWindow: bindInfoWindow,
+        initDialog : initDialog,
+        bindDialog : bindDialog
     };
     
-})();
+})(jQuery);

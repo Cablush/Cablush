@@ -20,6 +20,7 @@
 //= require jquery-ui/datepicker
 //= require jquery-ui/datepicker-pt-BR
 //= require jquery-ui/autocomplete
+//= require jquery-ui/dialog
 //= require jquery.infinitescroll
 //= require jquery.mask
 //= require jquery.cookie

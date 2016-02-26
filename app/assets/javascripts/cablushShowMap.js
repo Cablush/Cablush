@@ -39,21 +39,24 @@ var CablushShowMap = (function(CablushMap, CablushLocation, $) {
         _locations = locations;
         CablushMap.createMap("showMap");
         window.showMap = _showMap;
+        CablushMap.initDialog();
     };
     
     var loadLocations = function(locations) {
-        var infoWindow = new google.maps.InfoWindow();
         for (var i = 0; i < locations.length; i++) {
             var local = locations[i];
             if (local.latitude !== '0.0' && local.longitude !== '0.0') {
                 var position = new google.maps.LatLng(local.latitude, local.longitude);
                 var marker = CablushMap.createCustomMarker(_map, local.localizavel.nome, position);
-                var infoContent = CablushMap.createInfoContent(local.localizavel.nome, local.localizavel.descricao, local.localizavel.logo);
-                CablushMap.bindInfoWindow(marker, _map, infoWindow, infoContent);
+                CablushMap.bindDialog(marker, _map, getLocationUrl(local.localizavel_type, local.localizavel.uuid));
                 _markers.push(marker);
             }
         }
         _centerMap();
+    };
+    
+    var getLocationUrl = function(type, uuid) {
+        return "/" + type.toLowerCase() + "s/" + uuid;
     };
     
     var clearLocations = function() {

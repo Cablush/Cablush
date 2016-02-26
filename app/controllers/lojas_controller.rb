@@ -23,6 +23,12 @@ class LojasController < ApplicationController
   # GET /lojas/:uuid(.:format)
   def show
     @loja = Loja.find_by_uuid!(params[:uuid])
+    
+    respond_to do |format|
+      format.html { render layout: 'modal' }
+      format.js { @loja }
+      format.json { render json: @loja.to_json }
+    end
   end
   
 end

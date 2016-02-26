@@ -3554,6 +3554,41 @@ body.loading .modal {
 }
 
 html.turbolinks-progress-bar::before {
-  background-color: #E84D23 !important;
-  height: 5px !important;
+    background-color: #E84D23 !important;
+    height: 5px !important;
+}
+
+/* Dialog */
+.ui-dialog {
+    background: #F4F4F4 none repeat scroll 0% 0%;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    border: none;
+}
+.ui-dialog-titlebar {
+    background:transparent;
+    border:none;
+}
+.ui-dialog-title {
+    display:none;
+}
+.ui-dialog .ui-dialog-titlebar-close { 
+    background:0;
+    border:0;
+    float:right;
+    z-index:1;
+    top: 70%;
+    right: 1px;
+} 
+.ui-dialog .ui-dialog-titlebar-close:after {
+    position:relative;
+    top:5;
+    font-family: FontAwesome;
+    font-size: 1.0em;
+    content: "\f28b"; /*Code FA */
+    z-index:2;
+}
+.ui-dialog .ui-dialog-content {
+}
+.ui-widget-overlay {
 }
