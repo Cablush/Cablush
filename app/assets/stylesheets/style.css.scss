@@ -273,7 +273,7 @@ body {
     position: absolute;
 }
 .login_btn {
-    right: 133px;
+    right: 137px;
     position: absolute;
 }
 .logout_btn {
@@ -731,7 +731,7 @@ span.m_3{
 }
 .apps {
     position: absolute;
-    top: 12%;
+    top: 100px;
     padding: 0;
     margin: 0;
 }
@@ -2787,6 +2787,9 @@ select.timeselector {
     #nav > ul > li {
         margin: 0 12px;
     }
+    .apps {
+        top: 90px;
+    }
 }
 @media (max-width:1280px){
     .wrap {
@@ -2801,17 +2804,17 @@ select.timeselector {
     #nav > ul > li {
         margin: 0 12px;
     }
+    .login_btn {
+        right: 130px;
+    }
     .login_btn a, .logout_btn a {
         padding: 8px 15px;
     }
     .get_btn a {
-        padding: 10px 15px;
+        padding: 8px 15px;
     }
     span.middle {
         font-size: 1em;
-    }
-    .apps {
-        top: 13%;
     }
 }
 @media (max-width:1024px){
@@ -2837,7 +2840,7 @@ select.timeselector {
         right: 88px;
     }
     .login_btn {
-        right: 110px;
+        right: 115px;
     }
     .login_btn a, .logout_btn a {
         padding: 8px 15px;
@@ -2883,7 +2886,7 @@ select.timeselector {
         width: 400px !important;
     }
     .apps {
-        top: 7%;
+        top: 80px;
     }
 }
 @media (max-width:800px){
@@ -2960,7 +2963,8 @@ select.timeselector {
     }
     .apps {
         left: 33%;
-        top: 2.5%;
+        top: 0;
+        padding-top: 3.5%;
     }
 }
 @media (max-width:640px){
@@ -3051,14 +3055,16 @@ select.timeselector {
         left: 75px;
     }
     .logo {
-        width: 34%;
+        position: relative;
         float: right;
-        margin-top:10px;
+        width: auto;
+        margin-top: 10px;
     }
     .login_name, .login_btn {
         left: 0px;
         position: relative;
         float: left;
+        margin-right: 3px;
     }
     .logout_btn, .get_btn {
         position: relative;
@@ -3212,20 +3218,21 @@ select.timeselector {
         width:100%;
     }
     .cssmenu {
-        width: 40%;
-        float:left;
-        margin-top:0;
+        width: 45%;
+        margin-top: 13px;
+        float: left;
+        position: absolute;
     }
     .buttons {
-        width:38%;
+        position: relative;
+        left: 0px;
+        width: 100%;
+        margin-top: 0px;
     }
     .logo {
-        width: 46%;
-        float: right;
-        margin-top: 10px;
+        margin-top: 7px;
     }
     .login_btn, .login_name  {
-        margin-right: 0px;
     }
     .get_btn, .logout_btn {
     }
@@ -3338,22 +3345,6 @@ select.timeselector {
     }
     #pricePlans #plans .plan {
         width:90%;
-    }
-    .cssmenu {
-        width: 45%;
-        margin-top: 13px;
-        float: left;
-        position: absolute;
-    }
-    .buttons {
-        position: relative;
-        left: 0px;
-        width: 100%;
-        margin-top: 0px;
-    }
-    .logo {
-        width: 68%;
-        margin-top: 7px;
     }
     .header-top {
         padding:0;
