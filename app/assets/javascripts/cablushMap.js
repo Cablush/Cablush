@@ -49,7 +49,7 @@ var CablushMap = (function($) {
         $(".modal").dialog({
             autoOpen: false,
             modal: true,
-            width: 400,
+            width: 425,
             resizable: false,
             close: function(event, ui) {
                 $(".modal").html("");
