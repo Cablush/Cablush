@@ -17,6 +17,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <meta name="keywords" content="cablush,esporte,esportes,esportista,radical,outdoor,sport,sports,skate,skateboarding,sk8,longboard,longboarding,longboarder,patins,patinador,roller,rollerblade,inline,bike,bicicleta,bmx,mountain bike,mtb,local,loja,pista,evento,eventos,campeonato">
         <meta name="robots" content="index,follow">
         <meta name="author" content="Cablush">
+        
+        <meta property="og:url"           content="http://www.cablush.com" />
+	<meta property="og:type"          content="website" />
+	<meta property="og:title"         content="Cablush - Esportes, lugares e eventos." />
+	<meta property="og:description"   content="Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito." />
+	<meta property="og:image"         content="<%= asset_path('fb_cover.png') %>" />
+        <meta property="fb:app_id"        content="<%= Rails.application.secrets.facebook_key %>" />
     </head>
     <body class="<%= controller_name %> <%= action_name %>">
 
