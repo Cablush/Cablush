@@ -16,11 +16,10 @@ var Google = (function($) {
     };
     
     var _signInCallback = function(authResult) {
-        console.log(authResult);
         if (authResult['code']) {
-            $.get("/omniauth/google_oauth2/callback", authResult, function(response) {
+            $.get("/omniauth/google_oauth2/callback", authResult, function(data, status, xhr) {
                 // response from server
-            });
+            }, "html");
         }
     };
 

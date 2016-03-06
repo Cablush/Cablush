@@ -52,13 +52,11 @@ var Facebook = (function($) {
 
             FB.login(function(response) {
                 if (response.authResponse) {
-                    console.log(response);
                     // since we have cookies enabled, this request will allow omniauth to parse
                     // out the auth code from the signed request in the fbsr_XXX cookie
-                    $.getJSON('/omniauth/facebook/callback', function(json) {
-                        $('#results').html(JSON.stringify(json));
-                        // Do some other stuff here (call more json, load in more elements, etc)
-                    });
+                    $.get('/omniauth/facebook/callback', function(data, status, xhr) {
+                        // response from server
+                    }, "html");
                 }
             }, { scope: 'email' }); // These are the permissions you are requesting
         });

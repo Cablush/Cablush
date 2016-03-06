@@ -17,6 +17,7 @@
               <%= render "layouts/facebook_signin"%>
               <%= render "layouts/google_signin"%>
             
+              <p class="txt-email">Cadastrar com email:</p>
               <%= f.input :nome, label: 'Nome' %>
               <%= f.input :email, label: 'Email' %>
               <%= f.input :password, label: 'Senha', autocomplete: "off", readonly: true, input_html: {onFocus: "this.removeAttribute('readonly');"} %>

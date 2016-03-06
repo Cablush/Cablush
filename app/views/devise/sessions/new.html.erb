@@ -15,11 +15,13 @@
             
               <%= render "layouts/facebook_signin"%>
               <%= render "layouts/google_signin"%>
-                
+              
+              <p class="txt-email">Entrar com email:</p>
               <%= f.input :email, label: 'Email' %>
               <%= f.input :password, label: 'Senha' %>
               <%= f.input :remember_me, :as => :boolean, class:'checkbox' %>
               <%= f.button :submit,value: 'Login', label: 'Login', class: 'btn1 btn-primary btn-normal btn-inline' %>
+              
               <p class="login-links">
                 <%= link_to "Esqueci a senha", new_password_path(:usuario), class: 'lnk1' %>
               </p>
