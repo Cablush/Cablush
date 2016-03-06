@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :null_session # TODO , if: Proc.new { |c| c.request.format == 'application/json' }
+  before_action :initialize_omniauth_state
 
   def after_sign_in_path_for(resource)
     cadastros_path
@@ -38,6 +39,10 @@ class ApplicationController < ActionController::Base
     unless current_usuario.admin?
       redirect_to :back, :alert => "Access denied."
     end
+  end
+  
+  def initialize_omniauth_state
+    session['omniauth.state'] = response.headers['X-CSRF-Token'] = form_authenticity_token
   end
   
 end

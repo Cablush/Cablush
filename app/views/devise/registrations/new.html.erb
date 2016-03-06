@@ -14,6 +14,9 @@
             <%= simple_form_for :usuario, :url => registration_path(:usuario), html: { autocomplete: 'off' }  do |f| %>
               <%= devise_error_messages! %>
             
+              <%= render "layouts/facebook_signin"%>
+              <%= render "layouts/google_signin"%>
+            
               <%= f.input :nome, label: 'Nome' %>
               <%= f.input :email, label: 'Email' %>
               <%= f.input :password, label: 'Senha', autocomplete: "off", readonly: true, input_html: {onFocus: "this.removeAttribute('readonly');"} %>

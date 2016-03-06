@@ -19,16 +19,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <meta name="author" content="Cablush">
     </head>
     <body class="<%= controller_name %> <%= action_name %>">
-        
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-        
+
         <%= render "layouts/menu"%>
         
         <%= render "layouts/message"%>
@@ -42,6 +33,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <script type="text/javascript">
           window.api_key = "<%= Rails.application.secrets.js_api_key %>";
           window.maps_mark = "<%= asset_path("cablush_21_30.png") %>";
+          window.facebook_key = "<%= Rails.application.secrets.facebook_key %>";
+          window.google_key = "<%= Rails.application.secrets.google_key %>";
+          
+          $(document).ready(function() {
+            Facebook.loadSDK();
+          });
         </script>
         
         <script>

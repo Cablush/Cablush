@@ -62,9 +62,8 @@ gem 'simple_form'
 
 gem 'devise', '~> 3.5.6'
 gem 'devise_token_auth', '~> 0.1.37'
-gem 'omniauth'
-#gem 'omniauth-facebook'
-#gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 gem 'activerecord-session_store'
 

@@ -2022,7 +2022,12 @@ h5.m_12 a:hover{
 .btn_auto:hover{
     background: #E84D23;
 }
+.btn-inline {
+    width: 100%;
+    padding: 3px 0;
+}
 .lnk1 {
+    color: #3C3D3D;
     background: none;
     border: none;
     text-decoration: underline;
@@ -2034,6 +2039,31 @@ h5.m_12 a:hover{
 .cancel_link {
     float: right;
     padding-top: 16px;
+}
+.login-links {
+    text-align: center;
+    width: 100%;
+    padding: 30px 0 0;
+}
+.btn-facebook {
+    background: #374F92 !important;
+    margin-bottom: 16px;
+    text-align: left;
+    height: 32px;
+}
+.btn-google {
+    background: #4285F4 !important;
+    margin-bottom: 16px;
+    text-align: left;
+    height: 32px;
+}
+.btn-facebook i, .btn-facebook span, 
+.btn-google i, .btn-google span {
+    margin-left: 10px;
+}
+.btn-facebook:hover, .btn-google:hover {
+    background: #E84D23 !important;
+    color: #FFF;
 }
 .testimonials{
     margin-top: 6%;

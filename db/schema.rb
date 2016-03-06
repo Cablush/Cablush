@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218115733) do
+ActiveRecord::Schema.define(version: 20160305175308) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -217,8 +217,19 @@ ActiveRecord::Schema.define(version: 20160218115733) do
   add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at"
 
+  create_table "usuario_providers", force: :cascade do |t|
+    t.integer  "usuario_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "token"
+    t.string   "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "usuario_providers", ["usuario_id"], name: "index_usuario_providers_on_usuario_id"
+
   create_table "usuarios", force: :cascade do |t|
-    t.integer  "id_social"
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -240,13 +251,11 @@ ActiveRecord::Schema.define(version: 20160218115733) do
     t.datetime "locked_at"
     t.integer  "role"
     t.string   "uuid",                                             null: false
-    t.string   "auth_token"
     t.string   "provider",                                         null: false
     t.string   "uid",                                 default: "", null: false
     t.string   "tokens",                 limit: 1280
   end
 
-  add_index "usuarios", ["auth_token"], name: "index_usuarios_on_auth_token", unique: true
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
   add_index "usuarios", ["email"], name: "index_usuarios_on_email", unique: true
   add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true

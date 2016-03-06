@@ -1,4 +1,4 @@
-class RegistrationsController < Devise::RegistrationsController
+class Usuario::RegistrationsController < Devise::RegistrationsController
   
   include EsporteAutocompletes
   

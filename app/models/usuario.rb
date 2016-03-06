@@ -4,6 +4,8 @@ class Usuario < ActiveRecord::Base
   
   enum role: [:admin, :lojista, :esportista]
   
+  has_many :usuario_provider, :dependent => :destroy
+  
   has_many :amigos, class_name: 'Amizade'
   has_many :lojas, foreign_key: "responsavel_id"
   has_many :eventos, foreign_key: "responsavel_id"
@@ -16,7 +18,7 @@ class Usuario < ActiveRecord::Base
   #  :timeoutable and :omniauthable
   devise :registerable, :confirmable, :database_authenticatable,  
     :recoverable, :rememberable, :lockable, :trackable, :validatable, 
-    :omniauthable
+    :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
  
   # lojista: utilizado no cadastro para identificar um lojista
   attr_accessor :lojista

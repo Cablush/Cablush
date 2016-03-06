@@ -4,16 +4,17 @@ Cablush::Application.routes.draw do
   mount Sidekiq::Web, at: "/sidekiq"
   
   devise_for :usuarios, controllers: { 
-      registrations: 'registrations', 
-      sessions: 'sessions', 
-      passwords: 'passwords' 
+      registrations: 'usuario/registrations', 
+      sessions: 'usuario/sessions', 
+      passwords: 'usuario/passwords' ,
+      omniauth_callbacks: 'usuario/omniauth_callbacks'
   }
   
   # API
   namespace :api do
       mount_devise_token_auth_for 'Usuario', at: 'auth', controllers: {
           registrations: 'api/registrations'
-      }
+      }, skip: [:omniauth_callbacks]
       resources :lojas, only: [:index, :create, :update], 
                         param: :uuid, defaults: { format: 'json' } do
         get :mine, on: :collection
