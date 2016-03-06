@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305175308) do
+ActiveRecord::Schema.define(version: 20160305171903) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -254,6 +254,7 @@ ActiveRecord::Schema.define(version: 20160305175308) do
     t.string   "provider",                                         null: false
     t.string   "uid",                                 default: "", null: false
     t.string   "tokens",                 limit: 1280
+    t.string   "id_social"
   end
 
   add_index "usuarios", ["confirmation_token"], name: "index_usuarios_on_confirmation_token", unique: true
