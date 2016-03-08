@@ -2,6 +2,18 @@ class HomeController < ApplicationController
  
   def index
     @title = "Esportes, lugares e eventos."
+    
+    @locais = Local.all_active
+      
+    if @locais.empty?
+      flash.now[:alert] = 'Nenhuma local encontrado! Cadastre-se no Cablush e divulge as lojas, pistas e eventos da sua região!'
+    end
+    
+    respond_to do |format|
+      format.html { @locais }
+      format.js { @locais }
+      format.json { render json: @locais.to_json }
+    end
   end
   
   def about

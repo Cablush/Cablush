@@ -1,13 +1,5 @@
-<div class="map">
-    <div id="map-canvas">
-      <%= image_tag("map.jpg",alt:"Cablush Location") %>
-    </div>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            CablushStaticMap.show($("#map-canvas")[0]);
-        });
-    </script>
-</div>
+<%= render "locais/maps.html", locais: @locais %>
+
 <div class="main">
   <div class="flex-wrap">
     <div class="content-head">

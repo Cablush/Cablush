@@ -20,6 +20,8 @@ class Local < ActiveRecord::Base
   belongs_to :pista, -> { where(locais: {localizavel_type: 'Pista'}) }, foreign_key: 'localizavel_id'
   belongs_to :evento, -> { where(locais: {localizavel_type: 'Evento'}) }, foreign_key: 'localizavel_id'
   
+  scope :all_active, -> { includes(:localizavel) } # TODO filter eventos by data_fim
+                            
   scope :lojas, -> { joins(:loja) }
   scope :pistas, -> { joins(:pista) }
   scope :eventos, -> { joins(:evento).where('eventos.data_fim >= ?', Date.today).order('data') }
