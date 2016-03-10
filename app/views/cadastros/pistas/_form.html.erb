@@ -35,7 +35,7 @@
   <fieldset class="subfields">
       <legend>Endereço</legend>
       <%= f.fields_for :local do |local| %>
-        <%= render 'locais/local_fields', f: local %>
+        <%= render 'locais/local_fields', f: local, type: 'Pista' %>
       <% end %>
   </fieldset>
   <fieldset class="subfields">

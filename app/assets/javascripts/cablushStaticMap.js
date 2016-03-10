@@ -5,7 +5,7 @@ var CablushStaticMap = (function(CablushLocation) {
     var _showMap = function(position) {
         var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + position
                     + "&zoom=10&size=600x200&scale=2"
-                    + "&markers=icon:http://www.cablush.com" + window.maps_mark + "%7C" + position
+                    + "&markers=icon:http://www.cablush.com" + window.maps_mark_orange + "%7C" + position
                     + "&key=" + window.api_key;
         _mapElement.innerHTML = "<img src='"+img_url+"'>";
     };

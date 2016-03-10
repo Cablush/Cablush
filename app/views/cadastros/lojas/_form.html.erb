@@ -43,7 +43,7 @@
   <fieldset class="subfields">
       <legend>Endereço</legend>
       <%= f.fields_for :locais do |local_form| %>
-        <%= render 'locais/local_fields', f: local_form %>
+        <%= render 'locais/local_fields', f: local_form, type: 'Loja' %>
       <% end %>
   </fieldset>
   <fieldset class="subfields">

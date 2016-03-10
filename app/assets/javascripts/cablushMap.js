@@ -9,22 +9,32 @@ var CablushMap = (function($) {
         document.body.appendChild(script);
     };
     
-    var createImage = function(url) {
+    var createImage = function(type) {
+        var url = window.maps_mark_orange;
+        switch (type) {
+            case 'Evento':
+                url = window.maps_mark_blue;
+                break;
+            case 'Loja':
+                url = window.maps_mark_green;
+                break;
+            case 'Pista':
+                url = window.maps_mark_orange;
+                break;
+        }
+    
         var image = {
-            url: url,
-            size: new google.maps.Size(21, 30),
-            origin: new google.maps.Point(0,0),
-            anchor: new google.maps.Point(0, 30)
+            url: url
         };
         return image;
     };
     
-    var createCustomMarker = function(map, title, position) {
+    var createCustomMarker = function(map, title, position, type) {
         var marker = new google.maps.Marker({
             position: position,
             map: map,
             title: title,
-            icon: createImage(window.maps_mark)
+            icon: createImage(type)
         });
         return marker;
     };

@@ -70,7 +70,7 @@
   <fieldset class="subfields">
       <legend>Endereço</legend>
       <%= f.fields_for :local do |local| %>
-        <%= render 'locais/local_fields', f: local %>
+        <%= render 'locais/local_fields', f: local, type: 'Evento' %>
       <% end %>
   </fieldset>
   <div class="actions">

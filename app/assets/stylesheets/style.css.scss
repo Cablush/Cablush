@@ -2604,8 +2604,16 @@ h2.head4{
     margin-bottom:2%;
     text-transform:uppercase;
 }
+ul.mark_orange li {
+    list-style-image: image-url('ic_mark_cablush_orange_32.png');   
+}
+ul.mark_blue li {
+    list-style-image: image-url('ic_mark_cablush_blue_32.png');   
+}
+ul.mark_green li {
+    list-style-image: image-url('ic_mark_cablush_green_32.png');   
+}
 ul.list1 li {
-    list-style-image: image-url('cablush_21_30.png');
     margin: 0 0px 10px 20px;
     vertical-align: bottom;
 }

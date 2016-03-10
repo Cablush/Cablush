@@ -1,12 +1,13 @@
 var CablushSelectMap = (function(CablushMap, CablushLocation) {
     
+    var _type;
     var _mapElement;
     var _initLocation;
     var _map;
     var _marker;
     
     var _setMarker = function(position) {
-        _marker = CablushMap.createCustomMarker(_map, "", position);
+        _marker = CablushMap.createCustomMarker(_map, "", position, _type);
         _map.setCenter(_marker.getPosition());
         _map.setZoom(15);
     };
@@ -44,11 +45,12 @@ var CablushSelectMap = (function(CablushMap, CablushLocation) {
         });
     };
     
-    var initMap = function(mapElement, latitude, longitude) {
+    var initMap = function(mapElement, latitude, longitude, type) {
         _mapElement = mapElement;
         if (latitude !== '0.0' && longitude !== '0.0') {
             _initLocation = {lat: latitude, lng: longitude};
         }
+        _type = type;
         CablushMap.createMap("showMap");
         window.showMap = _showMap;
     };

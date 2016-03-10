@@ -47,7 +47,7 @@ var CablushShowMap = (function(CablushMap, CablushLocation, $) {
             var local = locations[i];
             if (local.latitude !== '0.0' && local.longitude !== '0.0') {
                 var position = new google.maps.LatLng(local.latitude, local.longitude);
-                var marker = CablushMap.createCustomMarker(_map, local.localizavel.nome, position);
+                var marker = CablushMap.createCustomMarker(_map, local.localizavel.nome, position, local.localizavel_type);
                 CablushMap.bindDialog(marker, _map, getLocationUrl(local.localizavel_type, local.localizavel.uuid));
                 _markers.push(marker);
             }
