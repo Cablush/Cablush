@@ -237,7 +237,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret
   config.omniauth :google_oauth2, Rails.application.secrets.google_key, Rails.application.secrets.google_secret, {
-    provider_ignores_state: true
+    access_type: 'online'
   }
 
   # ==> Warden configuration

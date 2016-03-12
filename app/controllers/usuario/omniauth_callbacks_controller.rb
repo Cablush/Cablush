@@ -1,7 +1,5 @@
 class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
-  skip_before_filter :verify_authenticity_token
-  
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
@@ -20,10 +18,6 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # /omniauth/{provider}/callback
   [:facebook, :google_oauth2].each do |provider|
     provides_callback_for provider
-  end
-
-  def self.failure
-    redirect_to new_usuario_registration_path
   end
   
 end

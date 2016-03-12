@@ -40,11 +40,12 @@
                 <%= f.input :current_password, label: 'Senha Atual', autocomplete: "off" %>
             </fieldset>
             
-            <%= f.button :submit, value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline float-lt' %>
+            <%= f.button :submit, value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline' %>
+            
+            <p class="login-links">
+              <%= button_to "Cancelar conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Sentiremos a sua falta. :(" }, :method => :delete, :class => 'lnk1' %>
+            </p>
           <% end %>
-          <p>
-          <%= button_to "Cancelar conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Sentiremos a sua falta. :(" }, :method => :delete, :class => 'lnk1 cancel_link' %>
-          </p>
         </div>
     </div>
     <div class="clear"></div>

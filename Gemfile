@@ -60,8 +60,9 @@ gem 'has_scope'
 gem 'mail_form'
 gem 'simple_form'
 
-gem 'devise', '~> 3.5.6'
-gem 'devise_token_auth', '~> 0.1.37'
+gem 'devise'
+gem 'devise_token_auth'
+gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
