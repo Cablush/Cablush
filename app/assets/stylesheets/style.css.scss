@@ -3609,14 +3609,14 @@ html.turbolinks-progress-bar::before {
     top: 70%;
     right: 1px;
 } 
-.ui-dialog .ui-dialog-titlebar-close:after {
+/*.ui-dialog .ui-dialog-titlebar-close:after {
     position:relative;
     top:5;
     font-family: FontAwesome;
     font-size: 1.0em;
-    content: "\f28b"; /*Code FA */
+    content: "\f28b"; Code FA 
     z-index:2;
-}
+}*/
 .ui-dialog .ui-dialog-content {
 }
 .ui-widget-overlay {
