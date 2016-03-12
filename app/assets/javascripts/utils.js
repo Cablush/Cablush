@@ -3,19 +3,19 @@ $.ajaxSetup({
     dataType: 'json'
 });
 
-// Loading...
-$body = $("body");
-
-$(document).on({
-    ajaxStart: function () {
-        $body.addClass("loading");
-    },
-    ajaxStop: function () {
-        $body.removeClass("loading");
-    }
-});
-
 $(function() {
+    
+    // Loading...
+    $body = $("body");
+    
+    $(document).on({
+        ajaxStart: function () {
+            $body.addClass("loading");
+        },
+        ajaxStop: function () {
+            $body.removeClass("loading");
+        }
+    });
     
     // Collapsible Fieldset
     $('fieldset.collapsible .content').hide();
