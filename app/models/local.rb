@@ -20,47 +20,42 @@ class Local < ActiveRecord::Base
   belongs_to :pista, -> { where(locais: {localizavel_type: 'Pista'}) }, foreign_key: 'localizavel_id'
   belongs_to :evento, -> { where(locais: {localizavel_type: 'Evento'}) }, foreign_key: 'localizavel_id'
   
-  scope :all_active, -> { includes(:localizavel) } # TODO filter eventos by data_fim
-                            
   scope :lojas, -> { joins(:loja) }
   scope :pistas, -> { joins(:pista) }
-  scope :eventos, -> { joins(:evento).where('eventos.data_fim >= ?', Date.today).order('data') }
+  scope :eventos, -> { joins(:evento).merge(Evento.actives_ordered) }
   
   scope :lojas_by_estado, ->(estado) {
     lojas.where(estado: estado)
   }
   
-  scope :lojas_by_esporte, ->(esporte_id) {
-    joins(loja: :esportes).where(esportes: {id: esporte_id})
-  }
-  
   scope :lojas_by_esporte_categoria, ->(categoria) {
-    joins(loja: :esportes).where(esportes: {categoria: categoria}).distinct
+    lojas.merge(Loja.find_by_esporte_categoria(categoria))
   }
   
   scope :pistas_by_estado, ->(estado) {
     pistas.where(estado: estado)
   }
   
-  scope :pistas_by_esporte, ->(esporte_id) {
-    joins(pista: :esportes).where(esportes: {id: esporte_id})
-  }
-  
   scope :pistas_by_esporte_categoria, ->(categoria) {
-    joins(pista: :esportes).where(esportes: {categoria: categoria}).distinct
+    pistas.merge(Pista.find_by_espporte_categoria(categoria))
   }
   
   scope :eventos_by_estado, ->(estado) {
     eventos.where(estado: estado)
   }
   
-  scope :eventos_by_esporte, ->(esporte_id) {
-    joins(evento: :esportes).where(esportes: {id: esporte_id})
+  scope :eventos_by_esporte_categoria, ->(categoria) {
+    eventos.merge(Evento.find_by_esporte_categoria(categoria))
   }
   
-  scope :eventos_by_esporte_categoria, ->(categoria) {
-    joins(evento: :esportes).where(esportes: {categoria: categoria}).distinct
-  }
+  def self.localizaveis_active
+    l, e = arel_table, Evento.arel_table
+    predicate = l.join(e).on(l[:localizavel_id].eq(e[:id]))
+    
+    joins(predicate.join_sources)
+    .where("(localizavel_type != 'Evento') | ((localizavel_type == 'Evento') & (eventos.data_fim >= ?))", 
+           Date.today)
+  end
   
   def endereco
     ender = ''

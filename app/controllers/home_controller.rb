@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   def index
     @title = "Esportes, lugares e eventos."
     
-    @locais = Local.all_active
+    @locais = Local.localizaveis_active
       
     if @locais.empty?
       flash.now[:alert] = 'Nenhuma local encontrado! Cadastre-se no Cablush e divulge as lojas, pistas e eventos da sua região!'
