@@ -53,7 +53,7 @@ class Local < ActiveRecord::Base
     predicate = l.join(e).on(l[:localizavel_id].eq(e[:id]))
     
     joins(predicate.join_sources)
-    .where("(localizavel_type != 'Evento') | ((localizavel_type == 'Evento') & (eventos.data_fim >= ?))", 
+    .where("(localizavel_type != 'Evento') OR ((localizavel_type = 'Evento') AND (eventos.data_fim >= ?))", 
            Date.today)
   end
   
