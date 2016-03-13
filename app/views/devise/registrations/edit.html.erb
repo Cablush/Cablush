@@ -32,6 +32,13 @@
                   <%= f.input :password_confirmation, label: 'Confirmar Senha', autocomplete: "off" %>
                 </div>
             </fieldset>
+            <script type="text/javascript">
+                // Collapsible Fieldset
+                $('fieldset.collapsible .content').hide();
+                $('fieldset.collapsible legend').click(function(){
+                    $(this).parent().find('.content').slideToggle("slow");
+                });
+            </script>
               
             <br>
             
