@@ -51,8 +51,8 @@ class Local < ActiveRecord::Base
   }
   
   def self.localizaveis_active
-    l, e = arel_table, Evento.arel_table
-    predicate = l.join(e).on(l[:localizavel_id].eq(e[:id]))
+    local, evento = arel_table, Evento.arel_table
+    predicate = local.join(evento, Arel::Nodes::OuterJoin).on(local[:localizavel_id].eq(evento[:id]))
     
     joins(predicate.join_sources)
     .where("(localizavel_type != 'Evento') OR ((localizavel_type = 'Evento') AND (eventos.data_fim >= ?))", 
