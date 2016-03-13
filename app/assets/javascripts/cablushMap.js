@@ -56,7 +56,7 @@ var CablushMap = (function($) {
     };
     
     var initDialog = function() {
-        $(".modal").dialog({
+        $(".dialog").dialog({
             autoOpen: false,
             modal: true,
             width: 425,
@@ -66,15 +66,15 @@ var CablushMap = (function($) {
                 at: "center top", 
                 of: ".map" },
             close: function(event, ui) {
-                $(".modal").html("");
+                $(".dialog").html("");
             }
         }).dialog("widget").find(".ui-dialog-title").hide();
     };
     
     var bindDialog = function(marker, map, url) {
         google.maps.event.addListener(marker, 'click', function() {
-            $(".modal").load(url);
-            $(".modal").dialog("open");
+            $(".dialog").load(url);
+            $(".dialog").dialog("open");
         });
     };
     

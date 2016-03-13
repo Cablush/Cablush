@@ -1,11 +1,19 @@
 <div class="field">
+  <%= f.label 'País' %><br>
+  <%= f.collection_select(:pais, Country.all, :iso, :name, 
+    {:prompt => 'Selecione o País'}, {:id => 'local_pais', :class => 'selectbox'}) %>
+</div>
+
+<div class="field">
   <%= f.label 'CEP' %><br>
   <%= f.text_field :cep, id: 'local_cep', class: 'inputbox maskCep' %>
 </div>
+
 <div class="field">
   <%= f.label 'Estado' %><br>
   <%= f.collection_select(:estado, Estado.all, :rg, :nome, 
     {:prompt => 'Selecione o Estado'}, {:id => 'local_estado', :class => 'selectbox'}) %>
+  <%= f.hidden_field :estado_nome, id: 'local_estado_nome' %>
 </div>
 <div class="field">
   <%= f.label 'Cidade' %><br>
@@ -36,7 +44,9 @@
     <div id="map-canvas-cad"></div>
     <script type="text/javascript">
         $(document).ready(function() {
-            
+          
+            Cadastros.setup();
+          
             var getAddress = function() {
                 var addressArray = new Array();
 
@@ -45,6 +55,7 @@
                 addressArray.push($('#local_bairro').val());
                 addressArray.push($('#local_cidade').val());
                 addressArray.push($('#local_estado').find('option:selected').text());
+                addressArray.push($('#local_pais').find('option:selected').text());
 
                 return addressArray.filter(function(val) { 
                     return val !== null && 0 !== val.length; 

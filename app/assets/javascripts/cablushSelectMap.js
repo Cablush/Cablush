@@ -63,7 +63,7 @@ var CablushSelectMap = (function(CablushMap, CablushLocation) {
                 _setMarker(results[0].geometry.location);
                 CablushSelectMap.setCoords(_marker.getPosition().lat(), _marker.getPosition().lng());
             } else {
-                console.log('Geocode error: ' + status);
+                console.log('Geocode error: ' + results);
             }
         });
     };

@@ -1,6 +1,7 @@
 $(function() {
     
     var searchLocal = function (url, estado, esporte) {
+        Utils.startLoading();
         $("#flash_messages").html('');
         $.ajax({
             url: url,
@@ -49,6 +50,7 @@ $(function() {
             var url = $('.pagination a[rel=next]').attr('href');
             if (url && $(window).scrollTop() > ($(document).height() / 2) - $(window).height() - 50) {
                 $('.pagination').text('Carregando...');
+                Utils.startLoading();
                 return $.ajax({
                     url: url,
                     dataType: "script"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160305171903) do
+ActiveRecord::Schema.define(version: 20160312130508) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20160305171903) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string   "iso",        limit: 2
+    t.string   "name"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "esportes", force: :cascade do |t|
@@ -78,7 +85,10 @@ ActiveRecord::Schema.define(version: 20160305171903) do
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
+
+  add_index "estados", ["country_id"], name: "index_estados_on_country_id"
 
   create_table "eventos", force: :cascade do |t|
     t.string   "nome",               limit: 50

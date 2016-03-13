@@ -9,9 +9,11 @@ class Local < ActiveRecord::Base
   validates :cidade, presence: true, length: { maximum: 100 }
   validates :estado, presence: true, length: { maximum: 2 }
   validates :cep, length: { maximum: 10 }
-  validates :pais, length: { maximum: 2 }
+  validates :pais, presence: true, length: { maximum: 2 }
   
-  after_save :save_cidade
+  attr_accessor :estado_nome, :pais_nome
+  
+  after_save :save_estado_cidade
   
   belongs_to :localizavel, polymorphic: true
   
@@ -84,8 +86,11 @@ class Local < ActiveRecord::Base
   
   private
   
-  def save_cidade
-    if cep.present? && cidade.present? && estado.present?
+  def save_estado_cidade
+    if pais.present? && estado.present?
+      Estado.save?(estado, estado_nome, pais)
+    end
+    if cep.present? && estado.present? && cidade.present?
       Cidade.save?(cidade, estado)
     end
   end
