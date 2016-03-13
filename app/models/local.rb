@@ -15,6 +15,8 @@ class Local < ActiveRecord::Base
   
   after_save :save_estado_cidade
   
+  after_initialize :load_full_address
+  
   belongs_to :localizavel, polymorphic: true
   
   # Permite fazer join com os modelos localizaveis
@@ -66,9 +68,9 @@ class Local < ActiveRecord::Base
     ender = ender.try_append(complemento, ', ')
     ender = ender.try_append(bairro, '\n')
     ender = ender.try_append(cidade, '\n')
-    ender = ender.try_append(estado, ' / ')
+    ender = ender.try_append(estado_nome, ' / ')
     ender = ender.try_append(cep, '\n')
-    ender = ender.try_append(pais, '\n')
+    ender = ender.try_append(pais_nome, '\n')
     ender.gsub(/\\n/, '<br>').html_safe
   end
   
@@ -92,6 +94,19 @@ class Local < ActiveRecord::Base
     end
     if cep.present? && estado.present? && cidade.present?
       Cidade.save?(cidade, estado)
+    end
+  end
+  
+  def load_full_address
+    unless new_record?
+      if pais.present?
+        pais_obj = Country.find_by_iso(pais)
+        self.pais_nome = pais_obj.name if pais_obj.present?
+        if estado.present?
+          estado_obj = Estado.from_country(pais).find_by_rg(estado)
+          self.estado_nome = estado_obj.nome if estado_obj.present?
+        end
+      end
     end
   end
   

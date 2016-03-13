@@ -24,7 +24,7 @@ var Cadastros = (function($) {
         return data.name;
     };
     
-    var _setEstado = function(data) {
+    var _setEstados = function(data, currentEstado) {
         if (data instanceof String) {
             data = $.parseJSON(data);
         }
@@ -35,6 +35,10 @@ var Cadastros = (function($) {
                     + _getEstadoCode(value.alternateNames, value.adminCode1) + '>' 
                     + _getEstadoName(value) + '</option>');
         });
+        if (currentEstado != null) {
+            $('#local_estado').val(currentEstado);
+            $('#local_estado').trigger('change');
+        }
     };
     
     var _createItem = function() {
@@ -60,33 +64,42 @@ var Cadastros = (function($) {
         });
     };
     
-    var setup = function() {
-        
+    var _setup = function() {
+        // Configura Pais e Estado
+        if ($('#local_pais').val() == '') { 
+            $('#local_pais').val('BR');
+        } else if ($('#local_pais').val() != 'BR') { 
+            var currentEstado = $('#local_estado').val();
+            $('#local_pais').trigger('change', currentEstado);
+        }  
+    };
+    
+    var init = function() {
+        // Configure genames user
         jeoquery.defaultData.userName = window.geonames_user;
         
-        $('#local_pais').val('BR');
-        
         // Pesquisa estados pelo pais
-        $('#local_pais').on('change', function() {
+        $('#local_pais').on('change', function(event, currentEstado) {
             Utils.startLoading();
             $('#local_estado').empty();
             jeoquery.getGeoNames('search', 
                                  { country: $(this).val(), featureCode:'ADM1', style:'FULL' }, 
                                  function(data) {
                 Utils.stopLoading();
-                _setEstado(data);
+                _setEstados(data, currentEstado);
             });
         });
-        
+                
         // Pesquisa de endereço por CEP
-        $('#local_cep').on('change', function () {
+        $('#local_cep').on('change', function (event) {
             Utils.startLoading();
             $.getJSON("http://api.postmon.com.br/v1/cep/" + $(this).val(), function(data) {
                 _setAddress(data);
             });
         });
         
-        $('#local_estado').on('change', function() {
+        // Mudança de estado
+        $('#local_estado').on('change', function(event) {
             $('#local_estado_nome').val($("#local_estado option:selected").text());
         });
         
@@ -133,12 +146,6 @@ var Cadastros = (function($) {
         });
         $('.textarea-box').trigger('change');
         
-        // Collapsible Fieldset
-        $('fieldset.collapsible .content').hide();
-        $('fieldset.collapsible legend').click(function(){
-            $(this).parent().find('.content').slideToggle("slow");
-        });
-
         // Field Masks
         var brTelMaskBehavior = function (val) {
             return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
@@ -152,10 +159,11 @@ var Cadastros = (function($) {
         //$(".maskCep").mask('00000-000');
         $(".maskData").mask('00/00/0000');
         
+        _setup();
     };
     
     return {
-        setup: setup
+        init: init
     };
 
 })(jQuery);

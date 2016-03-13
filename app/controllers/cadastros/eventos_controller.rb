@@ -90,7 +90,7 @@ class Cadastros::EventosController < ApplicationController
     params.require(:evento)
           .permit(:nome, :descricao, :data, :hora, :data_fim, :website, :facebook, :flyer, 
               esporte_ids: [],
-              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais])
+              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :estado_nome, :cep, :pais])
   end
 
 end

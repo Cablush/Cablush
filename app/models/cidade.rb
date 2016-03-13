@@ -10,9 +10,9 @@ class Cidade < ActiveRecord::Base
     joins(:estado).where('estados.rg = ?', "#{estado}") if estado.present? 
   }
   
-  def self.save?(nome_cidade, estado_cidade) 
-    if Cidade.from_estado(estado_cidade).find_by_nome(nome_cidade).blank?
-      estado = Estado.find_by_rg(estado_cidade)
+  def self.save?(nome_cidade, rg_estado) 
+    if Cidade.from_estado(rg_estado).find_by_nome(nome_cidade).blank?
+      estado = Estado.find_by_rg(rg_estado)
       if estado.present?
         Cidade.create(nome: nome_cidade, estado: estado)
       end

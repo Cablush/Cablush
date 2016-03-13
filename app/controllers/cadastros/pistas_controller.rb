@@ -95,7 +95,7 @@ class Cadastros::PistasController < ApplicationController
     params.require(:pista)
           .permit(:nome, :descricao, :website, :facebook, :foto, 
               esporte_ids: [],
-              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais], 
+              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :estado_nome, :cep, :pais], 
               horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
   end
   
