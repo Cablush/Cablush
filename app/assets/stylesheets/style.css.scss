@@ -544,6 +544,7 @@ ul.events li {
 .attr_txt {
     float: left;
     padding-left: 4px;
+    width: 90%;
 }
 .span_1_of_3  h3{
     margin-bottom:10px;
@@ -2027,6 +2028,10 @@ h5.m_12 a:hover{
     width: 100%;
     padding: 3px 0;
 }
+.btn-share {
+    width: 48%;
+    padding: 3px 0;
+}
 .lnk1 {
     color: #3C3D3D;
     background: none;
@@ -2054,11 +2059,21 @@ h5.m_12 a:hover{
     text-align: left;
     height: 32px;
 }
-.btn-facebook i, .btn-facebook span, 
-.btn-google i, .btn-google span {
-    margin-left: 10px;
+.btn-twitter {
+    background: #55ACEE !important;
+    margin-bottom: 16px;
+    text-align: left;
+    height: 32px;
 }
-.btn-facebook:hover, .btn-google:hover {
+.btn-facebook i, .btn-facebook span, .btn-facebook a,
+.btn-google i, .btn-google span, .btn-google a,
+.btn-twitter i, .btn-twitter span, .btn-twitter a {
+    margin-left: 10px;
+    color: #ffffff;
+}
+.btn-facebook:hover, 
+.btn-google:hover, 
+.btn-twitter:hover {
     background: #E84D23 !important;
     color: #FFF;
 }

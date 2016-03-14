@@ -24,6 +24,8 @@ class LojasController < ApplicationController
   def show
     @loja = Loja.find_by_uuid!(params[:uuid])
     
+    @title = @loja.nome
+    
     respond_to do |format|
       format.html { render layout: 'modal' }
       format.js { @loja }

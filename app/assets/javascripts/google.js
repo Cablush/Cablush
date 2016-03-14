@@ -2,9 +2,9 @@ var Google = (function($) {
     
     var auth2 = null;
     
-    var _initGoogleSDK = function() {
+    var _initSDK = function() {
         if (null == gapi) {
-            window.setTimeout(_initGoogleSDK,1000);
+            window.setTimeout(_initSDK,1000);
             return;
         }
         gapi.load('auth2', function() {
@@ -12,7 +12,7 @@ var Google = (function($) {
                 client_id: window.google_key
             });
         });
-        loadGoogleAuth();
+        loadAuth();
     };
     
     var _signInCallback = function(authResult) {
@@ -23,14 +23,14 @@ var Google = (function($) {
         }
     };
 
-    var loadGoogleSDK = function() {
+    var loadSDK = function() {
         $.ajaxSetup({ cache: true });
         $.getScript("//apis.google.com/js/client:plus.js", function() {
-            _initGoogleSDK();
+            _initSDK();
         });
     };
     
-    var loadGoogleAuth = function() {
+    var loadAuth = function() {
         $('.google_signin').on('click', function(e) {
             e.preventDefault();
             auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(_signInCallback);
@@ -38,8 +38,8 @@ var Google = (function($) {
     };
 
     return {
-        loadSDK: loadGoogleSDK,
-        loadAuth: loadGoogleAuth
+        loadSDK: loadSDK,
+        loadAuth: loadAuth
     };
     
 })(jQuery);

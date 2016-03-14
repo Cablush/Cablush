@@ -67,6 +67,7 @@ var CablushShowMap = (function(CablushMap, CablushLocation, $) {
     return {
         init: initMap,
         loadLocations: loadLocations,
+        getLocationUrl: getLocationUrl,
         clearLocations: clearLocations
     };
     

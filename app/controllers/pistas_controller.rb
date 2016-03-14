@@ -26,6 +26,8 @@ class PistasController < ApplicationController
   def show
     @pista = Pista.find_by_uuid!(params[:uuid])
     
+    @title = @pista.nome
+    
     respond_to do |format|
       format.html { render layout: 'modal' }
       format.js { @pista }

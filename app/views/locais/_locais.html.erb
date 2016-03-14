@@ -1,11 +1,11 @@
 <% locais.each_with_index do |local, i| %>
     <div class="col_1_of_3 span_1_of_3">
       <% if local.loja? %>
-        <%= render "lojas/loja.html", local: local, loja: local.localizavel %>
+        <%= render "lojas/loja.html", local: local, loja: local.localizavel, dialog: false %>
       <% elsif local.pista? %>
-        <%= render "pistas/pista.html", local: local, pista: local.localizavel %>
+        <%= render "pistas/pista.html", local: local, pista: local.localizavel, dialog: false %>
       <% elsif local.evento? %>
-        <%= render "eventos/evento.html", local: local, evento: local.localizavel %>
+        <%= render "eventos/evento.html", local: local, evento: local.localizavel, dialog: false %>
       <% end %>
     </div>
 <% end %>

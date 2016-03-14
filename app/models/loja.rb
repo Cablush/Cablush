@@ -78,6 +78,10 @@ class Loja < ActiveRecord::Base
     )
   end
   
+  def share_message
+    return 'A loja ' + nome + ' esta no Cablush! Encontre mais lojas em '
+  end
+  
   private
   
   def set_uuid

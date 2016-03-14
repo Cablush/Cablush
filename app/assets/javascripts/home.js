@@ -2,7 +2,7 @@ $(function() {
     
     var searchLocal = function (url, estado, esporte) {
         Utils.startLoading();
-        $("#flash_messages").html('');
+        Utils.clearMessage();
         $.ajax({
             url: url,
             dataType: "script",

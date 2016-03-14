@@ -37,5 +37,26 @@
         <span class="attr_txt"><%=  local.endereco %></span>
       </li>
     <% end %>
+    <% if dialog %>
+      <li>
+          <a href="https://www.facebook.com/dialog/feed?app_id=<%= Rails.application.secrets.facebook_key %>&display=popup&link=<%= pistas_url %>&picture=<%= pista.logo_url %>&name=<%= pista.share_message %>&redirect_uri=<%= pistas_url %>" 
+             class='fb_share btn-facebook btn1 btn-primary btn-normal btn-share'>
+            <i class="fa fa-facebook fa-2x"></i>
+            <span>Share</span>
+          </a>
+          <script type="text/javascript">
+            //Utils.openPopup('.fb_share', 'Facebook');
+            Facebook.loadFeed('<%= pista.nome %>', '<%= pistas_url %>', '<%= pista.logo_url %>', '<%= pista.share_message %>', '<%= pista.share_message %>');
+          </script>
+          <a href="https://twitter.com/share?url=<%= pistas_url %>&via=cablushApp&hashtags=cablush&text=<%= pista.share_message %>"
+             class='tw_share btn-twitter btn1 btn-primary btn-normal btn-share'>
+            <i class="fa fa-twitter fa-2x"></i>
+            <span>Share</span>
+          </a>
+          <script type="text/javascript">
+              Utils.openPopup('.tw_share', 'Twitter');
+          </script>
+      </li>
+    <% end %>
   </ul>
 </div>

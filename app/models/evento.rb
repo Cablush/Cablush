@@ -81,6 +81,10 @@ class Evento < ActiveRecord::Base
     )
   end
   
+  def share_message
+    return 'Veja mais sobre ' + nome + ' e outros eventos no Cablush! '
+  end
+  
   private
   
   def set_uuid
