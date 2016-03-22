@@ -1,0 +1,31 @@
+<!-- Facebook -->
+<a href="https://www.facebook.com/dialog/feed?app_id=<%= Rails.application.secrets.facebook_key %>&display=popup&link=<%= localizavel_url %>&picture=<%= picture_url %>&name=<%= localizavel.share_message %>&redirect_uri=<%= localizavel_url %>" 
+   class='fb_share btn-facebook btn1 btn-primary btn-normal btn-share'>
+  <i class="fa fa-facebook fa-2x"></i>
+  <span>Share</span>
+</a>
+<script type="text/javascript">
+  //Utils.openPopup('.fb_share', 'Facebook');
+  Facebook.loadFeed('<%= localizavel.nome %>', '<%= localizavel_url %>', '<%= picture_url %>', '<%= localizavel.share_message %>', '<%= localizavel.share_message %>');
+</script>
+
+<!-- Twitter -->
+<a href="https://twitter.com/share?url=<%= localizavel_url %>&via=cablushApp&hashtags=cablush&text=<%= localizavel.share_message %>" 
+   class='tw_share btn-twitter btn1 btn-primary btn-normal btn-share'>
+  <i class="fa fa-twitter fa-2x"></i>
+  <span>Tweet</span>
+</a>
+<script type="text/javascript">
+  Utils.openPopup('.tw_share', 'Twitter');
+</script>
+
+<!-- Pinterest -->
+<script type="text/javascript" async defer src="//assets.pinterest.com/js/pinit.js"></script>
+<a href="https://www.pinterest.com/pin/create/link/?url=<%= localizavel_url %>&media=<%= picture_url %>&description=<%= localizavel.share_message %>"
+   class='pn_share btn-pinterest btn1 btn-primary btn-normal btn-share'>
+  <i class="fa fa-pinterest-p fa-2x"></i>
+  <span>Pin it</span>
+</a>
+<script type="text/javascript">
+  Utils.openPopup('.pn_share', 'Pinterest');
+</script>

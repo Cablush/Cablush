@@ -51,23 +51,7 @@
     <% end %>
     <% if dialog %>
       <li>
-          <a href="https://www.facebook.com/dialog/feed?app_id=<%= Rails.application.secrets.facebook_key %>&display=popup&link=<%= eventos_url %>&picture=<%= evento.flyer_url %>&name=<%= evento.share_message %>&redirect_uri=<%= eventos_url %>" 
-             class='fb_share btn-facebook btn1 btn-primary btn-normal btn-share'>
-            <i class="fa fa-facebook fa-2x"></i>
-            <span>Share</span>
-          </a>
-          <script type="text/javascript">
-            //Utils.openPopup('.fb_share', 'Facebook');
-            Facebook.loadFeed('<%= evento.nome %>', '<%= eventos_url %>', '<%= evento.flyer_url %>', '<%= evento.share_message %>', '<%= evento.share_message %>');
-          </script>
-          <a href="https://twitter.com/share?url=<%= eventos_url %>&via=cablushApp&hashtags=cablush&text=<%= evento.share_message %>"
-             class='tw_share btn-twitter btn1 btn-primary btn-normal btn-share'>
-            <i class="fa fa-twitter fa-2x"></i>
-            <span>Share</span>
-          </a>
-          <script type="text/javascript">
-              Utils.openPopup('.tw_share', 'Twitter');
-          </script>
+          <%= render "layouts/shares", localizavel: evento, picture_url: evento.flyer_url, localizavel_url: eventos_url %>
       </li>
     <% end %>
   </ul>

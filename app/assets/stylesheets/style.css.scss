@@ -2029,8 +2029,11 @@ h5.m_12 a:hover{
     padding: 3px 0;
 }
 .btn-share {
-    width: 48%;
+    width: 32%;
     padding: 3px 0;
+    margin-bottom: 16px;
+    text-align: left;
+    height: 32px;
 }
 .lnk1 {
     color: #3C3D3D;
@@ -2049,31 +2052,27 @@ h5.m_12 a:hover{
 }
 .btn-facebook {
     background: #374F92 !important;
-    margin-bottom: 16px;
-    text-align: left;
-    height: 32px;
 }
 .btn-google {
     background: #4285F4 !important;
-    margin-bottom: 16px;
-    text-align: left;
-    height: 32px;
 }
 .btn-twitter {
     background: #55ACEE !important;
-    margin-bottom: 16px;
-    text-align: left;
-    height: 32px;
+}
+.btn-pinterest {
+    background: #BD081C !important;
 }
 .btn-facebook i, .btn-facebook span, .btn-facebook a,
 .btn-google i, .btn-google span, .btn-google a,
-.btn-twitter i, .btn-twitter span, .btn-twitter a {
+.btn-twitter i, .btn-twitter span, .btn-twitter a,
+.btn-pinterest i, .btn-pinterest span, .btn-pinterest a {
     margin-left: 10px;
     color: #ffffff;
 }
 .btn-facebook:hover, 
 .btn-google:hover, 
-.btn-twitter:hover {
+.btn-twitter:hover,
+.btn-pinterest:hover {
     background: #E84D23 !important;
     color: #FFF;
 }

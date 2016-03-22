@@ -50,23 +50,7 @@
     <% end %>
     <% if dialog %>
       <li>
-          <a href="https://www.facebook.com/dialog/feed?app_id=<%= Rails.application.secrets.facebook_key %>&display=popup&link=<%= lojas_url %>&picture=<%= loja.logo_url %>&name=<%= loja.share_message %>&redirect_uri=<%= lojas_url %>" 
-             class='fb_share btn-facebook btn1 btn-primary btn-normal btn-share'>
-            <i class="fa fa-facebook fa-2x"></i>
-            <span>Share</span>
-          </a>
-          <script type="text/javascript">
-            //Utils.openPopup('.fb_share', 'Facebook');
-            Facebook.loadFeed('<%= loja.nome %>', '<%= lojas_url %>', '<%= loja.logo_url %>', '<%= loja.share_message %>', '<%= loja.share_message %>');
-          </script>
-          <a href="https://twitter.com/share?url=<%= lojas_url %>&via=cablushApp&hashtags=cablush&text=<%= loja.share_message %>"
-             class='tw_share btn-twitter btn1 btn-primary btn-normal btn-share'>
-            <i class="fa fa-twitter fa-2x"></i>
-            <span>Share</span>
-          </a>
-          <script type="text/javascript">
-              Utils.openPopup('.tw_share', 'Twitter');
-          </script>
+          <%= render "layouts/shares", localizavel: loja, picture_url: loja.logo_url, localizavel_url: lojas_url %>
       </li>
     <% end %>
   </ul>
