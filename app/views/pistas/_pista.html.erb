@@ -19,6 +19,14 @@
 
 <div class="local_attr">
   <ul>
+    <% if pista.video.present? %>
+      <li>
+        <%= link_to url_with_protocol(pista.video), class: 'fancybox-media' do %>
+          <i class="fa fa-video-camera"></i>
+          <%= pista.video %>
+        <% end %>
+      </li>
+    <% end %>
     <% if pista.website.present? %>
       <li>
         <%= link_to url_with_protocol(pista.website), target: '_blank' do %>

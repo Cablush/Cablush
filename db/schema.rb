@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160312130508) do
+ActiveRecord::Schema.define(version: 20160322224929) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(version: 20160312130508) do
     t.datetime "foto_updated_at"
     t.boolean  "fundo",                         default: false
     t.string   "uuid",                                          null: false
+    t.string   "video",             limit: 150
   end
 
   add_index "pistas", ["responsavel_id"], name: "index_pistas_on_responsavel_id"

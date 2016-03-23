@@ -57,7 +57,7 @@ class Api::PistasController < Api::ApiController
   
   def build_pista(pista = nil)
     # get the permitted parameters
-    pista_attributes = params.permit(:nome, :descricao, :website, :facebook, :responsavel_uuid, :uuid,
+    pista_attributes = params.permit(:nome, :descricao, :website, :facebook, :video, :responsavel_uuid, :uuid,
         esportes: [:id],
         horario: [:inicio, :fim, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :detalhes],
         local: [:latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :cep, :pais]

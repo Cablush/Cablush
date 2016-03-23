@@ -28,6 +28,10 @@
     <%= f.label 'Fundo Preto' %>
     <%= f.check_box :fundo %>
   </div>
+<div class="field">
+    <%= f.label 'Video' %><br>
+    <%= f.text_field :video, class: 'inputbox'  %>
+  </div>
   <fieldset class="subfields">
       <legend>Esportes</legend>
       <%= render 'esportes/esportes_fields', f: f, esportes: @pista.esportes %>

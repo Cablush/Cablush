@@ -20,6 +20,7 @@ class Pista < ActiveRecord::Base
   validates :descricao, length: { maximum: 500 }
   validates :website, length: { maximum: 150 }
   validates :facebook, length: { maximum: 150 }
+  validates :video, length: { maximum: 150 }
   validates :local, presence: true
   validates_associated :local
   validates :esportes, presence: true
