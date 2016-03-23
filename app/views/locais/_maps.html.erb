@@ -4,7 +4,8 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
-            CablushShowMap.init($('#map-canvas')[0], <%= locais_to_json locais %>);
+            CablushShowMap.initMap($('#map-canvas')[0], <%= locais_to_json locais %>);
+            Utils.initDialog();
         });
     </script>
 </div>

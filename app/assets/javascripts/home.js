@@ -59,4 +59,17 @@ $(function() {
         });
     }
     
+    // Dialogs
+    $('.lnk_dialog').on('click', function(e) {
+       e.preventDefault();
+       Utils.openDialog($(this).attr('href'));
+    });
+    
+    // Videos
+    $('.lnk_video').on('click', function(e) {
+       e.preventDefault();
+       var html = Utils.convertMedia($(this).attr('href'))
+       
+    });
+    
 });

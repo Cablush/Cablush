@@ -39,7 +39,6 @@ var CablushShowMap = (function(CablushMap, CablushLocation, $) {
         _locations = locations;
         CablushMap.createMap("showMap");
         window.showMap = _showMap;
-        CablushMap.initDialog();
     };
     
     var loadLocations = function(locations) {
@@ -65,7 +64,7 @@ var CablushShowMap = (function(CablushMap, CablushLocation, $) {
     };
     
     return {
-        init: initMap,
+        initMap: initMap,
         loadLocations: loadLocations,
         getLocationUrl: getLocationUrl,
         clearLocations: clearLocations

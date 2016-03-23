@@ -1,4 +1,4 @@
-var CablushMap = (function($) {
+var CablushMap = (function(Utils, $) {
     
     var createMap = function(callbackName){
         var script = document.createElement('script');
@@ -55,26 +55,9 @@ var CablushMap = (function($) {
         });
     };
     
-    var initDialog = function() {
-        $(".dialog").dialog({
-            autoOpen: false,
-            modal: true,
-            width: 425,
-            resizable: false,
-            position: { 
-                my: "center top", 
-                at: "center top", 
-                of: ".map" },
-            close: function(event, ui) {
-                $(".dialog").html("");
-            }
-        }).dialog("widget").find(".ui-dialog-title").hide();
-    };
-    
     var bindDialog = function(marker, map, url) {
         google.maps.event.addListener(marker, 'click', function() {
-            $(".dialog").load(url);
-            $(".dialog").dialog("open");
+            Utils.openDialog(url);
         });
     };
     
@@ -84,8 +67,7 @@ var CablushMap = (function($) {
         createCustomMarker: createCustomMarker,
         createInfoContent: createInfoContent,
         bindInfoWindow: bindInfoWindow,
-        initDialog : initDialog,
-        bindDialog : bindDialog
+        bindDialog: bindDialog
     };
     
-})(jQuery);
+})(Utils, jQuery);
