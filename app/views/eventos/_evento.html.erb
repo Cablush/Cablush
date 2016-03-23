@@ -1,5 +1,9 @@
 <div class="title">
-    <%= evento.nome %>
+    <% if dialog %>
+      <%= evento.nome %>
+    <% else %>
+      <%= link_to evento.nome, evento_path(evento), class: "lnk_dialog" %>
+    <% end %>
     <div class="flyer">
       <% if evento.flyer.exists? %>
         <%= link_to evento.flyer.url(:original), rel: "lightbox" do %>
@@ -29,7 +33,7 @@
     <% end %>
     <% if evento.website.present? %>
       <li>
-        <%= link_to url_with_protocol(evento.website), :target => '_blank' do %>
+        <%= link_to url_with_protocol(evento.website), target: '_blank' do %>
           <i class="fa fa-link"></i>
           <%=  evento.website %>
         <% end %>

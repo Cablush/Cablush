@@ -1,5 +1,9 @@
 <div class="title">
-    <%= pista.nome %>
+    <% if dialog %>
+      <%= pista.nome %>
+    <% else %>
+      <%= link_to pista.nome, pista_path(pista), class: "lnk_dialog" %>
+    <% end %>
     <div class="foto">
       <% if pista.foto.exists? %>
         <%= link_to pista.foto.url(:original), rel: "lightbox" do %>
@@ -17,7 +21,7 @@
   <ul>
     <% if pista.website.present? %>
       <li>
-        <%= link_to url_with_protocol(pista.website), :target => '_blank' do %>
+        <%= link_to url_with_protocol(pista.website), target: '_blank' do %>
           <i class="fa fa-link"></i>
           <%=  pista.website %>
         <% end %>

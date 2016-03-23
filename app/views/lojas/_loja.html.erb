@@ -1,8 +1,18 @@
 <div class="title">
-  <% if loja.logo.exists? %>
-    <%= image_tag loja.logo.url(:small), class: loja.fundo? ? "fundo" : nil, alt: loja.nome %>
+  <% if dialog %>
+    <% if loja.logo.exists? %>
+      <%= image_tag loja.logo.url(:small), class: loja.fundo? ? "fundo" : nil, alt: loja.nome %>
+    <% else %>
+      <%= loja.nome %>
+    <% end %>
   <% else %>
-    <%= loja.nome %>
+    <% if loja.logo.exists? %>
+      <%= link_to loja_path(loja), class: "lnk_dialog" do %>  
+        <%= image_tag loja.logo.url(:small), class: loja.fundo? ? "fundo" : nil, alt: loja.nome %>
+      <% end %>
+    <% else %>
+      <%= link_to loja.nome, loja_path(loja), class: "lnk_dialog" %>  
+    <% end %>
   <% end %>
 </div>
 
@@ -28,7 +38,7 @@
     <% end %>
     <% if loja.website.present? %>
       <li>
-        <%= link_to url_with_protocol(loja.website), :target => '_blank' do %>
+        <%= link_to url_with_protocol(loja.website), target: '_blank' do %>
           <i class="fa fa-link"></i>
           <%=  loja.website %>
         <% end %>
