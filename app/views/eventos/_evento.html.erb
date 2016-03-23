@@ -6,7 +6,7 @@
     <% end %>
     <div class="flyer">
       <% if evento.flyer.exists? %>
-        <%= link_to evento.flyer.url(:original), rel: "lightbox" do %>
+        <%= link_to evento.flyer.url(:original), class: "fancybox" do %>
           <%= image_tag evento.flyer.url(:small), class: evento.fundo? ? "fundo" : nil, alt: evento.nome %>
         <% end %>
       <% end %>

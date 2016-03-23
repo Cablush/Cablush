@@ -6,7 +6,7 @@
     <% end %>
     <div class="foto">
       <% if pista.foto.exists? %>
-        <%= link_to pista.foto.url(:original), rel: "lightbox" do %>
+        <%= link_to pista.foto.url(:original), class: "fancybox" do %>
           <%= image_tag pista.foto.url(:small), class: pista.fundo? ? "fundo" : nil, alt: pista.nome %>
         <% end %>
       <% end %>

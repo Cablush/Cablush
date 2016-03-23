@@ -1,4 +1,4 @@
-var CablushMap = (function(Utils, $) {
+var CablushMap = (function($) {
     
     var createMap = function(callbackName){
         var script = document.createElement('script');
@@ -70,4 +70,4 @@ var CablushMap = (function(Utils, $) {
         bindDialog: bindDialog
     };
     
-})(Utils, jQuery);
+})(jQuery);

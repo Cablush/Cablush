@@ -25,5 +25,5 @@
 //= require jquery.mask
 //= require jquery.cookie
 //= require autocomplete-rails
-//= require lightbox
+//= require fancybox
 //= require_tree .

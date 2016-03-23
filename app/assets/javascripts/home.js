@@ -65,11 +65,14 @@ $(function() {
        Utils.openDialog($(this).attr('href'));
     });
     
-    // Videos
-    $('.lnk_video').on('click', function(e) {
-       e.preventDefault();
-       var html = Utils.convertMedia($(this).attr('href'))
-       
+    // Fancybox
+    $("a.fancybox").fancybox();
+    $('.fancybox-media').fancybox({
+        openEffect  : 'none',
+        closeEffect : 'none',
+        helpers : {
+            media : {}
+        }
     });
     
 });
