@@ -55,7 +55,7 @@
       <% if local.endereco.present? %>
         <li>
           <i class="fa fa-building attr_ico"></i>
-          <span class="attr_txt" itemprop="location"><%= local.endereco %></span>
+          <span class="attr_txt"><%= local.endereco %></span>
         </li>
       <% end %>
       <% if dialog %>
@@ -64,5 +64,12 @@
         </li>
       <% end %>
     </ul>
+  </div>
+  
+  <div itemprop="location" itemscope itemtype="http://schema.org/Place">
+    <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+      <meta itemprop="latitude" content="<%= local.latitude %>" />
+      <meta itemprop="longitude" content="<%= local.longitude%>" />
+    </div>
   </div>
 </div>
