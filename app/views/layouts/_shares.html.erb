@@ -1,3 +1,10 @@
+<!-- Schema.org microdata -->
+<div itemscope itemtype="http://schema.org/<%= localizavel_type %>" style="display: none;">
+  <span itemprop="name"><%= localizavel.nome %></span>
+  <span itemprop="description"><%= localizavel.share_message %></span>
+  <img itemprop="image" src="<%= picture_url %>">
+</div>
+
 <!-- Facebook -->
 <a href="https://www.facebook.com/dialog/feed?app_id=<%= Rails.application.secrets.facebook_key %>&display=popup&link=<%= localizavel_url %>&picture=<%= picture_url %>&name=<%= localizavel.share_message %>&redirect_uri=<%= localizavel_url %>" 
    class='fb_share btn-facebook btn1 btn-primary btn-normal btn-share'>
@@ -17,6 +24,16 @@
 </a>
 <script type="text/javascript">
   Utils.openPopup('.tw_share', 'Twitter');
+</script>
+
+<!-- Google -->
+<a href="https://plus.google.com/share?url=<%= localizavel_url %>"
+   class='g_share btn-google btn1 btn-primary btn-normal btn-share'>
+    <i class="fa fa-google-plus fa-2x"></i>
+    <span>Share</span>
+</a>
+<script type="text/javascript">
+  Utils.openPopup('.g_share', 'Google');
 </script>
 
 <!-- Pinterest -->
