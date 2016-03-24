@@ -3,7 +3,7 @@
       <% if dialog %>
         <%= evento.nome %>
       <% else %>
-        <%= link_to evento.nome, evento_path(evento), class: "lnk_dialog" %>
+        <%= link_to evento.nome, evento_path(evento), class: "lnk_dialog", url: evento_path(evento) %>
       <% end %>
   </div>
     
@@ -18,7 +18,10 @@
   <div class="desc" itemprop="description">
     <%= evento.descricao %>
   </div>
-
+    
+  <meta itemprop="startDate" content="<%= evento.start_date.to_time.iso8601 %>">
+  <meta itemprop="endDate" content="<%= evento.data_fim.to_time.iso8601 %>">
+  
   <div class="local_attr">
     <ul>
       <% if evento.datas.present? %>
@@ -52,7 +55,7 @@
       <% if local.endereco.present? %>
         <li>
           <i class="fa fa-building attr_ico"></i>
-          <span class="attr_txt"><%=  local.endereco %></span>
+          <span class="attr_txt" itemprop="location"><%= local.endereco %></span>
         </li>
       <% end %>
       <% if dialog %>

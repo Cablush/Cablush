@@ -61,6 +61,10 @@ class Evento < ActiveRecord::Base
     hora.strftime('%H:%M')
   end
   
+  def start_date
+    (data.to_s + " " +hora.to_s).to_datetime
+  end
+  
   def flyer_url
     if flyer.exists?
       flyer.url(:original).sub /\?\d+$/, ''

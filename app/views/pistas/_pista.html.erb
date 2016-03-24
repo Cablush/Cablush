@@ -3,7 +3,7 @@
       <% if dialog %>
         <%= pista.nome %>
       <% else %>
-        <%= link_to pista.nome, pista_path(pista), class: "lnk_dialog" %>
+        <%= link_to pista.nome, pista_path(pista), class: "lnk_dialog", url: pista_path(pista) %>
       <% end %>
   </div>
     
@@ -48,7 +48,7 @@
       <% if local.endereco.present? %>
         <li>
           <i class="fa fa-building attr_ico"></i>
-          <span class="attr_txt"><%=  local.endereco %></span>
+          <span class="attr_txt" itemprop="location"><%= local.endereco %></span>
         </li>
       <% end %>
       <% if dialog %>
@@ -57,5 +57,10 @@
         </li>
       <% end %>
     </ul>
+  </div>
+    
+  <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+    <meta itemprop="latitude" content="<%= local.latitude %>" />
+    <meta itemprop="longitude" content="<%= local.longitude%>" />
   </div>
 </div>
