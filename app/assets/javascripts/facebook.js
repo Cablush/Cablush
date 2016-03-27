@@ -47,7 +47,7 @@ var Facebook = (function($) {
     };
     
     var configAuth = function() {
-        $('.fb_signin').on('click', function(e) {
+        $('.facebook_signin').on('click', function(e) {
             e.preventDefault();
 
             FB.login(function(response) {

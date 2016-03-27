@@ -1,6 +1,6 @@
 class Api::PistasController < Api::ApiController
   
-  before_action :authenticate_usuario!, only: [:mine, :create, :update, :upload]
+  acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
   
   # GET /pistas
   def index
@@ -8,14 +8,14 @@ class Api::PistasController < Api::ApiController
     pistas = pistas.find_by_estado(params['estado'])
     pistas = pistas.find_by_esporte_categoria(params['esporte'])
     
-    render_pistas pistas
+    render_json_resource pistas
   end
   
   # GET /pistas/mine
   def mine
     pistas = Pista.where(responsavel_id: current_usuario.id)
     
-    render_pistas pistas
+    render_json_resource pistas
   end
 
   # POST /pistas(.:format)
@@ -24,9 +24,9 @@ class Api::PistasController < Api::ApiController
     pista.responsavel = current_usuario
     
     if pista.save
-      render_success pista
+      render_json_success pista, 200
     else
-      render_error pista
+      render_json_error pista.errors, 500
     end
   end
   
@@ -36,9 +36,9 @@ class Api::PistasController < Api::ApiController
     pista = build_pista(pista)
     
     if pista.save pista
-      render_success pista
+      render_json_success pista, 200
     else
-      render_error pista
+      render_json_error pista.errors, 500
     end
   end
   
@@ -47,9 +47,9 @@ class Api::PistasController < Api::ApiController
     pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     
     if pista.update(params[:foto])
-      render_success pista
+      render_json_success pista, 200
     else
-      render_error pista
+      render_json_error pista.errors, 500
     end
   end
 
@@ -81,22 +81,4 @@ class Api::PistasController < Api::ApiController
     return pista
   end
   
-  def render_pistas(pistas)
-    render json: pistas
-  end
-  
-  def render_success(pista)
-    render json: {
-        success: true,
-        data: pista
-      }
-  end
-  
-  def render_error(pista)
-    render json: {
-        success: false,
-        errors: pista.errors
-      }, status: 500
-  end
-
 end

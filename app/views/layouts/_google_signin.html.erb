@@ -1,4 +1,4 @@
-<a href="/omniauth/google_oauth2" class='google_signin btn-google btn1 btn-primary btn-normal btn-inline'>
+<%= link_to usuario_omniauth_authorize_path(:google_oauth2), class: 'google_signin btn-google btn1 btn-primary btn-normal btn-inline' do %>
   <i class="fa fa-google fa-2x"></i>
   <span>Entrar com Google</span>
-</a>
+<% end %>

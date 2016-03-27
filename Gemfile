@@ -61,10 +61,9 @@ gem 'mail_form'
 gem 'simple_form'
 
 gem 'devise'
-gem 'devise_token_auth'
-gem 'omniauth-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
+gem 'simple_token_authentication'
 
 gem 'activerecord-session_store'
 

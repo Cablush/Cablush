@@ -1,7 +1,5 @@
 class Usuario < ActiveRecord::Base
 
-  include DeviseTokenAuth::Concerns::User
-  
   enum role: [:admin, :lojista, :esportista]
   
   has_many :usuario_provider, :dependent => :destroy
@@ -13,6 +11,9 @@ class Usuario < ActiveRecord::Base
   
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :grupos
+  
+  # Token Authenticatable
+  acts_as_token_authenticatable
  
   # Include default devise modules. Others available are:
   #  :timeoutable and :omniauthable
@@ -24,8 +25,6 @@ class Usuario < ActiveRecord::Base
   attr_accessor :lojista
 
   after_initialize :set_default_role, :if => :new_record?
-  
-  before_validation :set_token_auths
   
   before_create :set_uuid
   
@@ -60,11 +59,6 @@ class Usuario < ActiveRecord::Base
   
   def set_uuid
     self.uuid = SecureRandom.uuid
-  end
-  
-  def set_token_auths
-    self.provider = 'email' if self.provider.blank?
-    self.uid = self.email if self.uid.blank?
   end
   
 end

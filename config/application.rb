@@ -29,6 +29,9 @@ module Cablush
     
     # 3.3 Error handling in transaction callbacks
     config.active_record.raise_in_transactional_callbacks = true
-      
+    
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end  
   end
 end

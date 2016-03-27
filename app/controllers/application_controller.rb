@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session # TODO , if: Proc.new { |c| c.request.format == 'application/json' }
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
   
   def unauthorized
     @title = "Acesso não autorizado, por favor efetue login e tente novamente."
@@ -42,6 +42,24 @@ class ApplicationController < ActionController::Base
     unless current_usuario.admin?
       redirect_to :back, :alert => "Access denied."
     end
+  end
+  
+  def render_json_resource(resource)
+    render json: resource
+  end
+  
+  def render_json_success(resource, status)
+    render json: {
+        success: true,
+        data: resource
+      }, status: status
+  end
+  
+  def render_json_error(message, status)
+    render json: {
+        success: false,
+        errors: message
+      }, status: status
   end
   
 end

@@ -12,25 +12,32 @@ Cablush::Application.routes.draw do
   
   # API
   namespace :api do
-      mount_devise_token_auth_for 'Usuario', at: 'auth', controllers: {
-          registrations: 'api/registrations'
-      }, skip: [:omniauth_callbacks]
-      resources :lojas, only: [:index, :create, :update], 
+    devise_scope :usuario do
+      match "usuarios/sign_in", to: "/usuario/sessions#create", via: [:post]
+      match "usuarios/sign_out", to: "/usuario/sessions#destroy", via: [:delete]
+      match "usuarios", to: "/usuario/registrations#create", via: [:post]
+      match "usuarios", to: "/usuario/registrations#update", via: [:patch, :put]
+      match "usuarios/auth/:provider", to: "/usuario/omniauth_callbacks#passthru {:provider=>/facebook|google_oauth2/}", via: [:get,:post]
+      match "usuarios/auth/:action/callback", to: "/usuario/omniauth_callbacks#(?-mix:facebook|google_oauth2)", via: [:get, :post]
+      match "usuarios/password", to: "/usuario/passwords#create", via: [:post]
+    end
+
+    resources :lojas, only: [:index, :create, :update], 
+                      param: :uuid, defaults: { format: 'json' } do
+      get :mine, on: :collection
+      post :upload, on: :member
+    end
+    resources :pistas, only: [:index, :create, :update], 
+                       param: :uuid, defaults: { format: 'json' } do
+      get :mine, on: :collection
+      post :upload, on: :member
+    end
+    resources :eventos, only: [:index, :create, :update], 
                         param: :uuid, defaults: { format: 'json' } do
-        get :mine, on: :collection
-        post :upload, on: :member
-      end
-      resources :pistas, only: [:index, :create, :update], 
-                         param: :uuid, defaults: { format: 'json' } do
-        get :mine, on: :collection
-        post :upload, on: :member
-      end
-      resources :eventos, only: [:index, :create, :update], 
-                          param: :uuid, defaults: { format: 'json' } do
-        get :mine, on: :collection
-        post :upload, on: :member
-      end
-      resources :esportes, only: [:index], defaults: { format: 'json' }
+      get :mine, on: :collection
+      post :upload, on: :member
+    end
+    resources :esportes, only: [:index], defaults: { format: 'json' }
   end
   
   # CADASTRO

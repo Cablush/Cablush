@@ -1,6 +1,6 @@
 class Api::LojasController < Api::ApiController
   
-  before_action :authenticate_usuario!, only: [:mine, :create, :update, :upload]
+  acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
   
   # GET /lojas
   def index
@@ -8,14 +8,14 @@ class Api::LojasController < Api::ApiController
     lojas = lojas.find_by_estado(params['estado'])
     lojas = lojas.find_by_esporte_categoria(params['esporte'])
     
-    render_lojas lojas
+    render_json_resource lojas
   end
   
   # GET /lojas/mine
   def mine
     lojas = Loja.where(responsavel_id: current_usuario.id)
     
-    render_lojas lojas
+    render_json_resource lojas
   end
   
   # POST /lojas(.:format)
@@ -24,9 +24,9 @@ class Api::LojasController < Api::ApiController
     loja.responsavel = current_usuario
     
     if loja.save
-      render_success loja
+      render_json_success loja, 200
     else
-      render_error loja
+      render_json_error loja.errors, 500
     end
   end
   
@@ -36,9 +36,9 @@ class Api::LojasController < Api::ApiController
     loja = build_loja(loja)
     
     if loja.save 
-      render_success loja
+      render_json_success loja, 200
     else
-      render_error loja
+      render_json_error loja.errors, 500
     end
   end
   
@@ -47,9 +47,9 @@ class Api::LojasController < Api::ApiController
     loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     
     if loja.update(params[:logo])
-      render_success loja
+      render_json_success loja, 200
     else
-      render_error loja
+      render_json_error loja.errors, 500
     end
   end
 
@@ -79,24 +79,6 @@ class Api::LojasController < Api::ApiController
     loja.horario = Horario.new(horario_attributes)
     loja.locais = locais_attributes.map{|l| Local.new(l)}
     return loja
-  end
-  
-  def render_lojas(lojas)
-    render json: lojas
-  end
-  
-  def render_success(loja)
-    render json: {
-        success: true,
-        data: loja
-      }
-  end
-  
-  def render_error(loja)
-    render json: {
-        success: false,
-        errors: loja.errors
-      }, status: 500
   end
   
 end

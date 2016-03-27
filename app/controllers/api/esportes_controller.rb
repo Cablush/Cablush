@@ -4,8 +4,7 @@ class Api::EsportesController < Api::ApiController
   def index
     esportes = Esporte.all
     
-    render json: esportes, 
-      :except => [:created_at, :updated_at]
+    render_json_resource esportes
   end
   
   private

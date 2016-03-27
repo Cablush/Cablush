@@ -30,7 +30,7 @@ var Google = (function($) {
         });
     };
     
-    var loadAuth = function() {
+    var configAuth = function() {
         $('.google_signin').on('click', function(e) {
             e.preventDefault();
             auth2.grantOfflineAccess({'redirect_uri': 'postmessage'}).then(_signInCallback);
@@ -39,7 +39,7 @@ var Google = (function($) {
 
     return {
         loadSDK: loadSDK,
-        loadAuth: loadAuth
+        loadAuth: configAuth
     };
     
 })(jQuery);
