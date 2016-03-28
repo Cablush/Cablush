@@ -65,6 +65,8 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem 'simple_token_authentication'
 
+gem "koala", "~> 2.2"
+
 gem 'activerecord-session_store'
 
 #a pedido do openshift

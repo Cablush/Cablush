@@ -5,4 +5,8 @@ class Usuario::SessionsController < Devise::SessionsController
     super
   end
   
+  def self.validate_token
+    # TODO
+  end
+  
 end

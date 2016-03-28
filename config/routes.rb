@@ -15,11 +15,12 @@ Cablush::Application.routes.draw do
     devise_scope :usuario do
       match "usuarios/sign_in", to: "/usuario/sessions#create", via: [:post]
       match "usuarios/sign_out", to: "/usuario/sessions#destroy", via: [:delete]
+      match "usuarios/validate_token", to: "/usuario/sessions#validate_token", via: [:get]
       match "usuarios", to: "/usuario/registrations#create", via: [:post]
       match "usuarios", to: "/usuario/registrations#update", via: [:patch, :put]
-      match "usuarios/auth/:provider", to: "/usuario/omniauth_callbacks#passthru {:provider=>/facebook|google_oauth2/}", via: [:get,:post]
-      match "usuarios/auth/:action/callback", to: "/usuario/omniauth_callbacks#(?-mix:facebook|google_oauth2)", via: [:get, :post]
       match "usuarios/password", to: "/usuario/passwords#create", via: [:post]
+      match "usuarios/auth/facebook/validate_token", to: "/usuario/omniauth_callbacks#validate_facebook_token", via: [:get]
+      match "usuarios/auth/google_oauth2/validate_token", to: "/usuario/omniauth_callbacks#validate_google_token", via: [:get]
     end
 
     resources :lojas, only: [:index, :create, :update], 

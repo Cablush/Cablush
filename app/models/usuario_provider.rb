@@ -5,8 +5,8 @@ class UsuarioProvider < ActiveRecord::Base
     # find the provider
     provider = where(provider: auth.provider, uid: auth.uid).first
     unless provider.nil?
-        # if provider exists, return the user
-        provider.usuario
+      # if provider exists, return the user
+      provider.usuario
     else
       # if provider does not exist, find the user
       usuario = Usuario.where(:email => auth.info.email).first
@@ -43,12 +43,4 @@ class UsuarioProvider < ActiveRecord::Base
     end
   end
   
-#  def self.new_with_session(params, session)
-#    super.tap do |usuario|
-#      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-#        usuario.email = data["email"] if usuario.email.blank?
-#      end
-#    end
-#  end
-
 end
