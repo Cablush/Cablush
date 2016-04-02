@@ -14,7 +14,7 @@ class Evento < ActiveRecord::Base
   end
   
   validates :nome, presence: true, length: { maximum: 50 }
-  validates :descricao, length: { maximum: 500 }
+  validates :descricao, presence: true, length: { maximum: 500 }
   validates :data, presence: true
   validates :hora, presence: true
   validates :website, length: { maximum: 150 }

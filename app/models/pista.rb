@@ -17,7 +17,7 @@ class Pista < ActiveRecord::Base
   end
   
   validates :nome, presence: true, length: { maximum: 50 }
-  validates :descricao, length: { maximum: 500 }
+  validates :descricao, presence: true, length: { maximum: 500 }
   validates :website, length: { maximum: 150 }
   validates :facebook, length: { maximum: 150 }
   validates :video, length: { maximum: 150 }

@@ -2,7 +2,7 @@ class Local < ActiveRecord::Base
   
   validates :latitude, presence: true
   validates :longitude, presence: true
-  validates :logradouro, presence: true, length: { maximum: 100 }
+  validates :logradouro, length: { maximum: 100 }
   validates :numero, length: { maximum: 10 }
   validates :complemento, length: { maximum: 25 }
   validates :bairro, length: { maximum: 100 }
