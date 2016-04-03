@@ -22,19 +22,11 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def validate_facebook_token
     access_token = params[:access_token]
-    @graph = Koala::Facebook::API.new(access_token, 
-      Rails.application.secrets.facebook_secret)
+    @graph = Koala::Facebook::API.new(access_token, Rails.application.secrets.facebook_secret)
     begin 
       profile = @graph.get_object("me")
-      omniauth = build_omniauth_hash(profile, access_token)
-      @usuario = UsuarioProvider.usuario_from_omniauth(omniauth)
-      
-      if @usuario.persisted?
-        sign_in @usuario, :event => :authentication
-        render json: @usuario
-      else
-        render_json_error 'Usuario not persisted!', 500
-      end
+      omniauth = omniauth_hash_from_facebook(profile, access_token)
+      authenticate_omniauth(omniauth)
     rescue Exception=>ex
 			render_json_error ex.message, 500
 		end
@@ -42,27 +34,62 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def validate_google_token
     access_token = params[:access_token]
-    # TODO
+    response = HTTParty.get("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + access_token)
+    if response.code == 200
+      data = JSON.parse(response.body)
+      if (data['aud'] == Rails.application.secrets.google_key)
+        omniauth = omniauth_hash_from_google(data.symbolize_keys)
+        authenticate_omniauth(omniauth)
+      else
+        render_json_error 'Invalid client id!', 500
+      end
+    else 
+      render_json_error 'Error validating token!', 500
+    end
   end
-  
+
   protected
   
-  def build_omniauth_hash(profile, access_token)
+  def authenticate_omniauth(omniauth)
+    @usuario = UsuarioProvider.usuario_from_omniauth(omniauth)
+      
+    if @usuario.persisted?
+      sign_in @usuario, :event => :authentication
+      render json: @usuario
+    else
+      render_json_error 'Error persisting Usuario!', 500
+    end
+  end
+  
+  def omniauth_hash_from_facebook(profile, access_token)
     struct = OpenStruct.new
     struct.provider = 'facebook'
     struct.uid = profile['id']
     struct.info = OpenStruct.new
     struct.info.email = profile['email']
-    struct.info.image = "http://graph.facebook.com/#{profile['id']}/picture?type=square"
+    struct.info.name = profile['name']
     struct.info.first_name = profile['first_name']
     struct.info.last_name = profile['last_name']
-    struct.info.name = profile['name']
-    struct.info.bio = profile['bio']
-    struct.info.hometown = profile['hometown']['name'] if profile['hometown']
-    struct.info.location = profile['location']['name'] if profile['location']
+    struct.info.image = "http://graph.facebook.com/#{profile['id']}/picture?type=square"
     struct.credentials = OpenStruct.new
     struct.credentials.token = access_token
-    struct.credentials.expires_at = 1.month.from_now
+    struct.credentials.expires_at = 1.hours.from_now.to_i
+    struct
+  end
+  
+  def omniauth_hash_from_google(tokeninfo, access_token)
+    struct = OpenStruct.new
+    struct.provider = 'google_oauth2'
+    struct.uid = tokeninfo['sub']
+    struct.info = OpenStruct.new
+    struct.info.email = tokeninfo['email']
+    struct.info.name = tokeninfo['name']
+    struct.info.first_name = tokeninfo['given_name']
+    struct.info.last_name = tokeninfo['family_name']
+    struct.info.image = tokeninfo['picture']
+    struct.credentials = OpenStruct.new
+    struct.credentials.token = access_token
+    struct.credentials.expires_at = tokeninfo['exp']
     struct
   end
   

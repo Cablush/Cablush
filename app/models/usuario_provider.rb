@@ -5,7 +5,10 @@ class UsuarioProvider < ActiveRecord::Base
     # find the provider
     provider = where(provider: auth.provider, uid: auth.uid).first
     unless provider.nil?
-      # if provider exists, return the user
+      # if provider exists, update the token and return the user
+      provider.token = auth.credentials.token
+      provider.expires_at = auth.credentials.expires_at
+      provider.save!
       provider.usuario
     else
       # if provider does not exist, find the user

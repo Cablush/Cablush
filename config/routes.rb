@@ -19,8 +19,8 @@ Cablush::Application.routes.draw do
       match "usuarios", to: "/usuario/registrations#create", via: [:post]
       match "usuarios", to: "/usuario/registrations#update", via: [:patch, :put]
       match "usuarios/password", to: "/usuario/passwords#create", via: [:post]
-      match "usuarios/auth/facebook/validate_token", to: "/usuario/omniauth_callbacks#validate_facebook_token", via: [:get]
-      match "usuarios/auth/google_oauth2/validate_token", to: "/usuario/omniauth_callbacks#validate_google_token", via: [:get]
+      match "usuarios/auth/facebook/validate_token", to: "/usuario/omniauth_callbacks#validate_facebook_token", via: [:get, :post]
+      match "usuarios/auth/google_oauth2/validate_token", to: "/usuario/omniauth_callbacks#validate_google_token", via: [:get, :post]
     end
 
     resources :lojas, only: [:index, :create, :update], 

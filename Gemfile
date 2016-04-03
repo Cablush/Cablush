@@ -66,6 +66,7 @@ gem 'omniauth-google-oauth2'
 gem 'simple_token_authentication'
 
 gem "koala", "~> 2.2"
+gem "httparty"
 
 gem 'activerecord-session_store'
 
