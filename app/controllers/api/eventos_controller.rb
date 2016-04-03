@@ -2,7 +2,7 @@ class Api::EventosController < Api::ApiController
 
   acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
 
-  # GET /eventos
+  # GET /api/eventos
   def index
     eventos = Evento.actives_ordered.find_like_name(params['nome'])
     eventos = eventos.find_by_estado(params['estado'])
@@ -11,14 +11,14 @@ class Api::EventosController < Api::ApiController
     render_json_resource eventos
   end
   
-  # GET /eventos/mine
+  # GET /api/eventos/mine
   def mine
     eventos = Evento.actives_ordered.where(responsavel_id: current_usuario.id)
     
     render_json_resource eventos
   end
   
-  # POST /eventos(.:format)
+  # POST /api/eventos(.:format)
   def create
     evento = build_evento
     evento.responsavel = current_usuario
@@ -30,7 +30,7 @@ class Api::EventosController < Api::ApiController
     end
   end
   
-  # PATCH/PUT /eventos/:uuid
+  # PATCH/PUT /api/eventos/:uuid
   def update
     evento = Evento.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     evento = build_evento(evento)
@@ -42,7 +42,7 @@ class Api::EventosController < Api::ApiController
     end
   end
   
-  # POST /eventos/:uuid/upload
+  # POST /api/eventos/:uuid/upload
   def upload
     evento = Evento.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     

@@ -2,7 +2,7 @@ class Api::PistasController < Api::ApiController
   
   acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
   
-  # GET /pistas
+  # GET /api/pistas
   def index
     pistas = Pista.find_like_name(params['nome'])
     pistas = pistas.find_by_estado(params['estado'])
@@ -11,14 +11,14 @@ class Api::PistasController < Api::ApiController
     render_json_resource pistas
   end
   
-  # GET /pistas/mine
+  # GET /api/pistas/mine
   def mine
     pistas = Pista.where(responsavel_id: current_usuario.id)
     
     render_json_resource pistas
   end
 
-  # POST /pistas(.:format)
+  # POST /api/pistas(.:format)
   def create
     pista = build_pista
     pista.responsavel = current_usuario
@@ -30,7 +30,7 @@ class Api::PistasController < Api::ApiController
     end
   end
   
-  # PATCH/PUT /pistas/:uuid
+  # PATCH/PUT /api/pistas/:uuid
   def update
     pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     pista = build_pista(pista)
@@ -42,7 +42,7 @@ class Api::PistasController < Api::ApiController
     end
   end
   
-  # POST /pistas/:uuid/upload
+  # POST /api/pistas/:uuid/upload
   def upload
     pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     

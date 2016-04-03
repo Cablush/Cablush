@@ -1,6 +1,6 @@
 class Api::EsportesController < Api::ApiController
 	
-  # GET /esportes
+  # GET /api/esportes
   def index
     esportes = Esporte.all
     

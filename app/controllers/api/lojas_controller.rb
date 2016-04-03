@@ -2,7 +2,7 @@ class Api::LojasController < Api::ApiController
   
   acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
   
-  # GET /lojas
+  # GET /api/lojas
   def index
     lojas = Loja.find_like_name(params['nome'])
     lojas = lojas.find_by_estado(params['estado'])
@@ -11,14 +11,14 @@ class Api::LojasController < Api::ApiController
     render_json_resource lojas
   end
   
-  # GET /lojas/mine
+  # GET /api/lojas/mine
   def mine
     lojas = Loja.where(responsavel_id: current_usuario.id)
     
     render_json_resource lojas
   end
   
-  # POST /lojas(.:format)
+  # POST /api/lojas(.:format)
   def create
     loja = build_loja
     loja.responsavel = current_usuario
@@ -30,7 +30,7 @@ class Api::LojasController < Api::ApiController
     end
   end
   
-  # PATCH/PUT /lojas/:uuid
+  # PATCH/PUT /api/lojas/:uuid
   def update
     loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     loja = build_loja(loja)
@@ -42,7 +42,7 @@ class Api::LojasController < Api::ApiController
     end
   end
   
-  # POST /lojas/:uuid/upload
+  # POST /api/lojas/:uuid/upload
   def upload
     loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     
