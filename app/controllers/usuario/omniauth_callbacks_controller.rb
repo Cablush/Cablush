@@ -38,7 +38,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if response.code == 200
       data = JSON.parse(response.body)
       if (data['aud'] == Rails.application.secrets.google_key)
-        omniauth = omniauth_hash_from_google(data.symbolize_keys)
+        omniauth = omniauth_hash_from_google(data, access_token)
         authenticate_omniauth(omniauth)
       else
         render_json_error 'Invalid client id!', 500

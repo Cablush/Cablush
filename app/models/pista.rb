@@ -58,7 +58,7 @@ class Pista < ActiveRecord::Base
   end
   
   def as_json(options={})
-    super(:only => [:nome, :descricao, :website, :facebook, :uuid],
+    super(:only => [:nome, :descricao, :website, :facebook, :video, :uuid],
           :methods => [:foto_url, :responsavel_uuid],
           :include => { 
             :local => {:except => [:id, :localizavel_id, :localizavel_type, :created_at, :updated_at]},
