@@ -1,7 +1,7 @@
 class Esporte < ActiveRecord::Base
   
   enum categoria: {atletismo: "atletismo", automobilismo: "automobilismo", bike: "bike", 
-                   moto: "moto", patins: "patins", skate: "skate", corrida: "corrida", outros: "outros"}
+                   moto: "moto", patins: "patins", skate: "skate", outros: "outros"}
                  
   scope :find_like_nome, ->(nome) {
     where('esportes.nome LIKE ?', "#{nome}%") if nome.present?
