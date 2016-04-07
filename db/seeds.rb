@@ -9,12 +9,35 @@
 
 # Esportes - begin
 unless Esporte.exists?
+  # Modalidades Skate
   Esporte.create(nome: "Street", categoria: "skate")
   Esporte.create(nome: "Longboard", categoria: "skate")
+  Esporte.create(nome: "Downhill", categoria: "skate")
+  Esporte.create(nome: "Slalom", categoria: "skate")
+  Esporte.create(nome: "Freestyle", categoria: "skate")
+  Esporte.create(nome: "Vertical", categoria: "skate")
+  Esporte.create(nome: "Mountainboard", categoria: "skate")
+  # Modalidades Patins
   Esporte.create(nome: "Street", categoria: "patins")
+  Esporte.create(nome: "Fitness", categoria: "patins")
+  Esporte.create(nome: "Slalom", categoria: "patins")
+  Esporte.create(nome: "Freestyle", categoria: "patins")
+  Esporte.create(nome: "Vertical", categoria: "patins")
+  Esporte.create(nome: "Speed", categoria: "patins")
+  Esporte.create(nome: "Downhill", categoria: "patins")
+  Esporte.create(nome: "Hockey", categoria: "patins")
+  Esporte.create(nome: "Roller Derby", categoria: "patins")
+  Esporte.create(nome: "Artistic", categoria: "patins")
+  # Modalidade bike
   Esporte.create(nome: "BMX", categoria: "bike")
   Esporte.create(nome: "Drift Trike", categoria: "bike")
-  Esporte.create(nome: "MTB", categoria: "bike")
+  Esporte.create(nome: "Cross-Country", categoria: "bike")
+  Esporte.create(nome: "Downhill", categoria: "bike")
+  Esporte.create(nome: "Four-Cross", categoria: "bike")
+  Esporte.create(nome: "Marathon", categoria: "bike")
+  Esporte.create(nome: "Trial", categoria: "bike")
+  Esporte.create(nome: "Enduro", categoria: "bike")
+  Esporte.create(nome: "Freeride", categoria: "bike")
 end
 # Esportes - end
 
