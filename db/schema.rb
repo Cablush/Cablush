@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326203250) do
+ActiveRecord::Schema.define(version: 20160408194155) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -232,10 +232,10 @@ ActiveRecord::Schema.define(version: 20160326203250) do
     t.integer  "usuario_id"
     t.string   "provider"
     t.string   "uid"
-    t.string   "token"
+    t.string   "token",      limit: 1100
     t.string   "expires_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   add_index "usuario_providers", ["usuario_id"], name: "index_usuario_providers_on_usuario_id"
