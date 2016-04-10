@@ -2,6 +2,8 @@ class Api::PistasController < Api::ApiController
   
   acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
   
+  impressionist actions: [:index]
+  
   # GET /api/pistas
   def index
     pistas = Pista.find_like_name(params['nome'])
@@ -9,6 +11,14 @@ class Api::PistasController < Api::ApiController
     pistas = pistas.find_by_esporte_categoria(params['esporte'])
     
     render_json_resource pistas
+  end
+  
+  # GET /api/pistas/:uuid
+  def show
+    pista = Pista.find_by_uuid!(params[:uuid])
+    impressionist(pista)
+    
+    render_json_success nil, 200
   end
   
   # GET /api/pistas/mine

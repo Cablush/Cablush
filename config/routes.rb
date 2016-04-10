@@ -23,17 +23,17 @@ Cablush::Application.routes.draw do
       match "usuarios/auth/google_oauth2/validate_token", to: "/usuario/omniauth_callbacks#validate_google_token", via: [:get, :post]
     end
 
-    resources :lojas, only: [:index, :create, :update], 
+    resources :lojas, only: [:index, :show, :create, :update], 
                       param: :uuid, defaults: { format: 'json' } do
       get :mine, on: :collection
       post :upload, on: :member
     end
-    resources :pistas, only: [:index, :create, :update], 
+    resources :pistas, only: [:index, :show, :create, :update], 
                        param: :uuid, defaults: { format: 'json' } do
       get :mine, on: :collection
       post :upload, on: :member
     end
-    resources :eventos, only: [:index, :create, :update], 
+    resources :eventos, only: [:index, :show, :create, :update], 
                         param: :uuid, defaults: { format: 'json' } do
       get :mine, on: :collection
       post :upload, on: :member

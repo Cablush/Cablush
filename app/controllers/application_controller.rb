@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
     return :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404
   end
   
+  # Used by impressionist
+  def current_user
+    current_usuario
+  end
+  
   protected
   
   def after_sign_in_path_for(resource)

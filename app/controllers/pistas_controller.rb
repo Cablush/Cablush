@@ -1,6 +1,6 @@
 class PistasController < ApplicationController
   
-  include LocalAutocompletes, EsporteAutocompletes
+  impressionist actions: [:index]
   
   # GET /pistas(.:format)
   def index
@@ -25,6 +25,8 @@ class PistasController < ApplicationController
   # GET /pistas/:uuid(.:format)
   def show
     @pista = Pista.find_by_uuid!(params[:uuid])
+    
+    impressionist(@pista)
     
     @title = @pista.nome
     

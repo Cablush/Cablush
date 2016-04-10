@@ -1,6 +1,8 @@
 class Api::EventosController < Api::ApiController
 
   acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
+  
+  impressionist actions: [:index]
 
   # GET /api/eventos
   def index
@@ -9,6 +11,14 @@ class Api::EventosController < Api::ApiController
     eventos = eventos.find_by_esporte_categoria(params['esporte'])
     
     render_json_resource eventos
+  end
+  
+  # GET /api/eventos/:uuid
+  def show
+    evento = Evento.find_by_uuid!(params[:uuid])
+    impressionist(evento)
+    
+    render_json_success nil, 200
   end
   
   # GET /api/eventos/mine

@@ -7,6 +7,8 @@ class Evento < ActiveRecord::Base
                               
   has_and_belongs_to_many :esportes
   
+  is_impressionable
+  
   before_create :set_uuid
   
   def to_param

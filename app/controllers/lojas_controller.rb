@@ -1,5 +1,7 @@
 class LojasController < ApplicationController
   
+  impressionist actions: [:index]
+  
   # GET /lojas(.:format)
   def index
     @locais = Local.lojas.paginate(:page => params[:page], :per_page => 9)
@@ -23,6 +25,8 @@ class LojasController < ApplicationController
   # GET /lojas/:uuid(.:format)
   def show
     @loja = Loja.find_by_uuid!(params[:uuid])
+    
+    impressionist(@loja)
     
     @title = @loja.nome
     

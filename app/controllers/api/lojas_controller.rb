@@ -2,6 +2,8 @@ class Api::LojasController < Api::ApiController
   
   acts_as_token_authentication_handler_for Usuario, only: [:mine, :create, :update, :upload]
   
+  impressionist actions: [:index]
+  
   # GET /api/lojas
   def index
     lojas = Loja.find_like_name(params['nome'])
@@ -9,6 +11,14 @@ class Api::LojasController < Api::ApiController
     lojas = lojas.find_by_esporte_categoria(params['esporte'])
     
     render_json_resource lojas
+  end
+  
+  # GET /api/lojas/:uuid
+  def show
+    loja = Loja.find_by_uuid!(params[:uuid])
+    impressionist(loja)
+    
+    render_json_success nil, 200
   end
   
   # GET /api/lojas/mine

@@ -101,7 +101,11 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
+    httpclient (2.7.1)
     i18n (0.7.0)
+    impressionist (1.5.1)
+      httpclient (~> 2.2)
+      nokogiri (~> 1.5)
     jbuilder (1.5.3)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -286,6 +290,7 @@ DEPENDENCIES
   font-awesome-rails
   has_scope
   httparty
+  impressionist
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails

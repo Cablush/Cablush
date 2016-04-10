@@ -11,6 +11,8 @@ class Loja < ActiveRecord::Base
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos
   
+  is_impressionable
+  
   before_create :set_uuid
   
   def to_param

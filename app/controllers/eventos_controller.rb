@@ -1,5 +1,7 @@
 class EventosController < ApplicationController
   
+  impressionist actions: [:index]
+  
   # GET /eventos(.:format)
   def index
     @locais = Local.eventos.paginate(:page => params[:page], :per_page => 9)
@@ -23,6 +25,8 @@ class EventosController < ApplicationController
   # GET /eventos/:uuid(.:format)
   def show
     @evento = Evento.find_by_uuid!(params[:uuid])
+    
+    impressionist(@evento)
     
     @title = @evento.nome
     
