@@ -41,7 +41,7 @@ class Local < ActiveRecord::Base
   }
   
   scope :pistas_by_esporte_categoria, ->(categoria) {
-    pistas.merge(Pista.find_by_espporte_categoria(categoria))
+    pistas.merge(Pista.find_by_esporte_categoria(categoria))
   }
   
   scope :eventos_by_estado, ->(estado) {
