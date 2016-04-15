@@ -1,13 +1,7 @@
-<div class="content-head">
-    <div class="wrap">
-        <ul class="events">
-            <li><%= link_to 'Cadastros', cadastros_path %></li>
-            <li class=""><%= link_to 'Lojas', cadastros_lojas_path %></li>
-            <li class="active"><a href="#">Nova Loja</a></li>
-        </ul>
-        <div class="clear"></div>
-    </div>
-</div>
+<%= render "layouts/content_header" %>
+
+<%= render "header", option: 'New' %>
+
 <div class="main">
     <div class="wrap">
         <div class="wrap-content"> 

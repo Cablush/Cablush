@@ -1,13 +1,7 @@
-<div class="content-head">
-    <div class="wrap">
-        <ul class="events">
-            <li><%= link_to 'Cadastros', cadastros_path %></li>
-            <li class="active"><a href="#">Pistas</a></li>
-            <li><%= link_to 'Nova Pista', new_cadastros_pista_path %></li>
-        </ul>
-        <div class="clear"></div>
-    </div>
-</div>
+<%= render "layouts/content_header" %>
+
+<%= render "header", option: 'List' %>
+
 <div class="main">
     <div class="wrap">
         <ul class="list1 mark_orange">

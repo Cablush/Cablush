@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def full_title(page_title)
     base_title = "Cablush"
     if page_title.blank?
@@ -10,6 +11,14 @@ module ApplicationHelper
   
   def url_with_protocol(url)
     /^http/i.match(url) ? url : "http://#{url}"
+  end
+  
+  def is_active(route, by_verb = false)
+    if by_verb 
+      'active' if request.path.try(:ends_with?, route)
+    else
+      'active' if request.path.try(:starts_with?, route)
+    end
   end
   
   def locais_to_json(locais)
