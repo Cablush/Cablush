@@ -3,8 +3,9 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def self.provides_callback_for(provider)
     class_eval %Q{
       def #{provider}
-        @usuario = UsuarioProvider.usuario_from_omniauth(request.env["omniauth.auth"])
-
+        omniauth = request.env["omniauth.auth"]
+        logger.debug "Callback Omniauth: " + omniauth.to_s
+        @usuario = UsuarioProvider.usuario_from_omniauth(omniauth)
         if @usuario.persisted?
           sign_in_and_redirect @usuario, event: :authentication
         else
@@ -24,13 +25,14 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     begin
       access_token = params[:access_token]
       graph = Koala::Facebook::API.new(access_token, Rails.application.secrets.facebook_secret)
-      profile = graph.get_object("me")
+      profile = graph.get_object("me", fields: ["id", "email", "name", "first_name", "last_name"])
+      logger.debug "Profile: " + profile.to_s
       omniauth = omniauth_hash_from_facebook(profile, access_token)
       authenticate_omniauth(omniauth)
     rescue Exception => ex
-      puts "Caught exception #{ex}!"
-			render_json_error ex.message, 500
-		end
+      logger.error "Caught exception #{ex}!"
+      render_json_error ex.message, 500
+    end
   end
   
   def validate_google_token
@@ -39,6 +41,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       response = HTTParty.get("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + access_token)
       if response.code == 200
         data = JSON.parse(response.body)
+        logger.debug "Data: " + data.to_s
         if (data['aud'] == Rails.application.secrets.google_key)
           omniauth = omniauth_hash_from_google(data, access_token)
           authenticate_omniauth(omniauth)
@@ -49,7 +52,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         render_json_error 'Error validating token!', 500
       end
     rescue Exception => ex
-      puts "Caught exception #{ex}!"
+      logger.error "Caught exception #{ex}!"
 			render_json_error ex.message, 500
 		end
   end
@@ -58,8 +61,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   
   def authenticate_omniauth(omniauth)
     usuario = UsuarioProvider.usuario_from_omniauth(omniauth)
-      
-    if usuario.persisted?
+    if !usuario.nil? && usuario.persisted?
       sign_in usuario, :event => :authentication
       render json: usuario
     else
@@ -80,6 +82,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     struct.credentials = OpenStruct.new
     struct.credentials.token = access_token
     struct.credentials.expires_at = 1.hours.from_now.to_i
+    logger.debug "Facebook Omniauth: " + struct.to_s
     struct
   end
   
@@ -96,6 +99,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     struct.credentials = OpenStruct.new
     struct.credentials.token = access_token
     struct.credentials.expires_at = tokeninfo['exp']
+    logger.debug "Google Omniauth: " + struct.to_s
     struct
   end
   

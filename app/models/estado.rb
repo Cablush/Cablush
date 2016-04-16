@@ -1,6 +1,6 @@
 class Estado < ActiveRecord::Base
   
-  belongs_to :country
+  belongs_to :country, :class_name => 'Country'
   has_many :cidade
   
   scope :from_country, ->(country) { 

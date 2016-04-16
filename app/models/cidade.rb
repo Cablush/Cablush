@@ -1,6 +1,6 @@
 class Cidade < ActiveRecord::Base
 
-  belongs_to :estado
+  belongs_to :estado, :class_name => 'Estado'
   
   scope :find_like_nome, ->(nome) {
     where('cidades.nome LIKE ?', "#{nome}%") if nome.present?
