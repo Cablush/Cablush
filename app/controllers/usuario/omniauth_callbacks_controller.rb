@@ -21,31 +21,37 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
   
   def validate_facebook_token
-    access_token = params[:access_token]
-    @graph = Koala::Facebook::API.new(access_token, Rails.application.secrets.facebook_secret)
-    begin 
+    begin
+      access_token = params[:access_token]
+      @graph = Koala::Facebook::API.new(access_token, Rails.application.secrets.facebook_secret)
       profile = @graph.get_object("me")
       omniauth = omniauth_hash_from_facebook(profile, access_token)
       authenticate_omniauth(omniauth)
-    rescue Exception=>ex
+    rescue Exception => ex
+      puts "Caught exception #{ex}!"
 			render_json_error ex.message, 500
 		end
   end
   
   def validate_google_token
-    access_token = params[:access_token]
-    response = HTTParty.get("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + access_token)
-    if response.code == 200
-      data = JSON.parse(response.body)
-      if (data['aud'] == Rails.application.secrets.google_key)
-        omniauth = omniauth_hash_from_google(data, access_token)
-        authenticate_omniauth(omniauth)
-      else
-        render_json_error 'Invalid client id!', 500
+    begin
+      access_token = params[:access_token]
+      response = HTTParty.get("https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + access_token)
+      if response.code == 200
+        data = JSON.parse(response.body)
+        if (data['aud'] == Rails.application.secrets.google_key)
+          omniauth = omniauth_hash_from_google(data, access_token)
+          authenticate_omniauth(omniauth)
+        else
+          render_json_error 'Invalid client id!', 500
+        end
+      else 
+        render_json_error 'Error validating token!', 500
       end
-    else 
-      render_json_error 'Error validating token!', 500
-    end
+    rescue Exception => ex
+      puts "Caught exception #{ex}!"
+			render_json_error ex.message, 500
+		end
   end
 
   protected
