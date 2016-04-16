@@ -9,7 +9,14 @@ class Usuario::SessionsController < Devise::SessionsController
   
   def validate_token
     # simple_token_authentication gem verifies the header values
-    render json: current_usuario
+    if usuario_signed_in?
+      render json: current_usuario
+    else
+      render json: {
+        success: false,
+        errors: 'Please, login before continue!'
+      }, status: 401
+    end
   end
   
 end

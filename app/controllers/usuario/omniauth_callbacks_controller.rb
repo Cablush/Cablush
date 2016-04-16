@@ -23,8 +23,8 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def validate_facebook_token
     begin
       access_token = params[:access_token]
-      @graph = Koala::Facebook::API.new(access_token, Rails.application.secrets.facebook_secret)
-      profile = @graph.get_object("me")
+      graph = Koala::Facebook::API.new(access_token, Rails.application.secrets.facebook_secret)
+      profile = graph.get_object("me")
       omniauth = omniauth_hash_from_facebook(profile, access_token)
       authenticate_omniauth(omniauth)
     rescue Exception => ex
@@ -57,11 +57,11 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protected
   
   def authenticate_omniauth(omniauth)
-    @usuario = UsuarioProvider.usuario_from_omniauth(omniauth)
+    usuario = UsuarioProvider.usuario_from_omniauth(omniauth)
       
-    if @usuario.persisted?
-      sign_in @usuario, :event => :authentication
-      render json: @usuario
+    if usuario.persisted?
+      sign_in usuario, :event => :authentication
+      render json: usuario
     else
       render_json_error 'Error persisting Usuario!', 500
     end
