@@ -43,12 +43,16 @@ class Api::LojasController < Api::ApiController
   # PATCH/PUT /api/lojas/:uuid
   def update
     loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
-    loja = build_loja(loja)
     
-    if loja.save 
-      render_json_success loja, 200
+    unless loja.nil?
+      loja = build_loja(loja)
+      if loja.save 
+        render_json_success loja, 200
+      else
+        render_json_error loja.errors, 500
+      end
     else
-      render_json_error loja.errors, 500
+      render_json_error 'Loja not found', 404
     end
   end
   

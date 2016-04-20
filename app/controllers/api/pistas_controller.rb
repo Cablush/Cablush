@@ -43,12 +43,16 @@ class Api::PistasController < Api::ApiController
   # PATCH/PUT /api/pistas/:uuid
   def update
     pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
-    pista = build_pista(pista)
     
-    if pista.save pista
-      render_json_success pista, 200
+    unless pista.nil?
+      pista = build_pista(pista)
+      if pista.save pista
+        render_json_success pista, 200
+      else
+        render_json_error pista.errors, 500
+      end
     else
-      render_json_error pista.errors, 500
+      render_json_error 'Pista not found', 404
     end
   end
   

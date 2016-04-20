@@ -43,12 +43,16 @@ class Api::EventosController < Api::ApiController
   # PATCH/PUT /api/eventos/:uuid
   def update
     evento = Evento.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
-    evento = build_evento(evento)
     
-    if evento.save
-      render_json_success evento, 200
+    unless evento.nil?
+      evento = build_evento(evento)
+      if evento.save
+        render_json_success evento, 200
+      else
+        render_json_error evento.errors, 500
+      end
     else
-      render_json_error evento.errors, 500
+      render_json_error 'Evento not found', 404
     end
   end
   
