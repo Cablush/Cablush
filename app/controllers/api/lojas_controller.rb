@@ -56,10 +56,14 @@ class Api::LojasController < Api::ApiController
   def upload
     loja = Loja.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     
-    if loja.update(params[:logo])
-      render_json_success loja, 200
+    unless loja.nil?
+      if loja.update_attribute(:logo, params[:logo])
+        render_json_success loja, 200
+      else
+        render_json_error loja.errors, 500
+      end
     else
-      render_json_error loja.errors, 500
+      render_json_error 'Loja not found', 404
     end
   end
 
@@ -80,7 +84,7 @@ class Api::LojasController < Api::ApiController
     locais_attributes = loja_attributes.delete("locais")
     
     # create a new object or update if it exists
-    if (loja.nil?)
+    if loja.nil?
       loja = Loja.new(loja_attributes)
     else
       loja.assign_attributes(loja_attributes)

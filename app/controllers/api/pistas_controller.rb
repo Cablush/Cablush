@@ -56,10 +56,14 @@ class Api::PistasController < Api::ApiController
   def upload
     pista = Pista.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     
-    if pista.update(params[:foto])
-      render_json_success pista, 200
+    unless pista.nil?
+      if pista.update_attribute(:foto, params[:foto])
+        render_json_success pista, 200
+      else
+        render_json_error pista.errors, 500
+      end
     else
-      render_json_error pista.errors, 500
+      render_json_error 'Pista not found', 404
     end
   end
 
@@ -80,7 +84,7 @@ class Api::PistasController < Api::ApiController
     local_attributes = pista_attributes.delete("local")
     
     # create a new object or update if it exists
-    if (pista.nil?)
+    if pista.nil?
       pista = Pista.new(pista_attributes)
     else
       pista.assign_attributes(pista_attributes)

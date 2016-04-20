@@ -56,10 +56,14 @@ class Api::EventosController < Api::ApiController
   def upload
     evento = Evento.find_by_uuid_and_responsavel_id(params[:uuid], current_usuario.id)
     
-    if evento.update(params[:flyer])
-      render_json_success evento, 200
+    unless evento.nil?
+      if evento.update_attribute(:flyer, params[:flyer])
+        render_json_success evento, 200
+      else
+        render_json_error evento.errors, 500
+      end
     else
-      render_json_error evento.errors, 500
+      render_json_error 'Evento not found', 404
     end
   end
 
@@ -78,7 +82,7 @@ class Api::EventosController < Api::ApiController
     local_attributes = evento_attributes.delete("local")
     
     # create a new object or update if it exists
-    if (evento.nil?)
+    if evento.nil?
       evento = Evento.new(evento_attributes)
     else
       evento.assign_attributes(evento_attributes)
