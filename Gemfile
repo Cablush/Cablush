@@ -80,7 +80,7 @@ gem "aws-sdk", "~> 1.6"
 gem "font-awesome-rails"
 
 group :production do
-#  gem 'mysql2', '~> 0.3.18'
+  gem 'mysql2', '~> 0.3.18'
   gem 'passenger'
 end
 
