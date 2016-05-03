@@ -140,7 +140,6 @@ GEM
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.20)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     oauth2 (1.1.0)
@@ -297,7 +296,6 @@ DEPENDENCIES
   koala (~> 2.2)
   mail_form
   mina
-  mysql2 (~> 0.3.18)
   omniauth-facebook
   omniauth-google-oauth2
   paperclip
