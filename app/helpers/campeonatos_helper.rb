@@ -1,0 +1,2 @@
+module CampeonatosHelper
+end

@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participantes_id: 
+  etapas_id: 
+
+two:
+  participantes_id: 
+  etapas_id: 

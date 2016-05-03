@@ -59,6 +59,7 @@ Cablush::Application.routes.draw do
   
   # PESQUISA
   resources :lojas, only: [:index, :show], param: :uuid
+  resources :campeonatos, only: [:index, :show], param: :uuid
   resources :eventos, only: [:index, :show], param: :uuid
   resources :pistas, only: [:index, :show], param: :uuid
   

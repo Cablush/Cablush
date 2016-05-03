@@ -1,0 +1,16 @@
+<%= render "layouts/content_header" %>
+
+<%= render "header", option: 'List' %>
+
+<div class="main">
+    <div class="wrap">
+        <ul class="list1 mark_green">
+            <% @campeonatos.each do |campeonato| %>
+              <li>
+                  <%= link_to campeonato.nome, edit_cadastros_campeonato_path(campeonato) %>
+              </li>
+            <% end %>
+        </ul>        
+    </div>
+    <div class="clear"></div>
+</div>

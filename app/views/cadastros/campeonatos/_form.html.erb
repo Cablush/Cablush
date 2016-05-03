@@ -1,0 +1,56 @@
+<%= form_for [:cadastros, @campeonato], html: { multipart: true } do |f| %>
+  
+  <%= render "layouts/error_messages", :target => @evento %>
+
+  <div class="field">
+    <%= f.label 'Nome' %><br>
+    <%= f.text_field :nome, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Descrição' %><br>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+    <div class="textcount"><span>500</span> caracteres restantes</div>
+  </div>
+  <div class="field">
+    <%= f.label 'Data' %><br>
+    <%= f.text_field :data, id: 'campeonato_data', class: 'inputbox maskData' %>
+    <script type="text/javascript">
+      $(function () {
+        $("#campeonato_data").datepicker({
+            dateFormat:'dd/mm/yy',
+            language: 'pt-BR',
+            minDate: 0,
+            onSelect: function(dateText, inst) {
+                $("#campeonato_data_fim").datepicker("option", "minDate", dateText);
+                $("#campeonato_data_fim").datepicker("setDate", dateText);
+            }
+        });
+      });
+    </script>
+  </div>
+  <div class="field">
+    <%= f.label 'Hora' %><br>
+    <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}}, {class: 'selectbox timeselector'}%>
+  </div>
+  <div class="field">
+    <%= f.label 'Data Fim' %><br>
+    <%= f.text_field :data_fim, id: 'campeonato_data_fim', class: 'inputbox maskData' %>
+    <script type="text/javascript">
+      $(function () {
+        $("#campeonato_data_fim").datepicker({
+            dateFormat:'dd/mm/yy',
+            language: 'pt-BR',
+            minDate: 0
+        });
+      });
+    </script>
+  </div>
+  <fieldset class="subfields">
+      <legend>Esportes</legend>
+      <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
+      <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
+  </fieldset>
+  <div class="actions">
+    <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
+  </div>
+<% end %>
