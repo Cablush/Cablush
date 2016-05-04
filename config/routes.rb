@@ -55,6 +55,10 @@ Cablush::Application.routes.draw do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
     end
+    resources :campeonatos, param: :uuid do
+      get :autocomplete_esporte_nome, on: :collection
+      get :autocomplete_cidade_nome, on: :collection
+    end
   end
   
   # PESQUISA

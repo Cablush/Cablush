@@ -6,9 +6,9 @@ class Cadastros::CampeonatosController < ApplicationController
   # GET /campeonatos(.:format)
   def index
     if current_usuario.admin?
-      @campeonatos = Campeonato.all.order('data DESC')
+      @campeonatos = Campeonato.all.order('nome DESC')
     else
-      @campeonatos = current_usuario.campeonatos.order('data DESC')
+      @campeonatos = Campeonato.all.order('nome DESC')
     end
     @title = "Você já cadastrou " + @campeonatos.length.to_s + " campeonatos."
   end
@@ -16,7 +16,7 @@ class Cadastros::CampeonatosController < ApplicationController
   # GET /campeonatos/new(.:format)
   def new
     @campeonato = Campeonato.new
-    @campeonato.build_local
+    #@campeonato.build_local
     @title = "Entre com os dados do novo campeonato."
   end
 
