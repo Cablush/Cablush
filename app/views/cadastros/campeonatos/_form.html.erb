@@ -1,6 +1,6 @@
 <%= form_for [:cadastros, @campeonato], html: { multipart: true } do |f| %>
   
-  <%#= render "layouts/error_messages", :target => @evento %>
+  <%= render "layouts/error_messages", :target => @campeonato %>
 
   <div class="field">
     <%= f.label 'Nome' %><br>
@@ -13,7 +13,7 @@
   </div>
   <div class="field">
     <%= f.label 'Data' %><br>
-    <%= f.text_field :data, id: 'campeonato_data', class: 'inputbox maskData' %>
+    <%= f.text_field :data_inicio, id: 'campeonato_data', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
         $("#campeonato_data").datepicker({
@@ -45,11 +45,25 @@
       });
     </script>
   </div>
-  <fieldset class="subfields">
-      <legend>Esportes</legend>
-      <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
-      <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
-  </fieldset>
+<fieldset class="subfields">
+      <legend>Etapas</legend>
+  <%= f.fields_for :etapas, Etapa.new do |n|%>
+     <div class="field">
+      <%= n.label 'Nome:' %><br />
+      <%= n.text_field :nome, class: 'inputbox' %> 
+    </div>
+    <div class="field">
+      <%= n.label 'Quantidade de provas' %><br />
+      <%= n.text_field :qtdProvas, class: 'inputbox' %>  
+    </div>
+    <div class="field">
+      <%= n.label 'Quantidade de participante por provas' %><br />
+      <%= n.text_field :numCompetidoresProva, class: 'inputbox' %> 
+    </div>
+  <% end %>
+
+</fieldset>
+
   <div class="actions">
     <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
