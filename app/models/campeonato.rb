@@ -23,7 +23,7 @@ class Campeonato < ActiveRecord::Base
   
   validates :nome, presence: true, length: { maximum: 50 }
   validates :descricao, presence: true, length: { maximum: 500 }
-  validates :data, presence: true
+  validates :data_inicio, presence: true
   validates :hora, presence: true
   validates :data_fim, presence: true
 

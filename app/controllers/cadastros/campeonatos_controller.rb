@@ -24,7 +24,7 @@ class Cadastros::CampeonatosController < ApplicationController
   def create
     #update_esporte_ids(params[:loja])
     
-    @campeonato = current_usuario.campeonatos.build(campeonato_params)
+    @campeonato = Campeonato.new(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     
     if @campeonato.save
       redirect_to campeonatos_path
@@ -83,9 +83,10 @@ class Cadastros::CampeonatosController < ApplicationController
   
   private
   
-  def evento_params
+  def campeonato_params
     params.require(:campeonato)
-          .permit(:nome, :descricao, :data, :hora, :data_fim )
+          .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim ,
+            etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
   end
 
 end
