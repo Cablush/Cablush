@@ -1,6 +1,5 @@
 class Campeonato < ActiveRecord::Base
   
-  belongs_to :participantes, class_name: "Usuario"
   belongs_to :responsavel, class_name: "Usuario"
   
   
@@ -14,7 +13,7 @@ class Campeonato < ActiveRecord::Base
   has_and_belongs_to_many :eventos
   
   is_impressionable
-  
+  before_create :set_uuid
  
   
   def to_param
@@ -45,4 +44,9 @@ class Campeonato < ActiveRecord::Base
   def share_message
     return 'O Campeonato ' + nome + ' esta no Cablush! Se inscreva'
   end
+
+  private
+    def set_uuid
+      self.uuid = SecureRandom.uuid
+    end
 end

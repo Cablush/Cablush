@@ -8,7 +8,7 @@ class Cadastros::CampeonatosController < ApplicationController
     if current_usuario.admin?
       @campeonatos = Campeonato.all.order('data_inicio DESC')
     else
-      @campeonatos = Campeonato.all.order('data_inicio DESC')
+      @campeonatos = current_usuario.campeonatos.order('data_inicio DESC')
     end
     @title = "Você já cadastrou " + @campeonatos.length.to_s + " campeonatos."
   end
@@ -24,10 +24,9 @@ class Cadastros::CampeonatosController < ApplicationController
   def create
     #update_esporte_ids(params[:loja])
     
-    @campeonato = current_usuario.campeonato.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
-    
+    @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
-      redirect_to campeonatos_path
+        redirect_to campeonatos_path
     else
       render 'new'
     end
@@ -46,9 +45,6 @@ class Cadastros::CampeonatosController < ApplicationController
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
     
-    if @campeonato.local.blank?
-      @campeonato.build_local
-    end
     @title = ("Você esta editando o campeonato<br/> \"" + @campeonato.nome + "\"").html_safe;
   end
 
@@ -60,7 +56,7 @@ class Cadastros::CampeonatosController < ApplicationController
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
 
-    update_esporte_ids(params[:loja])
+    #update_esporte_ids(params[:loja])
     
     if @campeonato.update(evento_params)
       redirect_to campeonatos_path

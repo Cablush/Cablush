@@ -8,6 +8,7 @@ class Usuario < ActiveRecord::Base
   has_many :lojas, foreign_key: "responsavel_id"
   has_many :eventos, foreign_key: "responsavel_id"
   has_many :pistas, foreign_key: "responsavel_id"
+  has_many :campeonatos, foreign_key: "responsavel_id"
   
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :grupos
