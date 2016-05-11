@@ -12,8 +12,8 @@
     <div class="textcount"><span>500</span> caracteres restantes</div>
   </div>
   <div class="field">
-    <%= f.label 'Data Inicio' %><br>
-    <%= f.text_field :data_inicio, id: 'campeonato_data_inicio', class: 'inputbox maskData' %>
+    <%= f.label 'Data' %><br>
+    <%= f.text_field :data_inicio, id: 'campeonato_data', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
         $("#campeonato_data").datepicker({
@@ -21,8 +21,8 @@
             language: 'pt-BR',
             minDate: 0,
             onSelect: function(dateText, inst) {
-                $("#campeonato_data_inicio").datepicker("option", "minDate", dateText);
-                $("#campeonato_data_inicio").datepicker("setDate", dateText);
+                $("#campeonato_data_fim").datepicker("option", "minDate", dateText);
+                $("#campeonato_data_fim").datepicker("setDate", dateText);
             }
         });
       });

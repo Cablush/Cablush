@@ -24,7 +24,7 @@ class Cadastros::CampeonatosController < ApplicationController
   def create
     #update_esporte_ids(params[:loja])
     
-    @campeonato = Campeonato.new(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
+    @campeonato = current_usuario.campeonato.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     
     if @campeonato.save
       redirect_to campeonatos_path

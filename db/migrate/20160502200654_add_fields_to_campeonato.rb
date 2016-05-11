@@ -5,6 +5,6 @@ class AddFieldsToCampeonato < ActiveRecord::Migration
     add_column :campeonatos, :data_fim, :date
     add_column :campeonatos, :hora, :time
     add_column :campeonatos, :descricao, :string
-    add_column :campeonatos, :responsavel_id, :string
+    add_reference :campeonatos, :responsavel, index: true
   end
 end

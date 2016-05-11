@@ -15,7 +15,7 @@ class Campeonato < ActiveRecord::Base
   
   is_impressionable
   
-  before_create :set_uuid
+ 
   
   def to_param
     uuid
@@ -44,11 +44,5 @@ class Campeonato < ActiveRecord::Base
   
   def share_message
     return 'O Campeonato ' + nome + ' esta no Cablush! Se inscreva'
-  end
-  
-  private
-  
-  def set_uuid
-    self.uuid = SecureRandom.uuid
   end
 end
