@@ -46,24 +46,44 @@
     </script>
   </div>
 <fieldset class="subfields">
-      <legend>Etapas</legend>
-  <%= f.fields_for :etapas, Etapa.new do |n|%>
+  <legend>Categorias</legend>
+  <%= f.fields_for :categorias, Categoria.new do |n|%>
      <div class="field">
       <%= n.label 'Nome:' %><br />
       <%= n.text_field :nome, class: 'inputbox' %> 
     </div>
     <div class="field">
       <%= n.label 'Quantidade de provas' %><br />
-      <%= n.text_field :qtdProvas, class: 'inputbox' %>  
+      <%= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
     </div>
     <div class="field">
       <%= n.label 'Quantidade de participante por provas' %><br />
-      <%= n.text_field :numCompetidoresProva, class: 'inputbox' %> 
+      <%= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
     </div>
   <% end %>
 
+
 </fieldset>
 
+<!-- <fieldset class="subfields">
+      <legend>Etapas</legend>
+  <%#= f.fields_for :etapas, Etapa.new do |n|%>
+     <div class="field">
+      <%#= n.label 'Nome:' %><br />
+      <%#= n.text_field :nome, class: 'inputbox' %> 
+    </div>
+    <div class="field">
+      <%#= n.label 'Quantidade de provas' %><br />
+      <%#= n.text_field :qtdProvas, class: 'inputbox' %>  
+    </div>
+    <div class="field">
+      <%#= n.label 'Quantidade de participante por provas' %><br />
+      <%#= n.text_field :numCompetidoresProva, class: 'inputbox' %> 
+    </div>
+  <%# end %>
+
+</fieldset>
+ -->
   <div class="actions">
     <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>

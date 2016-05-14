@@ -6,6 +6,14 @@ development:
     s3_force_path_style: true
     use_ssl: false
 
+test:
+    s3_endpoint: "localhost"
+    s3_port: 10001
+    s3_force_path_style: true
+    use_ssl: false
+
+
+
 production:
     access_key_id: <%= Rails.application.secrets.aws_access_key_id %>
     secret_access_key: <%= Rails.application.secrets.aws_secret_access_key %>

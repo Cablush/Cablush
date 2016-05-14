@@ -5,6 +5,10 @@ class Campeonato < ActiveRecord::Base
   
   has_many :etapas, dependent: :destroy
   accepts_nested_attributes_for :etapas, allow_destroy: true
+
+  has_many :categorias, dependent: :destroy
+  accepts_nested_attributes_for :categorias, allow_destroy: true
+
   
   has_one :horario, as: :funcionamento, dependent: :destroy
   accepts_nested_attributes_for :horario, allow_destroy: true

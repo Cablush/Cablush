@@ -20,7 +20,6 @@ def index
 end
 
 def cadastros
- @campeonato 
     
 end
 

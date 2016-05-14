@@ -82,6 +82,7 @@ class Cadastros::CampeonatosController < ApplicationController
   def campeonato_params
     params.require(:campeonato)
           .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim ,
+            categorias_attributes: [:nome, :descricao, :regras ],
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
   end
 
