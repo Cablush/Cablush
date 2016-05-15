@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160514175903) do
     t.date     "data_fim"
     t.time     "hora"
     t.string   "descricao"
-    t.string   "responsavel_id"
+    t.integer  "responsavel_id"
     t.integer  "esportes_id"
     t.string   "uuid",             null: false
   end
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160514175903) do
   add_index "campeonatos", ["esportes_id"], name: "index_campeonatos_on_esportes_id"
   add_index "campeonatos", ["etapas_id"], name: "index_campeonatos_on_etapas_id"
   add_index "campeonatos", ["participantes_id"], name: "index_campeonatos_on_participantes_id"
+  add_index "campeonatos", ["responsavel_id"], name: "index_campeonatos_on_responsavel_id"
   add_index "campeonatos", ["uuid"], name: "index_campeonatos_on_uuid", unique: true
 
   create_table "categoria", force: :cascade do |t|
@@ -330,7 +331,6 @@ ActiveRecord::Schema.define(version: 20160514175903) do
   add_index "usuario_providers", ["usuario_id"], name: "index_usuario_providers_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
-    t.integer  "id_social"
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -352,6 +352,7 @@ ActiveRecord::Schema.define(version: 20160514175903) do
     t.datetime "locked_at"
     t.integer  "role"
     t.string   "uuid",                                null: false
+    t.string   "id_social"
     t.string   "authentication_token"
   end
 
