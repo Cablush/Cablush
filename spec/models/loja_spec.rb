@@ -1,4 +1,8 @@
+require "rails_helper"
+
 describe Loja do
-  subject { create(:loja) }
+  it "has a valid factory" do
+    create(:loja).should be_valid
+  end
 
 end

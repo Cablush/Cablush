@@ -331,6 +331,7 @@ ActiveRecord::Schema.define(version: 20160514175903) do
   add_index "usuario_providers", ["usuario_id"], name: "index_usuario_providers_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
+    t.integer  "id_social"
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -352,7 +353,6 @@ ActiveRecord::Schema.define(version: 20160514175903) do
     t.datetime "locked_at"
     t.integer  "role"
     t.string   "uuid",                                null: false
-    t.string   "id_social"
     t.string   "authentication_token"
   end
 

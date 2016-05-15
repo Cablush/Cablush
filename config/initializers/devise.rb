@@ -7,6 +7,7 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = Rails.application.secrets.devise_secret_key
+  config.secret_key = 'bb3ace9821867e595cce5371008a412137f696aa38327ad66407b23b932846a33c28188470d71124ba177c264c268d01493d28ab85a2961933a877fe9232a69a' if Rails.env.test?
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -235,9 +236,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret, 
+  config.omniauth :facebook, Rails.application.secrets.facebook_key, Rails.application.secrets.facebook_secret,
     scope: "email, public_profile, user_friends"
-  config.omniauth :google_oauth2, Rails.application.secrets.google_key, Rails.application.secrets.google_secret, 
+  config.omniauth :google_oauth2, Rails.application.secrets.google_key, Rails.application.secrets.google_secret,
     skip_jwt: true
 
   # ==> Warden configuration
@@ -262,7 +263,7 @@ Devise.setup do |config|
   # When using omniauth, Devise cannot automatically set Omniauth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  
+
    # don't serialize tokens
   Devise::Models::Authenticatable::BLACKLIST_FOR_SERIALIZATION << :tokens
 end

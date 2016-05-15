@@ -129,4 +129,6 @@ group :test do
   gem 'guard-rspec'
   # Launchy is helper class for launching cross-platform applications in a fire and forget manner.
   gem 'launchy'
+  # Strategies for cleaning databases. Can be used to ensure a clean state for testing.
+  gem 'database_cleaner'
 end
