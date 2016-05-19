@@ -45,26 +45,15 @@
       });
     </script>
   </div>
-<fieldset class="subfields">
-  <legend>Categorias</legend>
-  <%= f.fields_for :categorias, Categoria.new do |n|%>
-     <div class="field">
-      <%= n.label 'Nome:' %><br />
-      <%= n.text_field :nome, class: 'inputbox' %> 
-    </div>
-    <div class="field">
-      <%= n.label 'Quantidade de provas' %><br />
-      <%= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    </div>
-    <div class="field">
-      <%= n.label 'Quantidade de participante por provas' %><br />
-      <%= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    </div>
-  <% end %>
 
+<fieldset class="subfields">
+      <legend>Categorias</legend>
+  <input type="text" class="inputbox inputbox_auto" readonly >
+  <input id="CadCategoria" type="button" value="+" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'" class="btn_auto auto_btn_add" />
+  
+  <%= render 'categoria', f: f, categorias: @campeonato.categorias %>
 
 </fieldset>
-
 <!-- <fieldset class="subfields">
       <legend>Etapas</legend>
   <%#= f.fields_for :etapas, Etapa.new do |n|%>
