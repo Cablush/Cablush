@@ -1,0 +1,31 @@
+<div id="light" class="white_content">
+<a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" class="textright">X</a>
+  <div class="modal-body">
+  <%= f.fields_for :categorias, Categoria.new do |n|%>
+    <div id="error_explanation" style="display:none;">
+    </div>
+    <div class="form-inputs">
+    <fieldset class="subfields">
+      <legend>Categorias</legend>
+      
+         <div class="field">
+          <%= n.label 'Nome:' %><br />
+          <%= n.text_field :nome, class: 'inputbox' %> 
+        </div>
+        <div class="field">
+          <%= n.label 'Quantidade de provas' %><br />
+          <%= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+        </div>
+        <div class="field">
+          <%= n.label 'Quantidade de participante por provas' %><br />
+          <%= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+        </div>
+        <div class="actions">
+            <%= f.submit "Cadastrar Categoria", class: 'btn1 btn-primary btn-normal btn-inline' %>
+        </div>
+    </fieldset>
+    </div>
+  <% end %>
+  </div>
+</div>
+<div id="fade" class="black_overlay"></div>  
