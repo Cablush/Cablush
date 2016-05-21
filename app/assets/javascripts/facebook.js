@@ -1,8 +1,8 @@
 var Facebook = (function($) {
-    
+
     var fb_root = null;
     var fb_events_bound = false;
-    
+
     var _bindEvents = function () {
         $(document).on('page:fetch', _saveRoot);
         $(document).on('page:change', _restoreRoot);
@@ -25,27 +25,27 @@ var Facebook = (function($) {
             $('body').append(fb_root);
         }
     };
-    
+
     var _initSDK = function() {
         FB.init({
             appId      : window.facebook_key,
             status     : true, // check login status
             cookie     : true, // enable cookies to allow the server to access the session
             xfbml      : true, // parse XFBML
-            version    : 'v2.5'
+            version    : 'v2.6'
         });
     };
 
     var loadSDK = function() {
         $.ajaxSetup({ cache: true });
-        $.getScript("//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5", function() {
+        $.getScript("//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.6", function() {
             _initSDK();
         });
         if (!fb_events_bound) {
             _bindEvents();
         }
     };
-    
+
     var configAuth = function() {
         $('.facebook_signin').on('click', function(e) {
             e.preventDefault();
@@ -61,7 +61,7 @@ var Facebook = (function($) {
             }, { scope: 'email' }); // These are the permissions you are requesting
         });
     };
-    
+
     var configFeed = function(name, link, picture, caption, description) {
         $('.fb_share').on('click', function(e) {
             e.preventDefault();
@@ -73,21 +73,26 @@ var Facebook = (function($) {
                 picture: picture,
                 caption: caption,
                 description: description
-            }, function(response){
-                console.log(response);
-                if (response && response.post_id) {
-                    Utils.showMessage('success', 'Post was published.');
-                } else {
-                    Utils.showMessage('alert', 'Post was not published.');
-                }
-            });
+            }, function(response){});
         });
     };
-    
+
+    var configShare = function(url) {
+        $('.fb_share').on('click', function(e) {
+            e.preventDefault();
+            FB.ui({
+                method: 'share',
+                display: 'popup',
+                href: url
+            }, function(response){});
+        });
+    };
+
     return {
         loadSDK: loadSDK,
         loadAuth: configAuth,
-        loadFeed: configFeed
+        loadFeed: configFeed,
+        loadShare: configShare
     };
-    
+
 })(jQuery);

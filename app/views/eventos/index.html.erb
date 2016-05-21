@@ -1,27 +1,5 @@
-<%= render "locais/maps.html", locais: @locais %>
-
-<div class="content-head">
-    <div class="wrap">
-        <ul class="events">
-            <li class="active"><a href="#">Eventos</a></li> 
-        </ul>
-        <div class="search_controls">
-          <%= form_for eventos_path, html: { id: "form_eventos" } ,remote: true  do |f| %>
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <%= render "locais/pesquisa_estado_esporte", f: f %>
-          <% end %>
-        </div>
-    </div>
-    <div class="clear"></div>
-</div>
-
-<div class="main">
-    <div class="wrap row" id="paginate_itens">
-      <%= render "locais/locais.html", locais: @locais %>
-    </div>
-    <div class="clear"></div>
-</div>
+<%= render "eventos.html", locais: @locais %>
 
 <div class="wrap_paginate">
-  <%= will_paginate @locais, :remote => true  %>
+  <%= will_paginate @locais, remote: true, format: :json %>
 </div>

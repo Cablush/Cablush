@@ -12,54 +12,55 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <%= javascript_include_tag "application" , "data-turbolinks-track" => true %>
         <%= csrf_meta_tags %>
         <%= favicon_link_tag 'favicon.ico' %>
-        
+
         <meta name="description" content="Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito.">
         <meta name="keywords" content="cablush,esporte,esportes,esportista,radical,outdoor,sport,sports,skate,skateboarding,sk8,longboard,longboarding,longboarder,patins,patinador,roller,rollerblade,inline,bike,bicicleta,bmx,mountain bike,mtb,local,loja,pista,evento,eventos,campeonato">
         <meta name="robots" content="index,follow">
         <meta name="author" content="Cablush">
-        
-        <% if content_for?(:meta) %>
-          <%= yield(:meta) %>
+
+        <% if content_for?(:meta_tags) %>
+          <%= yield(:meta_tags) %>
         <% else %>
-          <meta property="og:url"           content="http://www.cablush.com" />
-          <meta property="og:type"          content="website" />
-          <meta property="og:site_name"     content="Cablush"/>
-          <meta property="og:title"         content="Cablush - Esportes, lugares e eventos." />
-          <meta property="og:description"   content="Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito." />
-          <meta property="og:image"         content="<%= asset_path('fb_cover.png') %>" />
+          <meta property="og:url" content="http://www.cablush.com" />
+          <meta property="og:title" content="Cablush - Esportes, lugares e eventos." />
+          <meta property="og:description" content="Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito." />
+          <meta property="og:image" content="<%= asset_path("fb_cover.png") %>" />
         <% end %>
-        <meta property="fb:app_id"        content="<%= Rails.application.secrets.facebook_key %>" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Cablush"/>
+        <meta property="fb:app_id" content="<%= Rails.application.secrets.facebook_key %>" />
     </head>
     <body class="<%= controller_name %> <%= action_name %>">
 
         <%= render "layouts/menu"%>
-        
+
         <%= render "layouts/message"%>
-        
+
         <%= yield %>
 
         <%=render "layouts/footer"%>
-        
+
         <div class="modal"></div>
-        
+
         <div class="dialog"></div>
-        
+
         <script type="text/javascript">
           window.api_key = "<%= Rails.application.secrets.js_api_key %>";
           window.maps_mark_orange = "<%= asset_path("ic_mark_cablush_orange_32.png") %>";
           window.maps_mark_blue = "<%= asset_path("ic_mark_cablush_blue_32.png") %>";
           window.maps_mark_green = "<%= asset_path("ic_mark_cablush_green_32.png") %>";
           window.facebook_key = "<%= Rails.application.secrets.facebook_key %>";
+          window.facebook_cover = "<%= asset_path("fb_cover.png") %>";
           window.google_key = "<%= Rails.application.secrets.google_key %>";
           window.geonames_user = "<%= Rails.application.secrets.geonames_user %>";
-          
+
           $(document).ready(function() {
             Facebook.loadSDK();
           });
-          
+
           Utils.setup();
         </script>
-        
+
         <script type="text/javascript">
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

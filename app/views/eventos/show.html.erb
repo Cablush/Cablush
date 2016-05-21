@@ -1,3 +1,11 @@
-<div class="col_1_of_3 span_1_of_3">
-    <%= render "evento.html", evento: @evento, local: @evento.local, dialog: true %>
-</div>
+<%= meta_tags(request.original_url, full_title(@evento.nome), @evento.share_message, @evento.flyer_url) %>
+
+<%= render "eventos.html", locais: @locais %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
+      + '<%= j render "evento.html", evento: @evento, local: @evento.local, dialog: true %>'
+      + '</div>', function() { window.location.replace('<%= eventos_url %>'); });
+  });
+</script>

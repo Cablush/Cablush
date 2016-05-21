@@ -3,10 +3,10 @@
       <% if dialog %>
         <%= evento.nome %>
       <% else %>
-        <%= link_to evento.nome, evento_path(evento), class: "lnk_dialog", url: evento_path(evento) %>
+        <%= link_to evento.nome, evento_path(evento), class: "lnk_dialog", url: evento_path(evento), remote: true %>
       <% end %>
   </div>
-    
+
   <div class="flyer">
     <% if evento.flyer.exists? %>
       <%= link_to evento.flyer.url(:original), class: "fancybox" do %>
@@ -18,10 +18,10 @@
   <div class="desc" itemprop="description">
     <%= evento.descricao %>
   </div>
-    
+
   <meta itemprop="startDate" content="<%= evento.start_date.to_time.iso8601 %>">
   <meta itemprop="endDate" content="<%= evento.data_fim.to_time.iso8601 %>">
-  
+
   <div class="local_attr">
     <ul>
       <% if evento.datas.present? %>
@@ -60,12 +60,12 @@
       <% end %>
       <% if dialog %>
         <li>
-            <%= render "layouts/shares", localizavel: evento, picture_url: evento.flyer_url, localizavel_url: eventos_url %>
+            <%= render "layouts/shares", localizavel: evento, picture_url: evento.flyer_url %>
         </li>
       <% end %>
     </ul>
   </div>
-  
+
   <div itemprop="location" itemscope itemtype="http://schema.org/Place">
     <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
       <meta itemprop="latitude" content="<%= local.latitude %>" />

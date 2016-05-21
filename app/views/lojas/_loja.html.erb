@@ -8,11 +8,11 @@
       <% end %>
     <% else %>
       <% if loja.logo.exists? %>
-        <%= link_to loja_path(loja), class: "lnk_dialog", url: loja_path(loja) do %>  
+        <%= link_to loja_path(loja), class: "lnk_dialog", url: loja_path(loja), remote: true do %>
           <%= image_tag loja.logo.url(:small), class: loja.fundo? ? "fundo" : nil, alt: loja.nome, itemprop: "image" %>
         <% end %>
       <% else %>
-        <%= link_to loja.nome, loja_path(loja), class: "lnk_dialog", url: loja_url(loja) %>  
+        <%= link_to loja.nome, loja_path(loja), class: "lnk_dialog", url: loja_url(loja), remote: true %>
       <% end %>
     <% end %>
   </div>
@@ -61,12 +61,12 @@
       <% end %>
       <% if dialog %>
         <li>
-            <%= render "layouts/shares", localizavel: loja, picture_url: loja.logo_url, localizavel_url: lojas_url %>
+            <%= render "layouts/shares", localizavel: loja, picture_url: loja.logo_url %>
         </li>
       <% end %>
     </ul>
   </div>
-    
+
   <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
     <meta itemprop="latitude" content="<%= local.latitude %>" />
     <meta itemprop="longitude" content="<%= local.longitude%>" />

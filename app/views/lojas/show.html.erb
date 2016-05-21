@@ -1,3 +1,12 @@
-<div class="col_1_of_3 span_1_of_3">
-    <%= render "loja.html", loja: @loja, local: @loja.locais[0], dialog: true %>
-</div>
+<%= meta_tags(request.original_url, full_title(@loja.nome), @loja.share_message, @loja.logo_url) %>
+
+<%= render "lojas.html", locais: @locais %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
+      + '<%= j render "loja.html", loja: @loja, local: @loja.local, dialog: true %>'
+      + '</div>', function() { window.location.replace('<%= lojas_url %>'); });
+  });
+</script>
+
