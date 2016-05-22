@@ -1,3 +1,11 @@
-<div class="col_1_of_3 span_1_of_3">
-    <%= render "pista.html", pista: @pista, local: @pista.local, dialog: true %>
-</div>
+<%= meta_tags(request.original_url, full_title(@pista.nome), @pista.share_message, @pista.foto_url) %>
+
+<%= render "pistas.html", locais: @locais %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
+      + '<%= j render "pista.html", pista: @pista, local: @pista.local, dialog: true %>'
+      + '</div>', function() { window.location.replace('<%= pistas_url %>'); } );
+  });
+</script>

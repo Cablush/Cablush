@@ -3,10 +3,10 @@
       <% if dialog %>
         <%= pista.nome %>
       <% else %>
-        <%= link_to pista.nome, pista_path(pista), class: "lnk_dialog", url: pista_path(pista) %>
+        <%= link_to pista.nome, pista_path(pista), class: "lnk_dialog", url: pista_path(pista), remote: true %>
       <% end %>
   </div>
-    
+
   <div class="foto">
     <% if pista.foto.exists? %>
       <%= link_to pista.foto.url(:original), class: "fancybox" do %>
@@ -53,12 +53,12 @@
       <% end %>
       <% if dialog %>
         <li>
-            <%= render "layouts/shares", localizavel: pista, picture_url: pista.foto_url, localizavel_url: pistas_url %>
+            <%= render "layouts/shares", localizavel: pista, picture_url: pista.foto_url %>
         </li>
       <% end %>
     </ul>
   </div>
-    
+
   <div itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
     <meta itemprop="latitude" content="<%= local.latitude %>" />
     <meta itemprop="longitude" content="<%= local.longitude%>" />
