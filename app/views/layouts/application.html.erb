@@ -13,18 +13,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <%= csrf_meta_tags %>
         <%= favicon_link_tag 'favicon.ico' %>
 
-        <meta name="description" content="Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito.">
-        <meta name="keywords" content="cablush,esporte,esportes,esportista,radical,outdoor,sport,sports,skate,skateboarding,sk8,longboard,longboarding,longboarder,patins,patinador,roller,rollerblade,inline,bike,bicicleta,bmx,mountain bike,mtb,local,loja,pista,evento,eventos,campeonato">
+        <meta name="description" content="<%= cablush_description %>">
+        <meta name="keywords" content="<%= cablush_keywords %>">
         <meta name="robots" content="index,follow">
         <meta name="author" content="Cablush">
 
         <% if content_for?(:meta_tags) %>
           <%= yield(:meta_tags) %>
         <% else %>
-          <meta property="og:url" content="http://www.cablush.com" />
+          <meta property="og:url" content="<%= request.base_url %>" />
           <meta property="og:title" content="Cablush - Esportes, lugares e eventos." />
-          <meta property="og:description" content="Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito." />
-          <meta property="og:image" content="<%= asset_path("fb_cover.png") %>" />
+          <meta property="og:description" content="<%= cablush_description %>" />
+          <meta property="og:image" content="<%= image_url("fb_cover.png") %>" />
         <% end %>
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Cablush"/>
@@ -50,15 +50,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           window.maps_mark_blue = "<%= asset_path("ic_mark_cablush_blue_32.png") %>";
           window.maps_mark_green = "<%= asset_path("ic_mark_cablush_green_32.png") %>";
           window.facebook_key = "<%= Rails.application.secrets.facebook_key %>";
-          window.facebook_cover = "<%= asset_path("fb_cover.png") %>";
+          window.facebook_cover = "<%= image_url("fb_cover.png") %>";
           window.google_key = "<%= Rails.application.secrets.google_key %>";
           window.geonames_user = "<%= Rails.application.secrets.geonames_user %>";
 
           $(document).ready(function() {
             Facebook.loadSDK();
+            Utils.setup();
+            Utils.initDialog();
           });
-
-          Utils.setup();
         </script>
 
         <script type="text/javascript">

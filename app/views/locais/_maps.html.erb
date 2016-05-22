@@ -1,11 +1,10 @@
 <div class="map">
     <div id="map-canvas">
-        <%= image_tag("map.jpg",alt:"Cablush Location") %>
+        <%= image_tag("map.jpg", alt:"Cablush Location") %>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
             CablushShowMap.initMap($('#map-canvas')[0], <%= locais_to_json locais %>);
-            Utils.initDialog();
         });
     </script>
 </div>

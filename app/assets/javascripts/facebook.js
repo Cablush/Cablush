@@ -63,7 +63,7 @@ var Facebook = (function($) {
     };
 
     var configFeed = function(name, link, picture, caption, description) {
-        $('.fb_share').on('click', function(e) {
+        $('.fb_feed').on('click', function(e) {
             e.preventDefault();
             FB.ui({
                 method: 'feed',

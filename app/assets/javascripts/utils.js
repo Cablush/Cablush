@@ -89,6 +89,44 @@ var Utils = (function($) {
             ? image : window.facebook_cover);
     };
 
+    var _processYouTube = function(id, success) {
+        if (!id) {
+            throw new Error('Unsupported YouTube URL');
+        }
+        success('http://i2.ytimg.com/vi/' + id + '/hqdefault.jpg');
+    };
+
+    var getVideoThumb = function(url, success) {
+        var id;
+        url = url.replace(/.*?:\/\//g, "");
+        if (url.indexOf('youtube.com') > -1) {
+            id = url.split('/')[1].split('v=')[1].split('&')[0];
+            return _processYouTube(id, success);
+        } else if (url.indexOf('youtu.be') > -1) {
+            id = url.split('/')[1];
+            return _processYouTube(id, success);
+        } else if (url.indexOf('vimeo.com') > -1) {
+            if (url.match(/^vimeo.com\/[0-9]+/)) {
+                id = url.split('/')[1];
+            } else if (url.match(/^vimeo.com\/channels\/[\d\w]+#[0-9]+/)) {
+                id = url.split('#')[1];
+            } else if (url.match(/vimeo.com\/groups\/[\d\w]+\/videos\/[0-9]+/)) {
+                id = url.split('/')[4];
+            } else {
+                throw new Error('Unsupported Vimeo URL');
+            }
+            $.ajax({
+                url: 'http://vimeo.com/api/v2/video/' + id + '.json',
+                dataType: 'jsonp',
+                success: function(data) {
+                    success(data[0].thumbnail_large);
+                }
+            });
+        } else {
+            throw new Error('Unrecognised URL');
+        }
+    };
+
     return {
         setup: setup,
         startLoading: startLoading,
@@ -98,7 +136,8 @@ var Utils = (function($) {
         openPopup: openPopup,
         initDialog: initDialog,
         openDialog: openDialog,
-        updateMetaTags: updateMetaTags
+        updateMetaTags: updateMetaTags,
+        getVideoThumb: getVideoThumb
     };
 
 })(jQuery);

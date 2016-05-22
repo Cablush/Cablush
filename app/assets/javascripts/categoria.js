@@ -1,5 +1,5 @@
-var Cadastros = (function($) {
-	
+var Categoria = (function($) {
+
 	var _selectCategoria = function() {
         if ($('#auto_categoria').val().length > 0) {
             // Create a new item
@@ -44,10 +44,7 @@ var Cadastros = (function($) {
             event.preventDefault();
             $(this).parent().remove();
         });
-    
-    }
-    
-}
 
-    /*
-    */
+    };
+
+})(jQuery);

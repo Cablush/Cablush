@@ -23,9 +23,24 @@
     <ul>
       <% if pista.video.present? %>
         <li>
-          <%= link_to url_with_protocol(pista.video), class: 'fancybox-media' do %>
-            <i class="fa fa-video-camera"></i>
-            <%= pista.video %>
+          <% if dialog %>
+            <%= link_to url_with_protocol(pista.video), class: 'fancybox-media video_link' do %>
+              <i class="fa fa-video-camera"></i>
+              <%= pista.video %>
+            <% end %>
+            <script type="text/javascript">
+              $(function() {
+                Utils.getVideoThumb("<%= pista.video %>", function(url) {
+                  var $img = $("<img />", {"class" : "video_thumb", "src" : url});
+                  $(".video_link").html($img);
+                });
+              });
+            </script>
+          <% else %>
+            <%= link_to url_with_protocol(pista.video), class: 'fancybox-media' do %>
+              <i class="fa fa-video-camera"></i>
+              <%= pista.video %>
+            <% end %>
           <% end %>
         </li>
       <% end %>
