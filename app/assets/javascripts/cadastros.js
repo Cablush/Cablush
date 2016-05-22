@@ -74,6 +74,7 @@ var Cadastros = (function($) {
             $('#auto_esporte').val("");
         }
     };
+
     
     var _incrementIndex = function(i, oldVal) {
         return oldVal.replace(/\d+/, function(val) {

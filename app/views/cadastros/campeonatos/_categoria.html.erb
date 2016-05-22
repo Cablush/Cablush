@@ -1,3 +1,21 @@
+<fieldset class="subfields">
+      <legend>Categorias</legend>
+  <%= autocomplete_field_tag "auto_categoria", "", autocomplete_esporte_nome_cadastros_lojas_path, 
+      :fields => {:id => '#auto_id'}, id: 'auto_categoria', class: 'inputbox inputbox_auto' %>
+       
+  <% if categorias.blank? %>
+    <div class="field categoria_item" style="display: none">
+        <%= f.hidden_field "categoria_ids][", id: "categoria_ids_0", value: '' %>
+        <%= hidden_field_tag "categorias_attibutes[0][id]" , ''%>
+        <%= hidden_field_tag "categorias_attibutes[0][nome]", '' %>
+        <%= text_field_tag "categorias_attibutes[0][nome]", '',
+          readonly: true, class: 'inputbox inputbox_auto' %>
+        <button type="button" class="btn_auto auto_btn_del">-</button>
+    </div>
+<% end %>
+
+  <input id="CadCategoria" type="button" value="+" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'" class="btn_auto auto_btn_add" />
+
 <div id="light" class="white_content">
 <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" class="textright">X</a>
   <div class="modal-body">
@@ -19,13 +37,13 @@
         <div class="field">
           <%= n.label 'Quantidade de participante por provas' %><br />
           <%= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-        </div>
-        <div class="actions">
-            <%= f.submit "Cadastrar Categoria", class: 'btn1 btn-primary btn-normal btn-inline' %>
-        </div>
+        </div>  
+            <button class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">Cadastrar Categoria</button>
     </fieldset>
     </div>
   <% end %>
   </div>
 </div>
 <div id="fade" class="black_overlay"></div>  
+
+</fieldset>
