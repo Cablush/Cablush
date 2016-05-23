@@ -10,7 +10,7 @@
           <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][nome]", categoria.nome %>
           <%= text_field_tag "categorias_attibutes["+ (i.to_s) +"][categoria_esporte]", categoria.categoria_esporte,
             readonly: true, class: 'inputbox inputbox_auto' %>
-          <button type="button" class="btn_auto auto_btn_del">-</button>
+          <button id="delete_categoria" type="button" class="btn_auto auto_btn_categoria_del">-</button>
       </div>
   <% end %>
 
@@ -22,7 +22,7 @@
         <%= hidden_field_tag "categorias_attibutes[0][descricao]", '' %>
         <%= text_field_tag "categorias_attibutes[0][nome]", '',
           readonly: true, class: 'inputbox inputbox_auto' %>
-        <button type="button" class="btn_auto auto_btn_del">-</button>
+        <button id="delete_categoria" type="button" class="btn_auto auto_btn_categoria_del">-</button>
     </div>
   <% end %>
 
@@ -47,15 +47,15 @@
         <div class="field">
         <!-- input descricao -->
          <label>Descrição da categoria</label>
-         <input type="text" id="categoria" rows="10" cols="5" maxlength="500" class="textarea-box">
-         
+         <textarea type="text" id="descricao" rows="10" cols="5" maxlength="500" class="textarea-box">
+         </textarea>
           <%#= n.label 'Descricao da categoria' %><br />
           <%#= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
         </div>
         <div class="field">
         <!-- input regra -->
          <label>Descricao da regra para esta categoria.</label>
-         <input type="text" id="regras" rows="10" cols="5" maxlength="500" class="textarea-box">
+         <textarea type="text" id="regra" rows="10" cols="5" maxlength="500" class="textarea-box"></textarea>
           <%#= n.label 'Descricao da regra para esta categoria.' %><br />
           <%#= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
         </div>  
@@ -68,9 +68,3 @@
 <div id="fade" class="black_overlay"></div>  
 
 </fieldset>
-
-<script type="text/javascript">
-  $(document).ready(function() {        
-    Categoria.init();
-  });
-</script>
