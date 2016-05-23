@@ -1,9 +1,9 @@
 Utils.updateMetaTags(
   '<%= request.original_url %>',
   '<%= full_title(@loja.nome) %>',
-  '%<= @loja.share_message %>',
+  '<%= @loja.share_message %>',
   '<%= @loja.logo_url %>');
 
 Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
   + '<%= j render "loja.html", loja: @loja, local: @loja.local, dialog: true %>'
-  + '</div>', function() { Utils.updateMetaTags(); });
+  + '</div>', function() { Utils.updateMetaTags("<%= request.base_url %>"); });

@@ -31,7 +31,7 @@
 <div id="light" class="white_content">
 <a id="lightbox_hide" href="javascript:void(0)"  class="textright">X</a>
   <div class="modal-body">
-  <%= f.fields_for :categorias, Categoria.new do |n|%>
+  <%#= f.fields_for :categorias, Categoria.new do |n|%>
     <div id="error_explanation" style="display:none;">
     </div>
     <div class="form-inputs">
@@ -47,21 +47,22 @@
         <div class="field">
         <!-- input descricao -->
          <label>Descrição da categoria</label>
-         <input type="text" id="categoria" class="textarea-box">
+         <input type="text" id="categoria" rows="10" cols="5" maxlength="500" class="textarea-box">
+         
           <%#= n.label 'Descricao da categoria' %><br />
           <%#= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
         </div>
         <div class="field">
         <!-- input regra -->
          <label>Descricao da regra para esta categoria.</label>
-         <input type="text" id="regras" class="textarea-box">
+         <input type="text" id="regras" rows="10" cols="5" maxlength="500" class="textarea-box">
           <%#= n.label 'Descricao da regra para esta categoria.' %><br />
           <%#= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
         </div>  
             <button class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">Cadastrar Categoria</button>
     </fieldset>
     </div>
-  <% end %>
+  <%# end %>
   </div>
 </div>
 <div id="fade" class="black_overlay"></div>  

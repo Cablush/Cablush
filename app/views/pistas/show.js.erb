@@ -1,9 +1,9 @@
 Utils.updateMetaTags(
   '<%= request.original_url %>',
   '<%= full_title(@pista.nome) %>',
-  '%<= @pista.share_message %>',
+  '<%= @pista.share_message %>',
   '<%= @pista.foto_url %>');
 
 Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
   + '<%= j render "pista.html", pista: @pista, local: @pista.local, dialog: true %>'
-  + '</div>', function() { Utils.updateMetaTags(); });
+  + '</div>', function() { Utils.updateMetaTags("<%= request.base_url %>"); });
