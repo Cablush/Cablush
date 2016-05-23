@@ -46,13 +46,17 @@
         </div>
         <div class="field">
         <!-- input descricao -->
-          <%= n.label 'Descricao da categoria' %><br />
-          <%= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+         <label>Descrição da categoria</label>
+         <input type="text" id="categoria" class="textarea-box">
+          <%#= n.label 'Descricao da categoria' %><br />
+          <%#= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
         </div>
         <div class="field">
         <!-- input regra -->
-          <%= n.label 'Descricao da regra para esta categoria.' %><br />
-          <%= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+         <label>Descricao da regra para esta categoria.</label>
+         <input type="text" id="regras" class="textarea-box">
+          <%#= n.label 'Descricao da regra para esta categoria.' %><br />
+          <%#= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
         </div>  
             <button class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">Cadastrar Categoria</button>
     </fieldset>
