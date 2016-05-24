@@ -4,6 +4,11 @@ Utils.updateMetaTags(
   '<%= @evento.share_message %>',
   '<%= @evento.flyer_url %>');
 
+Utils.dynamicNavigation('<%= request.original_fullpath %>', '<%= full_title(@evento.nome) %>');
+
 Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
   + '<%= j render "evento.html", evento: @evento, local: @evento.local, dialog: true %>'
-  + '</div>', function() { Utils.updateMetaTags("<%= request.base_url %>"); });
+  + '</div>', function() {
+      Utils.updateMetaTags("<%= request.base_url %>");
+      Utils.dynamicNavigation();
+});

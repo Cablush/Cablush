@@ -4,6 +4,11 @@ Utils.updateMetaTags(
   '<%= @loja.share_message %>',
   '<%= @loja.logo_url %>');
 
+Utils.dynamicNavigation('<%= request.original_fullpath %>', '<%= full_title(@loja.nome) %>');
+
 Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
   + '<%= j render "loja.html", loja: @loja, local: @loja.local, dialog: true %>'
-  + '</div>', function() { Utils.updateMetaTags("<%= request.base_url %>"); });
+  + '</div>', function() {
+      Utils.updateMetaTags("<%= request.base_url %>");
+      Utils.dynamicNavigation();
+});
