@@ -127,6 +127,13 @@ var Utils = (function($) {
         }
     };
 
+    var updateAddressBar = function(url, title) {
+        window.history.pushState(
+            {"html": url, "pageTitle": title},
+            title,
+            url);
+    };
+
     return {
         setup: setup,
         startLoading: startLoading,
@@ -137,7 +144,8 @@ var Utils = (function($) {
         initDialog: initDialog,
         openDialog: openDialog,
         updateMetaTags: updateMetaTags,
-        getVideoThumb: getVideoThumb
+        getVideoThumb: getVideoThumb,
+        updateAddressBar: updateAddressBar
     };
 
 })(jQuery);

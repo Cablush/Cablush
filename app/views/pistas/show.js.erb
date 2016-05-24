@@ -4,6 +4,11 @@ Utils.updateMetaTags(
   '<%= @pista.share_message %>',
   '<%= @pista.foto_url %>');
 
+Utils.updateAddressBar('<%= request.original_url %>', '<%= full_title(@pista.nome) %>');
+
 Utils.openDialog('<div class="col_1_of_3 span_1_of_3">'
   + '<%= j render "pista.html", pista: @pista, local: @pista.local, dialog: true %>'
-  + '</div>', function() { Utils.updateMetaTags("<%= request.base_url %>"); });
+  + '</div>', function() {
+      Utils.updateMetaTags("<%= request.base_url %>");
+      Utils.updateAddressBar('<%= request.base_url %>', '<%= full_title(@pista.nome) %>');
+});

@@ -11,22 +11,22 @@
 
 <div class="main">
     <div class="wrap">
-        <div class="wrap-content"> 
+        <div class="wrap-content">
           <%= simple_form_for :usuario, :url => registration_path(:usuario), html: { method: :put, autocomplete: 'off' }  do |f| %>
             <%= devise_error_messages! %>
-            
+
             <%= f.input :nome, label: 'Nome' %>
             <%= f.input :email, label: 'Email', :readonly => true %>
-            
+
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <div>Aguardando confirmação para: <%= resource.unconfirmed_email %></div>
             <% end %>
-            
+
             <fieldset class="subfields">
                 <legend>Esportes favoritos</legend>
                 <%= render 'esportes/esportes_fields', esportes: @usuario.esportes, f: f %>
             </fieldset>
-            
+
             <fieldset class="subfields collapsible">
                 <legend>Alterar senha <span class="tip">(Clique aqui para alterar sua senha atual)</span></legend>
                 <div class="content">
@@ -35,22 +35,25 @@
                 </div>
             </fieldset>
             <script type="text/javascript">
-                // Collapsible Fieldset
-                $('fieldset.collapsible .content').hide();
-                $('fieldset.collapsible legend').click(function(){
-                    $(this).parent().find('.content').slideToggle("slow");
+                $(document).ready(function() {
+                    Cadastros.init();
+                    // Collapsible Fieldset
+                    $('fieldset.collapsible .content').hide();
+                    $('fieldset.collapsible legend').click(function(){
+                        $(this).parent().find('.content').slideToggle("slow");
+                    });
                 });
             </script>
-              
+
             <br>
-            
+
             <fieldset class="subfields">
                 <legend>Confirmar alterações <span class="tip">(Insira sua senha atual para confirmar as alterações)</span></legend>
                 <%= f.input :current_password, label: 'Senha Atual', autocomplete: "off" %>
             </fieldset>
-            
+
             <%= f.button :submit, value: 'Atualizar', label: 'Atualizar', class: 'btn1 btn-primary btn-normal btn-inline' %>
-            
+
             <p class="login-links">
               <%= button_to "Cancelar conta", registration_path(resource_name), :data => { :confirm => "Tem certeza? Sentiremos a sua falta. :(" }, :method => :delete, :class => 'lnk1' %>
             </p>

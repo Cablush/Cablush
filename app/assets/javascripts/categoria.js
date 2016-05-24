@@ -1,19 +1,19 @@
 var Categoria = (function($) {
-	
+
     var _selectCategoria = function() {
-        if (checkFieldsCategoriaModal(item)){
+        if (_checkFieldsCategoriaModal(item)){
             // Update new item values
             var item = _createCategoriaItem();
             // item.find("[id^='categoria_ids_']").val($('#auto_id').val());
             //item.find("[id$='_id']").val($('#auto_id').val());
-            item.find("[id$='_categoria_nome']").val($('#nome').val());
-            item.find("[id$='_categoria_regra']").val($('#regra').val());
-            item.find("[id$='_categoria_descricao']").val($('#descricao').val());
+            item.find("[id$='_nome']").val($('#nome').val());
+            item.find("[id$='_regra']").val($('#regra').val());
+            item.find("[id$='_descricao']").val($('#descricao').val());
             // Insert new item on list
             item.insertAfter($(".categoria_item").last());
             // Clear autocomplete values
             _clearForm();
-        }        
+        }
     };
 
 
@@ -34,7 +34,7 @@ var Categoria = (function($) {
         return item;
     };
 
-    var checkFieldsCategoriaModal = function(){
+    var _checkFieldsCategoriaModal = function(){
         return $("#nome").val().length > 0 && $("#regra").val().length > 0 && $("#descricao").val().length > 0;
     }
 
@@ -62,10 +62,10 @@ var Categoria = (function($) {
             _hideLightBox();
         });
 
-        $("#delete_categoria").on('click', function(event) {
+        $(".auto_btn_categoria_del").on('click', function(event) {
             event.preventDefault();
             $(this).parent().remove();
-        });        
+        });
 
         $("#lightbox_show").on('click',function(event){
             event.preventDefault();
@@ -79,7 +79,7 @@ var Categoria = (function($) {
             _hideLightBox();
         });
     }
-    
+
     return {
         init: init
     };
