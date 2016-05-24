@@ -7,7 +7,7 @@ var Categoria = (function($) {
             // item.find("[id^='categoria_ids_']").val($('#auto_id').val());
             //item.find("[id$='_id']").val($('#auto_id').val());
             item.find("[id$='_nome']").val($('#nome').val());
-            item.find("[id$='_regra']").val($('#regra').val());
+            item.find("[id$='_regras']").val($('#regras').val());
             item.find("[id$='_descricao']").val($('#descricao').val());
             // Insert new item on list
             item.insertAfter($(".categoria_item").last());
@@ -35,7 +35,7 @@ var Categoria = (function($) {
     };
 
     var _checkFieldsCategoriaModal = function(){
-        return $("#nome").val().length > 0 && $("#regra").val().length > 0 && $("#descricao").val().length > 0;
+        return $("#nome").val().length > 0 && $("#regras").val().length > 0 && $("#descricao").val().length > 0;
     }
 
     var _incrementIndex = function(i, oldVal) {
@@ -51,7 +51,7 @@ var Categoria = (function($) {
 
     var _clearForm = function(){
         $("#nome").val("");
-        $("#regra").val("");
+        $("#regras").val("");
         $("#descricao").val("");
     }
 

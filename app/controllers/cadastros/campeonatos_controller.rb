@@ -26,9 +26,9 @@ class Cadastros::CampeonatosController < ApplicationController
     
     @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
-        redirect_to campeonatos_path
-    else
-      render 'new'
+      if save_categoria(params, @campeonato.id)     
+        redirect_to eventos_path
+      end
     end
   end
   
@@ -58,10 +58,10 @@ class Cadastros::CampeonatosController < ApplicationController
 
     #update_esporte_ids(params[:loja])
     
-    if @campeonato.update(evento_params)
-      redirect_to campeonatos_path
-    else
-      render 'edit'
+    if @campeonato.update(campeonato_params)
+      #redirect_to campeonatos_path
+    #else
+      render cadastros_campeonatos_path
     end
   end
   
@@ -84,6 +84,17 @@ class Cadastros::CampeonatosController < ApplicationController
           .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim ,
             categorias_attributes: [:nome, :descricao, :regras ],
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
+  end
+
+  def save_categoria(host_params, campeonato_id)
+    if params[:categorias_attibutes].present?
+      params[:categorias_attibutes].each do |index, categoria_params|
+        if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
+          categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
+          return categoria.id != nil
+        end 
+      end
+    end
   end
 
 end

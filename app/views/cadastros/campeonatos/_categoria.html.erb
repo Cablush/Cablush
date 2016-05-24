@@ -2,9 +2,9 @@
   <legend>Categorias</legend>
 
   <div class="field esporte_item">
-    <%= text_field_tag "auto_categoria", "", id: 'auto_categoria', readonly: true,
+    <%#= text_field_tag "auto_categoria", "", id: 'auto_categoria', readonly: true,
       class: 'inputbox inputbox_auto' %>
-    <input id="lightbox_show" type="button" value="+" class="btn_auto" />
+    <input id="lightbox_show" type="button" value="Cadastrar Categoria" class="btn_auto btn-inline" />
   </div>
 
   <% categorias.each_with_index do |categoria, i| %>
@@ -34,38 +34,28 @@
 <div id="light" class="white_content">
 <a id="lightbox_hide" href="javascript:void(0)"  class="textright">X</a>
   <div class="modal-body">
-  <%#= f.fields_for :categorias, Categoria.new do |n|%>
+  <%= f.fields_for :categorias, Categoria.new do |n|%>
     <div id="error_explanation" style="display:none;">
     </div>
     <div class="form-inputs">
     <fieldset class="subfields">
       <legend>Categorias</legend>
          <div class="field">
-         <!-- input nome -->
-         <label>Nome</label>
-         <input type="text" id="nome" class="inputbox">
-          <%#= n.label 'Nome:' %><br />
-          <%#= n.text_field :nome, class: 'inputbox' %>
+           <label>Nome</label>
+           <input type="text" id="nome" class="inputbox">
         </div>
         <div class="field">
-        <!-- input descricao -->
-         <label>Descrição da categoria</label>
-         <textarea type="text" id="descricao" rows="10" cols="5" maxlength="500" class="textarea-box">
-         </textarea>
-          <%#= n.label 'Descricao da categoria' %><br />
-          <%#= n.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+           <label>Descrição da categoria</label>
+           <textarea type="text" id="descricao" rows="10" cols="5" maxlength="500" class="textarea-box"></textarea>
         </div>
         <div class="field">
-        <!-- input regra -->
-         <label>Descricao da regra para esta categoria.</label>
-         <textarea type="text" id="regra" rows="10" cols="5" maxlength="500" class="textarea-box"></textarea>
-          <%#= n.label 'Descricao da regra para esta categoria.' %><br />
-          <%#= n.text_area :regras, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+          <label>Descricao da regra para esta categoria.</label>
+          <textarea type="text" id="regras" rows="10" cols="5" maxlength="500" class="textarea-box"></textarea>
         </div>
         <button class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">Cadastrar Categoria</button>
     </fieldset>
     </div>
-  <%# end %>
+  <% end %>
   </div>
 </div>
 <div id="fade" class="black_overlay"></div>
