@@ -41,7 +41,6 @@ var Utils = (function($) {
 
     var setup = function() {
         body = $('body');
-
         $(document).on({
             ajaxStart: function () {
                 //startLoading();
@@ -127,11 +126,15 @@ var Utils = (function($) {
         }
     };
 
-    var updateAddressBar = function(url, title) {
-        window.history.pushState(
-            {"html": url, "pageTitle": title},
-            title,
-            url);
+    var dynamicNavigation = function(url, title) {
+        if (url) {
+            window.history.pushState(
+                {"html": url, "pageTitle": title},
+                title,
+                url);
+        } else {
+            window.history.back();
+        }
     };
 
     return {
@@ -145,7 +148,7 @@ var Utils = (function($) {
         openDialog: openDialog,
         updateMetaTags: updateMetaTags,
         getVideoThumb: getVideoThumb,
-        updateAddressBar: updateAddressBar
+        dynamicNavigation: dynamicNavigation
     };
 
 })(jQuery);
