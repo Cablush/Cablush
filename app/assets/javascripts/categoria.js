@@ -62,7 +62,7 @@ var Categoria = (function($) {
             _hideLightBox();
         });
 
-        $(".auto_btn_categoria_del").on('click', function(event) {
+        $(document.body).on('click', '.auto_btn_categoria_del', function(event) {
             event.preventDefault();
             $(this).parent().remove();
         });

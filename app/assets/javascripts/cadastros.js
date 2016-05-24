@@ -1,5 +1,5 @@
 var Cadastros = (function($) {
-    
+
     var _setAddress = function(data) {
         $('#local_estado').val(data.estado);
         $('#local_cidade').val(data.cidade);
@@ -7,7 +7,7 @@ var Cadastros = (function($) {
         $('#local_logradouro').val(data.logradouro);
         $('#local_logradouro').trigger('change');
     };
-    
+
     var _getEstadoCode = function(data, code) {
         for (var index in data) {
             if (data[index].lang == 'abbr') {
@@ -16,14 +16,14 @@ var Cadastros = (function($) {
         }
         return code;
     };
-    
+
     var _getEstadoName = function(data) {
         if (data.adminName1 != null && data.adminName1 != "") {
             return data.adminName1;
-        }   
+        }
         return data.name;
     };
-    
+
     var _setEstados = function(data, currentEstado) {
         if (data instanceof String) {
             data = $.parseJSON(data);
@@ -31,8 +31,8 @@ var Cadastros = (function($) {
         $('#local_estado').empty();
         $('#local_estado').append('<option value="">Selecione o Estado</option>');
         $(data.geonames).each(function(index, value) {
-            $('#local_estado').append('<option value=' 
-                    + _getEstadoCode(value.alternateNames, value.adminCode1) + '>' 
+            $('#local_estado').append('<option value='
+                    + _getEstadoCode(value.alternateNames, value.adminCode1) + '>'
                     + _getEstadoName(value) + '</option>');
         });
         if (currentEstado != null) {
@@ -40,7 +40,7 @@ var Cadastros = (function($) {
             $('#local_estado').trigger('change');
         }
     };
-    
+
     var _createEsporteItem = function() {
         // Clone last item and increment it index
         var item = $(".esporte_item").last().clone();
@@ -57,7 +57,7 @@ var Cadastros = (function($) {
         });
         return item;
     };
-    
+
     var _selectEsporte = function() {
         if ($('#auto_esporte').val().length > 0) {
             // Create a new item
@@ -75,39 +75,39 @@ var Cadastros = (function($) {
         }
     };
 
-    
+
     var _incrementIndex = function(i, oldVal) {
         return oldVal.replace(/\d+/, function(val) {
             return +val+1;
         });
     };
-    
+
     var _setup = function() {
         // Configura Pais e Estado
-        if ($('#local_pais').val() == '') { 
+        if ($('#local_pais').val() == '') {
             $('#local_pais').val('BR');
-        } else if ($('#local_pais').val() != 'BR') { 
+        } else if ($('#local_pais').val() != 'BR') {
             var currentEstado = $('#local_estado').val();
             $('#local_pais').trigger('change', currentEstado);
-        }  
+        }
     };
-    
+
     var init = function() {
         // Configure genames user
         jeoquery.defaultData.userName = window.geonames_user;
-        
+
         // Pesquisa estados pelo pais
         $('#local_pais').on('change', function(event, currentEstado) {
             Utils.startLoading();
             $('#local_estado').empty();
-            jeoquery.getGeoNames('search', 
-                                 { country: $(this).val(), featureCode:'ADM1', style:'FULL' }, 
+            jeoquery.getGeoNames('search',
+                                 { country: $(this).val(), featureCode:'ADM1', style:'FULL' },
                                  function(data) {
                 Utils.stopLoading();
                 _setEstados(data, currentEstado);
             });
         });
-                
+
         // Pesquisa de endereço por CEP
         $('#local_cep').on('change', function (event) {
             Utils.startLoading();
@@ -115,12 +115,12 @@ var Cadastros = (function($) {
                 _setAddress(data);
             });
         });
-        
+
         // Mudança de estado
         $('#local_estado').on('change', function(event) {
             $('#local_estado_nome').val($("#local_estado option:selected").text());
         });
-        
+
         // Autocomplete de cidade
         $('#local_cidade').bind('railsAutocomplete.select', function(event, data) {
             if (data.item.estado !== $('#local_estado').val()) {
@@ -138,7 +138,7 @@ var Cadastros = (function($) {
             event.preventDefault();
             _selectEsporte();
         });
-        $(".auto_btn_del").on('click', function(event) {
+        $(document.body).on('click', '.auto_btn_del', function(event) {
             event.preventDefault();
             $(this).parent().remove();
         });
@@ -151,7 +151,7 @@ var Cadastros = (function($) {
             }
         });
         $('.textarea-box').trigger('change');
-        
+
         // Field Masks
         var brTelMaskBehavior = function (val) {
             return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
@@ -164,10 +164,10 @@ var Cadastros = (function($) {
         //$('.maskTel').mask(brTelMaskBehavior, brOptions);
         //$(".maskCep").mask('00000-000');
         $(".maskData").mask('00/00/0000');
-        
+
         _setup();
     };
-    
+
     return {
         init: init
     };
