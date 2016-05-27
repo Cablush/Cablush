@@ -2,13 +2,11 @@
   <legend>Categorias</legend>
 
   <div class="field esporte_item">
-    <%#= text_field_tag "auto_categoria", "", id: 'auto_categoria', readonly: true,
-      class: 'inputbox inputbox_auto' %>
     <input id="lightbox_show" type="button" value="Cadastrar Categoria" class="btn_auto btn-inline" />
   </div>
 
   <% categorias.each_with_index do |categoria, i| %>
-      <div class="field esporte_item">
+      <div class="field categoria_item  ">
           <%= f.hidden_field "categorias_ids][", id: "categorias_ids_" + i.to_s, value: categoria.id %>
           <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][id]", categoria.id %>
           <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][regras]", categoria.regras %>
@@ -50,7 +48,7 @@
         </div>
         <div class="field">
           <label>Descricao da regra para esta categoria.</label>
-          <textarea type="text" id="regras" rows="10" cols="5" maxlength="500" class="textarea-box"></textarea>
+          <textarea type="text" id="regras" rows="10" cols="5" maxlength="500" value="" class="textarea-box"></textarea>
         </div>
         <button class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">Cadastrar Categoria</button>
     </fieldset>

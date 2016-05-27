@@ -48,6 +48,10 @@ var Categoria = (function($) {
         $('#light').hide();
         $('#fade').hide();
     };
+    var _showLightBox = function(){
+        $('#light').show();
+        $('#fade').show();
+    }
 
     var _clearForm = function(){
         $("#nome").val("");
@@ -67,10 +71,15 @@ var Categoria = (function($) {
             $(this).parent().remove();
         });
 
+        $(document.body).on('click','.inputbox_auto',function(event){
+            event.preventDefault();
+            _fillFields($(this).parent()[0].childNodes);
+            _showLightBox();
+        });
+
         $("#lightbox_show").on('click',function(event){
             event.preventDefault();
-             $('#light').show();
-             $('#fade').show();
+            _showLightBox();     
              //Todo ver como funciona o style.display no jquery
         });
 
@@ -78,6 +87,20 @@ var Categoria = (function($) {
             event.preventDefault();
             _hideLightBox();
         });
+    }
+
+    var _fillFields = function(arrayFields){
+        for(var i = 0; i < arrayFields.length; i++){
+            if(arrayFields[i].value != undefined){
+                if(arrayFields[i].id.indexOf("nome") > -1){
+                    $("#nome").val(arrayFields[i].value);
+                }else if(arrayFields[i].id.indexOf("descricao") > -1){
+                    $("#descricao").val(arrayFields[i].value);
+                }else if(arrayFields[i].id.indexOf("regras") > -1){
+                    $("#regras").val(arrayFields[i].value);
+                }
+            }
+        }
     }
 
     return {

@@ -27,7 +27,7 @@ class Cadastros::CampeonatosController < ApplicationController
     @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
       if save_categoria(params, @campeonato.id)     
-        redirect_to eventos_path
+        redirect_to eventos_path  
       end
     end
   end
@@ -56,12 +56,12 @@ class Cadastros::CampeonatosController < ApplicationController
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
 
-    #update_esporte_ids(params[:loja])
+    update_categoria_ids(params[:loja])
     
     if @campeonato.update(campeonato_params)
       #redirect_to campeonatos_path
     #else
-      render cadastros_campeonatos_path
+      redirect_to eventos_path
     end
   end
   
@@ -74,7 +74,7 @@ class Cadastros::CampeonatosController < ApplicationController
     end
     
     @campeonato.destroy
-    redirect_to campeonatos_path
+    redirect_to eventos_path
   end
   
   private
@@ -87,14 +87,18 @@ class Cadastros::CampeonatosController < ApplicationController
   end
 
   def save_categoria(host_params, campeonato_id)
+    saved = false;
     if params[:categorias_attibutes].present?
       params[:categorias_attibutes].each do |index, categoria_params|
         if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
           categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
-          return categoria.id != nil
+          if categoria.id != nil
+            saved = true
+          end
         end 
       end
     end
+    saved
   end
 
 end
