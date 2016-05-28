@@ -56,8 +56,8 @@ class Cadastros::CampeonatosController < ApplicationController
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
 
-    update_categoria_ids(params[:loja])
-    
+    #update_categoria_ids(params)
+    check_categorias_deleted(params,@campeonato.id)
     if @campeonato.update(campeonato_params)
       #redirect_to campeonatos_path
     #else
@@ -72,7 +72,7 @@ class Cadastros::CampeonatosController < ApplicationController
     else
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
-    
+      
     @campeonato.destroy
     redirect_to eventos_path
   end
@@ -86,19 +86,35 @@ class Cadastros::CampeonatosController < ApplicationController
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
   end
 
-  def save_categoria(host_params, campeonato_id)
-    saved = false;
+  def update_categoria_ids(host_params)
     if params[:categorias_attibutes].present?
       params[:categorias_attibutes].each do |index, categoria_params|
         if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
-          categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
+          categoria = Categoria.save?(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
           if categoria.id != nil
             saved = true
           end
         end 
       end
     end
-    saved
+  end
+
+  def check_categorias_deleted(host_params, campeonato_id)
+    categorias = Categoria.select("id").where(campeonato_id: campeonato_id)
+    deleted_categorias = []
+    if params[:categorias_attibutes].present?
+      if(params[:categorias_attibutes].length != categorias.size)
+        params[:categorias_attibutes].each do |index, categoria_params|
+         if !categorias.any?{|a| a.id == categoria_params[:id]}
+          puts categoria_params[:id]
+          Categoria.delete(categoria_params[:id])
+
+         end
+        end
+      end
+    end
+
+
   end
 
 end
