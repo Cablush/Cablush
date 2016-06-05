@@ -90,7 +90,9 @@ class Cadastros::CampeonatosController < ApplicationController
     if params[:categorias_attibutes].present?
       params[:categorias_attibutes].each do |index, categoria_params|
         if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
-          categoria = Categoria.save?(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
+          categoria = Categoria.find_by_id(campeonato_id);
+          puts categoria
+          categoria.update(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
           if categoria.id != nil
             saved = true
           end

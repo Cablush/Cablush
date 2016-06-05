@@ -1,36 +1,44 @@
 var Categoria = (function($) {
 
+    var edit = false;
     var _selectCategoria = function() {
         if (_checkFieldsCategoriaModal(item)){
             // Update new item values
-            var item = _createCategoriaItem();
-            // item.find("[id^='categoria_ids_']").val($('#auto_id').val());
-            //item.find("[id$='_id']").val($('#auto_id').val());
+            var item = _createCategoriaItem(edit);
             item.find("[id$='_nome']").val($('#nome').val());
             item.find("[id$='_regras']").val($('#regras').val());
             item.find("[id$='_descricao']").val($('#descricao').val());
             // Insert new item on list
-            item.insertAfter($(".categoria_item").last());
-            // Clear autocomplete values
             _clearForm();
+            
+            if(!edit){
+                item.insertAfter($(".categoria_item").last());
+            }
+            edit= false;
+            // Clear autocomplete values
         }
     };
 
 
     var _createCategoriaItem = function() {
-        // Clone last item and increment it index
-        var item = $(".categoria_item").last().clone();
-        item.find("input").attr("id", function(i, oldVal) {
-            return _incrementIndex(i, oldVal);
-        });
-        item.find("input").attr("name", function(i, oldVal) {
-            return _incrementIndex(i, oldVal);
-        });
-        item.attr('style', function(i, style) {
-            if (style) {
-                return style.replace(/display[^;]+;?/g, '');
-            }
-        });
+        if(edit){
+            // Clone last item and increment it index
+            return $(".categoria_item").last();
+        }else{
+            // Clone last item and increment it index
+            var item = $(".categoria_item").last().clone();
+            item.find("input").attr("id", function(i, oldVal) {
+                return _incrementIndex(i, oldVal);
+            });
+            item.find("input").attr("name", function(i, oldVal) {
+                return _incrementIndex(i, oldVal);
+            });
+            item.attr('style', function(i, style) {
+                if (style) {
+                    return style.replace(/display[^;]+;?/g, '');
+                }
+            });
+        }
         return item;
     };
 
@@ -39,6 +47,9 @@ var Categoria = (function($) {
     }
 
     var _incrementIndex = function(i, oldVal) {
+        if(oldVal == i){
+            return val;
+        }
         return oldVal.replace(/\d+/, function(val) {
             return +val+1;
         });
@@ -74,6 +85,8 @@ var Categoria = (function($) {
         $(document.body).on('click','.inputbox_auto',function(event){
             event.preventDefault();
             _fillFields($(this).parent()[0].childNodes);
+            $("#btnAddProfile").text("Editar Categoria");
+            edit = true;
             _showLightBox();
         });
 
