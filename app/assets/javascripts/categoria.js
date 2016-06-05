@@ -1,9 +1,10 @@
 var Categoria = (function($) {
 
-    var edit = false;
+    var edit = -1;
     var _selectCategoria = function() {
         if (_checkFieldsCategoriaModal(item)){
             // Update new item values
+
             var item = _createCategoriaItem(edit);
             item.find("[id$='_nome']").val($('#nome').val());
             item.find("[id$='_regras']").val($('#regras').val());
@@ -11,19 +12,19 @@ var Categoria = (function($) {
             // Insert new item on list
             _clearForm();
             
-            if(!edit){
+            if(edit == -1){
                 item.insertAfter($(".categoria_item").last());
             }
-            edit= false;
+            edit= -1;
             // Clear autocomplete values
         }
     };
 
-
+ 
     var _createCategoriaItem = function() {
-        if(edit){
+        if(edit != -1){
             // Clone last item and increment it index
-            return $(".categoria_item").last();
+            return $(".categoria_item").get(edit);
         }else{
             // Clone last item and increment it index
             var item = $(".categoria_item").last().clone();
@@ -86,12 +87,12 @@ var Categoria = (function($) {
             event.preventDefault();
             _fillFields($(this).parent()[0].childNodes);
             $("#btnAddProfile").text("Editar Categoria");
-            edit = true;
             _showLightBox();
         });
 
         $("#lightbox_show").on('click',function(event){
             event.preventDefault();
+            $("#btnAddProfile").text("Cadastrar Categoria");
             _showLightBox();     
              //Todo ver como funciona o style.display no jquery
         });
@@ -106,6 +107,7 @@ var Categoria = (function($) {
         for(var i = 0; i < arrayFields.length; i++){
             if(arrayFields[i].value != undefined){
                 if(arrayFields[i].id.indexOf("nome") > -1){
+                    edit = parseInt(arrayFields[i].name.match(/\d+/));
                     $("#nome").val(arrayFields[i].value);
                 }else if(arrayFields[i].id.indexOf("descricao") > -1){
                     $("#descricao").val(arrayFields[i].value);
