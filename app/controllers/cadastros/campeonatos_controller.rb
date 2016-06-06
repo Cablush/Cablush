@@ -61,7 +61,10 @@ class Cadastros::CampeonatosController < ApplicationController
     if @campeonato.update(campeonato_params)
       #redirect_to campeonatos_path
     #else
-      redirect_to eventos_path
+      #if update_categoria_ids(params)
+       # puts "update"
+        redirect_to eventos_path
+      #end
     end
   end
   
@@ -86,12 +89,28 @@ class Cadastros::CampeonatosController < ApplicationController
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
   end
 
+  
+  def save_categoria(host_params, campeonato_id)
+    if params[:categorias_attibutes].present?
+      params[:categorias_attibutes].each do |index, categoria_params|
+        if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
+          categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
+          return categoria.id != nil
+        end 
+      end
+    end
+  end
+
+
   def update_categoria_ids(host_params)
     if params[:categorias_attibutes].present?
       params[:categorias_attibutes].each do |index, categoria_params|
         if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
           categoria = Categoria.find_by_id(campeonato_id);
+          puts"categoria"
+          puts categoria.id
           categoria.update(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
+          puts categoria
           if categoria.id != nil
             saved = true
           end
@@ -112,8 +131,5 @@ class Cadastros::CampeonatosController < ApplicationController
         end
       end
     end
-
-
   end
-
 end

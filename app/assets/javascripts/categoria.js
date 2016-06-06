@@ -24,7 +24,7 @@ var Categoria = (function($) {
     var _createCategoriaItem = function() {
         if(edit != -1){
             // Clone last item and increment it index
-            return $(".categoria_item").get(edit);
+            return $(".categoria_item").last();
         }else{
             // Clone last item and increment it index
             var item = $(".categoria_item").last().clone();
