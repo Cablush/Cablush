@@ -57,14 +57,10 @@ class Cadastros::CampeonatosController < ApplicationController
     end
 
     #update_categoria_ids(params)
-    check_categorias_deleted(params,@campeonato.id)
-    if @campeonato.update(campeonato_params)
-      #redirect_to campeonatos_path
-    #else
-      #if update_categoria_ids(params)
-       # puts "update"
+    
+    if @campeonato.update(campeonato_params)  
+      check_categorias(params, @campeonato.id)
         redirect_to eventos_path
-      #end
     end
   end
   
@@ -89,39 +85,38 @@ class Cadastros::CampeonatosController < ApplicationController
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
   end
 
-  
-  def save_categoria(host_params, campeonato_id)
+  def check_categorias(params, campeonato_id)
     if params[:categorias_attibutes].present?
-      params[:categorias_attibutes].each do |index, categoria_params|
-        if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
-          categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
-          return categoria.id != nil
-        end 
+      params[:categorias_attibutes].each do |index, categoria|
+        puts categoria
+        if categoria[:id].blank? && categoria[:nome].present? && categoria[:regras].present?
+          save_categoria(categoria, campeonato_id)
+        elsif !categoria[:id].blank?
+            update_categoria(categoria) 
+=begin
+        else
+          categoriasdb = Categoria.select("id").where(campeonato_id: campeonato_id) 
+          if params[:categorias_attibutes].length < categoriasdb.size
+            check_categorias_deleted(params, campeonato_id)
+          end
+=end          
+        end
       end
     end
+
+  end
+  
+  def save_categoria(categoria, campeonato_id)
+    categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria[:nome], regras: categoria[:regras], descricao: categoria[:descricao])
   end
 
-
-  def update_categoria_ids(host_params)
-    if params[:categorias_attibutes].present?
-      params[:categorias_attibutes].each do |index, categoria_params|
-        if categoria_params[:id].blank? && categoria_params[:nome].present? && categoria_params[:regras].present?
-          categoria = Categoria.find_by_id(campeonato_id);
-          puts"categoria"
-          puts categoria.id
-          categoria.update(campeonato_id: campeonato_id, nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
-          puts categoria
-          if categoria.id != nil
-            saved = true
-          end
-        end 
-      end
-    end
+  def update_categoria(categoria_params)
+    categoria = Categoria.find_by_id(categoria_params[:id]);
+    categoria.update(nome: categoria_params[:nome], regras: categoria_params[:regras], descricao: categoria_params[:descricao])
   end
 
   def check_categorias_deleted(host_params, campeonato_id)
     categorias = Categoria.select("id").where(campeonato_id: campeonato_id)
-    deleted_categorias = []
     if params[:categorias_attibutes].present?
       if(params[:categorias_attibutes].length != categorias.size)
         params[:categorias_attibutes].each do |index, categoria_params|
@@ -133,3 +128,6 @@ class Cadastros::CampeonatosController < ApplicationController
     end
   end
 end
+
+
+
