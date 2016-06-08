@@ -26,11 +26,12 @@ class Cadastros::CampeonatosController < ApplicationController
     
     @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
-      if save_categoria(params, @campeonato.id)     
+      if check_categorias(params, @campeonato.id)
         redirect_to eventos_path  
       end
     end
   end
+  
   
   # GET /campeonatos/:uuid(.:format)
   def show
@@ -60,6 +61,7 @@ class Cadastros::CampeonatosController < ApplicationController
     
     if @campeonato.update(campeonato_params)  
       check_categorias(params, @campeonato.id)
+      check_categorias_deleted(params, @campeonato.id)
         redirect_to eventos_path
     end
   end
@@ -88,22 +90,13 @@ class Cadastros::CampeonatosController < ApplicationController
   def check_categorias(params, campeonato_id)
     if params[:categorias_attibutes].present?
       params[:categorias_attibutes].each do |index, categoria|
-        puts categoria
         if categoria[:id].blank? && categoria[:nome].present? && categoria[:regras].present?
           save_categoria(categoria, campeonato_id)
         elsif !categoria[:id].blank?
-            update_categoria(categoria) 
-=begin
-        else
-          categoriasdb = Categoria.select("id").where(campeonato_id: campeonato_id) 
-          if params[:categorias_attibutes].length < categoriasdb.size
-            check_categorias_deleted(params, campeonato_id)
-          end
-=end          
+            update_categoria(categoria)          
         end
       end
     end
-
   end
   
   def save_categoria(categoria, campeonato_id)
@@ -118,16 +111,21 @@ class Cadastros::CampeonatosController < ApplicationController
   def check_categorias_deleted(host_params, campeonato_id)
     categorias = Categoria.select("id").where(campeonato_id: campeonato_id)
     if params[:categorias_attibutes].present?
-      if(params[:categorias_attibutes].length != categorias.size)
-        params[:categorias_attibutes].each do |index, categoria_params|
-         if !categorias.any?{|a| a.id == categoria_params[:id]}
-          Categoria.delete(categoria_params[:id])
-         end
-        end
+      params[:categorias_attibutes].each do |index, categoria|
+        if categoria[:id].present?
+          categorias -=  [Categoria.new(id: categoria[:id])]
+        elsif categoria[:nome].present?
+          dbCategoria = Categoria.select("id").where(campeonato_id: campeonato_id, nome: categoria[:nome], regras: categoria[:regras], descricao: categoria[:descricao])
+          categorias -= dbCategoria
+        end 
       end
     end
+    if !categorias.empty?
+      categorias.each do |categoria|
+        puts categoria.id
+        Categoria.delete(categoria.id)
+      end 
+    end   
   end
+
 end
-
-
-

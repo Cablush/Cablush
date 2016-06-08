@@ -9,12 +9,14 @@ var Categoria = (function($) {
             item.find("[id$='_nome']").val($('#nome').val());
             item.find("[id$='_regras']").val($('#regras').val());
             item.find("[id$='_descricao']").val($('#descricao').val());
-            // Insert new item on list
-            _clearForm();
+
             
+            // Insert new item on list
             if(edit == -1){
+                item.find("[id$='_id']").val("");
                 item.insertAfter($(".categoria_item").last());
             }
+            _clearForm();
             edit= -1;
             // Clear autocomplete values
         }
@@ -24,10 +26,11 @@ var Categoria = (function($) {
     var _createCategoriaItem = function() {
         if(edit != -1){
             // Clone last item and increment it index
-            return $(".categoria_item").last();
+            return $(".categoria_item").get(edit);
         }else{
             // Clone last item and increment it index
             var item = $(".categoria_item").last().clone();
+            
             item.find("input").attr("id", function(i, oldVal) {
                 return _incrementIndex(i, oldVal);
             });
