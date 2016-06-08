@@ -24,12 +24,13 @@ var Categoria = (function($) {
 
  
     var _createCategoriaItem = function() {
+        var item;
         if(edit != -1){
             // Clone last item and increment it index
-            return $(".categoria_item").get(edit);
+            item = $(".categoria_item").get(edit);
         }else{
             // Clone last item and increment it index
-            var item = $(".categoria_item").last().clone();
+             item = $(".categoria_item").last().clone();
             
             item.find("input").attr("id", function(i, oldVal) {
                 return _incrementIndex(i, oldVal);
