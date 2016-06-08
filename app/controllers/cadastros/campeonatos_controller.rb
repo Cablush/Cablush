@@ -1,8 +1,8 @@
 class Cadastros::CampeonatosController < ApplicationController
-  
+
   before_action :authenticate_usuario!
   #before_action :lojista_at_least, :except => :show
-  
+
   # GET /campeonatos(.:format)
   def index
     if current_usuario.admin?
@@ -12,7 +12,7 @@ class Cadastros::CampeonatosController < ApplicationController
     end
     @title = "Você já cadastrou " + @campeonatos.length.to_s + " campeonatos."
   end
-  
+
   # GET /campeonatos/new(.:format)
   def new
     @campeonato = Campeonato.new
@@ -23,21 +23,21 @@ class Cadastros::CampeonatosController < ApplicationController
   # POST /campeonatos(.:format)
   def create
     #update_esporte_ids(params[:loja])
-    
+
     @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
       if check_categorias(params, @campeonato.id)
-        redirect_to eventos_path  
+        redirect_to cadastros_campeonatos_path
       end
     end
   end
-  
-  
+
+
   # GET /campeonatos/:uuid(.:format)
   def show
     @loja = Campeonato.find_by_uuid!(params[:uuid])
   end
-  
+
   # GET /campeonatos/:uuid/edit(.:format)
   def edit
     if current_usuario.admin?
@@ -45,7 +45,7 @@ class Cadastros::CampeonatosController < ApplicationController
     else
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
-    
+
     @title = ("Você esta editando o campeonato<br/> \"" + @campeonato.nome + "\"").html_safe;
   end
 
@@ -58,14 +58,14 @@ class Cadastros::CampeonatosController < ApplicationController
     end
 
     #update_categoria_ids(params)
-    
-    if @campeonato.update(campeonato_params)  
+
+    if @campeonato.update(campeonato_params)
       check_categorias(params, @campeonato.id)
       check_categorias_deleted(params, @campeonato.id)
-        redirect_to eventos_path
+        redirect_to cadastros_campeonatos_path
     end
   end
-  
+
   # DELETE /campeonatos/:uuid(.:format)
   def destroy
     if current_usuario.admin?
@@ -73,13 +73,13 @@ class Cadastros::CampeonatosController < ApplicationController
     else
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
-      
+
     @campeonato.destroy
-    redirect_to eventos_path
+    redirect_to cadastros_campeonatos_path
   end
-  
+
   private
-  
+
   def campeonato_params
     params.require(:campeonato)
           .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim ,
@@ -93,12 +93,12 @@ class Cadastros::CampeonatosController < ApplicationController
         if categoria[:id].blank? && categoria[:nome].present? && categoria[:regras].present?
           save_categoria(categoria, campeonato_id)
         elsif !categoria[:id].blank?
-            update_categoria(categoria)          
+            update_categoria(categoria)
         end
       end
     end
   end
-  
+
   def save_categoria(categoria, campeonato_id)
     categoria = Categoria.create(campeonato_id: campeonato_id, nome: categoria[:nome], regras: categoria[:regras], descricao: categoria[:descricao])
   end
@@ -117,15 +117,15 @@ class Cadastros::CampeonatosController < ApplicationController
         elsif categoria[:nome].present?
           dbCategoria = Categoria.select("id").where(campeonato_id: campeonato_id, nome: categoria[:nome], regras: categoria[:regras], descricao: categoria[:descricao])
           categorias -= dbCategoria
-        end 
+        end
       end
     end
     if !categorias.empty?
       categorias.each do |categoria|
         puts categoria.id
         Categoria.delete(categoria.id)
-      end 
-    end   
+      end
+    end
   end
 
 end

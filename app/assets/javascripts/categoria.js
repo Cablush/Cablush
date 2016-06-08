@@ -10,7 +10,7 @@ var Categoria = (function($) {
             item.find("[id$='_regras']").val($('#regras').val());
             item.find("[id$='_descricao']").val($('#descricao').val());
 
-            
+
             // Insert new item on list
             if(edit == -1){
                 item.find("[id$='_id']").val("");
@@ -22,16 +22,16 @@ var Categoria = (function($) {
         }
     };
 
- 
+
     var _createCategoriaItem = function() {
-        var item;
-        if(edit != -1){
+        if (edit != -1) {
             // Clone last item and increment it index
-            item = $(".categoria_item").get(edit);
-        }else{
+            var item = $(".categoria_item").get(edit);
+            return $(item);
+        } else {
             // Clone last item and increment it index
-             item = $(".categoria_item").last().clone();
-            
+            var item = $(".categoria_item").last().clone();
+
             item.find("input").attr("id", function(i, oldVal) {
                 return _incrementIndex(i, oldVal);
             });
@@ -43,8 +43,8 @@ var Categoria = (function($) {
                     return style.replace(/display[^;]+;?/g, '');
                 }
             });
+            return item;
         }
-        return item;
     };
 
     var _checkFieldsCategoriaModal = function(){
@@ -97,7 +97,7 @@ var Categoria = (function($) {
         $("#lightbox_show").on('click',function(event){
             event.preventDefault();
             $("#btnAddProfile").text("Cadastrar Categoria");
-            _showLightBox();     
+            _showLightBox();
              //Todo ver como funciona o style.display no jquery
         });
 
