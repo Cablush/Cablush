@@ -45,6 +45,38 @@
       });
     </script>
   </div>
+  <br/>
+<fieldset class="subfields">
+<legend>Competidores por Categoria</legend>
+  <div class="field">
+    <%= f.label 'Maximo de competidores por categoria:' %><br>
+    <%= f.text_field :max_competidores_categoria, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Minimo de competidores por categoria:' %><br>
+    <%= f.text_field :min_competidores_categoria, class: 'inputbox' %>
+  </div>
+ </fieldset>
+ <br/>
+ <fieldset class="subfields"> 
+ <legend>Competidores por Prova</legend>
+  <div class="field">
+    <%= f.label 'Maximo de competidores por prova:' %><br>
+    <%= f.text_field :max_competidores_prova, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Minimo de competidores por prova:' %><br>
+    <%= f.text_field :min_competidores_prova, class: 'inputbox' %>
+  </div>
+  </fieldset>
+  <br/>
+  <fieldset class="subfields">
+    <div class="field">
+    <%= f.label 'Vencedores por prova:' %><br>
+    <%= f.text_field :num_vencedores_prova, class: 'inputbox' %>
+  </div>
+  </fieldset>
+
   <%= render 'categoria', f: f, categorias: @campeonato.categorias %>
 
 <!-- <fieldset class="subfields">
