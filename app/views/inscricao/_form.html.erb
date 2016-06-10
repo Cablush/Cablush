@@ -1,0 +1,41 @@
+<%= form_for [:inscricao, @inscricao], html: { multipart: true } do |f| %>
+  
+  <%= render "layouts/error_messages", :target => @inscricao %>
+
+  <div class="field">
+    <%= f.label 'Nome' %><br>
+    <%= f.text_field :nome, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Descrição' %><br>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+    <div class="textcount"><span>500</span> caracteres restantes</div>
+  </div>
+  <div class="field">
+    <%= f.label 'Data' %><br>
+    <%= f.text_field :data_inicio, id: 'campeonato_data', class: 'inputbox maskData' %>
+    <script type="text/javascript">
+      $(function () {
+        $("#campeonato_data").datepicker({
+            dateFormat:'dd/mm/yy',
+            language: 'pt-BR',
+            minDate: 0,
+            onSelect: function(dateText, inst) {
+                $("#campeonato_data_fim").datepicker("option", "minDate", dateText);
+                $("#campeonato_data_fim").datepicker("setDate", dateText);
+            }
+        });
+      });
+    </script>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Confirmar Inscrição", class: 'btn1 btn-primary btn-normal btn-inline' %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {        
+    Categoria.init();
+  });
+</script>
