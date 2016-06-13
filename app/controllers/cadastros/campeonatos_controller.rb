@@ -32,7 +32,6 @@ class Cadastros::CampeonatosController < ApplicationController
     end
   end
 
-
   # GET /campeonatos/:uuid(.:format)
   def show
     @loja = Campeonato.find_by_uuid!(params[:uuid])
@@ -76,6 +75,13 @@ class Cadastros::CampeonatosController < ApplicationController
 
     @campeonato.destroy
     redirect_to cadastros_campeonatos_path
+  end
+
+  def save_participante
+    participante = Participante.build(params)
+    #if participante.save
+
+    #end
   end
 
   private

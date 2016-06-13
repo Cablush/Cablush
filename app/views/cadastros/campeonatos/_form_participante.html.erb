@@ -1,0 +1,26 @@
+<%= form_for [:cadastros, @participante], html: { multipart: true } do |f| %>
+  
+  <%= render "layouts/error_messages", :target => @participante %>
+
+  <div class="field">
+    <%= f.label 'Nome' %><br>
+    <%= f.text_field :nome, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Numero Inscrição' %><br>
+    <%= f.text_field :numero_inscricao, class: 'inputbox' %>
+  </div>
+  <div class="field">
+    <%= f.label 'Categoria' %><br>
+    <%= select("post", "person_id", Categoria.where(campeonato_id: 1).collect {|c| [ c.nome, c.id ] }, { include_blank: true }) %>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Classificação' %><br>
+    <%= f.text_field :classificacao, class: 'inputbox' %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Cadastrar Participante", class: 'btn1 btn-primary btn-normal btn-inline' %>
+  </div>
+<% end %>
