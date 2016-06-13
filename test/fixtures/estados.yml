@@ -1,13 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  rg: MyString
-  nome: MyString
-  logo: MyString
-  cidade_id: 
+MG:
+  rg: MG
+  nome: Minas Gerais
 
-two:
-  rg: MyString
-  nome: MyString
-  logo: MyString
-  cidade_id: 
+BA:
+  rg: BA
+  nome: Bahia

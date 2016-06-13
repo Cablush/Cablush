@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-mock: 
+champ: 
   nome: 'Campeonato de skate'
   descricao: 'O campeonato de skate1'
-  data_inicio: 
-  hora:
-  data_fim:
-  etapas_attributes: 
+  data_inicio: Date.new
+  hora: Time.new
+  data_fim: Date.new
+  uuid: 1

@@ -3,11 +3,9 @@
 one:
   name: MyString
   email: MyString
-  subject: MyString
-  message: MyText
+  
 
 two:
   name: MyString
   email: MyString
-  subject: MyString
-  message: MyText
+  

@@ -2,16 +2,12 @@
 
 one:
   nome: MyString
-  logo: MyString
-  local: MyString
-  horario: MyString
-  esporte_id: 
+  logo_file_name: MyString
   descricao: MyText
+  uuid: 1
 
 two:
   nome: MyString
-  logo: MyString
-  local: MyString
-  horario: MyString
-  esporte_id: 
+  logo_file_name: MyString
   descricao: MyText
+  uuid: 2

@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  nome: 
-  local: 
-  descricao: 
-  logo: 
-  contato: MyString
+ralado:
+  id: 1
+  uuid: 1
+  nome: Morro do Ralado 
+  descricao:  Ralador total
 
-two:
-  nome: 
-  local: 
-  descricao: 
-  logo: 
-  contato: MyString
+onca:
+  id: 2
+  uuid: 2
+  nome: Trilha do onça
+  descricao: Corre negadis

@@ -3,13 +3,7 @@
 one:
   nome: MyString
   logo: MyString
-  esporte: MyString
-  eventos_id: 
-  atletas_id: 
 
 two:
   nome: MyString
   logo: MyString
-  esporte: MyString
-  eventos_id: 
-  atletas_id: 
