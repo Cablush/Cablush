@@ -14,6 +14,8 @@ class CampeonatosControllerTest < ActionController::TestCase
     	assert_redirected_to campeonatos_path
 	end
 
+	
+
 
     #method test get account and show balance
 	

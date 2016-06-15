@@ -79,6 +79,7 @@ class Cadastros::CampeonatosController < ApplicationController
 
   def save_participante
     participante = Participante.build(params)
+    
     #if participante.save
 
     #end

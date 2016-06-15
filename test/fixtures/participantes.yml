@@ -1,11 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nome: MyString
-  uuid: MyString
-  usuario_id: 
+  id: 1
+  nome: Participante1
+  numero_inscricao: 1
+  classificacao: 1
+  uuid: 1
+  usuario_id: 1
+  categoria_id: 1
 
 two:
-  nome: MyString
-  uuid: MyString
-  usuario_id: 
+  id: 2
+  nome: Participante2
+  numero_inscricao: 2
+  classificacao: 2
+  uuid: 2
+  usuario_id: 2
+  categoria_id: 2
