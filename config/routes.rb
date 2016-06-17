@@ -38,6 +38,7 @@ Cablush::Application.routes.draw do
       get :mine, on: :collection
       post :upload, on: :member
     end
+
     resources :esportes, only: [:index], defaults: { format: 'json' }
   end
   
@@ -58,7 +59,9 @@ Cablush::Application.routes.draw do
     resources :campeonatos, param: :uuid do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
+      post :save_participante, on: :member
     end
+
   end
   
   # PESQUISA
