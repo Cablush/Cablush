@@ -1,7 +1,7 @@
 class Campeonato < ActiveRecord::Base
   
   belongs_to :responsavel, class_name: "Usuario"
-  
+   
   
   has_many :etapas, dependent: :destroy
   accepts_nested_attributes_for :etapas, allow_destroy: true

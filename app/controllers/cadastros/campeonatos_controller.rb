@@ -80,9 +80,9 @@ class Cadastros::CampeonatosController < ApplicationController
   def save_participante
     participante = Participante.build(params)
     
-    #if participante.save
-
-    #end
+    if participante.save
+      redirect_to cadastros_campeonatos_path
+    end
   end
 
   private

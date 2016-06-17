@@ -14,6 +14,13 @@ class CampeonatosControllerTest < ActionController::TestCase
     	assert_redirected_to campeonatos_path
 	end
 
+	#method test create account sucess
+	test "successful create participante" do
+		participante = participantes(:one)
+		post :save_participante, participante: participante
+    	assert_redirected_to cadastros_campeonatos_path
+	end
+
 	
 
 

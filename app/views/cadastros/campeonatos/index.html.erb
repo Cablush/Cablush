@@ -8,10 +8,16 @@
             <% @campeonatos.each do |campeonato| %>
               <li>
                   <%= link_to campeonato.nome, edit_cadastros_campeonato_path(campeonato) %>
-                  inscrever competidores
+                 <%= render 'form_participante', champ: campeonato %>
               </li>
             <% end %>
         </ul>        
     </div>
     <div class="clear"></div>
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {        
+    Participante.init();
+  });
+</script>
