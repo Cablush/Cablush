@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514175903) do
+ActiveRecord::Schema.define(version: 20160609214003) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160514175903) do
   create_table "campeonatos", force: :cascade do |t|
     t.integer  "participantes_id"
     t.integer  "etapas_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "nome"
     t.date     "data_inicio"
     t.date     "data_fim"
@@ -36,7 +36,12 @@ ActiveRecord::Schema.define(version: 20160514175903) do
     t.string   "descricao"
     t.integer  "responsavel_id"
     t.integer  "esportes_id"
-    t.string   "uuid",             null: false
+    t.string   "uuid",                       null: false
+    t.integer  "max_competidores_categoria"
+    t.integer  "min_competidores_categoria"
+    t.integer  "max_competidores_prova"
+    t.integer  "min_competidores_prova"
+    t.integer  "num_vencedores_prova"
   end
 
   add_index "campeonatos", ["esportes_id"], name: "index_campeonatos_on_esportes_id"
@@ -228,6 +233,25 @@ ActiveRecord::Schema.define(version: 20160514175903) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
 
+  create_table "inscricaos", force: :cascade do |t|
+    t.string   "nome"
+    t.string   "tipo_documento"
+    t.string   "documento"
+    t.string   "arquivo_documento"
+    t.string   "foto"
+    t.string   "email"
+    t.integer  "campeonato_id"
+    t.integer  "categoria_id"
+    t.integer  "numero_inscricao"
+    t.string   "tipo_pagamento"
+    t.decimal  "valor_pagamento"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "inscricaos", ["campeonato_id"], name: "index_inscricaos_on_campeonato_id"
+  add_index "inscricaos", ["categoria_id"], name: "index_inscricaos_on_categoria_id"
+
   create_table "locais", force: :cascade do |t|
     t.decimal  "latitude",                     precision: 15, scale: 10, default: 0.0
     t.decimal  "longitude",                    precision: 15, scale: 10, default: 0.0
@@ -272,10 +296,14 @@ ActiveRecord::Schema.define(version: 20160514175903) do
     t.string   "nome"
     t.string   "uuid"
     t.integer  "usuario_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "numero_inscricao"
+    t.integer  "categoria_id"
+    t.string   "classificacao"
   end
 
+  add_index "participantes", ["categoria_id"], name: "index_participantes_on_categoria_id"
   add_index "participantes", ["usuario_id"], name: "index_participantes_on_usuario_id"
 
   create_table "pistas", force: :cascade do |t|
@@ -331,7 +359,6 @@ ActiveRecord::Schema.define(version: 20160514175903) do
   add_index "usuario_providers", ["usuario_id"], name: "index_usuario_providers_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
-    t.integer  "id_social"
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -353,6 +380,7 @@ ActiveRecord::Schema.define(version: 20160514175903) do
     t.datetime "locked_at"
     t.integer  "role"
     t.string   "uuid",                                null: false
+    t.string   "id_social"
     t.string   "authentication_token"
   end
 
