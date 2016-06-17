@@ -79,7 +79,7 @@ class Cadastros::CampeonatosController < ApplicationController
 
   def save_participante
     puts params
-    participante = Participante.create(params)
+    participante = Participante.new(params)
 
     if participante.save
       render_json_success participante 200
