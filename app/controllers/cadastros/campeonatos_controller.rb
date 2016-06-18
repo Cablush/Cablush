@@ -79,12 +79,12 @@ class Cadastros::CampeonatosController < ApplicationController
 
   def save_participante
     puts params
-    participante = Participante.new(params)
-
-    if participante.save
-      render_json_success participante 200
+    participante = Participante.new(nome: params[:nome],numero_inscricao: params[:num_inscricao],
+                                    categoria_id: params[:categoria], classificacao: params[:classificacao]) 
+    if participante
+      render status: 200, json: participante.to_json
     else
-      render_json_error participante.errors, 500
+      render status: 500, json: participante.to_json
     end
   end
 
@@ -97,6 +97,11 @@ class Cadastros::CampeonatosController < ApplicationController
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
   end
 
+  def participante_params
+    params.require(:participante)
+          .permit(:nome, :num_inscricao, :classificacao, :categoria)
+  end
+
   def check_categorias(params, campeonato_id)
     if params[:categorias_attibutes].present?
       params[:categorias_attibutes].each do |index, categoria|
@@ -107,11 +112,6 @@ class Cadastros::CampeonatosController < ApplicationController
         end
       end
     end
-  end
-
-  def save_participante(participante_params)
-    participante = Participante.create(mome: participante_params[:nome], num_inscricao:participante_params[:num_inscricao],
-          categoria: participante_params[:categoria], classificacao: participante_params[:classificacao])
   end
 
   def save_categoria(categoria, campeonato_id)

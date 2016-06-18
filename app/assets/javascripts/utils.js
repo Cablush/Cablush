@@ -7,7 +7,7 @@ var Utils = (function($) {
     };
 
     var showMessage = function(type, message) {
-        $("#flash_messages").html('<div class="alert alert-' + type + '">' + message + '</div>');
+        $("#flash_messages").html('<div class="alert alert-' + type + '" style="z-index:2">' + message + '</div>');
     };
 
     var openPopup = function(aClass, name) {
