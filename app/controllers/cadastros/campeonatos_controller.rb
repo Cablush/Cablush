@@ -61,7 +61,7 @@ class Cadastros::CampeonatosController < ApplicationController
     if @campeonato.update(campeonato_params)
       check_categorias(params, @campeonato.id)
       check_categorias_deleted(params, @campeonato.id)
-        redirect_to cadastros_campeonatos_path
+      redirect_to cadastros_campeonatos_path
     end
   end
 
@@ -78,11 +78,13 @@ class Cadastros::CampeonatosController < ApplicationController
   end
 
   def save_participante
-    participante = Participante.build(params)
-    
-    if save_participante(participante)
-      puts "Participante salvo"
-      redirect_to cadastros_campeonatos_path
+    puts params
+    participante = Participante.new(params)
+
+    if participante.save
+      render_json_success participante 200
+    else
+      render_json_error participante.errors, 500
     end
   end
 

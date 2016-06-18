@@ -8,35 +8,35 @@
   <%= fields_for :participantes, Participante.new do |n|%>
     <div id="error_explanation" style="display:none;">
     </div>
-    <div class="form-inputs">
-    
-          <div class="field">
-           <label>Categoria</label>
-           <%= select("post", "categoria_id", Categoria.where(campeonato_id: champ.id).collect {|c| [ c.nome, c.id ] }, { include_blank: true }) %>
-          </div>          
-          <div class="field">
-           <label>Nome</label>
-           <input type="text" id="nome" class="inputbox" maxlength="50">
-          </div>
-          <div class="field">
-           <label>Numero Inscrição</label>
-           <input type="text" id="num_inscricao" class="inputbox"min="1">
-          </div>
-          <div class="field">
-           <label>Classificação</label>
-           <input type="number" id="classificacao" class="inputbox" min="1" max="120">
-           <input type="hidden" id="uuid" value=<%= champ.uuid%>>
-          </div>
+    <form id="participant_form">
+      <div class="form-inputs">
+        <div class="field">
+         <label>Categoria</label>
+         <%= select("categoria", "categoria_id", Categoria.where(campeonato_id: champ.id).collect {|c| [ c.nome, c.id ] }, { include_blank: true }, {name: 'categoria'}) %>
+        </div>
+        <div class="field">
+         <label>Nome</label>
+         <input type="text" id="nome" name="nome" class="inputbox" maxlength="50">
+        </div>
+        <div class="field">
+         <label>Numero Inscrição</label>
+         <input type="text" id="num_inscricao" name="num_inscricao" class="inputbox"min="1">
+        </div>
+        <div class="field">
+         <label>Classificação</label>
+         <input type="number" id="classificacao" name="classificacao" class="inputbox" min="1" max="120">
+         <input type="hidden" id="uuid" name="uuid" value=<%= champ.uuid %>>
+        </div>
         <button id="btnAddProfile" class="auto_btn_participante_add btn1 btn-primary btn-normal btn-inline">Adicionar</button>
         <div>
           <center>Participantes Cadastrados</center>
           <ul id="list_participantes">
 
           </ul>
-        </div>  
-
+        </div>
         <button id="btnAddProfile" class="auto_btn_participante_save btn1 btn-primary btn-normal btn-inline">Salvar participantes</button>
-    </div>
+      </div>
+    </form>
   <% end %>
   </div>
 </div>
