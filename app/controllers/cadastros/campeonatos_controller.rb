@@ -80,7 +80,8 @@ class Cadastros::CampeonatosController < ApplicationController
   def save_participante
     participante = Participante.build(params)
     
-    if participante.save
+    if save_participante(participante)
+      puts "Participante salvo"
       redirect_to cadastros_campeonatos_path
     end
   end
@@ -104,6 +105,11 @@ class Cadastros::CampeonatosController < ApplicationController
         end
       end
     end
+  end
+
+  def save_participante(participante_params)
+    participante = Participante.create(mome: participante_params[:nome], num_inscricao:participante_params[:num_inscricao],
+          categoria: participante_params[:categoria], classificacao: participante_params[:classificacao])
   end
 
   def save_categoria(categoria, campeonato_id)
