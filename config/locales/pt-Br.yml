@@ -23,7 +23,7 @@ pt-BR:
     unauthorized: Acesso não autorizado, por favor efetue login e tente novamente.
     forbidden: Acesso não permitido.
     not_found: Página não encontrada.
-    denied: "Acesso negado."
+    denied: Acesso negado.
   button:
     cadastrar: Cadastrar
     sair: Sair
@@ -40,13 +40,13 @@ pt-BR:
       content_head_2: Na web
       content_1: Cablush é um site colaborativo, para lhe ajudar a encontrar lojas, eventos e lugares para praticar o seu esporte favorito. Não importa onde, sempre tem uma loja uma galera ou um pista esperando você para praticar seu esporte, e nós lhe ajudaremos a encontrar.
       content_2: Tem uma loja do coração que vende materiais esportivos? Vai participar de algum evento? Sabe onde praticar seu esporte preferido onde quer que esteja? Nos conte e ajude outras pessoas a ficarem por dentro do universo esportivo.
-      not_found: Nenhuma local encontrado! Cadastre-se no Cablush e divulge as lojas, pistas e eventos da sua região!
+      not_found: Nenhum local encontrado! Cadastre-se no Cablush e divulge as lojas, pistas e eventos da sua região!
     about:
       title: Sobre o Cablush
       description: Cablush é um site colaborativo, para lhe ajudar a encontrar lojas, eventos e lugares para praticar o seu esporte favorito. Não importa onde, sempre tem uma loja uma galera ou um pista esperando você para praticar seu esporte, e nós lhe ajudaremos a encontrar.
     contact:
       title: 'Dúvidas, sugestões ou parcerias.<p>Entre em contato conosco!</p>'
-      message_sent: 'Mensagem enviada com sucesso'
+      message_sent: Mensagem enviada. Obrigado!
     lojas:
       title: Encontre a loja mais próxima de você!
       content_head: Lojas
@@ -70,31 +70,31 @@ pt-BR:
       alert_lojista: 'Olá Lojista, você ainda não cadastrou sua loja, <a href="cadastros/lojas/new">clique aqui</a> para cadastrar, e começar a divulgar a sua marca!'
       title_esportista: 'Olá %{usuario}! <p>Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!</p>'
       lojas: Lojas
-      lojas_title: 'Você já cadastrou %{length} lojas.'
+      lojas_title: Você já cadastrou %{length} lojas.
       nova_loja: Nova Loja
       nova_loja_title: Entre com os dados da nova loja.
       editar_loja: Editar Loja
       editar_loja_title: 'Você esta editando a loja <p>%{loja}</p>'
       eventos: Eventos
-      eventos_title: 'Você já cadastrou %{length} eventos.'
+      eventos_title: Você já cadastrou %{length} eventos.
       novo_evento: Novo Evento
       novo_evento_title: Entre com os dados do novo evento.
       editar_evento: Editar Evento
       editar_evento_title: 'Você esta editando o evento<p>%{evento}</p>'
       pistas: Pistas
-      pistas_title: 'Você já cadastrou %{length} pistas.'
+      pistas_title: Você já cadastrou %{length} pistas.
       nova_pista: Nova Pista
       nova_pista_title: Entre com os dados da nova pista.
       editar_pista: Editar Pista
       editar_pista_title: 'Você esta editando a pista<p>%{pista}</p>'
       campeonatos: Campeonatos
-      campeonatos_title: 'Você já cadastrou %{length} campeonatos.'
+      campeonatos_title: Você já cadastrou %{length} campeonatos.
       novo_campeonato: Novo Campeonato
       novo_campeonato_title: Entre com os dados do novo campeonato.
       editar_campeonato: Editar Campeonato
       editar_campeonato_title: 'Você esta editando o campeonato<p>%{campeonato}</p>'
       gerenciar_campeonato: Gerenciar Campeonatos
-      participante_title: Gerencie seus participantes!  
+      participante_title: Gerencie seus participantes!
       categoria: Categoria
       participantes: Participantes
     campeonatos:
@@ -112,7 +112,7 @@ pt-BR:
       editar_head: Editar perfil
       entrar_email: Entrar com email
       cadastrar_email: Cadastrar com email
-      confirmacao: 'Aguardando confirmação para: %{email}'
+      confirmacao: Aguardando confirmação para: %{email}
       change_password: Alterar senha
       change_password_tip: (Clique aqui para alterar sua senha atual)
       confirm_changes: Confirmar alterações
@@ -122,7 +122,7 @@ pt-BR:
       change_password_title: 'Olá esportista, <p/>entre com o email cadastrado!</p>'
       change_password_head: Alterar senha
       change_password_h3: Esqueceu a senha?
-      change_password_p: Sem problemas, te enviamos as instruções para alterá-la.
+      change_password_p: Sem problemas, te enviaremos as instruções para alterá-la.
       change_password_new: Entre com uma nova senha.
   simple_form:
     labels:
@@ -210,13 +210,12 @@ pt-BR:
         hora: Hora
         data_fim: Data Fim
         competidores_categoria: Competidores por Categoria
-        max_competidores_categoria: Maximo de competidores por categoria
+        max_competidores_categoria: Máximo de competidores por categoria
         min_competidores_categoria: Minimo de competidores por categoria
         competidores_prova: Competidores por Prova
-        max_competidores_prova: Maximo de competidores por prova
+        max_competidores_prova: Máximo de competidores por prova
         min_competidores_prova: Minimo de competidores por prova
         num_vencedores_prova: Vencedores por prova
-
     submit:
       contact:
         create: Enviar Mensagem
