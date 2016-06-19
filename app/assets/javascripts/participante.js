@@ -12,8 +12,11 @@ var Participante = (function($) {
                     console.log(result);
                     $(document.getElementById("list_participantes"))
                         .append('<ol>'+$('#classificacao').val()+'- '+$('#nome').val() +' </ol>');
+                        //_clearForm();
+                    Utils.showMessage("teste", "participante não foi salvo");
                 },
                 error: function(error){
+                    $("#erro_save").style.display = "block";
                     console.log(error);
                 }
             });
