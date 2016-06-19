@@ -4,7 +4,7 @@ var Participante = (function($) {
         if (_checkFieldsParticipantesModal()){
             $.ajax({
                 method: 'POST',
-                url: "/cadastros/campeonatos/"+$("#uuid").val()+"/save_participante",
+                url: "/cadastros/participante/save_participante",
                 dataType: "json",
                 data: $("#participant_form").serializeObject(),
                 success: function(result){
@@ -22,6 +22,28 @@ var Participante = (function($) {
             });
         }
     };
+
+
+    var getParticipanteByCategoria = function(categoria_id){
+        var categoria = {"categoria_id": categoria_id}
+        $.ajax({
+            method: 'GET',
+            url: "/cadastros/participante/participante_by_categoria",
+            dataType: "json",
+            data: $(categoria).serializeObject(),
+            success: function(result){
+                //_clearForm();
+                console.log(result);
+                $(document.getElementById("list_participantes"))
+                    .append('<ol>'+$('#classificacao').val()+'- '+$('#nome').val() +' </ol>');
+                    //_clearForm();
+                Utils.showMessage("teste", "participante não foi salvo");
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
 
     var _checkFieldsParticipantesModal = function(){
         return $("#nome").val().length > 0
@@ -60,6 +82,10 @@ var Participante = (function($) {
         $("#lightbox_hide").on('click', function(event) {
             event.preventDefault();
             _hideLightBox();
+        });
+        
+        $('#categoria_categoria_id').on('change', function() {
+            getParticipanteByCategoria( this.value ); // or $(this).val()
         });
     }
 

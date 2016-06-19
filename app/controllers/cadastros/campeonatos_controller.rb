@@ -77,16 +77,6 @@ class Cadastros::CampeonatosController < ApplicationController
     redirect_to cadastros_campeonatos_path
   end
 
-  def save_participante
-    puts params
-    participante = Participante.new(nome: params[:nome],numero_inscricao: params[:num_inscricao],
-                                    categoria_id: params[:categoria], classificacao: params[:classificacao]) 
-    if participante
-      render status: 200, json: participante.to_json
-    else
-      render status: 500, json: participante.to_json
-    end
-  end
 
   private
 
@@ -95,11 +85,6 @@ class Cadastros::CampeonatosController < ApplicationController
           .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim ,
             categorias_attributes: [:nome, :descricao, :regras ],
             etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
-  end
-
-  def participante_params
-    params.require(:participante)
-          .permit(:nome, :num_inscricao, :classificacao, :categoria)
   end
 
   def check_categorias(params, campeonato_id)

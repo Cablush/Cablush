@@ -59,7 +59,10 @@ Cablush::Application.routes.draw do
     resources :campeonatos, param: :uuid do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
+    end
+    resources :participantes, param: :campeonato_id do
       post :save_participante, on: :member
+      get :participante_by_categoria, on: :member
     end
 
   end

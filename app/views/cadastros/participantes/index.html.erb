@@ -1,0 +1,26 @@
+<%= render "layouts/content_header" %>
+
+<%= render "header", option: 'New' %>
+
+<div class="main">
+    <div class="wrap">
+      <div class="search_box">
+       <%= select("categoria", "categoria_id", Categoria.where(campeonato_id: 1).collect {|c| [ c.nome, c.id ] }, {:prompt => t('views.cadastros.categoria') }, {:class=>'frm-field required'}) %>
+      </div>
+       <br/>
+      <div>
+        <center>Participantes Cadastrados</center>
+        <ul id="list_participantes">
+        </ul>
+      </div>
+        <!-- <button id="btnAddProfile" class="auto_btn_participante_save btn1 btn-primary btn-normal btn-inline">Salvar participantes</button> -->
+      </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {        
+    Participante.init();
+  });
+</script>

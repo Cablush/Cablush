@@ -94,9 +94,13 @@ pt-BR:
       editar_campeonato: Editar Campeonato
       editar_campeonato_title: 'Você esta editando o campeonato<p>%{campeonato}</p>'
       gerenciar_campeonato: Gerenciar Campeonatos
+      participante_title: Gerencie seus participantes!  
+      categoria: Categoria
+      participantes: Participantes
     campeonatos:
       title: Veja os campeonatos e se inscreva!
       not_found: Nenhum campeonato inscrito! Cadastre-se no Cablush e se inscreva nos melhores campeonatos!
+      gerenciar_participantes: Gerenciar participantes
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar
