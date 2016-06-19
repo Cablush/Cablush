@@ -4,7 +4,7 @@ var Participante = (function($) {
         if (_checkFieldsParticipantesModal()){
             $.ajax({
                 method: 'POST',
-                url: "/cadastros/participante/save_participante",
+                url: "/cadastros/campeonatos/new",
                 dataType: "json",
                 data: $("#participant_form").serializeObject(),
                 success: function(result){

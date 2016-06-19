@@ -13,7 +13,7 @@ class Cadastros::ParticipantesController < ApplicationController
     end
   end
 
-  def save_participante
+  def new
     puts params
     participante = Participante.new(nome: params[:nome],numero_inscricao: params[:num_inscricao],
                                     categoria_id: params[:categoria], classificacao: params[:classificacao]) 
