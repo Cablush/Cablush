@@ -9,7 +9,7 @@
               <li>
                   <%= link_to campeonato.nome, edit_cadastros_campeonato_path(campeonato) %>
                      -
-                  <%= link_to 'Gerenciar Participantes', cadastros_participantes_path(campeonato: campeonato.id) %>  
+                  <%= link_to 'Gerenciar Participantes', cadastros_participantes_path(campeonato_id: campeonato.id, campeonato_nome: campeonato.nome) %>  
                   <%#= link_to t('view.campeonato.gerenciar_participantes'), cadastros_participantes_path(campeonato: campeonato.id) %>
               </li>
             <% end %>

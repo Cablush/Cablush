@@ -60,10 +60,8 @@ Cablush::Application.routes.draw do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
     end
-    resources :participantes, param: :campeonato_id do
-      post :save_participante, on: :member
-      get :participante_by_categoria, on: :member
-    end
+    resources :participantes, only: [:index, :create, :update, :destroy],
+                              param: :uuid #, defaults: { format: 'json' }
 
   end
   
