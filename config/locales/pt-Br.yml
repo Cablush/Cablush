@@ -113,7 +113,7 @@ pt-BR:
       editar_head: Editar perfil
       entrar_email: Entrar com email
       cadastrar_email: Cadastrar com email
-      confirmacao: Aguardando confirmação para: %{email}
+      confirmacao: Aguardando confirmação para o email %{email}
       change_password: Alterar senha
       change_password_tip: (Clique aqui para alterar sua senha atual)
       confirm_changes: Confirmar alterações
