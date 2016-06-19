@@ -97,6 +97,7 @@ pt-BR:
       participante_title: Gerencie seus participantes!
       categoria: Categoria
       participantes: Participantes
+      participante_title: 'Gerencie os participantes do campeonato <p>%{campeonato}</p>'
     campeonatos:
       title: Veja os campeonatos e se inscreva!
       not_found: Nenhum campeonato inscrito! Cadastre-se no Cablush e se inscreva nos melhores campeonatos!

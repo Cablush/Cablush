@@ -1,18 +1,16 @@
-
-<input id="lightbox_show" type="button" value="Cadastrar Participantes" />
-
+<center>
+<input style="width:50%" id="lightbox_show" type="button" class="btn1 btn-primary btn-normal btn-inline" value="Cadastrar Participantes" />
+</center>
 <div id="light" class="white_content">
 <a id="lightbox_hide" href="javascript:void(0)"  class="textright">X</a>
   <div class="modal-body">
-  <center>Cadastrar Participantes para o campeonato <strong><%=champ.nome%></strong> </center>
+  <center>Cadastrar Participantes para o campeonato </center>
   <%= fields_for :participantes, Participante.new do |n|%>
-    <div id="error_explanation" style="display:none;">
-    </div>
     <form id="participant_form">
       <div class="form-inputs">
         <div class="field">
          <label>Categoria</label>
-         <%= select("categoria", "categoria_id", Categoria.where(campeonato_id: champ.id).collect {|c| [ c.nome, c.id ] }, { include_blank: true }, {name: 'categoria'}) %>
+         <%= select("categoria", "categoria_id", @categorias.collect {|c| [ c.nome, c.id ] }, {:prompt => t('views.cadastros.categoria') }, {:class=>'frm-field required'}) %>
         </div>
         <div class="field">
          <label>Nome</label>
@@ -25,13 +23,14 @@
         <div class="field">
          <label>Classificação</label>
          <input type="number" id="classificacao" name="classificacao" class="inputbox" min="1" max="120">
-         <input type="hidden" id="uuid" name="uuid" value=<%= champ.uuid %>>
         </div>
-        <button id="btnAddProfile" class="auto_btn_participante_add btn1 btn-primary btn-normal btn-inline">Adicionar</button>
+        <center>
+          <button style="width:50%" id="btnAddProfile" class="auto_btn_participante_add btn1 btn-primary btn-normal btn-inline">Adicionar</button>
+        </center>
+      </div>
     </form>
   <% end %>
   </div>
-  <%= render 'layouts/message' %>
 </div>
 <div id="fade" class="black_overlay"></div>
 

@@ -3,13 +3,17 @@ class Cadastros::ParticipantesController < ApplicationController
   before_action :authenticate_usuario!
 
 	def index
-    puts params
+    @campeonato_id = params[:campeonato_id]
+    @title =  I18n.t('views.cadastros.participante_title', campeonato: params[:campeonato_nome]).html_safe
+    @categorias = Categoria.where(campeonato_id: @campeonato_id)
+    @participante = Participante.find_by_categoria_id!(1)
+    respond_to do |format|
+      format.html
+      format.json { render json: @participantes.to_json }
+    end
+  end
 
-    @participantes = Participante.where(categoria_id: params[:campeonato])
-		@title = I18n.t('views.cadastros.participante_title')
-  	end
-
-	def save_participante
+  def new
     puts params
     participante = Participante.new(nome: params[:nome],numero_inscricao: params[:num_inscricao],
                                     categoria_id: params[:categoria], classificacao: params[:classificacao]) 
@@ -20,11 +24,7 @@ class Cadastros::ParticipantesController < ApplicationController
     end
   end
 
-  # GET /campeonatos/:uuid(.:format)
-  def participante_by_categoria
-    @participante = Participante.find_by_categoria_id!(params[:categoria_id])
-  end
-	
+
   private
 
   def participante_params
