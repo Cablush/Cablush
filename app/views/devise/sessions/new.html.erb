@@ -1,35 +1,37 @@
 <div class="content-head">
-    <div class="wrap">
-        <ul class="events">
-            <li class="active"><a href="#">Entrar</a></li>
-        </ul>
-        <div class="clear"></div>
-    </div>
+  <div class="wrap">
+    <ul class="events">
+      <li class="active"><a href="#"><%= t 'views.devise.entrar_head' %></a></li>
+    </ul>
+    <div class="clear"></div>
+  </div>
 </div>
 
 <div class="main">
-    <div class="wrap">
-        <div class="wrap-content"> 
-          <% unless usuario_signed_in? %>
-            <%= simple_form_for :usuario, :url => session_path(:usuario) do |f| %>
-            
-              <%= render "layouts/facebook_signin"%>
-              <%= render "layouts/google_signin"%>
-              
-              <p class="txt-email">Entrar com email:</p>
-              <%= f.input :email, label: 'Email' %>
-              <%= f.input :password, label: 'Senha' %>
-              <%= f.input :remember_me, :as => :boolean, class:'checkbox' %>
-              <%= f.button :submit,value: 'Login', label: 'Login', class: 'btn1 btn-primary btn-normal btn-inline' %>
-              
-              <p class="login-links">
-                <%= link_to "Esqueci a senha", new_password_path(:usuario), class: 'lnk1' %>
-              </p>
-            <% end %>    
-          <%else%>
-            <% controller.redirect_to root_path(:registered => "true") %>
-          <% end %>
-        </div>
+  <div class="wrap">
+    <div class="wrap-content">
+      <% unless usuario_signed_in? %>
+        <%= simple_form_for :usuario, :url => session_path(:usuario) do |f| %>
+
+          <%= render "layouts/facebook_signin"%>
+          <%= render "layouts/google_signin"%>
+
+          <p class="txt-email"><%= t 'views.devise.entrar_email' %></p>
+          <%= f.input :email %>
+          <%= f.input :password %>
+          <%= f.input :remember_me, as: :boolean, class:'checkbox' %>
+          <%= f.button :submit, value: t('button.entrar'),
+            class: 'btn1 btn-primary btn-normal btn-inline' %>
+
+          <p class="login-links">
+            <%= link_to t('button.new_password'), new_password_path(:usuario),
+              class: 'lnk1' %>
+          </p>
+        <% end %>
+      <%else%>
+        <% controller.redirect_to root_path(:registered => "true") %>
+      <% end %>
     </div>
-    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
 </div>

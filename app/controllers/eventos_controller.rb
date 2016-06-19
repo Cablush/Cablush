@@ -7,10 +7,10 @@ class EventosController < ApplicationController
 
     load_eventos
 
-    @title = "Veja o que está acontecendo e participe!"
+    @title = I18n.t 'views.eventos.title'
 
     if @locais.empty?
-      flash.now[:alert] = 'Nenhum evento encontrado! Cadastre-se no Cablush e divulge os eventos da sua região!'
+      flash.now[:alert] = I18n.t 'views.eventos.not_found'
     end
 
     respond_to do |format|

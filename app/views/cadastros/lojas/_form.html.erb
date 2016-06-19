@@ -1,59 +1,59 @@
 <%= form_for [:cadastros, @loja], html: { multipart: true } do |f| %>
 
   <%= render "layouts/error_messages", :target => @loja %>
-  
+
   <div class="field">
-    <%= f.label 'Nome Fantasia' %><br>
+    <%= f.label :nome %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Telefone' %><br>
+    <%= f.label :telefone %><br>
     <%= f.text_field :telefone, class: 'inputbox maskTel'  %>
   </div>
   <div class="field">
-    <%= f.label 'Email' %><br>
+    <%= f.label :email %><br>
     <%= f.text_field :email, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Site' %><br>
-    <%= f.text_field :website, class: 'inputbox'  %> 
+    <%= f.label :website %><br>
+    <%= f.text_field :website, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Facebook' %><br>
+    <%= f.label :facebook %><br>
     <%= f.text_field :facebook, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Logo' %><br>
+    <%= f.label :logo %><br>
     <%= f.file_field :logo %><br>
     <%= image_tag @loja.logo.url(:small), :class => @loja.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
-    <%= f.label 'Fundo Preto' %>
+    <%= f.label :fundo %>
     <%= f.check_box :fundo %>
   </div>
   <div class="field">
-    <%= f.label 'Descrição' %><br>
+    <%= f.label :descricao %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    <div class="textcount"><span>500</span> caracteres restantes</div>
+    <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <fieldset class="subfields">
-      <legend>Esportes</legend>
+      <legend><%= f.label :esportes %></legend>
       <%= render 'esportes/esportes_fields', f: f, esportes: @loja.esportes %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Endereço</legend>
+      <legend><%= f.label :endereco %></legend>
       <%= f.fields_for :locais do |local_form| %>
         <%= render 'locais/local_fields', f: local_form, type: 'Loja' %>
       <% end %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Horário de Funcionamento</legend>
+      <legend><%= f.label :horario %></legend>
       <%= f.fields_for :horario do |horario_form| %>
         <%= render 'horarios/horario_fields', f: horario_form %>
       <% end %>
   </fieldset>
-  
+
   <div class="actions">
-    <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

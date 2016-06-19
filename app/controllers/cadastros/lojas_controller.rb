@@ -12,7 +12,7 @@ class Cadastros::LojasController < ApplicationController
     else
       @lojas = current_usuario.lojas
     end
-    @title = "Você já cadastrou " + @lojas.length.to_s + " lojas."
+    @title = I18n.t('views.cadastros.lojas_title', length: @lojas.length.to_s)
   end
 
   # GET /lojas/new(.:format)
@@ -20,7 +20,7 @@ class Cadastros::LojasController < ApplicationController
     @loja = Loja.new
     @loja.locais.build
     @loja.build_horario
-    @title = "Entre com os dados da nova loja."
+    @title = I18n.t 'views.cadastros.nova_loja_title'
   end
 
   # POST /lojas(.:format)
@@ -56,7 +56,7 @@ class Cadastros::LojasController < ApplicationController
     if @loja.horario.blank?
       @loja.build_horario
     end
-    @title = ("Você esta editando a loja<br/> \"" + @loja.nome + "\"").html_safe;
+    @title = I18n.t('views.cadastros.editar_loja_title', loja: @loja.nome).html_safe
   end
 
   # PATCH/PUT /lojas/:uuid(.:format)
@@ -92,10 +92,13 @@ class Cadastros::LojasController < ApplicationController
   private
 
   def loja_params
-    params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo, :fundo, :descricao,
-              esporte_ids: [],
-              locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero, :complemento, :bairro, :cidade, :estado, :estado_nome, :cep, :pais],
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom, :inicio, :fim, :detalhes])
+    params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo,
+      :fundo, :descricao,
+      esporte_ids: [],
+      locais_attributes: [:id, :latitude, :longitude, :logradouro, :numero,
+        :complemento, :bairro, :cidade, :estado, :estado_nome, :cep, :pais],
+      horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom,
+        :inicio, :fim, :detalhes])
   end
 
 end

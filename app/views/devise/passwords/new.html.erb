@@ -1,25 +1,27 @@
 <div class="content-head">
-    <div class="wrap">
-        <ul class="events">
-            <li class="active"><a href="#">Alterar senha</a></li>
-        </ul>
-        <div class="clear"></div>
-    </div>
+  <div class="wrap">
+    <ul class="events">
+      <li class="active"><a href="#"><%= t 'views.devise.change_password_head' %></a></li>
+    </ul>
+    <div class="clear"></div>
+  </div>
 </div>
 
 <div class="main">
-    <div class="wrap">
-        <div class="wrap-content"> 
-            <h3>Esqueceu a senha? </h3>
-            <p>Sem problemas, te enviamos as instruções para alterá-la.</p><br/>
-            <%= simple_form_for :usuario, :url => password_path(:usuario), html: { method: :post, autocomplete: 'off' }  do |f| %>
-              <%= devise_error_messages! %>              
+  <div class="wrap">
+    <div class="wrap-content">
+      <h3><%= t 'views.devise.change_password_h3' %></h3>
+      <p><%= t 'views.devise.change_password_p' %></p><br/>
+      <%= simple_form_for :usuario, :url => password_path(:usuario),
+        html: { method: :post, autocomplete: 'off' }  do |f| %>
+        <%= devise_error_messages! %>
 
-              <%= f.input :email, label: 'Email' %>
-            
-              <%= f.button :submit, value: 'Alterar senha', label: 'Alterar senha', class: 'btn1 btn-primary btn-normal btn-inline' %>
-            <% end %>    
-        </div>
+        <%= f.input :email %>
+
+        <%= f.button :submit, value: t('button.change_password'),
+          class: 'btn1 btn-primary btn-normal btn-inline' %>
+      <% end %>
     </div>
-    <div class="clear"></div>
+  </div>
+  <div class="clear"></div>
 </div>

@@ -10,14 +10,14 @@ class Cadastros::CampeonatosController < ApplicationController
     else
       @campeonatos = current_usuario.campeonatos.order('data_inicio DESC')
     end
-    @title = "Você já cadastrou " + @campeonatos.length.to_s + " campeonatos."
+    @title = I18n.t('views.cadastros.campeonatos_title', length: @campeonatos.length.to_s)
   end
 
   # GET /campeonatos/new(.:format)
   def new
     @campeonato = Campeonato.new
     #@campeonato.build_local
-    @title = "Entre com os dados do novo campeonato."
+    @title = I18n.t 'views.cadastros.novo_campeonato_title'
   end
 
   # POST /campeonatos(.:format)
@@ -45,7 +45,7 @@ class Cadastros::CampeonatosController < ApplicationController
       @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
     end
 
-    @title = ("Você esta editando o campeonato<br/> \"" + @campeonato.nome + "\"").html_safe;
+    @title = I18n.t('views.cadastros.editar_campeonato_title', campeonato: @campeonato.nome).html_safe
   end
 
   # PATCH/PUT /campeonatos/:uuid(.:format)

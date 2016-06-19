@@ -2,13 +2,12 @@
     <div class="wrap">
         <div class="footer-menu">
             <ul>
-                <li><%= link_to 'Inicio', index_path %></li>
-                <li><%= link_to 'Lojas', lojas_path %></li>
-                <li><%= link_to 'Eventos', eventos_path %></li>
-                <li><%= link_to 'Pistas', pistas_path %></li>
-                <!-- <li><%#= link_to 'Blog', blog_path %></li> -->
-                <li><%= link_to 'Contato', contact_path %></li>
-                <li><%= link_to 'Sobre', about_path %></li>
+                <li><%= link_to t('menu.inicio'), index_path %></li>
+                <li><%= link_to t('menu.lojas'), lojas_path %></li>
+                <li><%= link_to t('menu.eventos'), eventos_path %></li>
+                <li><%= link_to t('menu.pistas'), pistas_path %></li>
+                <li><%= link_to t('menu.contato'), contact_path %></li>
+                <li><%= link_to t('menu.sobre'), about_path %></li>
                 <div class="clear"></div>
             </ul>
         </div>

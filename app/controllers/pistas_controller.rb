@@ -7,10 +7,10 @@ class PistasController < ApplicationController
 
     load_pistas
 
-    @title = "Onde praticar?"
+    @title = I18n.t 'views.pistas.title'
 
     if @locais.empty?
-      flash.now[:alert] = 'Nenhuma pista encontrada! Cadastre-se no Cablush e divulge as pistas da sua cidade!'
+      flash.now[:alert] = I18n.t 'views.pistas.not_found'
     end
 
     respond_to do |format|

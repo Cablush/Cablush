@@ -13,8 +13,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <%= csrf_meta_tags %>
         <%= favicon_link_tag 'favicon.ico' %>
 
-        <meta name="description" content="<%= cablush_description %>">
-        <meta name="keywords" content="<%= cablush_keywords %>">
+        <meta name="description" content="<%= t "meta.description" %>">
+        <meta name="keywords" content="<%= t "meta.keywords" %>">
         <meta name="robots" content="index,follow">
         <meta name="author" content="Cablush">
 
@@ -22,8 +22,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
           <%= yield(:meta_tags) %>
         <% else %>
           <meta property="og:url" content="<%= request.base_url %>" />
-          <meta property="og:title" content="Cablush - Esportes, lugares e eventos." />
-          <meta property="og:description" content="<%= cablush_description %>" />
+          <meta property="og:title" content="<%= t "meta.title" %>" />
+          <meta property="og:description" content="<%= t "meta.description" %>" />
           <meta property="og:image" content="<%= image_url("fb_cover.png") %>" />
         <% end %>
         <meta property="og:type" content="website" />

@@ -2,21 +2,20 @@
     <div class="wrap">
         <ul class="events">
             <li class="<%= is_active(cadastros_lojas_path) %> ">
-              <%= link_to 'Minhas Lojas', cadastros_lojas_path %>
+              <%= link_to t('menu_cadastros.lojas'), cadastros_lojas_path %>
             </li>
             <li class="<%= is_active(cadastros_eventos_path) %> ">
-              <%= link_to 'Meus Eventos', cadastros_eventos_path %>
+              <%= link_to t('menu_cadastros.eventos'), cadastros_eventos_path %>
             </li>
             <li class="<%= is_active(cadastros_pistas_path) %> ">
-              <%= link_to 'Minhas Pistas', cadastros_pistas_path %>
+              <%= link_to t('menu_cadastros.pistas'), cadastros_pistas_path %>
             </li>
             <li class="<%= is_active(cadastros_campeonatos_path) %> ">
-              <%= link_to 'Meus Campeonatos', cadastros_campeonatos_path %>
+              <%= link_to t('menu_cadastros.campeonatos'), cadastros_campeonatos_path %>
             </li>
             <li class="<%= is_active(edit_usuario_registration_path) %> ">
-              <%= link_to 'Meu Perfil', edit_usuario_registration_path %>
+              <%= link_to t('menu_cadastros.perfil'), edit_usuario_registration_path %>
             </li>
-
         </ul>
     </div>
     <div class="clear"></div>

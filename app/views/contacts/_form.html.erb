@@ -11,24 +11,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label "Nome" %><br>
+    <%= f.label :name %><br>
     <%= f.text_field :name, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label "Email" %><br>
+    <%= f.label :email %><br>
     <%= f.text_field :email, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label "Assunto" %><br>
+    <%= f.label :subject %><br>
     <%= f.text_field :subject, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label "Mensagem" %><br>
+    <%= f.label :message %><br>
     <%= f.text_area :message, class: 'textarea-box', :maxlength => 1000, :cols => 5, :rows => 10 %>
-    <div class="textcount"><span>1000</span> caracteres restantes</div>
+    <div class="textcount"><span>1000</span> <%= f.label :chars_remaining %></div>
   </div>
   <br/>
   <div class="actions">
-    <%= f.submit "Enviar", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

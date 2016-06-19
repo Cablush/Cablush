@@ -1,52 +1,52 @@
 <div class="field">
-  <%= f.label 'País' %><br>
-  <%= f.collection_select(:pais, Country.all, :iso, :name, 
-    {:prompt => 'Selecione o País'}, {:id => 'local_pais', :class => 'selectbox'}) %>
+  <%= f.label :pais %><br>
+  <%= f.collection_select(:pais, Country.all, :iso, :name,
+    {:prompt => '--'}, {:id => 'local_pais', :class => 'selectbox'}) %>
 </div>
 
 <div class="field">
-  <%= f.label 'CEP' %><br>
+  <%= f.label :cep %><br>
   <%= f.text_field :cep, id: 'local_cep', class: 'inputbox maskCep' %>
 </div>
 
 <div class="field">
-  <%= f.label 'Estado' %><br>
-  <%= f.collection_select(:estado, Estado.all, :rg, :nome, 
-    {:prompt => 'Selecione o Estado'}, {:id => 'local_estado', :class => 'selectbox'}) %>
+  <%= f.label :estado %><br>
+  <%= f.collection_select(:estado, Estado.all, :rg, :nome,
+    {:prompt => '--'}, {:id => 'local_estado', :class => 'selectbox'}) %>
   <%= f.hidden_field :estado_nome, id: 'local_estado_nome' %>
 </div>
 <div class="field">
-  <%= f.label 'Cidade' %><br>
-  <%= f.autocomplete_field :cidade, autocomplete_cidade_nome_cadastros_lojas_path, 
+  <%= f.label :cidade %><br>
+  <%= f.autocomplete_field :cidade, autocomplete_cidade_nome_cadastros_lojas_path,
     :fields => {:estado => '#local_estado'}, id: 'local_cidade', class: 'inputbox' %>
 </div>
   <div class="field">
-  <%= f.label 'Bairro' %><br>
+  <%= f.label :bairro %><br>
   <%= f.text_field :bairro, id: 'local_bairro', class: 'inputbox' %>
 </div>
 <div class="field">
-  <%= f.label 'Logradouro' %><br>
+  <%= f.label :logradouro %><br>
   <%= f.text_field :logradouro, id: 'local_logradouro', class: 'inputbox geotrigger' %>
 </div>
 <div class="field">
-  <%= f.label 'Número' %><br>
+  <%= f.label :numero %><br>
   <%= f.text_field :numero, id: 'local_numero', class: 'inputbox geotrigger' %>
 </div>
 <div class="field">
-  <%= f.label 'Complemento' %><br>
+  <%= f.label :complemento %><br>
   <%= f.text_field :complemento, id: 'local_complemento', class: 'inputbox' %>
 </div>
 
 <div class="field">
-    <%= f.label 'Localização' %><br>
+    <%= f.label :localizacao %><br>
     <%= f.hidden_field :latitude, id: 'local_latitude' %>
     <%= f.hidden_field :longitude, id: 'local_longitude' %>
     <div id="map-canvas-cad"></div>
     <script type="text/javascript">
         $(document).ready(function() {
-          
+
             Cadastros.init();
-          
+
             var getAddress = function() {
                 var addressArray = new Array();
 
@@ -57,11 +57,11 @@
                 addressArray.push($('#local_estado').find('option:selected').text());
                 addressArray.push($('#local_pais').find('option:selected').text());
 
-                return addressArray.filter(function(val) { 
-                    return val !== null && 0 !== val.length; 
+                return addressArray.filter(function(val) {
+                    return val !== null && 0 !== val.length;
                 }).join(", ");
             };
-            
+
             CablushSelectMap.setCoords = function(latitude, longitude){
                 $('#local_latitude').val(latitude);
                 $('#local_longitude').val(longitude);
@@ -70,9 +70,9 @@
             $('.geotrigger').on('change paste', function() {
                 CablushSelectMap.setAddress(getAddress());
             });
-            
-            CablushSelectMap.init($('#map-canvas-cad')[0], 
-                                  $('#local_latitude').val(), 
+
+            CablushSelectMap.init($('#map-canvas-cad')[0],
+                                  $('#local_latitude').val(),
                                   $('#local_longitude').val(),
                                   '<%= type %>' );
         });

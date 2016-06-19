@@ -4,14 +4,14 @@ def index
 	@campeonatos = Campeonato.all
     #@campeonatos = @campeonatos.eventos_by_estado(params[:estado]) if params[:estado].present?
     #@campeonatos = @campeonatos.eventos_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
-    
+
     @clear = params[:filter] && params[:page].blank? || nil
-    @title = "Veja os campeonatos e se inscreva!"
-    
+    @title = I18n.t 'views.campeonatos.title'
+
     if @campeonatos.empty?
-      flash.now[:alert] = 'Nenhum campeonato inscrito! Cadastre-se no Cablush e se inscreva nos melhores campeonatos!'
+      flash.now[:alert] = I18n.t 'views.campeonatos.not_found'
     end
-    
+
     respond_to do |format|
       format.html { @campeonatos }
       #format.js { @campeonatos }
@@ -20,7 +20,7 @@ def index
 end
 
 def cadastros
-    
+
 end
 
 end

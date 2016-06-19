@@ -1,23 +1,23 @@
 <div class="field">
   <%= f.label 'Dias' %><br>
-  <%= f.check_box :seg %><%= f.label 'Seg' %>
-  <%= f.check_box :ter %><%= f.label 'Ter' %>
-  <%= f.check_box :qua %><%= f.label 'Qua' %>
-  <%= f.check_box :qui %><%= f.label 'Qui' %>
-  <%= f.check_box :sex %><%= f.label 'Sex' %>
-  <%= f.check_box :sab %><%= f.label 'Sab' %>
-  <%= f.check_box :dom %><%= f.label 'Dom' %>
+  <%= f.check_box :seg %><%= f.label :seg %>
+  <%= f.check_box :ter %><%= f.label :ter %>
+  <%= f.check_box :qua %><%= f.label :qua %>
+  <%= f.check_box :qui %><%= f.label :qui %>
+  <%= f.check_box :sex %><%= f.label :sex %>
+  <%= f.check_box :sab %><%= f.label :sab %>
+  <%= f.check_box :dom %><%= f.label :dom %>
 </div>
 <div class="field">
-  <%= f.label 'Início' %><br>
-  <%= f.time_select :inicio,  {prompt: {hour: "Hora início", minute: "Minuto início"}}, {class: 'selectbox timeselector'}%>
+  <%= f.label :inicio %><br>
+  <%= f.time_select :inicio, {prompt: {hour: "--", minute: "--"}}, {class: 'selectbox timeselector'} %>
 </div>
 <div class="field">
-  <%= f.label 'Fim' %><br>
-  <%= f.time_select :fim,  {prompt: {hour: "Hora fim", minute: "Minuto fim"}}, {class: 'selectbox timeselector'}%>
+  <%= f.label :fim %><br>
+  <%= f.time_select :fim,  {prompt: {hour: "--", minute: "--"}}, {class: 'selectbox timeselector'}%>
 </div>
 <div class="field">
-  <%= f.label 'Detalhes' %><br>
+  <%= f.label :detalhes %><br>
   <%= f.text_area :detalhes, class: 'textarea-box', :maxlength => 100, :cols => 5, :rows => 2 %>
-  <div class="textcount"><span>100</span> caracteres restantes</div>
+  <div class="textcount"><span>100</span> <%= f.label :chars_remaining %></div>
 </div>

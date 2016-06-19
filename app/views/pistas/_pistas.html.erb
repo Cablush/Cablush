@@ -3,7 +3,7 @@
 <div class="content-head">
     <div class="wrap">
         <ul class="events">
-            <li class="active"><a href="#">Pistas</a></li>
+            <li class="active"><a href="#"><%= t 'views.pistas.content_head' %></a></li>
         </ul>
         <div class="search_controls">
           <%= form_for pistas_path, html: { id: "form_pistas" }, remote: true, format: :json do |f| %>

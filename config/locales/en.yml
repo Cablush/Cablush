@@ -19,25 +19,18 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
---- 
-en: 
-  articles: 
-    edit: 
-      title: "Add article"
-    index: 
-      title: "List of articles"
-    new: 
-      title: "New article"
-  forms: 
-    buttons: 
+---
+en:
+  forms:
+    buttons:
       edit: Edit
       submit: Submit
-    messages: 
+    messages:
       success: "Operation succeeded!"
-  menu: 
+  menu:
     new_article: "Add an article"
-  view: 
-    home: 
-      index: 
-        description1: "Cablush is a colaborative app who wants to help you to find a store, a event and places to pratice your favorite sport. Doesn't matter where, there always one store, somebody waiting to pratice sports and we want to help you to find it."
-        
+  view:
+    home:
+      index:
+        description: "Cablush is a colaborative app who wants to help you to find a store, a event and places to pratice your favorite sport. Doesn't matter where, there always one store, somebody waiting to pratice sports and we want to help you to find it."
+

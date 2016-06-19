@@ -1,12 +1,16 @@
 <div class="search_box_clear">
-  Pesquisar
+  <%= t 'views.local.pesquisar' %>
 </div>
 <div class="search_box">
-  <%= f.collection_select(:estado, Estado.all, :rg, :nome , {:prompt => 'por Estado:'}, {:class=>'frm-field required'}) %>
+  <%= f.collection_select(:estado, Estado.all, :rg, :nome ,
+  {:prompt => t('views.local.por_estado')}, {:class=>'frm-field required'}) %>
 </div>
 <div class="search_box">
-  <%= f.select :esporte, Esporte.categoria.to_a.map { |k, v| [k.humanize, v] }, {:prompt => 'por Categoria:'}, {:class=>'frm-field required'} %>
+  <%= f.select :esporte, Esporte.categoria.to_a.map { |k, v| [k.humanize, v] },
+  {:prompt => t('views.local.por_esporte')}, {:class=>'frm-field required'} %>
 </div>
 <div class="search_box">
-  <%= button_tag(type: 'button', id: 'limpar_campos') do content_tag(:strong, 'Limpar campos') end %>
+  <%= button_tag(type: 'button', id: 'limpar_campos') do
+    content_tag(:strong, t('views.local.limpar'))
+  end %>
 </div>

@@ -2,15 +2,15 @@
     <div class="wrap">
         <ul class="events">
             <li class="<%= is_active(cadastros_eventos_path, true)%> ">
-              <%= link_to 'Eventos', cadastros_eventos_path %>
+              <%= link_to t('views.cadastros.eventos'), cadastros_eventos_path %>
             </li>
             <% if request.path.try(:ends_with?, 'edit') %>
               <li class='active'>
-                <a href="#">Editar Evento</a>
+                <a href="#"><%= t('views.cadastros.editar_evento') %></a>
               </li>
             <% else %>
               <li class='<%= is_active(new_cadastros_evento_path, true)%>'>
-                <%= link_to 'Novo Evento', new_cadastros_evento_path %>
+                <%= link_to t('views.cadastros.novo_evento'), new_cadastros_evento_path %>
               </li>
             <%  end %>
         </ul>

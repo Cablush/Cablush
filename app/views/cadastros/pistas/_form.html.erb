@@ -1,31 +1,31 @@
 <%= form_for [:cadastros, @pista], html: { multipart: true } do |f| %>
-  
+
   <%= render "layouts/error_messages", :target => @pista %>
 
   <div class="field">
-    <%= f.label 'Nome' %><br>
+    <%= f.label :nome %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Descrição' %><br>
+    <%= f.label :descricao %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    <div class="textcount"><span>500</span> caracteres restantes</div>
+    <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
-    <%= f.label 'Site' %><br>
-    <%= f.text_field :website, class: 'inputbox'  %> 
+    <%= f.label :website %><br>
+    <%= f.text_field :website, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Facebook' %><br>
+    <%= f.label :facebook %><br>
     <%= f.text_field :facebook, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Foto' %><br>
+    <%= f.label :foto %><br>
     <%= f.file_field :foto %><br>
     <%= image_tag @pista.foto.url(:small), :class => @pista.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
-    <%= f.label 'Fundo Preto' %>
+    <%= f.label :fundo %>
     <%= f.check_box :fundo %>
   </div>
 <div class="field">
@@ -33,23 +33,23 @@
     <%= f.text_field :video, class: 'inputbox'  %>
   </div>
   <fieldset class="subfields">
-      <legend>Esportes</legend>
+      <legend><%= f.label :esportes %></legend>
       <%= render 'esportes/esportes_fields', f: f, esportes: @pista.esportes %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Endereço</legend>
+      <legend><%= f.label :endereco %></legend>
       <%= f.fields_for :local do |local| %>
         <%= render 'locais/local_fields', f: local, type: 'Pista' %>
       <% end %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Horário de Funcionamento</legend>
+      <legend><%= f.label :horario %></legend>
       <%= f.fields_for :horario do |h| %>
         <%= render 'horarios/horario_fields', f: h %>
       <% end %>
   </fieldset>
 
   <div class="actions">
-    <%= f.submit 'Confirmar', class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

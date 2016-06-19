@@ -1,18 +1,18 @@
 <%= form_for [:cadastros, @campeonato], html: { multipart: true } do |f| %>
-  
+
   <%= render "layouts/error_messages", :target => @campeonato %>
 
   <div class="field">
-    <%= f.label 'Nome' %><br>
+    <%= f.label :nome %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Descrição' %><br>
+    <%= f.label :descricao %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    <div class="textcount"><span>500</span> caracteres restantes</div>
+    <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
-    <%= f.label 'Data' %><br>
+    <%= f.label :data_inicio %><br>
     <%= f.text_field :data_inicio, id: 'campeonato_data', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
@@ -29,11 +29,11 @@
     </script>
   </div>
   <div class="field">
-    <%= f.label 'Hora' %><br>
+    <%= f.label :hora %><br>
     <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}}, {class: 'selectbox timeselector'}%>
   </div>
   <div class="field">
-    <%= f.label 'Data Fim' %><br>
+    <%= f.label :data_fim %><br>
     <%= f.text_field :data_fim, id: 'campeonato_data_fim', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
@@ -47,32 +47,29 @@
   </div>
   <br/>
 <fieldset class="subfields">
-<legend>Competidores por Categoria</legend>
+<legend><%= f.label :competidores_categoria %></legend>
   <div class="field">
-    <%= f.label 'Maximo de competidores por categoria:' %><br>
+    <%= f.label :max_competidores_categoria %><br>
     <%= f.text_field :max_competidores_categoria, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Minimo de competidores por categoria:' %><br>
+    <%= f.label :min_competidores_categoria %><br>
     <%= f.text_field :min_competidores_categoria, class: 'inputbox' %>
   </div>
  </fieldset>
  <br/>
- <fieldset class="subfields"> 
- <legend>Competidores por Prova</legend>
+ <fieldset class="subfields">
+ <legend><%= f.label :competidores_prova %></legend>
   <div class="field">
-    <%= f.label 'Maximo de competidores por prova:' %><br>
+    <%= f.label :max_competidores_prova %><br>
     <%= f.text_field :max_competidores_prova, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Minimo de competidores por prova:' %><br>
+    <%= f.label :min_competidores_prova %><br>
     <%= f.text_field :min_competidores_prova, class: 'inputbox' %>
   </div>
-  </fieldset>
-  <br/>
-  <fieldset class="subfields">
-    <div class="field">
-    <%= f.label 'Vencedores por prova:' %><br>
+  <div class="field">
+    <%= f.label :num_vencedores_prova %><br>
     <%= f.text_field :num_vencedores_prova, class: 'inputbox' %>
   </div>
   </fieldset>
@@ -84,27 +81,27 @@
   <%#= f.fields_for :etapas, Etapa.new do |n|%>
      <div class="field">
       <%#= n.label 'Nome:' %><br />
-      <%#= n.text_field :nome, class: 'inputbox' %> 
+      <%#= n.text_field :nome, class: 'inputbox' %>
     </div>
     <div class="field">
       <%#= n.label 'Quantidade de provas' %><br />
-      <%#= n.text_field :qtdProvas, class: 'inputbox' %>  
+      <%#= n.text_field :qtdProvas, class: 'inputbox' %>
     </div>
     <div class="field">
       <%#= n.label 'Quantidade de participante por provas' %><br />
-      <%#= n.text_field :numCompetidoresProva, class: 'inputbox' %> 
+      <%#= n.text_field :numCompetidoresProva, class: 'inputbox' %>
     </div>
   <%# end %>
 
 </fieldset>
  -->
   <div class="actions">
-    <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>
 
 <script type="text/javascript">
-  $(document).ready(function() {        
+  $(document).ready(function() {
     Categoria.init();
   });
 </script>

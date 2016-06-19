@@ -7,10 +7,10 @@ class LojasController < ApplicationController
 
     load_lojas
 
-    @title = "Encontre a loja mais próxima de você!"
+    @title = I18n.t 'views.lojas.title'
 
     if @locais.empty?
-      flash.now[:alert] = 'Nenhuma loja encontrada! Cadastre-se no Cablush e divulge as lojas da sua cidade!'
+      flash.now[:alert] = I18n.t 'views.lojas.not_found'
     end
 
     respond_to do |format|

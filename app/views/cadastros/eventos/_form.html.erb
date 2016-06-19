@@ -1,18 +1,18 @@
 <%= form_for [:cadastros, @evento], html: { multipart: true } do |f| %>
-  
+
   <%= render "layouts/error_messages", :target => @evento %>
 
   <div class="field">
-    <%= f.label 'Nome' %><br>
+    <%= f.label :nome %><br>
     <%= f.text_field :nome, class: 'inputbox' %>
   </div>
   <div class="field">
-    <%= f.label 'Descrição' %><br>
+    <%= f.label :descricao %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    <div class="textcount"><span>500</span> caracteres restantes</div>
+    <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
-    <%= f.label 'Data' %><br>
+    <%= f.label :data %><br>
     <%= f.text_field :data, id: 'evento_data', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
@@ -29,11 +29,11 @@
     </script>
   </div>
   <div class="field">
-    <%= f.label 'Hora' %><br>
+    <%= f.label :hora %><br>
     <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}}, {class: 'selectbox timeselector'}%>
   </div>
   <div class="field">
-    <%= f.label 'Data Fim' %><br>
+    <%= f.label :data_fim %><br>
     <%= f.text_field :data_fim, id: 'evento_data_fim', class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
@@ -46,34 +46,34 @@
     </script>
   </div>
   <div class="field">
-    <%= f.label 'Site' %><br>
-    <%= f.text_field :website, class: 'inputbox'  %> 
+    <%= f.label :website %><br>
+    <%= f.text_field :website, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Facebook' %><br>
+    <%= f.label :facebook %><br>
     <%= f.text_field :facebook, class: 'inputbox'  %>
   </div>
   <div class="field">
-    <%= f.label 'Flyer' %><br>
+    <%= f.label :flyer %><br>
     <%= f.file_field :flyer %><br>
     <%= image_tag @evento.flyer.url(:small), :class => @evento.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
-    <%= f.label 'Fundo Preto' %>
+    <%= f.label :fundo %>
     <%= f.check_box :fundo %>
   </div>
   <fieldset class="subfields">
-      <legend>Esportes</legend>
+      <legend><%= f.label :esportes %></legend>
       <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
       <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
   </fieldset>
   <fieldset class="subfields">
-      <legend>Endereço</legend>
+      <legend><%= f.label :endereco %></legend>
       <%= f.fields_for :local do |local| %>
         <%= render 'locais/local_fields', f: local, type: 'Evento' %>
       <% end %>
   </fieldset>
   <div class="actions">
-    <%= f.submit "Confirmar", class: 'btn1 btn-primary btn-normal btn-inline' %>
+    <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>

@@ -1,13 +1,5 @@
 module ApplicationHelper
 
-  def cablush_description
-    "Cablush é um site colaborativo, para te ajudar a encontrar lojas, eventos e lugares onde praticar o seu esporte favorito."
-  end
-
-  def cablush_keywords
-    "cablush,esporte,esportes,esportista,radical,outdoor,sport,sports,skate,skateboarding,sk8,longboard,longboarding,longboarder,patins,patinador,roller,rollerblade,inline,bike,bicicleta,bmx,mountain bike,mtb,local,loja,pista,evento,eventos,campeonato"
-  end
-
   def full_title(page_title)
     base_title = "Cablush"
     if page_title.blank?

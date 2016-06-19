@@ -1,45 +1,46 @@
 <div class="header-top">
     <div class="wrap">
         <div class="logo">
-            <a href="<%=index_path%>"> <%= image_tag("logo.png", size: "200x56", alt: "Cablush: Esportes, Lugares e Eventos") %></a>
+            <a href="<%=index_path%>">
+              <%= image_tag("logo.png", size: "200x56", alt: t('meta.title')) %>
+            </a>
         </div>
-        
+
         <div class="cssmenu">
             <nav id="nav" role="navigation">
                 <a href="#nav" title="Show navigation">Show navigation</a>
                 <a href="#" title="Hide navigation">Hide navigation</a>
                 <ul class="clearfix">
-                    <li><%= link_to 'Inicio', index_path %></li>
-                    <li><%= link_to 'Lojas', lojas_path %></li>
-                    <li><%= link_to 'Eventos', eventos_path %></li>
-                    <li><%= link_to 'Pistas', pistas_path %></li>
-                    <!--<li><%#= link_to 'Blog', blog_path %></li>-->
-                    <li><%= link_to 'Contato', contact_path %></li>
-                    <li><%= link_to 'Sobre', about_path %></li>
+                    <li><%= link_to t('menu.inicio'), index_path %></li>
+                    <li><%= link_to t('menu.lojas'), lojas_path %></li>
+                    <li><%= link_to t('menu.eventos'), eventos_path %></li>
+                    <li><%= link_to t('menu.pistas'), pistas_path %></li>
+                    <li><%= link_to t('menu.contato'), contact_path %></li>
+                    <li><%= link_to t('menu.sobre'), about_path %></li>
                     <% if usuario_signed_in? %>
-                      <li><%= link_to 'Cadastros', cadastros_path %></li>
+                      <li><%= link_to t('menu.cadastros'), cadastros_path %></li>
                     <% end %>
                     <div class="clear"></div>
                 </ul>
             </nav>
         </div>
-        
+
         <div class="buttons">
             <% if usuario_signed_in? %>
               <div class="login_name">
-                Olá, <%= current_usuario.first_name %>
+                <%= t('message.bem_vindo', usuario: current_usuario.first_name) %>
               </div>
               <div class="logout_btn">
-                <%= link_to "Sign out", destroy_usuario_session_path, method: :delete %>
+                <%= link_to t("button.sair"), destroy_usuario_session_path, method: :delete %>
               </div>
             <% else %>
               <div class="login_btn">
-                <%= link_to "Entre", new_usuario_session_path %> 
+                <%= link_to t("button.entrar"), new_usuario_session_path %>
               </div>
               <div class="get_btn">
-                <%= link_to "Cadastre-se", new_usuario_registration_path %>
+                <%= link_to t("button.cadastrar"), new_usuario_registration_path %>
               </div>
-            <% end %>	
+            <% end %>
             <div class="clear"></div>
         </div>
         <div class="clear"></div>

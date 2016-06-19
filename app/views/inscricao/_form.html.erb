@@ -1,5 +1,5 @@
 <%= form_for [:inscricao, @inscricao], html: { multipart: true } do |f| %>
-  
+
   <%= render "layouts/error_messages", :target => @inscricao %>
 
   <div class="field">
@@ -9,7 +9,7 @@
   <div class="field">
     <%= f.label 'Descrição' %><br>
     <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
-    <div class="textcount"><span>500</span> caracteres restantes</div>
+    <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
     <%= f.label 'Data' %><br>
@@ -28,14 +28,14 @@
       });
     </script>
   </div>
-  
+
   <div class="actions">
     <%= f.submit "Confirmar Inscrição", class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
 <% end %>
 
 <script type="text/javascript">
-  $(document).ready(function() {        
+  $(document).ready(function() {
     Categoria.init();
   });
 </script>
