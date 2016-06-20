@@ -5,18 +5,19 @@ class Cadastros::ParticipantesController < ApplicationController
 	def index
     @campeonato_id = params[:campeonato_id]
     @title =  I18n.t('views.cadastros.participante_title', campeonato: params[:campeonato_nome]).html_safe
+
     @categorias = Categoria.where(campeonato_id: @campeonato_id)
-    @participante = Participante.find_by_categoria_id!(1)
+    @participantes = Participante.find_by_categoria_id!(1)
+
     respond_to do |format|
       format.html
       format.json { render json: @participantes.to_json }
     end
   end
 
-  def new
-    puts params
+  def create
     participante = Participante.new(nome: params[:nome],numero_inscricao: params[:num_inscricao],
-                                    categoria_id: params[:categoria], classificacao: params[:classificacao]) 
+                                    categoria_id: params[:categoria], classificacao: params[:classificacao])
     if participante
       render status: 200, json: participante.to_json
     else
@@ -24,6 +25,13 @@ class Cadastros::ParticipantesController < ApplicationController
     end
   end
 
+  def update
+
+  end
+
+  def destroy
+
+  end
 
   private
 

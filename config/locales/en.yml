@@ -1,5 +1,5 @@
 ---
-pt-BR:
+en:
   meta:
     title: Cablush - Sports, spots and events.
     description: Cablush is a collaborative website, created to help you to find stores, events and places where you can play your favorite sports.
@@ -11,7 +11,7 @@ pt-BR:
     pistas: Spots
     contato: Contact
     sobre: About
-    cadastros: Registers
+    cadastros: My Registers
   menu_cadastros:
     lojas: My Stores
     eventos: My Events
@@ -25,14 +25,64 @@ pt-BR:
     not_found: Resource Not found.
     denied: Acces denied.
   button:
-    cadastrar: Save
+    cadastrar: Sign up
     sair: Log out
-    entrar: Enter
+    entrar: Log in
     update: Update
     entrar_google: Enter with Google
     entrar_facebook: Enter with Facebook
-    new_password: Forgot my password
+    new_password: I can't remember my password
     change_password: Change password
+  activerecord:
+    models:
+      campeonato:
+        one: Championship
+        other: Championships
+      categoria:
+        one: Category
+        other: Categories
+      cidade:
+        one: City
+        other: Cities
+      country:
+        one: Country
+        other: Coutries
+      esporte:
+        one: Sport
+        other: Sports
+      estado:
+        one: State
+        other: States
+      etapa:
+        one: Stage
+        other: Stages
+      evento:
+        one: Event
+        other: Events
+      horario:
+        one: Schedule
+        other: Schedules
+      inscricao:
+        one: Registration
+        other: Registrations
+      local:
+        one: Place
+        other: Places
+      loja:
+        one: Store
+        other: Stores
+      participante:
+        one: Participant
+        other: Participants
+      pista:
+        one: Spot
+        other: Spots
+      prova:
+        one: Game
+        other: Games
+      usuario:
+        one: User
+        other: Users
   views:
     index:
       title: Sports, spots and events.
@@ -51,14 +101,22 @@ pt-BR:
       title: Find the store nearest you!
       content_head: Stores
       not_found: No store found! Sign up in Cablush and let the people know about the shops on your city!
+      share: The store %{loja} is on Cablush! See more info on
     eventos:
       title: Watch what's going on and participate!
       content_head: Events
       not_found: No event found! Sign up in Cablush and let the people know about the events at your area!
+      share: The event %{evento} is on Cablush! See more info on
     pistas:
       title: Where play?
       content_head: Spots
       not_found: No spot found! Sign up in Cablush and let the people know about the spots on your city!
+      share: The spot %{pista} is on Cablush! See more info on
+    campeonatos:
+      title: See the championships and register!
+      content_head: Championships
+      not_found: No championship found ! Sign up in Cablush and register yourself in the best championships!
+      share: The championship %{campeonato} is on Cablush! See more info on
     local:
       pesquisar: Search
       por_estado: by State
@@ -94,13 +152,13 @@ pt-BR:
       editar_campeonato: Edit Championship
       editar_campeonato_title: 'You are editing the championships <p>%{campeonato}</p>'
       gerenciar_campeonato: Manage Championships
-      participante_title: Manage Participants!
-      categoria: Category
       participantes: Participants
-    campeonatos:
-      title: See the championships and register!
-      not_found: No championship found ! Sign up in Cablush and register yourself in the best championships!
+      participante_title: 'Manage participants of the championships <p>%{campeonato}</p>'
       gerenciar_participantes: Manage Participants
+      categorias: Categories
+      add_categoria: Add Category
+      remove_categoria: Remove Category
+      save_categoria: Save Category
     devise:
       entrar_title: 'Hello, <p>enter your login information!</p>'
       entrar_head: Enter
@@ -108,7 +166,7 @@ pt-BR:
       cadastrar_title: 'Welcome, <p>please register to share your favorite places!</p>'
       cadastrar_head: Create Profile
       cadastrar_error: There was an error saving user, please try again!
-      editar_title: '%{usuario}, <p>here you can edit your registration data and personal information.</p>'
+      editar_title: '%{usuario}, <p>here you can edit your profile and personal information.</p>'
       editar_head: Edit profile
       entrar_email: Enter with email
       cadastrar_email: Register with email
@@ -124,16 +182,6 @@ pt-BR:
       change_password_h3: Did you forget your password?
       change_password_p: Don't worry, we will send you the instructions to change it.
       change_password_new: Enter a new password.
-  simple_form:
-    labels:
-      usuario:
-        nome: Name
-        email: Email
-        password: Password
-        password_confirmation: Confirm Password
-        current_password: Current Password
-        remember_me: Remember me
-        esportes: Favorite Sports
   helpers:
     label:
       contact:
@@ -206,6 +254,7 @@ pt-BR:
         nome: Name
         descricao: Description
         chars_remaining: characters remaining
+        regras: Rules
         data_inicio: Date
         hora: Hour
         data_fim: End Date

@@ -1,59 +1,65 @@
 <fieldset class="subfields">
-  <legend>Categorias</legend>
+  <legend><%= t('views.cadastros.categorias') %></legend>
 
   <div class="field esporte_item">
-    <input id="lightbox_show" type="button" value="Cadastrar Categoria" class="btn_auto btn-inline" />
+    <input id="lightbox_show" type="button"
+      value="<%= t('views.cadastros.add_categoria') %>"
+      class="btn_auto btn-inline" />
   </div>
 
   <% categorias.each_with_index do |categoria, i| %>
-      <div class="field categoria_item  ">
-          <%= f.hidden_field "categorias_ids][", id: "categorias_ids_" + i.to_s, value: categoria.id %>
-          <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][id]", categoria.id %>
-          <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][regras]", categoria.regras %>
-          <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][descricao]", categoria.descricao %>
-          <%= text_field_tag "categorias_attibutes["+ (i.to_s) +"][nome]", categoria.nome,
-            readonly: true, class: 'inputbox inputbox_auto' %>
-          <button type="button" class="btn_auto auto_btn_categoria_del">-</button>
-      </div>
+    <div class="field categoria_item  ">
+      <%= f.hidden_field "categorias_ids][", id: "categorias_ids_" + i.to_s, value: categoria.id %>
+      <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][id]", categoria.id %>
+      <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][regras]", categoria.regras %>
+      <%= hidden_field_tag "categorias_attibutes["+ (i.to_s) +"][descricao]", categoria.descricao %>
+      <%= text_field_tag "categorias_attibutes["+ (i.to_s) +"][nome]", categoria.nome,
+        readonly: true, class: 'inputbox inputbox_auto' %>
+      <button type="button" class="btn_auto auto_btn_categoria_del">-</button>
+    </div>
   <% end %>
 
   <% if categorias.blank? %>
     <div class="field categoria_item" style="display: none">
-        <%= f.hidden_field "categoria_ids][", id: "categoria_ids_0", value: '' %>
-        <%= hidden_field_tag "categorias_attibutes[0][id]", ''%>
-        <%= hidden_field_tag "categorias_attibutes[0][regras]", '' %>
-        <%= hidden_field_tag "categorias_attibutes[0][descricao]", '' %>
-        <%= text_field_tag "categorias_attibutes[0][nome]", '',
-          readonly: true, class: 'inputbox inputbox_auto' %>
-        <button type="button" class="btn_auto auto_btn_categoria_del">-</button>
+      <%= f.hidden_field "categoria_ids][", id: "categoria_ids_0", value: '' %>
+      <%= hidden_field_tag "categorias_attibutes[0][id]", ''%>
+      <%= hidden_field_tag "categorias_attibutes[0][regras]", '' %>
+      <%= hidden_field_tag "categorias_attibutes[0][descricao]", '' %>
+      <%= text_field_tag "categorias_attibutes[0][nome]", '',
+        readonly: true, class: 'inputbox inputbox_auto' %>
+      <button type="button" class="btn_auto auto_btn_categoria_del">-</button>
     </div>
   <% end %>
 
 <div id="light" class="white_content">
-<a id="lightbox_hide" href="javascript:void(0)"  class="textright">X</a>
+  <a id="lightbox_hide" href="javascript:void(0)" class="textright">X</a>
   <div class="modal-body">
-  <%= f.fields_for :categorias, Categoria.new do |n|%>
-    <div id="error_explanation" style="display:none;">
-    </div>
-    <div class="form-inputs">
-    <fieldset class="subfields">
-      <legend>Categorias</legend>
-         <div class="field">
-           <label>Nome</label>
-           <input type="text" id="nome" class="inputbox">
-        </div>
-        <div class="field">
-           <label>Descrição da categoria</label>
-           <textarea type="text" id="descricao" rows="10" cols="5" maxlength="500" class="textarea-box"></textarea>
-        </div>
-        <div class="field">
-          <label>Descricao da regra para esta categoria.</label>
-          <textarea type="text" id="regras" rows="10" cols="5" maxlength="500" value="" class="textarea-box"></textarea>
-        </div>
-        <button id="btnAddProfile" class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">Cadastrar Categoria</button>
-    </fieldset>
-    </div>
-  <% end %>
+    <%= f.fields_for :categorias, Categoria.new do |n|%>
+      <div id="error_explanation" style="display:none;"></div>
+      <div class="form-inputs">
+        <fieldset class="subfields">
+          <legend><%= t('views.cadastros.categorias') %></legend>
+          <div class="field">
+            <%= f.label :nome %>
+            <input type="text" id="nome" class="inputbox">
+          </div>
+          <div class="field">
+            <%= f.label :descricao %>
+             <textarea type="text" id="descricao" rows="10" cols="5"
+              maxlength="500" class="textarea-box"></textarea>
+          </div>
+          <div class="field">
+            <%= f.label :regras %>
+            <textarea type="text" id="regras" rows="10" cols="5"
+              maxlength="500" value="" class="textarea-box"></textarea>
+          </div>
+          <button id="btnAddProfile"
+            class="auto_btn_categoria_add btn1 btn-primary btn-normal btn-inline">
+            <%= t('views.cadastros.save_categoria') %>
+          </button>
+        </fieldset>
+      </div>
+    <% end %>
   </div>
 </div>
 <div id="fade" class="black_overlay"></div>

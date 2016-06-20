@@ -11,7 +11,7 @@ pt-BR:
     pistas: Pistas
     contato: Contato
     sobre: Sobre
-    cadastros: Cadastros
+    cadastros: Meus Cadastros
   menu_cadastros:
     lojas: Minhas Lojas
     eventos: Meus Eventos
@@ -33,6 +33,56 @@ pt-BR:
     entrar_facebook: Entrar com Facebook
     new_password: Esqueci a senha
     change_password: Alterar senha
+  activerecord:
+    models:
+      campeonato:
+        one: Campeonato
+        other: Campeonatos
+      categoria:
+        one: Categoria
+        other: Categorias
+      cidade:
+        one: Cidade
+        other: Cidades
+      country:
+        one: País
+        other: Países
+      esporte:
+        one: Esporte
+        other: Esportes
+      estado:
+        one: Estado
+        other: Estados
+      etapa:
+        one: Etapa
+        other: Etapas
+      evento:
+        one: Evento
+        other: Eventos
+      horario:
+        one: Horário
+        other: Horários
+      inscricao:
+        one: Inscrição
+        other: Inscrições
+      local:
+        one: Local
+        other: Locais
+      loja:
+        one: Loja
+        other: Lojas
+      participante:
+        one: Participante
+        other: Participantes
+      pista:
+        one: Pista
+        other: Pistas
+      prova:
+        one: Prova
+        other: Provas
+      usuario:
+        one: Usuário
+        other: Usuários
   views:
     index:
       title: Esportes, lugares e eventos.
@@ -51,14 +101,22 @@ pt-BR:
       title: Encontre a loja mais próxima de você!
       content_head: Lojas
       not_found: Nenhuma loja encontrada! Cadastre-se no Cablush e divulge as lojas da sua cidade!
+      share: A loja %{loja} esta no Cablush! Veja mais informações em
     eventos:
       title: Veja o que está acontecendo e participe!
       content_head: Eventos
       not_found: Nenhum evento encontrado! Cadastre-se no Cablush e divulge os eventos da sua região!
+      share: O evento %{evento} esta no Cablush! Veja mais informações em
     pistas:
       title: Onde praticar?
       content_head: Pistas
       not_found: Nenhuma pista encontrada! Cadastre-se no Cablush e divulge as pistas da sua cidade!
+      share: A pista %{pista} esta no Cablush! Veja mais informações em
+    campeonatos:
+      title: Veja os campeonatos e se inscreva!
+      content_head: Campeonatos
+      not_found: Nenhum campeonato inscrito! Cadastre-se no Cablush e se inscreva nos melhores campeonatos!
+      share: O campeonato %{campeonato} esta no Cablush! Veja mais informações em
     local:
       pesquisar: Pesquisar
       por_estado: por Estado
@@ -94,47 +152,36 @@ pt-BR:
       editar_campeonato: Editar Campeonato
       editar_campeonato_title: 'Você esta editando o campeonato<p>%{campeonato}</p>'
       gerenciar_campeonato: Gerenciar Campeonatos
-      participante_title: Gerencie seus participantes!
-      categoria: Categoria
       participantes: Participantes
-      participante_title: 'Gerencie os participantes do campeonato <p>%{campeonato}</p>'
-    campeonatos:
-      title: Veja os campeonatos e se inscreva!
-      not_found: Nenhum campeonato inscrito! Cadastre-se no Cablush e se inscreva nos melhores campeonatos!
+      participante_title: 'Gerenciar participantes do campeonato <p>%{campeonato}</p>'
       gerenciar_participantes: Gerenciar participantes
+      categorias: Categorias
+      add_categoria: Adicionar Categoria
+      remove_categoria: Remover Categoria
+      save_categoria: Salvar Categoria
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar
-      entrar_error: Please, login before continue!
+      entrar_error: Por favor, efetue login antes de continuar!
       cadastrar_title: 'Bem vindo esportista, <p>faça o cadastro para compartilhar seus locais favoritos!</p>'
       cadastrar_head: Criar Perfil
       cadastrar_error: Ocorreu um erro ao salvar usuário, por favor tente novamente!
       editar_title: '%{usuario}, <p>aqui você pode editar seu dados cadastrais e informações pessoais.</p>'
       editar_head: Editar perfil
-      entrar_email: Entrar com email
-      cadastrar_email: Cadastrar com email
-      confirmacao: Aguardando confirmação para o email %{email}
+      entrar_email: Entrar com E-mail
+      cadastrar_email: Cadastrar com E-mail
+      confirmacao: Aguardando confirmação para o e-mail %{email}
       change_password: Alterar senha
       change_password_tip: (Clique aqui para alterar sua senha atual)
       confirm_changes: Confirmar alterações
       confirm_changes_tip: (Insira sua senha atual para confirmar as alterações)
       cancel_account: Cancelar conta
       confirm_cancel_account: 'Tem certeza? Sentiremos a sua falta. :('
-      change_password_title: 'Olá esportista, <p/>entre com o email cadastrado!</p>'
+      change_password_title: 'Olá esportista, <p/>entre com o e-mail cadastrado!</p>'
       change_password_head: Alterar senha
       change_password_h3: Esqueceu a senha?
       change_password_p: Sem problemas, te enviaremos as instruções para alterá-la.
       change_password_new: Entre com uma nova senha.
-  simple_form:
-    labels:
-      usuario:
-        nome: Nome
-        email: E-mail
-        password: Senha
-        password_confirmation: Confirmar Senha
-        current_password: Senha Atual
-        remember_me: Permanecer Logado
-        esportes: Esportes Favoritos
   helpers:
     label:
       contact:
@@ -207,6 +254,7 @@ pt-BR:
         nome: Nome
         descricao: Descrição
         chars_remaining: caracteres restantes
+        regras: Regras
         data_inicio: Data
         hora: Hora
         data_fim: Data Fim

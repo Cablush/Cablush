@@ -71,7 +71,7 @@ class Pista < ActiveRecord::Base
   end
 
   def share_message
-    return 'Encontre a pista ' + nome + ' e muitas outras no Cablush! '
+    return I18n.t('views.pistas.share', pista: nome)
   end
 
   private

@@ -4,7 +4,7 @@ var Participante = (function($) {
         if (_checkFieldsParticipantesModal()){
             $.ajax({
                 method: 'POST',
-                url: "/cadastros/campeonatos/new",
+                url: "/cadastros/participante/index",
                 dataType: "json",
                 data: $("#participant_form").serializeObject(),
                 success: function(result){
@@ -83,7 +83,7 @@ var Participante = (function($) {
             event.preventDefault();
             _hideLightBox();
         });
-        
+
         $('#categoria_categoria_id').on('change', function() {
             getParticipanteByCategoria( this.value ); // or $(this).val()
         });

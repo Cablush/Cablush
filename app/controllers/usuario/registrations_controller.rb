@@ -25,7 +25,7 @@ class Usuario::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
-    @title = I18n.t('views.devise.cadastrar_title', usuario: current_usuario.nome).html_safe
+    @title = I18n.t('views.devise.editar_title', usuario: current_usuario.nome).html_safe
     super
   end
 

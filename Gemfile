@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 # A set of common locale data and translations to internationalize and/or localize your Rails applications.
 gem 'rails-i18n'
+# Find out which locale the user preferes by reading the languages they specified in their browser
+gem 'http_accept_language'
 
 
 # Simple, efficient background processing for Ruby.

@@ -90,13 +90,11 @@ var Categoria = (function($) {
         $(document.body).on('click','.inputbox_auto',function(event){
             event.preventDefault();
             _fillFields($(this).parent()[0].childNodes);
-            $("#btnAddProfile").text("Editar Categoria");
             _showLightBox();
         });
 
         $("#lightbox_show").on('click',function(event){
             event.preventDefault();
-            $("#btnAddProfile").text("Cadastrar Categoria");
             _showLightBox();
              //Todo ver como funciona o style.display no jquery
         });
