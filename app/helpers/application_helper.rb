@@ -5,7 +5,8 @@ module ApplicationHelper
     if page_title.blank?
       base_title
     else
-      "#{base_title} | .: #{page_title} :."
+      second_title = page_title.gsub(/<\/?[^>]*>/, "")
+      "#{base_title} | .: #{second_title} :."
     end
   end
 
