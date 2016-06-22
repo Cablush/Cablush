@@ -12,11 +12,11 @@
     <div class="wrap-content">
       <h3><%= t 'views.devise.change_password' %></h3>
       <p><%= t 'views.devise.change_password_new' %></p><br/>
-      <%= simple_form_for :usuario, :url => password_path(:usuario),
+      <%= simple_form_for :usuario, url: password_path(:usuario),
         html: { method: :put, autocomplete: 'off' }  do |f| %>
         <%= devise_error_messages! %>
 
-        <%= f.input :reset_password_token, :as => :hidden %>
+        <%= f.input :reset_password_token, as: :hidden %>
         <%= f.input :password, autocomplete: "off", readonly: true,
           input_html: {onFocus: "this.removeAttribute('readonly');"} %>
         <%= f.input :password_confirmation, autocomplete: "off" %>

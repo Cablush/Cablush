@@ -12,12 +12,12 @@
 <div class="main">
   <div class="wrap">
     <div class="wrap-content">
-      <%= simple_form_for :usuario, :url => registration_path(:usuario),
-        html: { method: :put, autocomplete: 'off' }  do |f| %>
+      <%= simple_form_for :usuario, url: registration_path(:usuario),
+        html: { method: :put, autocomplete: 'off' } do |f| %>
         <%= devise_error_messages! %>
 
         <%= f.input :nome %>
-        <%= f.input :email, :readonly => true %>
+        <%= f.input :email, readonly: true %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div><%= t('views.devise.confirmacao', email: resource.unconfirmed_email) %></div>
@@ -62,13 +62,13 @@
 
         <%= f.button :submit, value: t('button.update'),
           class: 'btn1 btn-primary btn-normal btn-inline' %>
-
-        <p class="login-links">
-          <%= button_to t('views.devise.cancel_account'), registration_path(resource_name),
-            data: { confirm: t('views.devise.confirm_cancel_account') },
-            method: :delete, class: 'lnk1' %>
-        </p>
       <% end %>
+
+      <div class="login-links">
+        <%= button_to t('views.devise.cancel_account'), registration_path(resource_name),
+          data: { confirm: t('views.devise.confirm_cancel_account') },
+          method: :delete, class: 'lnk1' %>
+      </div>
     </div>
   </div>
   <div class="clear"></div>

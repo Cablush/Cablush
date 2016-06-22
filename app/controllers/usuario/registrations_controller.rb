@@ -37,13 +37,11 @@ class Usuario::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do
-      |u| u.permit(:nome, :email, :password, :password_confirmation, :lojista)
-    end
-    devise_parameter_sanitizer.for(:account_update) do
-      |u| u.permit(:nome, :email, :current_password, :password, :password_confirmation,
-                   esporte_ids: [])
-    end
+    devise_parameter_sanitizer.permit :sign_up,
+      keys: [:nome, :email, :password, :password_confirmation, :lojista]
+    devise_parameter_sanitizer.permit :account_update,
+      keys: [:nome, :email, :current_password, :password, :password_confirmation,
+        esporte_ids: []]
   end
 
   def after_sign_up_path_for(resource)

@@ -12,8 +12,8 @@
     <div class="wrap-content">
       <h3><%= t 'views.devise.change_password_h3' %></h3>
       <p><%= t 'views.devise.change_password_p' %></p><br/>
-      <%= simple_form_for :usuario, :url => password_path(:usuario),
-        html: { method: :post, autocomplete: 'off' }  do |f| %>
+      <%= simple_form_for :usuario, url: password_path(:usuario),
+        html: { autocomplete: 'off' }  do |f| %>
         <%= devise_error_messages! %>
 
         <%= f.input :email %>
