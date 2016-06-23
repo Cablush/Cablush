@@ -30,7 +30,8 @@
   </div>
   <div class="field">
     <%= f.label :hora %><br>
-    <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}}, {class: 'selectbox timeselector'}%>
+    <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}},
+      {class: 'selectbox timeselector'}%>
   </div>
   <div class="field">
     <%= f.label :data_fim %><br>
@@ -46,55 +47,55 @@
     </script>
   </div>
   <br/>
-<fieldset class="subfields">
-<legend><%= f.label :competidores_categoria %></legend>
-  <div class="field">
-    <%= f.label :max_competidores_categoria %><br>
-    <%= f.text_field :max_competidores_categoria, class: 'inputbox' %>
-  </div>
-  <div class="field">
-    <%= f.label :min_competidores_categoria %><br>
-    <%= f.text_field :min_competidores_categoria, class: 'inputbox' %>
-  </div>
- </fieldset>
- <br/>
- <fieldset class="subfields">
- <legend><%= f.label :competidores_prova %></legend>
-  <div class="field">
-    <%= f.label :max_competidores_prova %><br>
-    <%= f.text_field :max_competidores_prova, class: 'inputbox' %>
-  </div>
-  <div class="field">
-    <%= f.label :min_competidores_prova %><br>
-    <%= f.text_field :min_competidores_prova, class: 'inputbox' %>
-  </div>
-  <div class="field">
-    <%= f.label :num_vencedores_prova %><br>
-    <%= f.text_field :num_vencedores_prova, class: 'inputbox' %>
-  </div>
+  <fieldset class="subfields">
+    <legend><%= f.label :competidores_categoria %></legend>
+    <div class="field">
+      <%= f.label :max_competidores_categoria %><br>
+      <%= f.text_field :max_competidores_categoria, class: 'inputbox' %>
+    </div>
+    <div class="field">
+      <%= f.label :min_competidores_categoria %><br>
+      <%= f.text_field :min_competidores_categoria, class: 'inputbox' %>
+    </div>
+  </fieldset>
+  <br/>
+  <fieldset class="subfields">
+    <legend><%= f.label :competidores_prova %></legend>
+    <div class="field">
+      <%= f.label :max_competidores_prova %><br>
+      <%= f.text_field :max_competidores_prova, class: 'inputbox' %>
+    </div>
+    <div class="field">
+      <%= f.label :min_competidores_prova %><br>
+      <%= f.text_field :min_competidores_prova, class: 'inputbox' %>
+    </div>
+    <div class="field">
+      <%= f.label :num_vencedores_prova %><br>
+      <%= f.text_field :num_vencedores_prova, class: 'inputbox' %>
+    </div>
   </fieldset>
 
   <%= render 'categoria', f: f, categorias: @campeonato.categorias %>
 
-<!-- <fieldset class="subfields">
-      <legend>Etapas</legend>
-  <%#= f.fields_for :etapas, Etapa.new do |n|%>
-     <div class="field">
-      <%#= n.label 'Nome:' %><br />
-      <%#= n.text_field :nome, class: 'inputbox' %>
-    </div>
-    <div class="field">
-      <%#= n.label 'Quantidade de provas' %><br />
-      <%#= n.text_field :qtdProvas, class: 'inputbox' %>
-    </div>
-    <div class="field">
-      <%#= n.label 'Quantidade de participante por provas' %><br />
-      <%#= n.text_field :numCompetidoresProva, class: 'inputbox' %>
-    </div>
-  <%# end %>
-
-</fieldset>
- -->
+<!--
+  <fieldset class="subfields">
+    <legend>Etapas</legend>
+    <%#= f.fields_for :etapas, Etapa.new do |n|%>
+      <div class="field">
+        <%#= n.label 'Nome:' %><br />
+        <%#= n.text_field :nome, class: 'inputbox' %>
+      </div>
+      <div class="field">
+        <%#= n.label 'Quantidade de provas' %><br />
+        <%#= n.text_field :qtdProvas, class: 'inputbox' %>
+      </div>
+      <div class="field">
+        <%#= n.label 'Quantidade de participante por provas' %><br />
+        <%#= n.text_field :numCompetidoresProva, class: 'inputbox' %>
+      </div>
+    <%# end %>
+  </fieldset>
+-->
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
@@ -102,6 +103,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+    Utils.initModal();
     Categoria.init();
   });
 </script>

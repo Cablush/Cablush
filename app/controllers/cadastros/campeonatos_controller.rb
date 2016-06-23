@@ -26,9 +26,10 @@ class Cadastros::CampeonatosController < ApplicationController
 
     @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
-      if check_categorias(params, @campeonato.id)
-        redirect_to cadastros_campeonatos_path
-      end
+      check_categorias(params, @campeonato.id)
+      redirect_to cadastros_campeonatos_path
+    else
+      render 'new'
     end
   end
 
@@ -88,12 +89,12 @@ class Cadastros::CampeonatosController < ApplicationController
   end
 
   def check_categorias(params, campeonato_id)
-    if params[:categorias_attibutes].present?
-      params[:categorias_attibutes].each do |index, categoria|
+    if params[:categorias_attributes].present?
+      params[:categorias_attributes].each do |index, categoria|
         if categoria[:id].blank? && categoria[:nome].present? && categoria[:regras].present?
           save_categoria(categoria, campeonato_id)
         elsif !categoria[:id].blank?
-            update_categoria(categoria)
+          update_categoria(categoria)
         end
       end
     end
@@ -110,8 +111,8 @@ class Cadastros::CampeonatosController < ApplicationController
 
   def check_categorias_deleted(host_params, campeonato_id)
     categorias = Categoria.select("id").where(campeonato_id: campeonato_id)
-    if params[:categorias_attibutes].present?
-      params[:categorias_attibutes].each do |index, categoria|
+    if params[:categorias_attributes].present?
+      params[:categorias_attributes].each do |index, categoria|
         if categoria[:id].present?
           categorias -=  [Categoria.new(id: categoria[:id])]
         elsif categoria[:nome].present?

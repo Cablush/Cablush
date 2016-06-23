@@ -1,4 +1,7 @@
-<%= meta_tags(request.original_url, full_title(@evento.nome), @evento.share_message, @evento.flyer_url) %>
+<%= meta_tags(request.original_url,
+              full_title(@evento.nome),
+              @evento.share_message,
+              @evento.flyer_url) %>
 
 <%= render "eventos.html", locais: @locais %>
 

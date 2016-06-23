@@ -92,6 +92,28 @@ var Utils = (function($) {
         $(".dialog").dialog("open");
     };
 
+    var initModal = function() {
+        $(".modal").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 550,
+            resizable: false,
+            close: function(event, ui) {
+                $(".modal").html("");
+            }
+        }).dialog("widget").find(".ui-dialog-title").hide();
+    };
+
+    var openModal = function(data, onClose) {
+        $(".modal").html(data);
+        if (typeof onClose === "function") {
+            $(".modal").on("dialogclose", function(event, ui) {
+                onClose();
+            });
+        }
+        $(".modal").dialog("open");
+    };
+
     var updateMetaTags = function(url, title, description, image) {
         $('meta[property=og\\:url]').attr('content', url
             ? url : 'http://www.cablush.com');
@@ -161,6 +183,8 @@ var Utils = (function($) {
         openPopup: openPopup,
         initDialog: initDialog,
         openDialog: openDialog,
+        initModal: initModal,
+        openModal: openModal,
         updateMetaTags: updateMetaTags,
         getVideoThumb: getVideoThumb,
         dynamicNavigation: dynamicNavigation

@@ -1,4 +1,7 @@
-<%= meta_tags(request.original_url, full_title(@loja.nome), @loja.share_message, @loja.logo_url) %>
+<%= meta_tags(request.original_url,
+              full_title(@loja.nome),
+              @loja.share_message,
+              @loja.logo_url) %>
 
 <%= render "lojas.html", locais: @locais %>
 

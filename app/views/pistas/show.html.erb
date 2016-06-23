@@ -1,4 +1,7 @@
-<%= meta_tags(request.original_url, full_title(@pista.nome), @pista.share_message, @pista.foto_url) %>
+<%= meta_tags(request.original_url,
+              full_title(@pista.nome),
+              @pista.share_message,
+              @pista.foto_url) %>
 
 <%= render "pistas.html", locais: @locais %>
 
