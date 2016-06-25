@@ -2,7 +2,6 @@ class Campeonato < ActiveRecord::Base
 
   belongs_to :responsavel, class_name: "Usuario"
 
-
   has_many :etapas, dependent: :destroy
   accepts_nested_attributes_for :etapas, allow_destroy: true
 
@@ -18,7 +17,6 @@ class Campeonato < ActiveRecord::Base
   is_impressionable
   before_create :set_uuid
 
-
   def to_param
     uuid
   end
@@ -28,7 +26,6 @@ class Campeonato < ActiveRecord::Base
   validates :data_inicio, presence: true
   validates :hora, presence: true
   validates :data_fim, presence: true
-
 
   scope :find_like_name, ->(nome) {
     where('campeonato.nome LIKE ?', "#{nome}%") if nome.present?

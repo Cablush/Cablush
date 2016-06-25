@@ -8,10 +8,9 @@
             <% @campeonatos.each do |campeonato| %>
               <li>
                   <%= link_to campeonato.nome, edit_cadastros_campeonato_path(campeonato) %>
-                     -
+                     --
                   <%= link_to t('views.cadastros.gerenciar_participantes'),
-                    cadastros_participantes_path(campeonato_id: campeonato.id,
-                      campeonato_nome: campeonato.nome) %>
+                    cadastros_campeonato_participantes_path(campeonato) %>
               </li>
             <% end %>
         </ul>

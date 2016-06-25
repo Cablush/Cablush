@@ -1,7 +1,7 @@
 <fieldset class="subfields">
   <legend><%= t('views.cadastros.categorias') %></legend>
 
-  <div class="field esporte_item">
+  <div class="field">
     <input type="button" value="<%= t('views.cadastros.add_categoria') %>"
       class="btn_auto btn_categoria_add btn-inline" />
   </div>
@@ -31,32 +31,4 @@
   <% end %>
 </fieldset>
 
-<div class="ui-hidden-widget">
-  <div id="modal_categorias" class="modal-body">
-    <%= f.fields_for :categorias, Categoria.new do |n|%>
-      <div id="error_explanation" style="display:none;"></div>
-      <div class="form-inputs">
-        <fieldset class="subfields">
-          <legend><%= t('views.cadastros.categorias') %></legend>
-          <div class="field">
-            <%= f.label :nome %>
-            <input type="text" id="nome" class="inputbox">
-          </div>
-          <div class="field">
-            <%= f.label :descricao %>
-             <textarea type="text" id="descricao" rows="10" cols="5"
-              maxlength="500" class="textarea-box"></textarea>
-          </div>
-          <div class="field">
-            <%= f.label :regras %>
-            <textarea type="text" id="regras" rows="10" cols="5"
-              maxlength="500" value="" class="textarea-box"></textarea>
-          </div>
-          <button type="button" class="btn_categoria_save btn1 btn-primary btn-normal btn-inline">
-            <%= t('views.cadastros.save_categoria') %>
-          </button>
-        </fieldset>
-      </div>
-    <% end %>
-  </div>
-</div>
+<%= render 'categoria_form', f: f %>

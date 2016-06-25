@@ -75,27 +75,8 @@
     </div>
   </fieldset>
 
-  <%= render 'categoria', f: f, categorias: @campeonato.categorias %>
+  <%= render 'categorias', f: f, categorias: @campeonato.categorias %>
 
-<!--
-  <fieldset class="subfields">
-    <legend>Etapas</legend>
-    <%#= f.fields_for :etapas, Etapa.new do |n|%>
-      <div class="field">
-        <%#= n.label 'Nome:' %><br />
-        <%#= n.text_field :nome, class: 'inputbox' %>
-      </div>
-      <div class="field">
-        <%#= n.label 'Quantidade de provas' %><br />
-        <%#= n.text_field :qtdProvas, class: 'inputbox' %>
-      </div>
-      <div class="field">
-        <%#= n.label 'Quantidade de participante por provas' %><br />
-        <%#= n.text_field :numCompetidoresProva, class: 'inputbox' %>
-      </div>
-    <%# end %>
-  </fieldset>
--->
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>
