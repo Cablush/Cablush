@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609214003) do
+ActiveRecord::Schema.define(version: 20160625174823) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -50,16 +50,18 @@ ActiveRecord::Schema.define(version: 20160609214003) do
   add_index "campeonatos", ["responsavel_id"], name: "index_campeonatos_on_responsavel_id"
   add_index "campeonatos", ["uuid"], name: "index_campeonatos_on_uuid", unique: true
 
-  create_table "categoria", force: :cascade do |t|
+  create_table "categorias", force: :cascade do |t|
     t.integer  "campeonato_id"
     t.string   "nome"
     t.string   "descricao"
     t.string   "regras"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.string   "uuid",          null: false
   end
 
-  add_index "categoria", ["campeonato_id"], name: "index_categoria_on_campeonato_id"
+  add_index "categorias", ["campeonato_id"], name: "index_categorias_on_campeonato_id"
+  add_index "categorias", ["uuid"], name: "index_categorias_on_uuid", unique: true
 
   create_table "cidades", force: :cascade do |t|
     t.string   "nome"
@@ -233,7 +235,7 @@ ActiveRecord::Schema.define(version: 20160609214003) do
   add_index "impressions", ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
   add_index "impressions", ["user_id"], name: "index_impressions_on_user_id"
 
-  create_table "inscricaos", force: :cascade do |t|
+  create_table "inscricoes", force: :cascade do |t|
     t.string   "nome"
     t.string   "tipo_documento"
     t.string   "documento"
@@ -249,8 +251,8 @@ ActiveRecord::Schema.define(version: 20160609214003) do
     t.datetime "updated_at",        null: false
   end
 
-  add_index "inscricaos", ["campeonato_id"], name: "index_inscricaos_on_campeonato_id"
-  add_index "inscricaos", ["categoria_id"], name: "index_inscricaos_on_categoria_id"
+  add_index "inscricoes", ["campeonato_id"], name: "index_inscricoes_on_campeonato_id"
+  add_index "inscricoes", ["categoria_id"], name: "index_inscricoes_on_categoria_id"
 
   create_table "locais", force: :cascade do |t|
     t.decimal  "latitude",                     precision: 15, scale: 10, default: 0.0

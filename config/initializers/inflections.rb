@@ -19,4 +19,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'pista', 'pistas'
   inflect.irregular 'local', 'locais'
   inflect.irregular 'localizavel', 'localizaveis'
+  inflect.irregular 'categoria', 'categorias'
+  inflect.irregular 'inscricao', 'inscricoes'
 end

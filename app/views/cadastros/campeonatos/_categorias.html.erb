@@ -8,20 +8,24 @@
 
   <% categorias.each_with_index do |categoria, i| %>
     <div class="field categoria_item  ">
-      <%= f.hidden_field "categorias_ids][", id: "categorias_ids_" + i.to_s, value: categoria.id %>
-      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][id]", categoria.id %>
-      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][regras]", categoria.regras %>
-      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][descricao]", categoria.descricao %>
-      <%= text_field_tag "categorias_attributes["+ (i.to_s) +"][nome]", categoria.nome,
-        readonly: true, class: 'inputbox inputbox_auto' %>
+      <%= f.hidden_field "categorias_uuids][", uuid: "categorias_uuids_" + i.to_s,
+        value: categoria.uuid %>
+      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][uuid]",
+        categoria.uuid %>
+      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][regras]",
+        categoria.regras %>
+      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][descricao]",
+        categoria.descricao %>
+      <%= text_field_tag "categorias_attributes["+ (i.to_s) +"][nome]",
+        categoria.nome, readonly: true, class: 'inputbox inputbox_auto' %>
       <button type="button" class="btn_auto btn_categoria_del">-</button>
     </div>
   <% end %>
 
   <% if categorias.blank? %>
     <div class="field categoria_item" style="display: none">
-      <%= f.hidden_field "categoria_ids][", id: "categoria_ids_0", value: '' %>
-      <%= hidden_field_tag "categorias_attributes[0][id]", ''%>
+      <%= f.hidden_field "categoria_uuids][", uuid: "categoria_uuids_0", value: '' %>
+      <%= hidden_field_tag "categorias_attributes[0][uuid]", ''%>
       <%= hidden_field_tag "categorias_attributes[0][regras]", '' %>
       <%= hidden_field_tag "categorias_attributes[0][descricao]", '' %>
       <%= text_field_tag "categorias_attributes[0][nome]", '',

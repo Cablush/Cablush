@@ -6,7 +6,7 @@
   {:prompt => t('views.local.por_estado')}, {:class=>'frm-field required'}) %>
 </div>
 <div class="search_box">
-  <%= f.select :esporte, Esporte.categoria.to_a.map { |k, v| [k.humanize, v] },
+  <%= f.select :esporte, Esporte.categorias.to_a.map { |k, v| [k.humanize, v] },
   {:prompt => t('views.local.por_esporte')}, {:class=>'frm-field required'} %>
 </div>
 <div class="search_box">
