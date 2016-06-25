@@ -4,6 +4,14 @@ class Categoria < ActiveRecord::Base
 
   before_create :set_uuid
 
+  validates :nome, presence: true, length: { maximum: 50 }
+  validates :descricao, presence: true, length: { maximum: 500 }
+  validates :regras, presence: true, length: { maximum: 1000 }
+
+  def to_param
+    uuid
+  end
+
   private
 
   def set_uuid

@@ -4,6 +4,9 @@
       <div class="form-inputs">
         <fieldset class="subfields">
           <legend><%= t('views.cadastros.categoria') %></legend>
+          <input type="hidden" id="id">
+          <input type="hidden" id="uuid">
+          <input type="hidden" id="index">
           <div class="field">
             <%= f.label :nome %>
             <input type="text" id="nome" class="inputbox">

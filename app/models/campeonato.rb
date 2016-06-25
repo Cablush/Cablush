@@ -5,8 +5,9 @@ class Campeonato < ActiveRecord::Base
   has_many :etapas, dependent: :destroy
   accepts_nested_attributes_for :etapas, allow_destroy: true
 
-  has_many :categorias, dependent: :destroy
-  accepts_nested_attributes_for :categorias, allow_destroy: true
+  has_many :categorias, dependent: :destroy, autosave: true
+  accepts_nested_attributes_for :categorias, allow_destroy: true,
+    reject_if: proc { |att| att['nome'].blank? }
 
   has_one :horario, as: :funcionamento, dependent: :destroy
   accepts_nested_attributes_for :horario, allow_destroy: true
@@ -26,6 +27,14 @@ class Campeonato < ActiveRecord::Base
   validates :data_inicio, presence: true
   validates :hora, presence: true
   validates :data_fim, presence: true
+  validates :max_competidores_categoria, presence: true
+  validates :min_competidores_categoria, presence: true
+  validates :max_competidores_prova, presence: true
+  validates :min_competidores_prova, presence: true
+  validates :num_vencedores_prova, presence: true
+  #validates :categorias, presence: true
+  #validates_associated :categorias
+  #validates :esportes, presence: true
 
   scope :find_like_name, ->(nome) {
     where('campeonato.nome LIKE ?', "#{nome}%") if nome.present?
@@ -36,7 +45,7 @@ class Campeonato < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:only => [:nome, :descricao, :uuid],
+    super(:only => [:nome, :descricao, :uuid, :data_inicio, :hora, :data_fim],
           :methods => [ :responsavel_uuid]
     )
   end
@@ -46,7 +55,9 @@ class Campeonato < ActiveRecord::Base
   end
 
   private
-    def set_uuid
-      self.uuid = SecureRandom.uuid
-    end
+
+  def set_uuid
+    self.uuid = SecureRandom.uuid
+  end
+
 end

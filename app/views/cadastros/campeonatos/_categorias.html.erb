@@ -2,37 +2,36 @@
   <legend><%= t('views.cadastros.categorias') %></legend>
 
   <div class="field">
-    <input type="button" value="<%= t('views.cadastros.add_categoria') %>"
-      class="btn_auto btn_categoria_add btn-inline" />
+    Categoria<span class="tip"> (Clique no nome para editar ou marque a caixa para remover)</span>
   </div>
-
-  <% categorias.each_with_index do |categoria, i| %>
-    <div class="field categoria_item  ">
-      <%= f.hidden_field "categorias_uuids][", uuid: "categorias_uuids_" + i.to_s,
-        value: categoria.uuid %>
-      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][uuid]",
-        categoria.uuid %>
-      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][regras]",
-        categoria.regras %>
-      <%= hidden_field_tag "categorias_attributes["+ (i.to_s) +"][descricao]",
-        categoria.descricao %>
-      <%= text_field_tag "categorias_attributes["+ (i.to_s) +"][nome]",
-        categoria.nome, readonly: true, class: 'inputbox inputbox_auto' %>
-      <button type="button" class="btn_auto btn_categoria_del">-</button>
+  <%= f.fields_for :categorias do |c| %>
+    <div class="field categoria_item">
+      <%= c.hidden_field :id %>
+      <%= c.hidden_field :uuid %>
+      <%= c.hidden_field :regras %>
+      <%= c.hidden_field :descricao %>
+      <%= c.text_field :nome, readonly: true, class: 'inputbox inputbox_auto' %>
+      <%= c.check_box :_destroy %>
     </div>
   <% end %>
 
   <% if categorias.blank? %>
     <div class="field categoria_item" style="display: none">
-      <%= f.hidden_field "categoria_uuids][", uuid: "categoria_uuids_0", value: '' %>
-      <%= hidden_field_tag "categorias_attributes[0][uuid]", ''%>
-      <%= hidden_field_tag "categorias_attributes[0][regras]", '' %>
-      <%= hidden_field_tag "categorias_attributes[0][descricao]", '' %>
-      <%= text_field_tag "categorias_attributes[0][nome]", '',
+      <%= hidden_field_tag "campeonato[categorias_attributes][0][id]", ''%>
+      <%= hidden_field_tag "campeonato[categorias_attributes][0][uuid]", ''%>
+      <%= hidden_field_tag "campeonato[categorias_attributes][0][regras]", '' %>
+      <%= hidden_field_tag "campeonato[categorias_attributes][0][descricao]", '' %>
+      <%= text_field_tag "campeonato[categorias_attributes][0][nome]", '',
         readonly: true, class: 'inputbox inputbox_auto' %>
-      <button type="button" class="btn_auto btn_categoria_del">-</button>
+      <%= check_box_tag "campeonato[categorias_attributes][0][_destroy]" %>
     </div>
   <% end %>
+
+  <div class="field">
+    <input type="button" value="<%= t('views.cadastros.add_categoria') %>"
+      class="btn_auto btn_categoria_add btn-inline" />
+  </div>
+
 </fieldset>
 
 <%= render 'categoria_form', f: f %>
