@@ -36,18 +36,9 @@ class Cadastros::PistasController < ApplicationController
     end
   end
 
-  # GET /pistas/:uuid(.:format)
-  def show
-    @loja = Pista.find_by_uuid!(params[:uuid])
-  end
-
   # GET /pistas/:uuid/edit(.:format)
   def edit
-    if current_usuario.admin?
-      @pista = Pista.find_by_uuid!(params[:uuid])
-    else
-      @pista = current_usuario.pistas.find_by_uuid!(params[:uuid])
-    end
+    @pista = find_pista_by_uuid
 
     if @pista.local.blank?
       @pista.build_local
@@ -61,11 +52,7 @@ class Cadastros::PistasController < ApplicationController
 
   # PATCH/PUT /pistas/:uuid(.:format)
   def update
-    if current_usuario.admin?
-      @pista = Pista.find_by_uuid!(params[:uuid])
-    else
-      @pista = current_usuario.pistas.find_by_uuid!(params[:uuid])
-    end
+    @pista = find_pista_by_uuid
 
     update_esporte_ids(params[:loja])
 
@@ -78,11 +65,7 @@ class Cadastros::PistasController < ApplicationController
 
   # DELETE /pistas/:uuid(.:format)
   def destroy
-    if current_usuario.admin?
-      @pista = Pista.find_by_uuid!(params[:uuid])
-    else
-      @pista = current_usuario.pistas.find_by_uuid!(params[:uuid])
-    end
+    @pista = find_pista_by_uuid
 
     @pista.destroy
 
@@ -90,6 +73,14 @@ class Cadastros::PistasController < ApplicationController
   end
 
   private
+
+  def find_pista_by_uuid
+    if current_usuario.admin?
+      Pista.find_by_uuid!(params[:uuid])
+    else
+      current_usuario.pistas.find_by_uuid!(params[:uuid])
+    end
+  end
 
   def pista_params
     params.require(:pista).permit(:nome, :descricao, :website, :facebook, :foto, :video,

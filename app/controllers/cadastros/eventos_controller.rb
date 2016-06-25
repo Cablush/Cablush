@@ -35,18 +35,9 @@ class Cadastros::EventosController < ApplicationController
     end
   end
 
-  # GET /eventos/:uuid(.:format)
-  def show
-    @loja = Evento.find_by_uuid!(params[:uuid])
-  end
-
   # GET /eventos/:uuid/edit(.:format)
   def edit
-    if current_usuario.admin?
-      @evento = Evento.find_by_uuid!(params[:uuid])
-    else
-      @evento = current_usuario.eventos.find_by_uuid!(params[:uuid])
-    end
+    @evento = find_evento_by_uuid
 
     if @evento.local.blank?
       @evento.build_local
@@ -56,11 +47,7 @@ class Cadastros::EventosController < ApplicationController
 
   # PATCH/PUT /eventos/:uuid(.:format)
   def update
-    if current_usuario.admin?
-      @evento = Evento.find_by_uuid!(params[:uuid])
-    else
-      @evento = current_usuario.eventos.find_by_uuid!(params[:uuid])
-    end
+    @evento = find_evento_by_uuid
 
     update_esporte_ids(params[:loja])
 
@@ -73,11 +60,7 @@ class Cadastros::EventosController < ApplicationController
 
   # DELETE /eventos/:uuid(.:format)
   def destroy
-    if current_usuario.admin?
-      @evento = Evento.find_by_uuid!(params[:uuid])
-    else
-      @evento = current_usuario.eventos.find_by_uuid!(params[:uuid])
-    end
+    @evento = find_evento_by_uuid
 
     @evento.destroy
 
@@ -85,6 +68,14 @@ class Cadastros::EventosController < ApplicationController
   end
 
   private
+
+  def find_evento_by_uuid
+    if current_usuario.admin?
+      Evento.find_by_uuid!(params[:uuid])
+    else
+      current_usuario.eventos.find_by_uuid!(params[:uuid])
+    end
+  end
 
   def evento_params
     params.require(:evento).permit(:nome, :descricao, :data, :hora, :data_fim, :website,

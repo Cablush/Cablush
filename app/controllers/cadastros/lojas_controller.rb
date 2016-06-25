@@ -36,18 +36,9 @@ class Cadastros::LojasController < ApplicationController
     end
   end
 
-  # GET /lojas/:uuid(.:format)
-  def show
-    @loja = Loja.find_by_uuid!(params[:uuid])
-  end
-
   # GET /lojas/:uuid/edit(.:format)
   def edit
-    if current_usuario.admin?
-      @loja = Loja.find_by_uuid!(params[:uuid])
-    else
-      @loja = current_usuario.lojas.find_by_uuid!(params[:uuid])
-    end
+    @loja = find_loja_by_uuid
 
     if @loja.locais.empty?
       @loja.locais.build
@@ -61,11 +52,7 @@ class Cadastros::LojasController < ApplicationController
 
   # PATCH/PUT /lojas/:uuid(.:format)
   def update
-    if current_usuario.admin?
-      @loja = Loja.find_by_uuid!(params[:uuid])
-    else
-      @loja = current_usuario.lojas.find_by_uuid!(params[:uuid])
-    end
+    @loja = find_loja_by_uuid
 
     update_esporte_ids(params[:loja])
 
@@ -78,11 +65,7 @@ class Cadastros::LojasController < ApplicationController
 
   # DELETE /lojas/:uuid(.:format)
   def destroy
-    if current_usuario.admin?
-      @loja = Loja.find_by_uuid!(params[:uuid])
-    else
-      @loja = current_usuario.lojas.find_by_uuid!(params[:uuid])
-    end
+    @loja = find_loja_by_uuid
 
     @loja.destroy
 
@@ -90,6 +73,14 @@ class Cadastros::LojasController < ApplicationController
   end
 
   private
+
+  def find_loja_by_uuid
+    if current_usuario.admin?
+      Loja.find_by_uuid!(params[:uuid])
+    else
+      current_usuario.lojas.find_by_uuid!(params[:uuid])
+    end
+  end
 
   def loja_params
     params.require(:loja).permit(:nome, :telefone, :email, :website, :facebook, :logo,

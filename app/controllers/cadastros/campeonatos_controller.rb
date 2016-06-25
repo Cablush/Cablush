@@ -22,9 +22,9 @@ class Cadastros::CampeonatosController < ApplicationController
 
   # POST /campeonatos(.:format)
   def create
-    #update_esporte_ids(params[:loja])
+    #update_esporte_ids(params[:campeonato])
 
-    @campeonato = current_usuario.campeonatos.build(campeonato_params) #current_usuario.campeonatos.build(campeonato_params)
+    @campeonato = current_usuario.campeonatos.build(campeonato_params)
     if @campeonato.save
       check_categorias(params, @campeonato.id)
       redirect_to cadastros_campeonatos_path
@@ -33,31 +33,18 @@ class Cadastros::CampeonatosController < ApplicationController
     end
   end
 
-  # GET /campeonatos/:uuid(.:format)
-  def show
-    @loja = Campeonato.find_by_uuid!(params[:uuid])
-  end
-
   # GET /campeonatos/:uuid/edit(.:format)
   def edit
-    if current_usuario.admin?
-      @campeonato = Campeonato.find_by_uuid!(params[:uuid])
-    else
-      @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
-    end
+    @campeonato = find_campeonato_by_uuid
 
     @title = I18n.t('views.cadastros.editar_campeonato_title', campeonato: @campeonato.nome).html_safe
   end
 
   # PATCH/PUT /campeonatos/:uuid(.:format)
   def update
-    if current_usuario.admin?
-      @campeonato = Campeonato.find_by_uuid!(params[:uuid])
-    else
-      @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
-    end
+    @campeonato = find_campeonato_by_uuid
 
-    #update_categoria_ids(params)
+    #update_categoria_uuids(params)
 
     if @campeonato.update(campeonato_params)
       check_categorias(params, @campeonato.id)
@@ -68,24 +55,28 @@ class Cadastros::CampeonatosController < ApplicationController
 
   # DELETE /campeonatos/:uuid(.:format)
   def destroy
-    if current_usuario.admin?
-      @campeonato = Campeonato.find_by_uuid!(params[:uuid])
-    else
-      @campeonato = current_usuario.campeonatos.find_by_uuid!(params[:uuid])
-    end
+    @campeonato = find_campeonato_by_uuid
 
     @campeonato.destroy
     redirect_to cadastros_campeonatos_path
   end
 
-
   private
+
+  def find_campeonato_by_uuid
+    if current_usuario.admin?
+      Campeonato.find_by_uuid!(params[:uuid])
+    else
+      current_usuario.campeonatos.find_by_uuid!(params[:uuid])
+    end
+  end
 
   def campeonato_params
     params.require(:campeonato)
-          .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim ,
-            categorias_attributes: [:nome, :descricao, :regras ],
-            etapas_attributes: [:nome, :qtdProvas, :numCompetidoresProva])
+          .permit(:nome, :descricao ,:data_inicio, :hora, :data_fim,
+            :max_competidores_categoria, :min_competidores_categoria,
+            :max_competidores_prova, :min_competidores_prova, :num_vencedores_prova,
+            categorias_attributes: [:uuid, :nome, :descricao, :regras])
   end
 
   def check_categorias(params, campeonato_id)
