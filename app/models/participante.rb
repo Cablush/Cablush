@@ -10,6 +10,16 @@ class Participante < ActiveRecord::Base
   validates :classificacao, presence: true, numericality: true
   validates_associated :categoria
 
+  def categoria_id
+    categoria.id
+  end
+
+  def as_json(options={})
+    super(only: [:nome, :numero_inscricao, :classificacao, :uuid],
+      methods: [:categoria_id]
+    )
+  end
+
   private
 
   def set_uuid

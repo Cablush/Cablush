@@ -1,19 +1,25 @@
-<% @categorias.each do |categoria| %>
-  <fieldset class="subfields">
-    <legend>
-      <%= t('views.cadastros.categoria_nome', categoria: categoria.nome) %>
-      <span class="tip">
-        <%= t('views.cadastros.participantes_numero', length: categoria.participantes.length) %>
-      </span>
-    </legend>
-    <ul>
-      <% categoria.participantes.each do |participante| %>
-        <li>
-          <%= participante.nome %>
-          <%= participante.numero_inscricao %>
-          <%= participante.classificacao %>
-        </li>
-      <% end %>
-    </ul>
-  </fieldset>
-<%end%>
+<ul class="list1">
+  <% @categorias.each do |categoria| %>
+    <li>
+      <div class="elem-list">
+        <div class="title_list">
+          <%= t('views.cadastros.categoria_nome', categoria: categoria.nome) %>
+          <label class="tip">
+            <%= t('views.cadastros.participantes_numero',
+              length: categoria.participantes.length) %>
+          </label>
+        </div>
+        <ul class="item_list">
+          <% categoria.participantes.each do |participante| %>
+            <li>
+              <%= t('views.cadastros.item_participante',
+                participante: participante.nome,
+                inscricao: participante.numero_inscricao,
+                classificacao: participante.classificacao) %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </li>
+  <%end%>
+</ul>

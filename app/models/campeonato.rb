@@ -45,8 +45,14 @@ class Campeonato < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:only => [:nome, :descricao, :uuid, :data_inicio, :hora, :data_fim],
-          :methods => [ :responsavel_uuid]
+    super(only: [:nome, :descricao, :uuid, :data_inicio, :hora, :data_fim,
+      :max_competidores_categoria, :min_competidores_categoria,
+      :max_competidores_prova, :min_competidores_prova, :num_vencedores_prova],
+      methods: [:responsavel_uuid],
+      include: {
+        categorias: {except: [:id, :created_at, :updated_at]},
+        esportes: {except: [:created_at, :updated_at]},
+      }
     )
   end
 

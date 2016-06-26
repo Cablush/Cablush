@@ -1,19 +1,19 @@
 var Participante = (function($) {
 
-    var _selectCategoria = function() {
-        var selected = $('#categoria_categoria_uuid').val();
+    var _fillCategoria = function() {
+        var selected = $('#categoria_categoria_id').val();
         if (selected != "") {
-            $('.modal #categoria_categoria_uuid').val(selected);
+            $('.modal #participante_categoria_id').val(selected);
         }
     };
 
-    var _filterByCategoria = function(categoria_uuid) {
+    var _filterByCategoria = function(categoria_id) {
         var campeonato_uuid = $('#campeonato_uuid').val();
         Utils.startLoading();
         $.ajax({
             url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes",
             dataType: "script",
-            data: {"categoria_uuid": categoria_uuid}
+            data: {"categoria_id": categoria_id}
         });
     };
 
@@ -21,9 +21,9 @@ var Participante = (function($) {
         var campeonato_uuid = $('#campeonato_uuid').val();
         Utils.startLoading();
         $.post({
-            url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes/show",
-            dataType: "script",
-            data: {"participante_uuid": participante_uuid}
+            url: "/cadastros/campeonatos/" + campeonato_uuid
+                + "/participantes/" + participante_uuid + "/edit",
+            dataType: "script"
         });
     };
 
@@ -31,26 +31,34 @@ var Participante = (function($) {
         if (_checkFieldsParticipantesModal()){
             var campeonato_uuid = $('#campeonato_uuid').val();
             $.post({
-                url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes/create",
-                dataType: "script",
-                data: $("#participant_form").serializeObject()
+                url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes",
+                dataType: "json",
+                data: $(".modal #participant_form").serializeObject(),
+                success: function(data) {
+                    if (data.success) {
+                        _closeModal();
+                        _filterByCategoria(data.data["categoria_id"]);
+                    } else {
+                        // TODO display errors
+                    }
+                }
             });
-            _closeModal()
         }
         // TODO display errors
     };
 
     var _checkFieldsParticipantesModal = function(){
-        return $('.modal #categoria_categoria_uuid').val().length > 0
-            && $(".modal #nome").val().length > 0
-            && $(".modal #num_inscricao").val().length > 0
-            && $(".modal #classificacao").val().length > 0;
+        return $('.modal #participante_categoria_id').val().length > 0
+            && $(".modal #participante_nome").val().length > 0
+            && $(".modal #participante_numero_inscricao").val().length > 0
+            && $(".modal #participante_classificacao").val().length > 0;
     }
 
     var _clearForm = function(){
-        $(".modal #nome").val("");
-        $(".modal #num_inscricao").val("");
-        $(".modal #classificacao").val("");
+        $('.modal #participante_categoria_id').val("");
+        $(".modal #participante_nome").val("");
+        $(".modal #participante_numero_inscricao").val("");
+        $(".modal #participante_classificacao").val("");
     };
 
     var _openModal = function() {
@@ -65,21 +73,21 @@ var Participante = (function($) {
     };
 
     var init = function() {
-        $('#categoria_categoria_uuid').on('change', function(event) {
+        $('#categoria_categoria_id').on('change', function(event) {
             _filterByCategoria($(this).val());
         });
 
         $(".btn_participante_add").on('click', function(event) {
             event.preventDefault();
             _openModal();
-            _selectCategoria();
+            _fillCategoria();
         });
 
         // TODO edit call
 
         // TODO delete call
 
-        $(document.body).on('click', '.btn_participant_save', function(event) {
+        $(document.body).on('click', '.btn_participante_save', function(event) {
             event.preventDefault();
             _saveParticipante();
         });

@@ -3,7 +3,9 @@
     <%= f.fields_for :categorias, Categoria.new do |n|%>
       <div class="form-inputs">
         <fieldset class="subfields">
-          <legend><%= t('views.cadastros.categoria') %></legend>
+          <legend class="title_modal">
+            <%= t('views.cadastros.categoria') %>
+          </legend>
           <input type="hidden" id="id">
           <input type="hidden" id="uuid">
           <input type="hidden" id="index">

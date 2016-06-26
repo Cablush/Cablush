@@ -464,6 +464,19 @@ ul.events li {
 .search_box form button:hover, .search_box button:hover {
     color: #333;
 }
+.search_box_content {
+    display: inline-block;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -moz-column-width: 21em;
+    -webkit-column-width: 21em;
+    -moz-column-gap: 1em;
+    -webkit-column-gap: 1em;
+}
 .textbox {
     float: left;
     background: #FFF;
@@ -511,6 +524,9 @@ ul.events li {
     -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background:#fff;
 }
+.item_list {
+    padding-right: 20px;
+}
 /*  GRID OF THREE */
 .row {
     -moz-column-width: 21em;
@@ -537,8 +553,23 @@ ul.events li {
     color: #E05A1F;
     font-size: 1.1em;
 }
-.title a {
-    color: #E05A1F;
+.title_list {
+    text-align: left;
+    padding: 5px;
+    font-size: 1.1em;
+    color:#777;
+}
+.title_modal {
+    text-align: left;
+    padding: 5px 0 0 5px;
+    font-size: 1.1em;
+    color: #777;
+}
+legend.title_modal {
+    top: -13px !important;
+}
+.title a, .title_list a:hover {
+    color: #E05A1F !important;
 }
 .foto, .flyer {
     padding: 5%;
@@ -2809,6 +2840,7 @@ select.selectbox, select.selectmultibox {
     width:100%;
     background:#fff;
     font-family: 'Dosis', sans-serif;
+    cursor: pointer;
 }
 .textarea-box {
     background: #FFF;
@@ -3565,7 +3597,7 @@ html, body, map, #map-canvas, #map-canvas-cad {
 .subfields.collapsible legend {
     cursor: pointer;
 }
-span.tip {
+.tip {
     font-size: 0.8em;
     font-style: italic;
     font-stretch: condensed;

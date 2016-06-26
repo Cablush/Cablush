@@ -4,24 +4,21 @@
 
 <div class="main">
   <div class="wrap">
-    <div class="col">
-      <div class="row search_box">
-        <div class="field pad-horizontal">
-          <%= t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome) %>
-          <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
-        </div>
-        <div class="field pad-horizontal" >
-          <%= t('views.cadastros.categoria') %>
-          <%= select(:categoria, "categoria_uuid",
-            @categorias.collect {|c| [ c.nome, c.uuid ] },
-            {prompt: t('views.cadastros.categoria') }, {class: 'selectbox'}) %>
-        </div>
-        <div class="field pad-horizontal" >
-          <%= render 'form' %>
-        </div>
+    <div class="search_box search_box_content float-lt">
+      <div class="field pad-horizontal title_list">
+        <%= t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome) %>
+        <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
+      </div>
+      <div class="field pad-horizontal" >
+        <%= select(:categoria, "categoria_id",
+          @categorias.collect {|c| [ c.nome, c.id ] },
+          {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
+      </div>
+      <div class="field pad-horizontal" >
+        <%= render 'form' %>
       </div>
     </div>
-    <div id="lista_participantes">
+    <div id="lista_participantes" class="float-lt">
       <%= render 'participantes' %>
     </div>
     <div class="clear"></div>

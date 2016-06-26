@@ -3,32 +3,19 @@
 
 <div class="ui-hidden-widget">
   <div id="modal_participantes" class="modal-body">
-    <%= fields_for :participantes, Participante.new do |f|%>
+    <%= simple_form_for :participante, html: { id: 'participant_form' } do |f|%>
       <div class="form-inputs">
         <fieldset class="subfields">
-          <legend><%= t('views.cadastros.participante') %></legend>
-          <div class="field">
-            <%= f.label :categoria %>
-            <%= select(:categoria, "categoria_uuid",
-              @categorias.collect {|c| [ c.nome, c.uuid ] },
-              {prompt: t('views.cadastros.categoria') }, {class: 'selectbox'}) %>
-          </div>
-          <div class="field">
-            <%= f.label :nome %>
-            <%= f.text_field :nome, class: 'inputbox' %>
-          </div>
-          <div class="field">
-            <%= f.label :numero_inscricao %>
-            <%= f.text_field :numero_inscricao, class: 'inputbox' %>
-          </div>
-          <div class="field">
-            <%= f.label :classificacao %>
-            <%= f.text_field :classificacao, class: 'inputbox' %>
-          </div>
-          <button type="button"
-            class="btn_participante_save btn1 btn-primary btn-normal btn-inline">
-            <%= t('views.cadastros.save_participante') %>
-          </button>
+          <legend class="title_modal">
+            <%= t('views.cadastros.participante') %>
+          </legend>
+          <%= f.select(:categoria_id, @categorias.collect {|c| [ c.nome, c.id ]},
+            {prompt: t('views.cadastros.categoria')}, {class: 'selectbox'}) %>
+          <%= f.input :nome, class: 'inputbox' %>
+          <%= f.input :numero_inscricao, class: 'inputbox' %>
+          <%= f.input :classificacao, class: 'inputbox' %>
+          <%= f.button :submit,
+            class: "btn_participante_save btn1 btn-primary btn-normal btn-inline"%>
       </div>
     <% end %>
   </div>
