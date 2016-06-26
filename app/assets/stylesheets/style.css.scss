@@ -90,6 +90,12 @@ a:hover {
 .vertical-top {
     vertical-align:top;
 }
+.pad-right {
+    padding-right: 8px;
+}
+.pad-left {
+    padding-left: 8px;
+}
 /* Add 5px bottom padding and a underline */
 .underline {
     padding-bottom:5px;
@@ -2092,6 +2098,13 @@ h5.m_12 a:hover{
 }
 .txt-email {
     padding: 30px 0 10px;
+}
+.txt-list {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 8px 0;
+    vertical-align: middle;
 }
 .testimonials{
     margin-top: 6%;

@@ -1,9 +1,9 @@
 <fieldset class="subfields">
-  <legend><%= t('views.cadastros.categorias') %></legend>
+  <legend>
+    <%= t('views.cadastros.categorias') %>
+    <span class="tip"> <%= t('views.cadastros.add_categoria_tip') %></span>
+  </legend>
 
-  <div class="field">
-    Categoria<span class="tip"> (Clique no nome para editar ou marque a caixa para remover)</span>
-  </div>
   <%= f.fields_for :categorias do |c| %>
     <div class="field categoria_item">
       <%= c.hidden_field :id %>

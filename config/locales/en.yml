@@ -127,24 +127,28 @@ en:
       title_lojista: 'Hello Shopkeeper! <p>Register your store, places and events here, and help us to promote the sports in your area!</p>'
       alert_lojista: 'Hello shopkeeper! You still have not registered your store, <a href="cadastros/lojas/new">click here</a> to register, and start promoting your brand!'
       title_esportista: 'Hello %{usuario}! <p>Help your sport, promoting the shops, places and events in your area!</p>'
+
       lojas: Stores
       lojas_title: You have already registered %{length} stores.
       nova_loja: New Store
       nova_loja_title: Enter the data of the new store.
       editar_loja: Edit Store
       editar_loja_title: 'You are editing the store <p>%{loja}</p>'
+
       eventos: Events
       eventos_title: You have already registered %{length} events.
       novo_evento: New Event
       novo_evento_title: Enter the data of the new event.
       editar_evento: Edit Event
       editar_evento_title: 'You are editing the event <p>%{evento}</p>'
+
       pistas: Spots
       pistas_title: You have already registered %{length} spots.
       nova_pista: New Spot
       nova_pista_title: Enter the data of the new spot.
       editar_pista: Edit Spot
       editar_pista_title: 'Your are editing the spot <p>%{pista}</p>'
+
       campeonatos: Championships
       campeonatos_title: You have already registered %{length} championships.
       novo_campeonato: New Championship
@@ -152,13 +156,19 @@ en:
       editar_campeonato: Edit Championship
       editar_campeonato_title: 'You are editing the championships <p>%{campeonato}</p>'
       gerenciar_campeonato: Manage Championships
-      participantes: Participants
-      participante_title: 'Manage participants of the championships <p>%{campeonato}</p>'
-      gerenciar_participantes: Manage Participants
+
       categorias: Categories
+      categoria: Category
       add_categoria: Add Category
+      add_categoria_tip: (Click on the name to edit or check the box to remove)
       remove_categoria: Remove Category
       save_categoria: Save Category
+
+      participantes: Participants
+      participante: Participant
+      add_participante: Add Participant
+      participante_title: 'Manage participants of the championships <p>%{campeonato}</p>'
+      gerenciar_participantes: Manage Participants
     devise:
       entrar_title: 'Hello, <p>enter your login information!</p>'
       entrar_head: Enter
@@ -265,6 +275,11 @@ en:
         max_competidores_prova: Max competitors by game
         min_competidores_prova: Min competitors by game
         num_vencedores_prova: Winners by game
+      participante:
+        nome: Name
+        numero_inscricao: Registration
+        classificacao: Classification
+        categoria: Category
     submit:
       contact:
         create: Send Message

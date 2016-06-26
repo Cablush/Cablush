@@ -127,24 +127,28 @@ pt-BR:
       title_lojista: 'Olá Lojista! <p>Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!</p>'
       alert_lojista: 'Olá Lojista, você ainda não cadastrou sua loja, <a href="cadastros/lojas/new">clique aqui</a> para cadastrar, e começar a divulgar a sua marca!'
       title_esportista: 'Olá %{usuario}! <p>Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!</p>'
+
       lojas: Lojas
       lojas_title: Você já cadastrou %{length} lojas.
       nova_loja: Nova Loja
       nova_loja_title: Entre com os dados da nova loja.
       editar_loja: Editar Loja
       editar_loja_title: 'Você esta editando a loja <p>%{loja}</p>'
+
       eventos: Eventos
       eventos_title: Você já cadastrou %{length} eventos.
       novo_evento: Novo Evento
       novo_evento_title: Entre com os dados do novo evento.
       editar_evento: Editar Evento
       editar_evento_title: 'Você esta editando o evento<p>%{evento}</p>'
+
       pistas: Pistas
       pistas_title: Você já cadastrou %{length} pistas.
       nova_pista: Nova Pista
       nova_pista_title: Entre com os dados da nova pista.
       editar_pista: Editar Pista
       editar_pista_title: 'Você esta editando a pista<p>%{pista}</p>'
+
       campeonatos: Campeonatos
       campeonatos_title: Você já cadastrou %{length} campeonatos.
       novo_campeonato: Novo Campeonato
@@ -152,13 +156,19 @@ pt-BR:
       editar_campeonato: Editar Campeonato
       editar_campeonato_title: 'Você esta editando o campeonato<p>%{campeonato}</p>'
       gerenciar_campeonato: Gerenciar Campeonatos
-      participantes: Participantes
-      participante_title: 'Gerenciar participantes do campeonato <p>%{campeonato}</p>'
-      gerenciar_participantes: Gerenciar participantes
+
       categorias: Categorias
+      categioria: Categoria
       add_categoria: Adicionar Categoria
+      add_categoria_tip: (Clique no nome para editar ou marque a caixa para remover)
       remove_categoria: Remover Categoria
       save_categoria: Salvar Categoria
+
+      participantes: Participantes
+      participante: Participante
+      add_participante: Adicicionar Participante
+      participante_title: 'Gerenciar participantes do campeonato <p>%{campeonato}</p>'
+      gerenciar_participantes: Gerenciar participantes
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar
@@ -265,6 +275,11 @@ pt-BR:
         max_competidores_prova: Máximo de competidores por prova
         min_competidores_prova: Minimo de competidores por prova
         num_vencedores_prova: Vencedores por prova
+      participante:
+        nome: Nome
+        numero_inscricao: Nº Inscrição
+        classificacao: Classificação
+        categoria: Categoria
     submit:
       contact:
         create: Enviar Mensagem
