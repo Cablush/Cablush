@@ -128,6 +128,7 @@ en:
       alert_lojista: 'Hello shopkeeper! You still have not registered your store, <a href="cadastros/lojas/new">click here</a> to register, and start promoting your brand!'
       title_esportista: 'Hello %{usuario}! <p>Help your sport, promoting the shops, places and events in your area!</p>'
       esportes_tip: (Enter the sport name to select, or click on '+' to add a new one)
+      datatable_tip: (Click on table line to edit)
 
       lojas: Stores
       lojas_title: You have already registered %{length} stores.
@@ -174,7 +175,8 @@ en:
       campeonato_nome: 'Championship: %{campeonato}'
       categoria_nome: 'Category: %{categoria}'
       participantes_numero: '(participants: %{length})'
-      item_participante: 'Name: %{participante}, Registration: %{inscricao}, Classification: %{classificacao}'
+      deletar_participante: Delete Participant
+      confirm_deletar_participante: Are you sure you want to delete this participant?
     devise:
       entrar_title: 'Hello, <p>enter your login information!</p>'
       entrar_head: Enter

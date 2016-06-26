@@ -74,6 +74,8 @@ gem 'fancybox2-rails'
 gem 'will_paginate','~> 3.0.6'
 # I like font-awesome. I like the asset pipeline.
 gem 'font-awesome-rails'
+# jquery datatables for rails
+gem 'jquery-datatables-rails'
 
 
 # Makes following links in your web application faster (use with Rails Asset Pipeline)

@@ -16,5 +16,6 @@
  *= require jquery-ui/autocomplete
  *= require jquery-ui/dialog
  *= require fancybox
+ *= require dataTables/jquery.dataTables
  *= require_tree .
  */

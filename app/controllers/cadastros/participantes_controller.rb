@@ -46,19 +46,29 @@ class Cadastros::ParticipantesController < ApplicationController
 
   # PATCH/PUT /participantes/:uuid(.:format)
   def update
-    # TODO
+    participante = Participante.find_by_uuid!(params[:uuid])
+
+    if participante.update(participante_params)
+      render_json_success participante, 200
+    else
+      render_json_error participante.errors, 500
+    end
   end
 
   # DELETE /participantes/:uuid(.:format)
   def destroy
-    # TODO
+    participante = Participante.find_by_uuid!(params[:uuid])
+
+    participante.destroy
+
+    render_json_success participante, 200
   end
 
   private
 
   def participante_params
     params.require(:participante)
-          .permit(:nome, :numero_inscricao, :classificacao, :categoria_id)
+          .permit(:uuid, :nome, :numero_inscricao, :classificacao, :categoria_id)
   end
 
 

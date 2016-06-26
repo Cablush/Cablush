@@ -128,6 +128,7 @@ pt-BR:
       alert_lojista: 'Olá Lojista, você ainda não cadastrou sua loja, <a href="cadastros/lojas/new">clique aqui</a> para cadastrar, e começar a divulgar a sua marca!'
       title_esportista: 'Olá %{usuario}! <p>Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!</p>'
       esportes_tip: (Digite o nome do esporte para selecionar, ou clique no '+' para adicionar)
+      datatable_tip: (Clique na linha da tabela para editar)
 
       lojas: Lojas
       lojas_title: Você já cadastrou %{length} lojas.
@@ -174,7 +175,8 @@ pt-BR:
       campeonato_nome: 'Campeonato: %{campeonato}'
       categoria_nome: 'Categoria: %{categoria}'
       participantes_numero: '(participantes: %{length})'
-      item_participante: 'Nome: %{participante}, Inscrição: %{inscricao}, Classificação: %{classificacao}'
+      deletar_participante: Deletar Participante
+      confirm_deletar_participante: Tem certeza que deseja deletar este participante?
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar

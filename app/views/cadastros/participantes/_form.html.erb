@@ -1,6 +1,3 @@
-<input type="button" value="<%= t('views.cadastros.add_participante') %>"
-  class="btn_auto btn_participante_add btn-inline" />
-
 <div class="ui-hidden-widget">
   <div id="modal_participantes" class="modal-body">
     <%= simple_form_for :participante, html: { id: 'participant_form' } do |f|%>
@@ -9,13 +6,20 @@
           <legend class="title_modal">
             <%= t('views.cadastros.participante') %>
           </legend>
-          <%= f.select(:categoria_id, @categorias.collect {|c| [ c.nome, c.id ]},
-            {prompt: t('views.cadastros.categoria')}, {class: 'selectbox'}) %>
+          <%= f.input :uuid, as: :hidden %>
+          <%= f.input :categoria_id do %>
+            <%= f.select(:categoria_id, @categorias.collect {|c| [ c.nome, c.id ]},
+              {prompt: t('views.cadastros.categoria')}, {class: 'selectbox'}) %>
+          <% end %>
           <%= f.input :nome, class: 'inputbox' %>
           <%= f.input :numero_inscricao, class: 'inputbox' %>
           <%= f.input :classificacao, class: 'inputbox' %>
           <%= f.button :submit,
             class: "btn_participante_save btn1 btn-primary btn-normal btn-inline"%>
+          <div class="bottom-links">
+            <%= link_to t('views.cadastros.deletar_participante'), '#',
+              class: 'btn_participante_delete lnk1' %>
+          </div>
       </div>
     <% end %>
   </div>

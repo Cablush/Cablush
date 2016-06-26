@@ -26,4 +26,5 @@
 //= require jquery.cookie
 //= require autocomplete-rails
 //= require fancybox
+//= require dataTables/jquery.dataTables
 //= require_tree .

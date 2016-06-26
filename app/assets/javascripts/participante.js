@@ -10,7 +10,7 @@ var Participante = (function($) {
     var _filterByCategoria = function(categoria_id) {
         var campeonato_uuid = $('#campeonato_uuid').val();
         Utils.startLoading();
-        $.ajax({
+        $.get({
             url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes",
             dataType: "script",
             data: {"categoria_id": categoria_id}
@@ -19,8 +19,9 @@ var Participante = (function($) {
 
     var _openParticipante = function(participante_uuid) {
         var campeonato_uuid = $('#campeonato_uuid').val();
+        _openModal();
         Utils.startLoading();
-        $.post({
+        $.get({
             url: "/cadastros/campeonatos/" + campeonato_uuid
                 + "/participantes/" + participante_uuid + "/edit",
             dataType: "script"
@@ -28,16 +29,25 @@ var Participante = (function($) {
     };
 
     var _saveParticipante = function() {
-        if (_checkFieldsParticipantesModal()){
+        if (_checkFieldsParticipantesModal()) {
             var campeonato_uuid = $('#campeonato_uuid').val();
-            $.post({
-                url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes",
+            var url = "/cadastros/campeonatos/" + campeonato_uuid + "/participantes";
+            var method = 'POST';
+            var participante_uuid = $('.modal #participante_uuid').val();
+            if (participante_uuid.length > 0) {
+                url = url + "/" + participante_uuid;
+                method = 'PUT';
+            }
+            Utils.startLoading();
+            $.ajax({
+                method: method,
+                url: url,
                 dataType: "json",
                 data: $(".modal #participant_form").serializeObject(),
                 success: function(data) {
                     if (data.success) {
                         _closeModal();
-                        _filterByCategoria(data.data["categoria_id"]);
+                        $('#categoria_categoria_id').trigger('change');
                     } else {
                         // TODO display errors
                     }
@@ -47,14 +57,31 @@ var Participante = (function($) {
         // TODO display errors
     };
 
-    var _checkFieldsParticipantesModal = function(){
+    var _deleteParticipante = function() {
+        var campeonato_uuid = $('#campeonato_uuid').val();
+        var participante_uuid = $('.modal #participante_uuid').val();
+        if (participante_uuid.length > 0) {
+            Utils.startLoading();
+            $.ajax({
+                method: 'DELETE',
+                url: "/cadastros/campeonatos/" + campeonato_uuid
+                    + "/participantes/" + participante_uuid,
+                success: function(data) {
+                    _closeModal();
+                    $('#categoria_categoria_id').trigger('change');
+                }
+            });
+        }
+    };
+
+    var _checkFieldsParticipantesModal = function() {
         return $('.modal #participante_categoria_id').val().length > 0
             && $(".modal #participante_nome").val().length > 0
             && $(".modal #participante_numero_inscricao").val().length > 0
             && $(".modal #participante_classificacao").val().length > 0;
-    }
+    };
 
-    var _clearForm = function(){
+    var _clearForm = function() {
         $('.modal #participante_categoria_id').val("");
         $(".modal #participante_nome").val("");
         $(".modal #participante_numero_inscricao").val("");
@@ -72,7 +99,26 @@ var Participante = (function($) {
         $(".modal").dialog("close");
     };
 
+    var initParticipantesDataTable = function() {
+        $('.participantes_categoria').dataTable({
+            searching: false,
+            paging: false,
+            info: false,
+            columnDefs: [{targets: [0], visible: false}]
+        });
+
+        $('.participantes_categoria tbody').off('click');
+
+        $('.participantes_categoria tbody').on('click', 'tr', function(event) {
+            var dataTable = $(this).parent().parent().dataTable();
+            var participante_uuid = dataTable.fnGetData(this)[0];
+            _openParticipante(participante_uuid);
+        });
+    };
+
     var init = function() {
+        initParticipantesDataTable();
+
         $('#categoria_categoria_id').on('change', function(event) {
             _filterByCategoria($(this).val());
         });
@@ -83,18 +129,21 @@ var Participante = (function($) {
             _fillCategoria();
         });
 
-        // TODO edit call
-
-        // TODO delete call
-
         $(document.body).on('click', '.btn_participante_save', function(event) {
             event.preventDefault();
             _saveParticipante();
         });
+
+        $(document.body).on('click', '.btn_participante_delete', function(event) {
+            event.preventDefault();
+            // TODO delete confirmation
+            _deleteParticipante();
+        });
     };
 
     return {
-        init: init
+        init: init,
+        initParticipantes: initParticipantesDataTable
     };
 
 })(jQuery);

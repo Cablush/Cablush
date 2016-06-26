@@ -9,16 +9,29 @@
               length: categoria.participantes.length) %>
           </label>
         </div>
-        <ul class="item_list">
-          <% categoria.participantes.each do |participante| %>
-            <li>
-              <%= t('views.cadastros.item_participante',
-                participante: participante.nome,
-                inscricao: participante.numero_inscricao,
-                classificacao: participante.classificacao) %>
-            </li>
-          <% end %>
-        </ul>
+        <label class="tip float-rt pad-right">
+          <%= t('views.cadastros.datatable_tip') %>
+        </label>
+        <table class="participantes_categoria display clickable pad-horizontal">
+          <thead>
+            <tr>
+              <th>--</th>
+              <th><%= t 'helpers.label.participante.classificacao' %></th>
+              <th><%= t 'helpers.label.participante.nome' %></th>
+              <th><%= t 'helpers.label.participante.numero_inscricao' %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% categoria.participantes.each do |participante| %>
+              <tr>
+                <td><%= participante.uuid %></td>
+                <td><%= participante.classificacao %></td>
+                <td><%= participante.nome %></td>
+                <td><%= participante.numero_inscricao %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </li>
   <%end%>
