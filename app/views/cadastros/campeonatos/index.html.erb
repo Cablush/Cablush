@@ -7,16 +7,16 @@
     <ul class="list1 mark_green">
       <% @campeonatos.each do |campeonato| %>
         <li>
-          <div class="col_1_of_3 span_1_of_3">
+          <div class="elem-list">
             <div class="txt-list">
               <%= link_to campeonato.nome, edit_cadastros_campeonato_path(campeonato) %>
             </div>
             <%= button_to t('views.cadastros.gerenciar_participantes'),
               cadastros_campeonato_participantes_path(campeonato), method: "get",
-              class: "btn1", form_class: "float-lt pad-right" %>
+              class: "btn1 btn-list", form_class: "float-rt pad-right" %>
             <%= button_to t('views.cadastros.gerenciar_campeonato'),
               cadastros_campeonatos_path, method: "get",
-              class: "btn1", form_class: "float-lt pad-right" %>
+              class: "btn1 btn-list", form_class: "float-rt pad-right" %>
           </div>
         </li>
       <% end %>

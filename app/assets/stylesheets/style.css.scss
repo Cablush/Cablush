@@ -96,6 +96,9 @@ a:hover {
 .pad-left {
     padding-left: 8px;
 }
+.pad-horizontal {
+    padding: 0 8px;
+}
 /* Add 5px bottom padding and a underline */
 .underline {
     padding-bottom:5px;
@@ -497,7 +500,17 @@ ul.events li {
     color: #999;
     font-family: 'Dosis', sans-serif;
 }
-
+/* LIST ELEMENTS */
+.elem-list {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background:#fff;
+}
 /*  GRID OF THREE */
 .row {
     -moz-column-width: 21em;
@@ -2054,6 +2067,9 @@ h5.m_12 a:hover{
     margin-bottom: 16px;
     text-align: left;
     height: 32px;
+}
+.btn-list {
+    margin-bottom: 10px;
 }
 .lnk1 {
     color: #3C3D3D;
