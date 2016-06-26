@@ -169,6 +169,9 @@ en:
       add_participante: Add Participant
       participante_title: 'Manage participants of the championships <p>%{campeonato}</p>'
       gerenciar_participantes: Manage Participants
+      campeonato_nome: 'Championship: %{campeonato}'
+      categoria_nome: 'Category: %{categoria}'
+      participantes_numero: '(participants: %{length})'
     devise:
       entrar_title: 'Hello, <p>enter your login information!</p>'
       entrar_head: Enter

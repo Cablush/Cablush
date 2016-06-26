@@ -169,6 +169,9 @@ pt-BR:
       add_participante: Adicicionar Participante
       participante_title: 'Gerenciar participantes do campeonato <p>%{campeonato}</p>'
       gerenciar_participantes: Gerenciar participantes
+      campeonato_nome: 'Campeonato: %{campeonato}'
+      categoria_nome: 'Categoria: %{categoria}'
+      participantes_numero: '(participantes: %{length})'
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar

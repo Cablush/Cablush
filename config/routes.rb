@@ -59,8 +59,7 @@ Cablush::Application.routes.draw do
     resources :campeonatos, param: :uuid do
       get :autocomplete_esporte_nome, on: :collection
       get :autocomplete_cidade_nome, on: :collection
-      resources :participantes, only: [:index, :create, :update, :destroy],
-                                param: :uuid
+      resources :participantes, param: :uuid
     end
   end
 

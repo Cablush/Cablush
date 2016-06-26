@@ -2,6 +2,9 @@
     <div class="wrap">
         <ul class="events">
             <li class="<%= is_active(cadastros_campeonatos_path, true)%> ">
+              <%= link_to t('views.cadastros.campeonatos'), cadastros_campeonatos_path %>
+            </li>
+            <li class="<%= is_active(cadastros_campeonato_participantes_path, true)%> ">
               <%=link_to t('views.cadastros.participantes'), '#' %>
             </li>
         </ul>

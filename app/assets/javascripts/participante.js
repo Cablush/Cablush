@@ -1,95 +1,92 @@
 var Participante = (function($) {
 
-    var _selectParticipante = function() {
-        if (_checkFieldsParticipantesModal()){
-            $.ajax({
-                method: 'POST',
-                url: "/cadastros/participante/index",
-                dataType: "json",
-                data: $("#participant_form").serializeObject(),
-                success: function(result){
-                    //_clearForm();
-                    console.log(result);
-                    $(document.getElementById("list_participantes"))
-                        .append('<ol>'+$('#classificacao').val()+'- '+$('#nome').val() +' </ol>');
-                        //_clearForm();
-                    Utils.showMessage("teste", "participante não foi salvo");
-                },
-                error: function(error){
-                    $("#erro_save").style.display = "block";
-                    console.log(error);
-                }
-            });
+    var _selectCategoria = function() {
+        var selected = $('#categoria_categoria_uuid').val();
+        if (selected != "") {
+            $('.modal #categoria_categoria_uuid').val(selected);
         }
     };
 
-
-    var getParticipanteByCategoria = function(categoria_id){
-        var categoria = {"categoria_id": categoria_id}
+    var _filterByCategoria = function(categoria_uuid) {
+        var campeonato_uuid = $('#campeonato_uuid').val();
+        Utils.startLoading();
         $.ajax({
-            method: 'GET',
-            url: "/cadastros/participante/participante_by_categoria",
-            dataType: "json",
-            data: $(categoria).serializeObject(),
-            success: function(result){
-                //_clearForm();
-                console.log(result);
-                $(document.getElementById("list_participantes"))
-                    .append('<ol>'+$('#classificacao').val()+'- '+$('#nome').val() +' </ol>');
-                    //_clearForm();
-                Utils.showMessage("teste", "participante não foi salvo");
-            },
-            error: function(error){
-                console.log(error);
-            }
+            url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes",
+            dataType: "script",
+            data: {"categoria_uuid": categoria_uuid}
         });
-    }
+    };
+
+    var _openParticipante = function(participante_uuid) {
+        var campeonato_uuid = $('#campeonato_uuid').val();
+        Utils.startLoading();
+        $.post({
+            url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes/show",
+            dataType: "script",
+            data: {"participante_uuid": participante_uuid}
+        });
+    };
+
+    var _saveParticipante = function() {
+        if (_checkFieldsParticipantesModal()){
+            var campeonato_uuid = $('#campeonato_uuid').val();
+            $.post({
+                url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes/create",
+                dataType: "script",
+                data: $("#participant_form").serializeObject()
+            });
+            _closeModal()
+        }
+        // TODO display errors
+    };
 
     var _checkFieldsParticipantesModal = function(){
-        return $("#nome").val().length > 0
-            && $("#num_inscricao").val().length > 0
-            && $("#classificacao").val().length > 0;
-    }
-
-    var _hideLightBox = function(){
-        $('#light').hide();
-        $('#fade').hide();
-    };
-    var _showLightBox = function(){
-        $('#light').show();
-        $('#fade').show();
+        return $('.modal #categoria_categoria_uuid').val().length > 0
+            && $(".modal #nome").val().length > 0
+            && $(".modal #num_inscricao").val().length > 0
+            && $(".modal #classificacao").val().length > 0;
     }
 
     var _clearForm = function(){
-        $("#nome").val("");
-        $("#num_inscricao").val("");
-        $("#classificacao").val("");
-    }
+        $(".modal #nome").val("");
+        $(".modal #num_inscricao").val("");
+        $(".modal #classificacao").val("");
+    };
+
+    var _openModal = function() {
+        Utils.openModal('<div class="col_1_of_3 span_1_of_3">'
+            + $('#modal_participantes').html()
+            + '</div>', function() {});
+    };
+
+    var _closeModal = function() {
+        _clearForm();
+        $(".modal").dialog("close");
+    };
 
     var init = function() {
-        $(".auto_btn_participante_add").on('click', function(event) {
-            event.preventDefault();
-            _selectParticipante();
-            //_hideLightBox();
+        $('#categoria_categoria_uuid').on('change', function(event) {
+            _filterByCategoria($(this).val());
         });
 
-        $("#lightbox_show").on('click',function(event){
+        $(".btn_participante_add").on('click', function(event) {
             event.preventDefault();
-            _showLightBox();
-             //Todo ver como funciona o style.display no jquery
+            _openModal();
+            _selectCategoria();
         });
 
-        $("#lightbox_hide").on('click', function(event) {
-            event.preventDefault();
-            _hideLightBox();
-        });
+        // TODO edit call
 
-        $('#categoria_categoria_id').on('change', function() {
-            getParticipanteByCategoria( this.value ); // or $(this).val()
+        // TODO delete call
+
+        $(document.body).on('click', '.btn_participant_save', function(event) {
+            event.preventDefault();
+            _saveParticipante();
         });
-    }
+    };
 
     return {
         init: init
     };
+
 })(jQuery);

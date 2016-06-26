@@ -3,32 +3,34 @@
 <%= render "header", option: 'New' %>
 
 <div class="main">
-    <div class="wrap">
-      <div class="search_box">
-       <%= select("categoria", "categoria_id", @categorias.collect {|c| [ c.nome, c.id ] }, {:prompt => t('views.cadastros.categoria') }, {:class=>'frm-field required'}) %>
+  <div class="wrap">
+    <div class="col">
+      <div class="row search_box">
+        <div class="field pad-horizontal">
+          <%= t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome) %>
+          <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
+        </div>
+        <div class="field pad-horizontal" >
+          <%= t('views.cadastros.categoria') %>
+          <%= select(:categoria, "categoria_uuid",
+            @categorias.collect {|c| [ c.nome, c.uuid ] },
+            {prompt: t('views.cadastros.categoria') }, {class: 'selectbox'}) %>
+        </div>
+        <div class="field pad-horizontal" >
+          <%= render 'form' %>
+        </div>
       </div>
-       <br/>
-      <div>
-        <center>Participantes Cadastrados</center>
-        <% @categorias.each do |categoria| %>
-          <p> Categoria <%= categoria.nome %></p>
-          <br/>
-          <ul id="list_participantes">
-          <% Participante.where(categoria_id:categoria.id).each do |participante| %>
-              <li> <%= participante.nome%></li>
-          <% end %>
-          </ul>
-        <%end%>
-      </div>
-      </div>
-      <%= render 'form' %> 
-        <!-- <button id="btnAddProfile" class="auto_btn_participante_save btn1 btn-primary btn-normal btn-inline">Salvar participantes</button> -->
+    </div>
+    <div id="lista_participantes">
+      <%= render 'participantes' %>
     </div>
     <div class="clear"></div>
+  </div>
 </div>
 
 <script type="text/javascript">
-  $(document).ready(function() {        
+  $(document).ready(function() {
+    Utils.initModal();
     Participante.init();
   });
 </script>

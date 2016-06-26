@@ -1,0 +1,19 @@
+<% @categorias.each do |categoria| %>
+  <fieldset class="subfields">
+    <legend>
+      <%= t('views.cadastros.categoria_nome', categoria: categoria.nome) %>
+      <span class="tip">
+        <%= t('views.cadastros.participantes_numero', length: categoria.participantes.length) %>
+      </span>
+    </legend>
+    <ul>
+      <% categoria.participantes.each do |participante| %>
+        <li>
+          <%= participante.nome %>
+          <%= participante.numero_inscricao %>
+          <%= participante.classificacao %>
+        </li>
+      <% end %>
+    </ul>
+  </fieldset>
+<%end%>
