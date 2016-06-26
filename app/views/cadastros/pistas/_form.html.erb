@@ -8,7 +8,8 @@
   </div>
   <div class="field">
     <%= f.label :descricao %><br>
-    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500,
+      :cols => 5, :rows => 10 %>
     <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
@@ -33,7 +34,10 @@
     <%= f.text_field :video, class: 'inputbox'  %>
   </div>
   <fieldset class="subfields">
-      <legend><%= f.label :esportes %></legend>
+      <legend>
+        <%= f.label :esportes %>
+        <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
+      </legend>
       <%= render 'esportes/esportes_fields', f: f, esportes: @pista.esportes %>
   </fieldset>
   <fieldset class="subfields">

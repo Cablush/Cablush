@@ -127,6 +127,7 @@ en:
       title_lojista: 'Hello Shopkeeper! <p>Register your store, places and events here, and help us to promote the sports in your area!</p>'
       alert_lojista: 'Hello shopkeeper! You still have not registered your store, <a href="cadastros/lojas/new">click here</a> to register, and start promoting your brand!'
       title_esportista: 'Hello %{usuario}! <p>Help your sport, promoting the shops, places and events in your area!</p>'
+      esportes_tip: (Enter the sport name to select, or click on '+' to add a new one)
 
       lojas: Stores
       lojas_title: You have already registered %{length} stores.

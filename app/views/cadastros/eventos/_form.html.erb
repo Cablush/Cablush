@@ -8,7 +8,8 @@
   </div>
   <div class="field">
     <%= f.label :descricao %><br>
-    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500,
+      :cols => 5, :rows => 10 %>
     <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
@@ -30,7 +31,8 @@
   </div>
   <div class="field">
     <%= f.label :hora %><br>
-    <%= f.time_select :hora,  {prompt: {hour: "Hora", minute: "Minuto"}}, {class: 'selectbox timeselector'}%>
+    <%= f.time_select :hora,  {prompt: {hour: "--", minute: "--"}},
+      {class: 'selectbox timeselector'}%>
   </div>
   <div class="field">
     <%= f.label :data_fim %><br>
@@ -63,7 +65,10 @@
     <%= f.check_box :fundo %>
   </div>
   <fieldset class="subfields">
-      <legend><%= f.label :esportes %></legend>
+      <legend>
+        <%= f.label :esportes %>
+        <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
+        </legend>
       <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
       <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
   </fieldset>

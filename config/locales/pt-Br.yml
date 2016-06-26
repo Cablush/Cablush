@@ -127,6 +127,7 @@ pt-BR:
       title_lojista: 'Olá Lojista! <p>Cadastre sua loja, pista e eventos aqui, e ajude a divulgar o esporte em sua região!</p>'
       alert_lojista: 'Olá Lojista, você ainda não cadastrou sua loja, <a href="cadastros/lojas/new">clique aqui</a> para cadastrar, e começar a divulgar a sua marca!'
       title_esportista: 'Olá %{usuario}! <p>Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!</p>'
+      esportes_tip: (Digite o nome do esporte para selecionar, ou clique no '+' para adicionar)
 
       lojas: Lojas
       lojas_title: Você já cadastrou %{length} lojas.

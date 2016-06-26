@@ -24,7 +24,10 @@
         <% end %>
 
         <fieldset class="subfields">
-          <legend><%= f.label :esportes %></legend>
+          <legend>
+            <%= f.label :esportes %>
+            <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
+          </legend>
           <%= render 'esportes/esportes_fields', esportes: @usuario.esportes, f: f %>
         </fieldset>
 
