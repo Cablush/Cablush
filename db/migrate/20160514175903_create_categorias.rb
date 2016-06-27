@@ -1,6 +1,6 @@
-class CreateCategoria < ActiveRecord::Migration
+class CreateCategorias < ActiveRecord::Migration
   def change
-    create_table :categoria do |t|
+    create_table :categorias do |t|
       t.references :campeonato, index: true, foreign_key: true
       t.string :nome
       t.string :descricao

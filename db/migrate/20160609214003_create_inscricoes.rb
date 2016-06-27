@@ -1,6 +1,6 @@
 class CreateInscricaos < ActiveRecord::Migration
   def change
-    create_table :inscricaos do |t|
+    create_table :inscricoes do |t|
       t.string :nome
       t.string :tipo_documento
       t.string :documento
