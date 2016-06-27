@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
 
   def admin_only
     unless current_usuario.admin?
-      redirect_to :back, alert: I18n.t('message.denied')
+      redirect_to cadastros_path, alert: I18n.t('message.denied')
     end
   end
 

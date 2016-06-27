@@ -10,9 +10,11 @@
             <li class="<%= is_active(cadastros_pistas_path) %> ">
               <%= link_to t('menu_cadastros.pistas'), cadastros_pistas_path %>
             </li>
-            <li class="<%= is_active(cadastros_campeonatos_path) %> ">
-              <%= link_to t('menu_cadastros.campeonatos'), cadastros_campeonatos_path %>
-            </li>
+            <% if usuario_signed_in? && current_usuario.admin? %>
+              <li class="<%= is_active(cadastros_campeonatos_path) %> ">
+                <%= link_to t('menu_cadastros.campeonatos'), cadastros_campeonatos_path %>
+              </li>
+            <% end %>
             <li class="<%= is_active(edit_usuario_registration_path) %> ">
               <%= link_to t('menu_cadastros.perfil'), edit_usuario_registration_path %>
             </li>

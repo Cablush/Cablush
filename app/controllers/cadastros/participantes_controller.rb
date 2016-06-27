@@ -1,6 +1,6 @@
 class Cadastros::ParticipantesController < ApplicationController
 
-  before_action :authenticate_usuario!
+  before_action :admin_only
 
   # GET /participantes(.:format)
 	def index
