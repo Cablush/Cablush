@@ -6,7 +6,7 @@ class CreateCampeonatos < ActiveRecord::Migration
       t.date :data_fim
       t.time :hora
       t.string :descricao
-      t.reference :responsavel, index: true
+      t.references :responsavel, index: true
 
       t.timestamps null: false
     end
