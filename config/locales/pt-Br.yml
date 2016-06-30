@@ -177,6 +177,9 @@ pt-BR:
       participantes_numero: '(participantes: %{length})'
       deletar_participante: Deletar Participante
       confirm_deletar_participante: Tem certeza que deseja deletar este participante?
+
+      gerencia_title: 'Gerencie o campeonato %{campeonato}'
+      gerar_etapas: 'Gerar etapas'
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar
