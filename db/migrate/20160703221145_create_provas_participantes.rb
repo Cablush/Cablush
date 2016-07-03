@@ -1,9 +1,9 @@
-class CreateProvasEtapas < ActiveRecord::Migration
+class CreateProvasParticipantes < ActiveRecord::Migration
   def change
-    create_table :provas_etapas do |t|
+    create_table :provas_participantes do |t|
       t.string :prova
       t.string :references
-      t.string :etapa
+      t.string :participante
       t.string :references
       t.string :pontuacao
       t.string :decimal

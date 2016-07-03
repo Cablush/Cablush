@@ -17,16 +17,19 @@ class Cadastros::EtapasController < ApplicationController
   def generateEtapas(campeonato_id)
     @campeonato = Campeonato.find_by_id(campeonato_id)
     participantes = @campeonato.max_competidores_categoria 
+    max_prova = @campeonato.max_competidores_prova
     while participantes >= max_prova
-     provas = provas_etapa participantes, max_prova
+     provas = provas_etapa(participantes, max_prova)
+     etapa = Etapa.create(nome: ''+provas+'avos', campeonato_id: campeonato_id)
      puts "Criar etapa com #{provas} provas e #{participantes} participantes"
      count_part_provas = 0
-     part_provas = participantes_provas participantes, provas
+     part_provas = participantes_provas(participantes, provas)
      part_provas.each do |part|
        puts "Criar prova com #{part} participantes"
+       
      end
      puts " "
-     participantes = participantes_etapa provas, ven_prova
+     participantes = participantes_etapa(provas, ven_prova)
     end
   end
   
