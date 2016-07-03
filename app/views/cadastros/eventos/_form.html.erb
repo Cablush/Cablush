@@ -36,7 +36,8 @@
   </div>
   <div class="field">
     <%= f.label :data_fim %><br>
-    <%= f.text_field :data_fim, id: 'evento_data_fim', class: 'inputbox maskData' %>
+    <%= f.text_field :data_fim, id: 'evento_data_fim',
+      class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
         $("#evento_data_fim").datepicker({
@@ -58,7 +59,8 @@
   <div class="field">
     <%= f.label :flyer %><br>
     <%= f.file_field :flyer %><br>
-    <%= image_tag @evento.flyer.url(:small), :class => @evento.fundo? ? "fundo" : nil %>
+    <%= image_tag @evento.flyer.url(:small),
+      :class => @evento.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
     <%= f.label :fundo %>

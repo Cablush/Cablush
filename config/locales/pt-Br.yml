@@ -279,6 +279,8 @@ pt-BR:
         data_inicio: Data
         hora: Hora
         data_fim: Data Fim
+        flyer: Flyer
+        fundo: Fundo Preto
         esportes: Esportes
         endereco: Endereço
         competidores_categoria: Competidores por Categoria

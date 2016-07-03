@@ -49,6 +49,17 @@
     </script>
   </div>
 
+  <div class="field">
+    <%= f.label :flyer %><br>
+    <%= f.file_field :flyer %><br>
+    <%= image_tag @evento.flyer.url(:small),
+      :class => @evento.fundo? ? "fundo" : nil %>
+  </div>
+  <div class="field">
+    <%= f.label :fundo %>
+    <%= f.check_box :fundo %>
+  </div>
+
   <%= render 'esportes/esportes_fields', f: f, esportes: @campeonato.esportes %>
 
   <fieldset class="subfields">
