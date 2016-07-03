@@ -279,10 +279,12 @@ en:
         data_inicio: Date
         hora: Hour
         data_fim: End Date
+        esportes: Sports
+        endereco: Address
         competidores_categoria: Competitors by Category
         max_competidores_categoria: Max competitors by category
         min_competidores_categoria: Min competitors by category
-        competidores_prova: Competitors by Competition
+        competidores_prova: Competitors by Game
         max_competidores_prova: Max competitors by game
         min_competidores_prova: Min competitors by game
         num_vencedores_prova: Winners by game

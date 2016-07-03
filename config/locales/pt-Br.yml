@@ -279,6 +279,8 @@ pt-BR:
         data_inicio: Data
         hora: Hora
         data_fim: Data Fim
+        esportes: Esportes
+        endereco: Endereço
         competidores_categoria: Competidores por Categoria
         max_competidores_categoria: Máximo de competidores por categoria
         min_competidores_categoria: Minimo de competidores por categoria

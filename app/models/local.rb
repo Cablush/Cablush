@@ -1,5 +1,4 @@
 class Local < ActiveRecord::Base
-  
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :logradouro, length: { maximum: 100 }
@@ -10,57 +9,80 @@ class Local < ActiveRecord::Base
   validates :estado, presence: true, length: { maximum: 2 }
   validates :cep, length: { maximum: 10 }
   validates :pais, presence: true, length: { maximum: 2 }
-  
+
   attr_accessor :estado_nome, :pais_nome
-  
+
   after_save :save_estado_cidade
-  
+
   after_initialize :load_full_address
-  
+
   belongs_to :localizavel, polymorphic: true
-  
+
   # Permite fazer join com os modelos localizaveis
-  belongs_to :loja, -> { where(locais: {localizavel_type: 'Loja'}) }, foreign_key: 'localizavel_id'
-  belongs_to :pista, -> { where(locais: {localizavel_type: 'Pista'}) }, foreign_key: 'localizavel_id'
-  belongs_to :evento, -> { where(locais: {localizavel_type: 'Evento'}) }, foreign_key: 'localizavel_id'
-  
+  belongs_to :loja, -> {
+    where(locais: { localizavel_type: 'Loja' })
+  }, foreign_key: 'localizavel_id'
+  belongs_to :pista, -> {
+    where(locais: { localizavel_type: 'Pista' })
+  }, foreign_key: 'localizavel_id'
+  belongs_to :evento, -> {
+    where(locais: { localizavel_type: 'Evento' })
+  }, foreign_key: 'localizavel_id'
+  belongs_to :campeonato, -> {
+    where(locais: { localizavel_type: 'Campeonato' })
+  }, foreign_key: 'localizavel_id'
+
   scope :lojas, -> { joins(:loja) }
   scope :pistas, -> { joins(:pista) }
-  scope :eventos, -> { joins(:evento).merge(Evento.actives_ordered) }
-  
+  scope :eventos, -> {
+    joins(:evento).merge(Evento.actives_ordered)
+  }
+  scope :campeonatos, -> {
+    joins(:campeonato).merge(Campeonato.actives_ordered)
+  }
+
   scope :lojas_by_estado, ->(estado) {
     lojas.where(estado: estado)
   }
-  
+
   scope :lojas_by_esporte_categoria, ->(categoria) {
     lojas.merge(Loja.find_by_esporte_categoria(categoria))
   }
-  
+
   scope :pistas_by_estado, ->(estado) {
     pistas.where(estado: estado)
   }
-  
+
   scope :pistas_by_esporte_categoria, ->(categoria) {
     pistas.merge(Pista.find_by_esporte_categoria(categoria))
   }
-  
+
   scope :eventos_by_estado, ->(estado) {
     eventos.where(estado: estado)
   }
-  
+
   scope :eventos_by_esporte_categoria, ->(categoria) {
     eventos.merge(Evento.find_by_esporte_categoria(categoria))
   }
-  
+
+  scope :cameponatos_by_estado, ->(estado) {
+    cameponatos.where(estado: estado)
+  }
+
+  scope :cameponatos_by_esporte_categoria, ->(categoria) {
+    cameponatos.merge(Cameponato.find_by_esporte_categoria(categoria))
+  }
+
   def self.localizaveis_active
     local, evento = arel_table, Evento.arel_table
-    predicate = local.join(evento, Arel::Nodes::OuterJoin).on(local[:localizavel_id].eq(evento[:id]))
-    
-    joins(predicate.join_sources)
-    .where("(localizavel_type != 'Evento') OR ((localizavel_type = 'Evento') AND (eventos.data_fim >= ?))", 
-           Date.today)
+    predicate = local.join(evento, Arel::Nodes::OuterJoin)
+                     .on(local[:localizavel_id].eq(evento[:id]))
+
+    joins(predicate.join_sources).where("(localizavel_type != 'Evento')
+      OR ((localizavel_type = 'Evento')
+      AND (eventos.data_fim >= ?))", Date.today)
   end
-  
+
   def endereco
     ender = ''
     ender = ender.try_append(logradouro)
@@ -73,21 +95,25 @@ class Local < ActiveRecord::Base
     ender = ender.try_append(pais_nome, '\n')
     ender.gsub(/\\n/, '<br>').html_safe
   end
-  
+
   def loja?
     localizavel_type == 'Loja'
   end
-  
+
   def pista?
     localizavel_type == 'Pista'
   end
-  
+
   def evento?
     localizavel_type == 'Evento'
   end
-  
+
+  def campeonato?
+    localizavel_type == 'Campeonato'
+  end
+
   private
-  
+
   def save_estado_cidade
     if pais.present? && estado.present?
       Estado.save?(estado, estado_nome, pais)
@@ -96,7 +122,7 @@ class Local < ActiveRecord::Base
       Cidade.save?(cidade, estado)
     end
   end
-  
+
   def load_full_address
     unless new_record?
       if pais.present?
@@ -109,5 +135,4 @@ class Local < ActiveRecord::Base
       end
     end
   end
-  
 end

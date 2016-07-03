@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160625174823) do
+ActiveRecord::Schema.define(version: 20160702234448) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -25,17 +25,14 @@ ActiveRecord::Schema.define(version: 20160625174823) do
   add_index "amizades", ["usuario_id"], name: "index_amizades_on_usuario_id"
 
   create_table "campeonatos", force: :cascade do |t|
-    t.integer  "participantes_id"
-    t.integer  "etapas_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
     t.string   "nome"
     t.date     "data_inicio"
     t.date     "data_fim"
     t.time     "hora"
     t.string   "descricao"
     t.integer  "responsavel_id"
-    t.integer  "esportes_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "uuid",                       null: false
     t.integer  "max_competidores_categoria"
     t.integer  "min_competidores_categoria"
@@ -44,11 +41,13 @@ ActiveRecord::Schema.define(version: 20160625174823) do
     t.integer  "num_vencedores_prova"
   end
 
-  add_index "campeonatos", ["esportes_id"], name: "index_campeonatos_on_esportes_id"
-  add_index "campeonatos", ["etapas_id"], name: "index_campeonatos_on_etapas_id"
-  add_index "campeonatos", ["participantes_id"], name: "index_campeonatos_on_participantes_id"
   add_index "campeonatos", ["responsavel_id"], name: "index_campeonatos_on_responsavel_id"
   add_index "campeonatos", ["uuid"], name: "index_campeonatos_on_uuid", unique: true
+
+  create_table "campeonatos_esportes", id: false, force: :cascade do |t|
+    t.integer "campeonato_id", null: false
+    t.integer "esporte_id",    null: false
+  end
 
   create_table "categorias", force: :cascade do |t|
     t.integer  "campeonato_id"
@@ -131,16 +130,14 @@ ActiveRecord::Schema.define(version: 20160625174823) do
 
   create_table "etapas", force: :cascade do |t|
     t.string   "nome"
-    t.integer  "provas_id"
+    t.integer  "qtdProvas"
+    t.integer  "numCompetidoresProva"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.integer  "campeonato_id"
-    t.integer  "qtdProvas"
-    t.integer  "numCompetidoresProva"
   end
 
   add_index "etapas", ["campeonato_id"], name: "index_etapas_on_campeonato_id"
-  add_index "etapas", ["provas_id"], name: "index_etapas_on_provas_id"
 
   create_table "eventos", force: :cascade do |t|
     t.string   "nome",               limit: 50
@@ -329,14 +326,12 @@ ActiveRecord::Schema.define(version: 20160625174823) do
   add_index "pistas", ["uuid"], name: "index_pistas_on_uuid", unique: true
 
   create_table "provas", force: :cascade do |t|
-    t.integer  "participantes_id"
     t.integer  "etapa_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "provas", ["etapa_id"], name: "index_provas_on_etapa_id"
-  add_index "provas", ["participantes_id"], name: "index_provas_on_participantes_id"
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
@@ -361,6 +356,7 @@ ActiveRecord::Schema.define(version: 20160625174823) do
   add_index "usuario_providers", ["usuario_id"], name: "index_usuario_providers_on_usuario_id"
 
   create_table "usuarios", force: :cascade do |t|
+    t.integer  "id_social"
     t.string   "nome"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -382,7 +378,6 @@ ActiveRecord::Schema.define(version: 20160625174823) do
     t.datetime "locked_at"
     t.integer  "role"
     t.string   "uuid",                                null: false
-    t.string   "id_social"
     t.string   "authentication_token"
   end
 

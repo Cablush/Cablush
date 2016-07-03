@@ -8,7 +8,8 @@
   </div>
   <div class="field">
     <%= f.label :descricao %><br>
-    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500, :cols => 5, :rows => 10 %>
+    <%= f.text_area :descricao, class: 'textarea-box', :maxlength => 500,
+      :cols => 5, :rows => 10 %>
     <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
   <div class="field">
@@ -35,7 +36,8 @@
   </div>
   <div class="field">
     <%= f.label :data_fim %><br>
-    <%= f.text_field :data_fim, id: 'campeonato_data_fim', class: 'inputbox maskData' %>
+    <%= f.text_field :data_fim, id: 'campeonato_data_fim',
+      class: 'inputbox maskData' %>
     <script type="text/javascript">
       $(function () {
         $("#campeonato_data_fim").datepicker({
@@ -46,7 +48,9 @@
       });
     </script>
   </div>
-  <br/>
+
+  <%= render 'esportes/esportes_fields', f: f, esportes: @campeonato.esportes %>
+
   <fieldset class="subfields">
     <legend><%= f.label :competidores_categoria %></legend>
     <div class="field">
@@ -58,7 +62,6 @@
       <%= f.text_field :min_competidores_categoria, class: 'inputbox' %>
     </div>
   </fieldset>
-  <br/>
   <fieldset class="subfields">
     <legend><%= f.label :competidores_prova %></legend>
     <div class="field">
@@ -76,6 +79,8 @@
   </fieldset>
 
   <%= render 'categorias', f: f, categorias: @campeonato.categorias %>
+
+  <%= render 'locais/local_fields', f: f, type: 'Campeonato' %>
 
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>

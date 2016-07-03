@@ -10,7 +10,8 @@
       <%= c.hidden_field :uuid %>
       <%= c.hidden_field :regras %>
       <%= c.hidden_field :descricao %>
-      <%= c.text_field :nome, readonly: true, class: 'inputbox inputbox_auto' %>
+      <%= c.text_field :nome, readonly: true,
+        class: 'inputbox inputbox_auto inputbox_categoria' %>
       <%= c.check_box :_destroy %>
     </div>
   <% end %>
@@ -22,7 +23,7 @@
       <%= hidden_field_tag "campeonato[categorias_attributes][0][regras]", '' %>
       <%= hidden_field_tag "campeonato[categorias_attributes][0][descricao]", '' %>
       <%= text_field_tag "campeonato[categorias_attributes][0][nome]", '',
-        readonly: true, class: 'inputbox inputbox_auto' %>
+        readonly: true, class: 'inputbox inputbox_auto inputbox_categoria' %>
       <%= check_box_tag "campeonato[categorias_attributes][0][_destroy]" %>
     </div>
   <% end %>
