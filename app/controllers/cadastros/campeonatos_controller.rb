@@ -82,7 +82,7 @@ class Cadastros::CampeonatosController < ApplicationController
           .permit(:nome, :descricao, :data_inicio, :hora, :data_fim,
                   :max_competidores_categoria, :min_competidores_categoria,
                   :max_competidores_prova, :min_competidores_prova,
-                  :num_vencedores_prova,
+                  :num_vencedores_prova, :flyer, :fundo,
                   categorias_attributes: [:id, :uuid, :nome, :descricao,
                                           :regras, :_destroy],
                   esporte_ids: [],

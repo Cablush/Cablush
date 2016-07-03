@@ -17,7 +17,14 @@ class Campeonato < ActiveRecord::Base
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos
 
+  has_attached_file :flyer,
+                    styles: {
+                      small: '340x200>',
+                      original: '800x600>'
+                    }
+
   is_impressionable
+
   before_create :set_uuid
 
   def to_param
@@ -39,6 +46,9 @@ class Campeonato < ActiveRecord::Base
   validates :esportes, presence: true
   validates :local, presence: true
   validates_associated :local
+  validates_attachment :flyer,
+                       size: { in: 0..5.megabytes },
+                       content_type: { content_type: /^image\/(jpeg|png)$/ }
 
   scope :actives_ordered, -> {
     where('campeonatos.data_fim >= ?', Date.today).order('data')
@@ -56,6 +66,26 @@ class Campeonato < ActiveRecord::Base
     joins(:esportes).where(esportes: { categoria: categoria })
                     .distinct if categoria.present?
   }
+
+  def datas
+    datas_tmp = data_inicio.strftime('%d/%m/%Y')
+    datas_tmp = datas_tmp.try_append(data_fim.strftime('%d/%m/%Y'), ' A ')
+    datas_tmp
+  end
+
+  def horario
+    hora.strftime('%H:%M')
+  end
+
+  def start_date
+    (data_inicio.to_s + ' ' + hora.to_s).to_datetime
+  end
+
+  def flyer_url
+    if flyer.exists?
+      flyer.url(:original).sub(/\?\d+$/, '')
+    end
+  end
 
   def responsavel_uuid
     responsavel.uuid
