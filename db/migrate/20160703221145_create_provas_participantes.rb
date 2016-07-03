@@ -1,12 +1,10 @@
 class CreateProvasParticipantes < ActiveRecord::Migration
   def change
     create_table :provas_participantes do |t|
-      t.string :prova
-      t.string :references
-      t.string :participante
-      t.string :references
-      t.string :pontuacao
-      t.string :decimal
+      t.decimal :pontuacao
+
+      t.references :participante_id, index: true
+      t.references :prova_id, index: true
 
       t.timestamps null: false
     end
