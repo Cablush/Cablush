@@ -106,10 +106,10 @@ var Categoria = (function($) {
             _openModal();
         });
 
-        $(document.body).on('click', '.inputbox_auto', function(event) {
+        $(document.body).on('click', '.inputbox_categoria', function(event) {
             event.preventDefault();
             _fillModalFields($(this).parent()[0].childNodes,
-                $('.inputbox_auto').index($(this)));
+                $('.inputbox_categoria').index($(this)));
         });
 
         $(document.body).on('click', '.btn_categoria_save', function(event) {

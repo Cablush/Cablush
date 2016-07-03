@@ -20,16 +20,12 @@
         <%= f.input :email, readonly: true %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div><%= t('views.devise.confirmacao', email: resource.unconfirmed_email) %></div>
+          <div>
+            <%= t('views.devise.confirmacao', email: resource.unconfirmed_email) %>
+          </div>
         <% end %>
 
-        <fieldset class="subfields">
-          <legend>
-            <%= f.label :esportes %>
-            <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
-          </legend>
-          <%= render 'esportes/esportes_fields', esportes: @usuario.esportes, f: f %>
-        </fieldset>
+        <%= render 'esportes/esportes_fields', f: f, esportes: @usuario.esportes %>
 
         <fieldset class="subfields collapsible">
           <legend>
@@ -68,7 +64,8 @@
       <% end %>
 
       <div class="bottom-links">
-        <%= button_to t('views.devise.cancel_account'), registration_path(resource_name),
+        <%= button_to t('views.devise.cancel_account'),
+          registration_path(resource_name),
           data: { confirm: t('views.devise.confirm_cancel_account') },
           method: :delete, class: 'lnk1' %>
       </div>

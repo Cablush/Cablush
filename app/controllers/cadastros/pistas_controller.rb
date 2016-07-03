@@ -1,6 +1,5 @@
 class Cadastros::PistasController < ApplicationController
-
-  include LocalAutocompletes, EsporteAutocompletes
+  include EsportesUpdate
 
   before_action :authenticate_usuario!
 
@@ -11,7 +10,8 @@ class Cadastros::PistasController < ApplicationController
     else
       @pistas = current_usuario.pistas
     end
-    @title = I18n.t('views.cadastros.pistas_title', length: @pistas.length.to_s)
+    @title = I18n.t('views.cadastros.pistas_title',
+                    length: @pistas.length.to_s)
   end
 
   # GET /pistas/new(.:format)
@@ -19,6 +19,7 @@ class Cadastros::PistasController < ApplicationController
     @pista = Pista.new
     @pista.build_local
     @pista.build_horario
+
     @title = I18n.t 'views.cadastros.nova_pista_title'
   end
 
@@ -42,11 +43,12 @@ class Cadastros::PistasController < ApplicationController
     if @pista.local.blank?
       @pista.build_local
     end
-
     if @pista.horario.blank?
       @pista.build_horario
     end
-    @title = I18n.t('views.cadastros.editar_pista_title', pista: @pista.nome).html_safe
+
+    @title = I18n.t('views.cadastros.editar_pista_title',
+                    pista: @pista.nome).html_safe
   end
 
   # PATCH/PUT /pistas/:uuid(.:format)
@@ -82,12 +84,13 @@ class Cadastros::PistasController < ApplicationController
   end
 
   def pista_params
-    params.require(:pista).permit(:nome, :descricao, :website, :facebook, :foto, :video,
-              esporte_ids: [],
-              local_attributes: [:id, :latitude, :longitude, :logradouro, :numero,
-                :complemento, :bairro, :cidade, :estado, :estado_nome, :cep, :pais],
-              horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab, :dom,
-                :inicio, :fim, :detalhes])
+    params.require(:pista)
+          .permit(:nome, :descricao, :website, :facebook, :foto, :video,
+                  esporte_ids: [],
+                  local_attributes: [:id, :latitude, :longitude, :logradouro,
+                                     :numero, :complemento, :bairro, :cidade,
+                                     :estado, :estado_nome, :cep, :pais],
+                  horario_attributes: [:id, :seg, :ter, :qua, :qui, :sex, :sab,
+                                       :dom, :inicio, :fim, :detalhes])
   end
-
 end

@@ -37,25 +37,12 @@
       :cols => 5, :rows => 10 %>
     <div class="textcount"><span>500</span> <%= f.label :chars_remaining %></div>
   </div>
-  <fieldset class="subfields">
-      <legend>
-        <%= f.label :esportes %>
-        <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
-      </legend>
-      <%= render 'esportes/esportes_fields', f: f, esportes: @loja.esportes %>
-  </fieldset>
-  <fieldset class="subfields">
-      <legend><%= f.label :endereco %></legend>
-      <%= f.fields_for :locais do |local_form| %>
-        <%= render 'locais/local_fields', f: local_form, type: 'Loja' %>
-      <% end %>
-  </fieldset>
-  <fieldset class="subfields">
-      <legend><%= f.label :horario %></legend>
-      <%= f.fields_for :horario do |horario_form| %>
-        <%= render 'horarios/horario_fields', f: horario_form %>
-      <% end %>
-  </fieldset>
+
+  <%= render 'esportes/esportes_fields', f: f, esportes: @loja.esportes %>
+
+  <%= render 'locais/local_fields', f: f, type: 'Loja' %>
+
+  <%= render 'horarios/horario_fields', f: f %>
 
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>

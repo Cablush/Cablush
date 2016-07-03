@@ -1,6 +1,5 @@
 class Usuario::RegistrationsController < Devise::RegistrationsController
-
-  include EsporteAutocompletes
+  include EsportesUpdate
 
   before_action :configure_permitted_parameters
 
@@ -12,12 +11,12 @@ class Usuario::RegistrationsController < Devise::RegistrationsController
   def create
     super do
       begin
-        if resource.lojista == "1"
+        if resource.lojista == '1'
           resource.lojista!
-        elsif
+        else
           resource.esportista!
         end
-          resource.save
+        resource.save
       rescue
         @erro_msg = I18n.t 'views.devise.cadastrar_error'
       end
@@ -25,12 +24,13 @@ class Usuario::RegistrationsController < Devise::RegistrationsController
   end
 
   def edit
-    @title = I18n.t('views.devise.editar_title', usuario: current_usuario.nome).html_safe
+    @title = I18n.t('views.devise.editar_title',
+                    usuario: current_usuario.nome).html_safe
     super
   end
 
   def update
-    update_esporte_ids(params["usuario"])
+    update_esporte_ids(params['usuario'])
     super
   end
 
@@ -38,18 +38,19 @@ class Usuario::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit :sign_up,
-      keys: [:nome, :email, :password, :password_confirmation, :lojista]
+                                      keys: [:nome, :email, :password,
+                                             :password_confirmation, :lojista]
     devise_parameter_sanitizer.permit :account_update,
-      keys: [:nome, :email, :current_password, :password, :password_confirmation,
-        esporte_ids: []]
+                                      keys: [:nome, :email, :current_password,
+                                             :password, :password_confirmation,
+                                             esporte_ids: []]
   end
 
   def after_sign_up_path_for(resource)
-      index_path
+    index_path
   end
 
   def after_update_path_for(resource)
-      edit_usuario_registration_path
+    edit_usuario_registration_path
   end
-
 end

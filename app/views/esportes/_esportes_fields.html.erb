@@ -1,29 +1,41 @@
-<div class="field">
-    <%= autocomplete_field_tag "auto_esporte", "", autocomplete_esporte_nome_cadastros_lojas_path,
-      :fields => {:id => '#auto_id'}, id: 'auto_esporte', class: 'inputbox inputbox_auto' %>
+<fieldset class="subfields">
+  <legend>
+    <%= f.label :esportes %>
+    <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
+  </legend>
+
+  <div class="field">
+    <%= autocomplete_field_tag "auto_esporte", "",
+      autocomplete_esporte_nome_esportes_path,
+      :fields => {:id => '#auto_id'}, id: 'auto_esporte',
+      class: 'inputbox inputbox_auto' %>
     <input type="hidden" id="auto_id"/>
     <button type="button" class="btn_auto auto_btn_add">+</button>
-</div>
+  </div>
 
-<% esportes.each_with_index do |esporte, i| %>
+  <% esportes.each_with_index do |esporte, i| %>
     <div class="field esporte_item">
-        <%= f.hidden_field "esporte_ids][", id: "esporte_ids_" + i.to_s, value: esporte.id %>
-        <%= hidden_field_tag "esportes_attibutes["+ (i.to_s) +"][id]", esporte.id %>
-        <%= hidden_field_tag "esportes_attibutes["+ (i.to_s) +"][nome]", esporte.nome %>
-        <%= text_field_tag "esportes_attibutes["+ (i.to_s) +"][categoria_esporte]",
-            esporte.categoria_esporte,
-            readonly: true, class: 'inputbox inputbox_auto' %>
-        <button type="button" class="btn_auto auto_btn_del">-</button>
+      <%= f.hidden_field "esporte_ids][", id: "esporte_ids_" + i.to_s,
+        value: esporte.id %>
+      <%= hidden_field_tag "esportes_attributes["+ (i.to_s) +"][id]",
+        esporte.id %>
+      <%= hidden_field_tag "esportes_attributes["+ (i.to_s) +"][nome]",
+        esporte.nome %>
+      <%= text_field_tag "esportes_attributes["+ (i.to_s) +"][categoria_esporte]",
+        esporte.categoria_esporte,
+        readonly: true, class: 'inputbox inputbox_auto' %>
+      <button type="button" class="btn_auto auto_btn_del">-</button>
     </div>
-<% end %>
+  <% end %>
 
-<% if esportes.blank? %>
+  <% if esportes.blank? %>
     <div class="field esporte_item" style="display: none">
-        <%= f.hidden_field "esporte_ids][", id: "esporte_ids_0", value: '' %>
-        <%= hidden_field_tag "esportes_attibutes[0][id]" , ''%>
-        <%= hidden_field_tag "esportes_attibutes[0][nome]", '' %>
-        <%= text_field_tag "esportes_attibutes[0][categoria_esporte]", '',
-          readonly: true, class: 'inputbox inputbox_auto' %>
-        <button type="button" class="btn_auto auto_btn_del">-</button>
+      <%= f.hidden_field "esporte_ids][", id: "esporte_ids_0", value: '' %>
+      <%= hidden_field_tag "esportes_attributes[0][id]" , ''%>
+      <%= hidden_field_tag "esportes_attributes[0][nome]", '' %>
+      <%= text_field_tag "esportes_attributes[0][categoria_esporte]", '',
+        readonly: true, class: 'inputbox inputbox_auto' %>
+      <button type="button" class="btn_auto auto_btn_del">-</button>
     </div>
-<% end %>
+  <% end %>
+</fieldset>

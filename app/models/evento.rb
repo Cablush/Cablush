@@ -1,6 +1,5 @@
 class Evento < ActiveRecord::Base
-
-  belongs_to :responsavel, class_name: "Usuario"
+  belongs_to :responsavel, class_name: 'Usuario'
 
   has_one :local, as: :localizavel, dependent: :destroy
   accepts_nested_attributes_for :local, allow_destroy: true
@@ -27,12 +26,14 @@ class Evento < ActiveRecord::Base
   validates :esportes, presence: true
 
   has_attached_file :flyer,
-                    :styles => {
-                      :small => "340x200>",
-                      :original => "800x600>"
+                    styles: {
+                      small: '340x200>',
+                      original: '800x600>'
                     }
 
-  scope :actives_ordered, -> { where('eventos.data_fim >= ?', Date.today).order('data') }
+  scope :actives_ordered, -> {
+    where('eventos.data_fim >= ?', Date.today).order('data')
+  }
 
   scope :find_like_name, ->(nome) {
     where('eventos.nome LIKE ?', "%#{nome}%") if nome.present?
@@ -43,19 +44,20 @@ class Evento < ActiveRecord::Base
   }
 
   scope :find_by_esporte_categoria, ->(categoria) {
-    joins(:esportes).where(esportes: {categoria: categoria}).distinct if categoria.present?
+    joins(:esportes).where(esportes: { categoria: categoria })
+                    .distinct if categoria.present?
   }
 
   validates_attachment :flyer,
-    :size => { :in => 0..5.megabytes },
-    :content_type => { :content_type => /^image\/(jpeg|png)$/ }
+                       size: { in: 0..5.megabytes },
+                       content_type: { content_type: /^image\/(jpeg|png)$/ }
 
   #  scope :public, -> { where(public: true) }
   #  scope :sponsored, -> { where(patrocinado: true) }
 
   def datas
     datas_tmp = data.strftime('%d/%m/%Y')
-    datas_tmp = datas_tmp.try_append(data_fim.strftime('%d/%m/%Y'), " A ")
+    datas_tmp = datas_tmp.try_append(data_fim.strftime('%d/%m/%Y'), ' A ')
     datas_tmp
   end
 
@@ -64,7 +66,7 @@ class Evento < ActiveRecord::Base
   end
 
   def start_date
-    (data.to_s + " " +hora.to_s).to_datetime
+    (data.to_s + ' ' + hora.to_s).to_datetime
   end
 
   def flyer_url
@@ -78,17 +80,19 @@ class Evento < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:only => [:nome, :descricao, :data, :hora, :website, :facebook, :uuid, :data_fim],
-          :methods => [:flyer_url, :responsavel_uuid],
-          :include => {
-            :local => {:except => [:id, :localizavel_id, :localizavel_type, :created_at, :updated_at]},
-            :esportes => {:except => [:created_at, :updated_at]}
+    super(only: [:nome, :descricao, :data, :hora, :website, :facebook, :uuid,
+                 :data_fim],
+          methods: [:flyer_url, :responsavel_uuid],
+          include: {
+            local: { except: [:id, :localizavel_id, :localizavel_type,
+                              :created_at, :updated_at] },
+            esportes: { except: [:created_at, :updated_at] }
           }
     )
   end
 
   def share_message
-    return I18n.t('views.eventos.share', evento: nome)
+    I18n.t('views.eventos.share', evento: nome)
   end
 
   private
@@ -96,5 +100,4 @@ class Evento < ActiveRecord::Base
   def set_uuid
     self.uuid = SecureRandom.uuid
   end
-
 end

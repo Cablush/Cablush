@@ -1,23 +1,33 @@
-<div class="field">
-  <%= f.label 'Dias' %><br>
-  <%= f.check_box :seg %><%= f.label :seg %>
-  <%= f.check_box :ter %><%= f.label :ter %>
-  <%= f.check_box :qua %><%= f.label :qua %>
-  <%= f.check_box :qui %><%= f.label :qui %>
-  <%= f.check_box :sex %><%= f.label :sex %>
-  <%= f.check_box :sab %><%= f.label :sab %>
-  <%= f.check_box :dom %><%= f.label :dom %>
-</div>
-<div class="field">
-  <%= f.label :inicio %><br>
-  <%= f.time_select :inicio, {prompt: {hour: "--", minute: "--"}}, {class: 'selectbox timeselector'} %>
-</div>
-<div class="field">
-  <%= f.label :fim %><br>
-  <%= f.time_select :fim,  {prompt: {hour: "--", minute: "--"}}, {class: 'selectbox timeselector'}%>
-</div>
-<div class="field">
-  <%= f.label :detalhes %><br>
-  <%= f.text_area :detalhes, class: 'textarea-box', :maxlength => 100, :cols => 5, :rows => 2 %>
-  <div class="textcount"><span>100</span> <%= f.label :chars_remaining %></div>
-</div>
+<fieldset class="subfields">
+  <legend><%= f.label :horario %></legend>
+  <%= f.fields_for :horario do |h| %>
+    <div class="field">
+      <%= h.label 'Dias' %><br>
+      <%= h.check_box :seg %><%= h.label :seg %>
+      <%= h.check_box :ter %><%= h.label :ter %>
+      <%= h.check_box :qua %><%= h.label :qua %>
+      <%= h.check_box :qui %><%= h.label :qui %>
+      <%= h.check_box :sex %><%= h.label :sex %>
+      <%= h.check_box :sab %><%= h.label :sab %>
+      <%= h.check_box :dom %><%= h.label :dom %>
+    </div>
+    <div class="field">
+      <%= h.label :inicio %><br>
+      <%= h.time_select :inicio, {prompt: {hour: "--", minute: "--"}},
+        {class: 'selectbox timeselector'} %>
+    </div>
+    <div class="field">
+      <%= h.label :fim %><br>
+      <%= h.time_select :fim,  {prompt: {hour: "--", minute: "--"}},
+        {class: 'selectbox timeselector'}%>
+    </div>
+    <div class="field">
+      <%= h.label :detalhes %><br>
+      <%= h.text_area :detalhes, class: 'textarea-box', :maxlength => 100,
+        :cols => 5, :rows => 2 %>
+      <div class="textcount"><span>100</span> <%= h.label :chars_remaining %></div>
+    </div>
+  <% end %>
+</fieldset>
+
+

@@ -64,20 +64,11 @@
     <%= f.label :fundo %>
     <%= f.check_box :fundo %>
   </div>
-  <fieldset class="subfields">
-      <legend>
-        <%= f.label :esportes %>
-        <span class="tip"> <%= t 'views.cadastros.esportes_tip' %></span>
-        </legend>
-      <%= hidden_field_tag('evento[esporte_ids][]', nil) %>
-      <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
-  </fieldset>
-  <fieldset class="subfields">
-      <legend><%= f.label :endereco %></legend>
-      <%= f.fields_for :local do |local| %>
-        <%= render 'locais/local_fields', f: local, type: 'Evento' %>
-      <% end %>
-  </fieldset>
+
+  <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
+
+  <%= render 'locais/local_fields', f: f, type: 'Evento' %>
+
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
   </div>

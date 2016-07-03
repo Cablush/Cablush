@@ -1,16 +1,17 @@
 <div class="field">
   <%= f.label 'Recuperar endereço de local cadastrado', class: 'optional_field' %><br>
-  <%= f.autocomplete_field :local_nome, autocomplete_esporte_nome_cadastros_lojas_path, class: 'inputbox',
-      :update_elements => {
-        :cep => '#cep', 
-        :estado => '#estado', 
-        :cidade => '#cidade', 
-        :bairro => '#bairro', 
-        :logradouro => '#logradouro',
-        :numero => '#numero',
-        :complemento => '#complemento',
-        :latitude => '#latitude',
-        :longitude => '#longitude'
+  <%= f.autocomplete_field :local_nome, autocomplete_cidade_nome_locais_path,
+      class: 'inputbox',
+      update_elements: {
+        cep: '#cep',
+        estado: '#estado',
+        cidade: '#cidade',
+        bairro: '#bairro',
+        logradouro: '#logradouro',
+        numero: '#numero',
+        complemento: '#complemento',
+        latitude: '#latitude',
+        longitude: '#longitude'
       }
   %>
 </div>
