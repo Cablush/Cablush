@@ -1,6 +1,5 @@
 class Pista < ActiveRecord::Base
-
-  belongs_to :responsavel, class_name: "Usuario"
+  belongs_to :responsavel, class_name: 'Usuario'
 
   has_one :local, as: :localizavel, dependent: :destroy
   accepts_nested_attributes_for :local, allow_destroy: true
@@ -9,6 +8,12 @@ class Pista < ActiveRecord::Base
   accepts_nested_attributes_for :horario, allow_destroy: true
 
   has_and_belongs_to_many :esportes
+
+  has_attached_file :foto,
+                    styles: {
+                      small: '340x200>',
+                      original: '1024x768>'
+                    }
 
   is_impressionable
 
@@ -26,16 +31,9 @@ class Pista < ActiveRecord::Base
   validates :local, presence: true
   validates_associated :local
   validates :esportes, presence: true
-
-  has_attached_file :foto,
-                    :styles => {
-                      :small => "340x200>",
-                      :original => "1024x768>"
-                    }
-
   validates_attachment :foto,
-    :size => { :in => 0..5.megabytes },
-    :content_type => { :content_type => /^image\/(jpeg|png)$/ }
+                       size: { in: 0..5.megabytes },
+                       content_type: { content_type: /^image\/(jpeg|png)$/ }
 
   scope :find_like_name, ->(nome) {
     where('pistas.nome LIKE ?', "%#{nome}%") if nome.present?
@@ -46,12 +44,13 @@ class Pista < ActiveRecord::Base
   }
 
   scope :find_by_esporte_categoria, ->(categoria) {
-    joins(:esportes).where(esportes: {categoria: categoria}).distinct if categoria.present?
+    joins(:esportes).where(esportes: { categoria: categoria })
+                    .distinct if categoria.present?
   }
 
   def foto_url
     if foto.exists?
-      foto.url(:original).sub /\?\d+$/, ''
+      foto.url(:original).sub(/\?\d+$/, '')
     end
   end
 
@@ -60,18 +59,20 @@ class Pista < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:only => [:nome, :descricao, :website, :facebook, :video, :uuid],
-          :methods => [:foto_url, :responsavel_uuid],
-          :include => {
-            :local => {:except => [:id, :localizavel_id, :localizavel_type, :created_at, :updated_at]},
-            :esportes => {:except => [:created_at, :updated_at]},
-            :horario => {:except => [:id, :funcionamento_id, :funcionamento_type, :created_at, :updated_at]}
+    super(only: [:nome, :descricao, :website, :facebook, :video, :uuid],
+          methods: [:foto_url, :responsavel_uuid],
+          include: {
+            local: { except: [:id, :localizavel_id, :localizavel_type,
+                              :created_at, :updated_at] },
+            esportes: { except: [:created_at, :updated_at] },
+            horario: { except: [:id, :funcionamento_id, :funcionamento_type,
+                                :created_at, :updated_at] }
           }
     )
   end
 
   def share_message
-    return I18n.t('views.pistas.share', pista: nome)
+    I18n.t('views.pistas.share', pista: nome)
   end
 
   private
@@ -79,5 +80,4 @@ class Pista < ActiveRecord::Base
   def set_uuid
     self.uuid = SecureRandom.uuid
   end
-
 end

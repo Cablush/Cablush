@@ -6,6 +6,12 @@ class Evento < ActiveRecord::Base
 
   has_and_belongs_to_many :esportes
 
+  has_attached_file :flyer,
+                    styles: {
+                      small: '340x200>',
+                      original: '800x600>'
+                    }
+
   is_impressionable
 
   before_create :set_uuid
@@ -24,12 +30,9 @@ class Evento < ActiveRecord::Base
   validates :local, presence: true
   validates_associated :local
   validates :esportes, presence: true
-
-  has_attached_file :flyer,
-                    styles: {
-                      small: '340x200>',
-                      original: '800x600>'
-                    }
+  validates_attachment :flyer,
+                       size: { in: 0..5.megabytes },
+                       content_type: { content_type: /^image\/(jpeg|png)$/ }
 
   scope :actives_ordered, -> {
     where('eventos.data_fim >= ?', Date.today).order('data')
@@ -47,10 +50,6 @@ class Evento < ActiveRecord::Base
     joins(:esportes).where(esportes: { categoria: categoria })
                     .distinct if categoria.present?
   }
-
-  validates_attachment :flyer,
-                       size: { in: 0..5.megabytes },
-                       content_type: { content_type: /^image\/(jpeg|png)$/ }
 
   #  scope :public, -> { where(public: true) }
   #  scope :sponsored, -> { where(patrocinado: true) }
@@ -71,7 +70,7 @@ class Evento < ActiveRecord::Base
 
   def flyer_url
     if flyer.exists?
-      flyer.url(:original).sub /\?\d+$/, ''
+      flyer.url(:original).sub(/\?\d+$/, '')
     end
   end
 

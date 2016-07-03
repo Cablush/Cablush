@@ -1,6 +1,5 @@
 class Loja < ActiveRecord::Base
-
-  belongs_to :responsavel, class_name: "Usuario"
+  belongs_to :responsavel, class_name: 'Usuario'
 
   has_many :locais, as: :localizavel, dependent: :destroy
   accepts_nested_attributes_for :locais, allow_destroy: true
@@ -10,6 +9,12 @@ class Loja < ActiveRecord::Base
 
   has_and_belongs_to_many :esportes
   has_and_belongs_to_many :eventos
+
+  has_attached_file :logo,
+                    styles: {
+                      small: '340x200>',
+                      original: '800x600>'
+                    }
 
   is_impressionable
 
@@ -29,16 +34,9 @@ class Loja < ActiveRecord::Base
   validates :locais, presence: true
   validates_associated :locais
   validates :esportes, presence: true
-
-  has_attached_file :logo,
-                    :styles => {
-                      :small => "340x200>",
-                      :original => "800x600>"
-                    }
-
   validates_attachment :logo,
-    :size => { :in => 0..5.megabytes },
-    :content_type => { :content_type => /^image\/(jpeg|png)$/ }
+                       size: { in: 0..5.megabytes },
+                       content_type: { content_type: /^image\/(jpeg|png)$/ }
 
   scope :find_like_name, ->(nome) {
     where('lojas.nome LIKE ?', "#{nome}%") if nome.present?
@@ -49,19 +47,20 @@ class Loja < ActiveRecord::Base
   }
 
   scope :find_by_esporte_categoria, ->(categoria) {
-    joins(:esportes).where(esportes: {categoria: categoria}).distinct if categoria.present?
+    joins(:esportes).where(esportes: { categoria: categoria })
+                    .distinct if categoria.present?
   }
 
   def contato
     contato = telefone
-    contato += " / " if contato.present?
+    contato += ' / ' if contato.present?
     contato += email
     return contato
   end
 
   def logo_url
     if logo.exists?
-      logo.url(:original).sub /\?\d+$/, ''
+      logo.url(:original).sub(/\?\d+$/, '')
     end
   end
 
@@ -70,18 +69,21 @@ class Loja < ActiveRecord::Base
   end
 
   def as_json(options={})
-    super(:only => [:nome, :descricao, :telefone, :email, :website, :facebook, :uuid],
-          :methods => [:logo_url, :responsavel_uuid],
-          :include => {
-            :locais => {:except => [:id, :localizavel_id, :localizavel_type, :created_at, :updated_at]},
-            :esportes => {:except => [:created_at, :updated_at]},
-            :horario => {:except => [:id, :funcionamento_id, :funcionamento_type, :created_at, :updated_at]}
+    super(only: [:nome, :descricao, :telefone, :email, :website, :facebook,
+                 :uuid],
+          methods: [:logo_url, :responsavel_uuid],
+          include: {
+            locais: { except: [:id, :localizavel_id, :localizavel_type,
+                               :created_at, :updated_at] },
+            esportes: { except: [:created_at, :updated_at] },
+            horario: { except: [:id, :funcionamento_id, :funcionamento_type,
+                                :created_at, :updated_at] }
           }
     )
   end
 
   def share_message
-    return I18n.t('views.lojas.share', loja: nome)
+    I18n.t('views.lojas.share', loja: nome)
   end
 
   def local
@@ -93,5 +95,4 @@ class Loja < ActiveRecord::Base
   def set_uuid
     self.uuid = SecureRandom.uuid
   end
-
 end
