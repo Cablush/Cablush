@@ -1,8 +1,8 @@
 FactoryGirl.define do
-  factory :provas_etapa do
+  factory :provas_participante do
     prova "MyString"
     references "MyString"
-    etapa "MyString"
+    participante "MyString"
     references "MyString"
     pontuacao "MyString"
     decimal "MyString"
