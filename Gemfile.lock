@@ -390,7 +390,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.18)
   omniauth-facebook
   omniauth-google-oauth2
-  paperclip
+  paperclip (~> 4.3.6)
   passenger
   quiet_assets
   rails (= 4.2.6)
@@ -412,4 +412,4 @@ DEPENDENCIES
   will_paginate (~> 3.0.6)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
