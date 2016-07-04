@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702234448) do
+ActiveRecord::Schema.define(version: 20160703222645) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -31,18 +31,20 @@ ActiveRecord::Schema.define(version: 20160702234448) do
     t.time     "hora"
     t.string   "descricao"
     t.integer  "responsavel_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "uuid",                       null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.string   "uuid",                                       null: false
     t.integer  "max_competidores_categoria"
     t.integer  "min_competidores_categoria"
     t.integer  "max_competidores_prova"
     t.integer  "min_competidores_prova"
     t.integer  "num_vencedores_prova"
+    t.string   "flyer_file_name"
+    t.string   "flyer_content_type"
+    t.integer  "flyer_file_size"
+    t.datetime "flyer_updated_at"
+    t.boolean  "fundo",                      default: false
   end
-
-  add_index "campeonatos", ["responsavel_id"], name: "index_campeonatos_on_responsavel_id"
-  add_index "campeonatos", ["uuid"], name: "index_campeonatos_on_uuid", unique: true
 
   create_table "campeonatos_esportes", id: false, force: :cascade do |t|
     t.integer "campeonato_id", null: false
@@ -130,10 +132,8 @@ ActiveRecord::Schema.define(version: 20160702234448) do
 
   create_table "etapas", force: :cascade do |t|
     t.string   "nome"
-    t.integer  "qtdProvas"
-    t.integer  "numCompetidoresProva"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "campeonato_id"
   end
 
@@ -332,6 +332,17 @@ ActiveRecord::Schema.define(version: 20160702234448) do
   end
 
   add_index "provas", ["etapa_id"], name: "index_provas_on_etapa_id"
+
+  create_table "provas_participantes", force: :cascade do |t|
+    t.decimal  "pontuacao"
+    t.integer  "participante_id"
+    t.integer  "prova_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "provas_participantes", ["participante_id"], name: "index_provas_participantes_on_participante_id"
+  add_index "provas_participantes", ["prova_id"], name: "index_provas_participantes_on_prova_id"
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false

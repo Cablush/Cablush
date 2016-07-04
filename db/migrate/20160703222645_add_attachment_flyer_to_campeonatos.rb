@@ -8,5 +8,6 @@ class AddAttachmentFlyerToCampeonatos < ActiveRecord::Migration
 
   def self.down
     remove_attachment :campeonatos, :flyer
+    remove_column :campeonatos, :fundo
   end
 end
