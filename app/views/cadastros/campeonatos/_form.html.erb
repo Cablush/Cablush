@@ -52,8 +52,8 @@
   <div class="field">
     <%= f.label :flyer %><br>
     <%= f.file_field :flyer %><br>
-    <%= image_tag @evento.flyer.url(:small),
-      :class => @evento.fundo? ? "fundo" : nil %>
+    <%= image_tag @campeonato.flyer.url(:small),
+      :class => @campeonato.fundo? ? "fundo" : nil %>
   </div>
   <div class="field">
     <%= f.label :fundo %>

@@ -1,9 +1,8 @@
 class Cadastros::ParticipantesController < ApplicationController
-
   before_action :admin_only
 
   # GET /participantes(.:format)
-	def index
+  def index
     @campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
 
     if params[:categoria_id].present?
@@ -13,7 +12,7 @@ class Cadastros::ParticipantesController < ApplicationController
     end
 
     @title = I18n.t('views.cadastros.participante_title',
-      campeonato: @campeonato.nome).html_safe
+                    campeonato: @campeonato.nome).html_safe
 
     respond_to do |format|
       format.html
@@ -25,7 +24,7 @@ class Cadastros::ParticipantesController < ApplicationController
   def create
     participante = Participante.new(participante_params)
 
-    # TODO search by duplicated participantes before save
+    # TODO search for duplicated participantes before save
 
     if participante.save
       render_json_success participante, 200
@@ -48,6 +47,8 @@ class Cadastros::ParticipantesController < ApplicationController
   def update
     participante = Participante.find_by_uuid!(params[:uuid])
 
+    # TODO search for duplicated participantes before update
+
     if participante.update(participante_params)
       render_json_success participante, 200
     else
@@ -68,8 +69,7 @@ class Cadastros::ParticipantesController < ApplicationController
 
   def participante_params
     params.require(:participante)
-          .permit(:uuid, :nome, :numero_inscricao, :classificacao, :categoria_id)
+          .permit(:uuid, :nome, :numero_inscricao, :classificacao,
+                  :categoria_id)
   end
-
-
 end

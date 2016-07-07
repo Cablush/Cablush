@@ -52,6 +52,7 @@ Cablush::Application.routes.draw do
     resources :eventos, param: :uuid
     resources :pistas, param: :uuid
     resources :campeonatos, param: :uuid do
+      post :evento, on: :member
       resources :participantes, param: :uuid
       resources :gerencia, param: :uuid
     end

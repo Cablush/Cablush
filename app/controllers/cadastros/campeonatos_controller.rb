@@ -67,6 +67,26 @@ class Cadastros::CampeonatosController < ApplicationController
     redirect_to cadastros_campeonatos_path
   end
 
+  # POST /campeonatos/:uuid/evento(.:format)
+  def evento
+    campeonato = find_campeonato_by_uuid
+
+    evento = Evento.new(nome: campeonato.nome,
+                        descricao: campeonato.descricao,
+                        data: campeonato.data_inicio,
+                        hora: campeonato.hora,
+                        data_fim: campeonato.data_fim,
+                        local: campeonato.local,
+                        esportes: campeonato.esportes,
+                        flyer: campeonato.flyer)
+
+    if evento.save
+      render_json_success evento, 200
+    else
+      render_json_error evento.errors, 500
+    end
+  end
+
   private
 
   def find_campeonato_by_uuid
