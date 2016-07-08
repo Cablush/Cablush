@@ -8,30 +8,26 @@ var Participante = (function($) {
     };
 
     var _filterByCategoria = function(categoria_id) {
-        var campeonato_uuid = $('#campeonato_uuid').val();
         Utils.startLoading();
         $.get({
-            url: "/cadastros/campeonatos/" + campeonato_uuid + "/participantes",
+            url: window.location.pathname,
             dataType: "script",
             data: {"categoria_id": categoria_id}
         });
     };
 
     var _openParticipante = function(participante_uuid) {
-        var campeonato_uuid = $('#campeonato_uuid').val();
         _openModal();
         Utils.startLoading();
         $.get({
-            url: "/cadastros/campeonatos/" + campeonato_uuid
-                + "/participantes/" + participante_uuid + "/edit",
+            url: window.location.pathname + "/" + participante_uuid + "/edit",
             dataType: "script"
         });
     };
 
     var _saveParticipante = function() {
         if (_checkFieldsParticipantesModal()) {
-            var campeonato_uuid = $('#campeonato_uuid').val();
-            var url = "/cadastros/campeonatos/" + campeonato_uuid + "/participantes";
+            var url = window.location.pathname;
             var method = 'POST';
             var participante_uuid = $('.modal #participante_uuid').val();
             if (participante_uuid.length > 0) {
@@ -58,14 +54,12 @@ var Participante = (function($) {
     };
 
     var _deleteParticipante = function() {
-        var campeonato_uuid = $('#campeonato_uuid').val();
         var participante_uuid = $('.modal #participante_uuid').val();
         if (participante_uuid.length > 0) {
             Utils.startLoading();
             $.ajax({
                 method: 'DELETE',
-                url: "/cadastros/campeonatos/" + campeonato_uuid
-                    + "/participantes/" + participante_uuid,
+                url: window.location.pathname + "/" + participante_uuid,
                 success: function(data) {
                     _closeModal();
                     $('#categoria_categoria_id').trigger('change');
