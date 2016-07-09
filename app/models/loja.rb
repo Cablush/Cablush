@@ -34,6 +34,7 @@ class Loja < ActiveRecord::Base
   validates :locais, presence: true
   validates_associated :locais
   validates :esportes, presence: true
+  validates :responsavel, presence: true
   validates_attachment :logo,
                        size: { in: 0..5.megabytes },
                        content_type: { content_type: /^image\/(jpeg|png)$/ }

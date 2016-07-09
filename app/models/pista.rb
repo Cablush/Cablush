@@ -31,6 +31,7 @@ class Pista < ActiveRecord::Base
   validates :local, presence: true
   validates_associated :local
   validates :esportes, presence: true
+  validates :responsavel, presence: true
   validates_attachment :foto,
                        size: { in: 0..5.megabytes },
                        content_type: { content_type: /^image\/(jpeg|png)$/ }
