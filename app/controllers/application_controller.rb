@@ -1,29 +1,15 @@
 class ApplicationController < ActionController::Base
-
   include HttpAcceptLanguage::AutoLocale
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-
-  def unauthorized
-    @title = I18n.t 'message.unauthorized'
-    return :file => File.join(Rails.root, 'public/401'), :formats => [:html], :status => 401
-  end
-
-  def forbidden
-    @title = I18n.t 'message.forbidden'
-    return :file => File.join(Rails.root, 'public/403'), :formats => [:html], :status => 403
-  end
-
-  def not_found
-    @title = I18n.t 'message.not_found'
-    return :file => File.join(Rails.root, 'public/404'), :formats => [:html], :status => 404
-  end
+  protect_from_forgery with: :null_session, if: Proc.new { |c|
+    c.request.format == 'application/json'
+  }
 
   # Used by impressionist
   def current_user
-    current_usuario
+    current_usuario if current_usuario.present?
   end
 
   protected
@@ -41,13 +27,14 @@ class ApplicationController < ActionController::Base
   end
 
   def lojista_at_least
-    unless current_usuario.lojista? || current_usuario.admin?
+    unless current_usuario.present? && (current_usuario.lojista? ||
+    current_usuario.admin?)
       redirect_to :back, alert: I18n.t('message.denied')
     end
   end
 
   def admin_only
-    unless current_usuario.admin?
+    unless current_usuario.present? && current_usuario.admin?
       redirect_to cadastros_path, alert: I18n.t('message.denied')
     end
   end
@@ -56,18 +43,19 @@ class ApplicationController < ActionController::Base
     render json: resource
   end
 
-  def render_json_success(resource, status)
+  def render_json_success(resource, status, message = '')
     render json: {
         success: true,
-        data: resource
-      }, status: status
+        data: resource,
+        message: message
+    }, status: status
   end
 
   def render_json_error(message, status)
+    logger.error message
     render json: {
         success: false,
-        errors: message
-      }, status: status
+        message: message
+    }, status: status
   end
-
 end
