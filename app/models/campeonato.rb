@@ -15,7 +15,7 @@ class Campeonato < ActiveRecord::Base
   accepts_nested_attributes_for :horario, allow_destroy: true
 
   has_and_belongs_to_many :esportes
-  has_and_belongs_to_many :eventos
+  has_many :eventos
 
   has_attached_file :flyer,
                     styles: {
@@ -46,6 +46,7 @@ class Campeonato < ActiveRecord::Base
   validates :esportes, presence: true
   validates :local, presence: true
   validates_associated :local
+  validates :responsavel, presence: true
   validates_attachment :flyer,
                        size: { in: 0..5.megabytes },
                        content_type: { content_type: /^image\/(jpeg|png)$/ }

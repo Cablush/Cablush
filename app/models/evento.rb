@@ -6,6 +6,8 @@ class Evento < ActiveRecord::Base
 
   has_and_belongs_to_many :esportes
 
+  belongs_to :campeonato
+
   has_attached_file :flyer,
                     styles: {
                       small: '340x200>',
@@ -30,6 +32,7 @@ class Evento < ActiveRecord::Base
   validates :local, presence: true
   validates_associated :local
   validates :esportes, presence: true
+  validates :responsavel, presence: true
   validates_attachment :flyer,
                        size: { in: 0..5.megabytes },
                        content_type: { content_type: /^image\/(jpeg|png)$/ }

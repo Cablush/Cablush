@@ -4,9 +4,18 @@
 
 <div class="main">
     <div class="wrap">
-        <div class="wrap-content"> 
+        <div class="wrap-content">
             <%= render "form" %>
+            <button type="button"
+              class="btn_gen_evento btn1 btn-primary btn-normal btn-inline">
+              <%= t('views.cadastros.gerar_evento') %>
+          </button>
         </div>
     </div>
     <div class="clear"></div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    Campeonatos.init();
+  });
+</script>

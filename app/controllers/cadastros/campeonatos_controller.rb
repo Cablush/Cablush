@@ -71,19 +71,26 @@ class Cadastros::CampeonatosController < ApplicationController
   def evento
     campeonato = find_campeonato_by_uuid
 
+    local = campeonato.local.dup
+    esporte_ids = campeonato.esportes.map{ |esporte| esporte.id }
+
     evento = Evento.new(nome: campeonato.nome,
                         descricao: campeonato.descricao,
                         data: campeonato.data_inicio,
                         hora: campeonato.hora,
                         data_fim: campeonato.data_fim,
-                        local: campeonato.local,
-                        esportes: campeonato.esportes,
-                        flyer: campeonato.flyer)
+                        flyer: campeonato.flyer,
+                        local: local,
+                        esporte_ids: esporte_ids,
+                        responsavel: current_usuario,
+                        campeonato: campeonato)
 
     if evento.save
-      render_json_success evento, 200
+      render_json_success(evento, 200,
+                          I18n.t('message.save_success', :evento))
     else
-      render_json_error evento.errors, 500
+      render_json_error(evento.errors, 500,
+                        I18n.t('message.save_error', :evento))
     end
   end
 

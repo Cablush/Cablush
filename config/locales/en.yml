@@ -24,6 +24,8 @@ en:
     forbidden: Forbidden.
     not_found: Resource Not found.
     denied: Acces denied.
+    save_success: '%{objeto} successfully saved.'
+    save_error: 'An error occurred while saving %{objeto}'
   button:
     cadastrar: Sign up
     sair: Log out
@@ -180,6 +182,7 @@ en:
 
       gerencia_title: 'Manage the %{campeonato}'
       gerar_etapas: 'Generate stages'
+      gerar_evento: Generate event
     devise:
       entrar_title: 'Hello, <p>enter your login information!</p>'
       entrar_head: Enter

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160703222645) do
+ActiveRecord::Schema.define(version: 20160709143801) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160703222645) do
     t.boolean  "fundo",                          default: false
     t.string   "uuid",                                           null: false
     t.date     "data_fim"
+    t.integer  "campeonato_id"
   end
 
   add_index "eventos", ["responsavel_id"], name: "index_eventos_on_responsavel_id"

@@ -24,6 +24,8 @@ pt-BR:
     forbidden: Acesso não permitido.
     not_found: Página não encontrada.
     denied: Acesso negado.
+    save_success: '%{objeto} salvo com sucesso.'
+    save_error: 'Ocorreu um erro ao salvar o %{objeto}'
   button:
     cadastrar: Cadastrar
     sair: Sair
@@ -180,6 +182,7 @@ pt-BR:
 
       gerencia_title: 'Gerencie o campeonato %{campeonato}'
       gerar_etapas: 'Gerar etapas'
+      gerar_evento: Gerar evento
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
       entrar_head: Entrar
