@@ -7,7 +7,9 @@ var Utils = (function($) {
     };
 
     var showMessage = function(type, message) {
-        $("#flash_messages").html('<div class="alert alert-' + type + '" style="z-index:2">' + message + '</div>');
+        $("#flash_messages").html('<div class="alert alert-' + type
+                                + '" style="z-index:2">' + message + '</div>');
+        window.scrollTo(0, 0);
     };
 
     var openPopup = function(aClass, name) {
