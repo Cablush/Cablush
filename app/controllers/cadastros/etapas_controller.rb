@@ -14,7 +14,7 @@ class Cadastros::EtapasController < ApplicationController
     end
   end
 
-  def generateEtapas(campeonato_id)
+  def generateEtapas(campeonato_id, categoria_id)
     @campeonato = Campeonato.find_by_id(campeonato_id)
     numMaxParticipantes = @campeonato.max_competidores_categoria 
     max_prova = @campeonato.max_competidores_prova
@@ -24,11 +24,13 @@ class Cadastros::EtapasController < ApplicationController
      puts "Criar etapa com #{provas} provas e #{numMaxParticipantes} participantes"
      count_part_provas = 0
      part_provas = participantes_provas(numMaxParticipantes, provas)
-     @partici
+     @participates = participates.where(categoria_id: categoria_id)
      part_provas.each do |part|
+      prova = Prova.new(etapda_id: etapa.id)
        puts "Criar prova com #{part} participantes"
        
      end
+     prova.participantes = 
      puts " "
      participantes = participantes_etapa(provas, ven_prova)
     end
@@ -57,3 +59,4 @@ class Cadastros::EtapasController < ApplicationController
   end
 
 end
+-

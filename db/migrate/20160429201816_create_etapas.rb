@@ -1,4 +1,4 @@
-class CreateEtapas < ActiveRecord::Migration
+	class CreateEtapas < ActiveRecord::Migration
   def change
     create_table :etapas do |t|
       t.string :nome
