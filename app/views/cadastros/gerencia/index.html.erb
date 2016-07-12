@@ -15,8 +15,8 @@
           {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
       </div>
       <div class="field pad-horizontal" >
-        <input type="button" value="<%= t('views.cadastros.gerar_etapas') %>"
-          class="btn_auto btn-inline" />
+        <input type="button" id="generate" value="<%= t('views.cadastros.gerar_etapas') %>"
+          class="btn_auto btn-inline btn_generate_prova" />
       </div>
       <div id="lista_participantes" class="float-lt">
         <%= render 'etapas' %>
@@ -25,3 +25,8 @@
     <div class="clear"></div>
   </div>
 </div> 
+<script type="text/javascript">
+  $(document).ready(function() {
+    Gerencia.init();
+  });
+</script>

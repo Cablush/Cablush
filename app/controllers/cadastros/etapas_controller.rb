@@ -2,19 +2,7 @@ class Cadastros::EtapasController < ApplicationController
 
   before_action :admin_only
 
-  # POST /participantes(.:format)
-  def create
-    etapa = Etapa.new(participante_params)
-    
-    # TODO search by duplicated participantes before save
-    if etapa.save
-      render_json_success etapa, 200
-    else
-      render_json_error etapa.errors, 500
-    end
-  end
-
-  def generateEtapas(campeonato_id, categoria_id)
+  def create(campeonato_id, categoria_id)
     @campeonato = Campeonato.find_by_id(campeonato_id)
     numMaxParticipantes = @campeonato.max_competidores_categoria 
     max_prova = @campeonato.max_competidores_prova
@@ -25,13 +13,15 @@ class Cadastros::EtapasController < ApplicationController
      count_part_provas = 0
      part_provas = participantes_provas(numMaxParticipantes, provas)
      @participates = participates.where(categoria_id: categoria_id)
-     part_provas.each do |part|
+     @listParticipantes = [];
+     part_provas.each_with_index do |part,index|
       prova = Prova.new(etapda_id: etapa.id)
-       puts "Criar prova com #{part} participantes"
-       
+      puts "Criar prova com #{part} participantes"
+      @listParticipantes.push(participantes[index])
+      participantes.delete_at(index)
      end
-     prova.participantes = 
-     puts " "
+     prova.participantes = listParticipantes 
+     puts prova
      participantes = participantes_etapa(provas, ven_prova)
     end
   end

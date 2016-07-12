@@ -1,7 +1,7 @@
 class Participante < ActiveRecord::Base
   
   has_many :provas_participantes
-  has_many :provas, :throught :provas
+  has_many :provas, through: :provas_participantes
 
   belongs_to :usuario
   belongs_to :categoria
