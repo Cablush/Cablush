@@ -5,6 +5,7 @@
 <div class="main">
   <div class="wrap">
     <div class="search_box search_box_content float-lt">
+
       <div class="field pad-horizontal title_list">
         <%= t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome) %>
         <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
@@ -15,8 +16,10 @@
           {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
       </div>
       <div class="field pad-horizontal" >
-        <input type="button" id="generate" value="<%= t('views.cadastros.gerar_etapas') %>"
-          class="btn_auto btn-inline btn_generate_prova" />
+        <%= button_to t('views.cadastros.gerar_etapas'),
+              new_cadastros_campeonato_etapa_path(@campeonato.uuid), method: "get",
+              class: "btn_auto btn-inline" %>
+
       </div>
       <div id="lista_participantes" class="float-lt">
         <%= render 'etapas' %>
@@ -25,8 +28,3 @@
     <div class="clear"></div>
   </div>
 </div> 
-<script type="text/javascript">
-  $(document).ready(function() {
-    Gerencia.init();
-  });
-</script>

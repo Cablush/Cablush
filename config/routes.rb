@@ -56,6 +56,7 @@ Cablush::Application.routes.draw do
       post :evento, on: :member
       resources :participantes, param: :uuid
       resources :gerencia, param: :uuid
+      resources :etapa, param: :uuid
     end
   end
 

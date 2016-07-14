@@ -2,27 +2,20 @@ class Cadastros::EtapasController < ApplicationController
 
   before_action :admin_only
 
-  def create(campeonato_id, categoria_id)
-    @campeonato = Campeonato.find_by_id(campeonato_id)
+  def new(campeonato_uuid)
+    @campeonato = Campeonato.find_by_uuid(campeonato_uuid)
     numMaxParticipantes = @campeonato.max_competidores_categoria 
     max_prova = @campeonato.max_competidores_prova
-    while numMaxParticipantes >= max_prova
-     provas = provas_etapa(numMaxParticipantes, max_prova)
-     etapa = Etapa.create(nome: ''+provas+'avos', campeonato_id: campeonato_id)
-     puts "Criar etapa com #{provas} provas e #{numMaxParticipantes} participantes"
-     count_part_provas = 0
-     part_provas = participantes_provas(numMaxParticipantes, provas)
-     @participates = participates.where(categoria_id: categoria_id)
-     @listParticipantes = [];
-     part_provas.each_with_index do |part,index|
-      prova = Prova.new(etapda_id: etapa.id)
-      puts "Criar prova com #{part} participantes"
-      @listParticipantes.push(participantes[index])
-      participantes.delete_at(index)
-     end
-     prova.participantes = listParticipantes 
-     puts prova
-     participantes = participantes_etapa(provas, ven_prova)
+    @categorias = Categoria.where(campeonato_id: campeonato_id)
+    @categorias.each do |categoria|
+      while numMaxParticipantes >= max_prova
+       provas = provas_etapa(numMaxParticipantes, max_prova)
+       etapa = Etapa.create(nome: ''+provas+'avos',categoria_id: categoria.id ,campeonato_id: campeonato_id)
+       puts "Criar etapa com #{provas} provas e #{numMaxParticipantes} participantes"
+       (1..provas).each do
+          prova = Prova.create(etapa_id: etapa)
+       end  
+      end
     end
   end
   
@@ -47,6 +40,4 @@ class Cadastros::EtapasController < ApplicationController
    end
    return part_provas
   end
-
 end
--
