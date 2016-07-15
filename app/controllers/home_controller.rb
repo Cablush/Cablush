@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
   before_action :authenticate_usuario!, only: [:cadastros]
 
   def index
@@ -31,8 +30,8 @@ class HomeController < ApplicationController
         flash.now[:alert] = I18n.t('views.cadastros.alert_lojista').html_safe
       end
     else
-      @title = I18n.t('views.cadastros.title_esportista', usuario: current_usuario.first_name ).html_safe
+      @title = I18n.t('views.cadastros.title_esportista',
+                      usuario: current_usuario.first_name).html_safe
     end
   end
-
 end

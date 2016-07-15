@@ -26,6 +26,9 @@ en:
     denied: Acces denied.
     save_success: '%{objeto} successfully saved.'
     save_error: 'An error occurred while saving %{objeto}'
+  error:
+    not_found: 'We are sorry, the page you are looking for could not be found. <br>Try one of the menu options above.'
+    internal_server_error: 'We are sorry, something unexpected happened. <br>Our engineers will be alerted about this issue, as soon as they return from their sports practices.'
   button:
     cadastrar: Sign up
     sair: Log out
