@@ -1,4 +1,8 @@
 Cablush::Application.routes.draw do
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   require 'sidekiq/web'
 
   mount Sidekiq::Web, at: '/sidekiq'
@@ -80,6 +84,10 @@ Cablush::Application.routes.draw do
   match 'contact', to: 'contacts#index', via: [:get]
   match 'about', to: 'home#about', via: [:get]
   match 'cadastros', to: 'home#cadastros', via: [:get]
+
+  # ERRORS
+  match '/404', to: 'errors#not_found', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 
   # You can have the root of your site routed with 'root'
   root 'home#index'

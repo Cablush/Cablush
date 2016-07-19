@@ -23,7 +23,7 @@ Cablush::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-  
+
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -35,9 +35,10 @@ Cablush::Application.configure do
     enable_starttls_auto: true
   }
   # Ignore bad email addresses and do not raise email delivery errors.
-  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # Set this to true and configure the email server for immediate delivery to
+  # raise delivery errors.
   config.action_mailer.raise_delivery_errors = false
-  
+
   # Paperclip Amazon S3 configuration
   config.paperclip_defaults = {
     storage: :s3,
@@ -47,5 +48,4 @@ Cablush::Application.configure do
       secret_access_key: Rails.application.secrets.aws_secret_access_key
     }
   }
-  
 end

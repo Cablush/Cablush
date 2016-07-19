@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160709143801) do
+ActiveRecord::Schema.define(version: 20160714022151) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -135,9 +135,11 @@ ActiveRecord::Schema.define(version: 20160709143801) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "campeonato_id"
+    t.integer  "categoria_id"
   end
 
   add_index "etapas", ["campeonato_id"], name: "index_etapas_on_campeonato_id"
+  add_index "etapas", ["categoria_id"], name: "index_etapas_on_categoria_id"
 
   create_table "eventos", force: :cascade do |t|
     t.string   "nome",               limit: 50
