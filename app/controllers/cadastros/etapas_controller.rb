@@ -2,23 +2,61 @@ class Cadastros::EtapasController < ApplicationController
 
   before_action :admin_only
 
-  def new(campeonato_uuid)
-    @campeonato = Campeonato.find_by_uuid(campeonato_uuid)
-    numMaxParticipantes = @campeonato.max_competidores_categoria 
-    max_prova = @campeonato.max_competidores_prova
-    @categorias = Categoria.where(campeonato_id: campeonato_id)
-    @categorias.each do |categoria|
-      while numMaxParticipantes >= max_prova
-       provas = provas_etapa(numMaxParticipantes, max_prova)
-       etapa = Etapa.create(nome: ''+provas+'avos',categoria_id: categoria.id ,campeonato_id: campeonato_id)
-       puts "Criar etapa com #{provas} provas e #{numMaxParticipantes} participantes"
-       (1..provas).each do
-          prova = Prova.create(etapa_id: etapa)
-       end  
+  def new
+    campeonato_uuid = params[:campeonato_uuid]
+    campeonato = Campeonato.find_by_uuid(campeonato_uuid)
+    num_max_participates = @campeonato.max_competidores_categoria 
+    max_prova = campeonato.max_competidores_prova
+    categorias = campeonato.categorias
+    categorias.each do |categoria|
+      while num_max_participates >= max_prova
+       num_provas = provas_etapa(num_max_participates, max_prova)
+       etapa = Etapa.create(nome: num_provas.to_s+' avos',categoria_id: categoria.id ,campeonato_id: campeonato.id)
+       puts "Criar etapa com #{num_provas} provas e #{num_max_participates} participantes"
+       (1..num_provas).each do
+          prova = Prova.create(etapa_id: etapa.id)
+          puts prova
+       end
+      num_max_participates = num_max_participates/campeonato.num_vencedores_prova
+      end
+    end
+    distribui_participates_por_provas(campeonato_id)
+    redirect_to cadastros_campeonatos_path
+  end
+  
+
+  def distribui_participates_por_provas(campeonato_id)
+    campeonato = Campeonato.find_by_id(campeonato_id)
+    categoria = campeonato.categorias
+    num_max_participates = @campeonato.max_competidores_categoria 
+    categorias.each do 
+      participantes = Participante.where(categoria_id: categoria_id)
+      primeira_etapa = busca_primeira_etapa(categorias.etapas)
+      provas = primeira_etapa.provas
+      j = 0
+      for i in 0..num_max_participates/2
+        ProvaParticipante.create(participante_id: participantes[i].id, prova_id: provas[j].id)#PRIMEIRO
+        if participantes[num_max_participates-1-i].present?
+          ProvaParticipante.create(participante_id: participantes[num_max_participates-1-i].id, prova_id: provas[j].id)#ULTIMO
+        end
+        if(j == provas.count)
+          j = 0
+        else
+          j+=1
+        end
       end
     end
   end
-  
+
+  def busca_primeira_etapa(etapas)
+    array_max = []
+    etapas.each do |etapa|
+      array_max.append(etapa.provas.count)
+    end
+    index =  array_max.index(array_max.max)
+    etapa[index]
+  end
+
   # Calcula o numero de participantes por etapa
   def participantes_etapa(provas_anteriores, vencedores_anteriores)
    provas_anteriores * vencedores_anteriores

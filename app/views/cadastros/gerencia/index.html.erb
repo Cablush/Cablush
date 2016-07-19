@@ -11,15 +11,9 @@
         <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
       </div>
       <div class="field pad-horizontal" >
-        <%= select(:categoria, "categoria_id",
-          @categorias.collect {|c| [ c.nome, c.id ] },
-          {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
-      </div>
-      <div class="field pad-horizontal" >
         <%= button_to t('views.cadastros.gerar_etapas'),
               new_cadastros_campeonato_etapa_path(@campeonato.uuid), method: "get",
               class: "btn_auto btn-inline" %>
-
       </div>
       <div id="lista_participantes" class="float-lt">
         <%= render 'etapas' %>
