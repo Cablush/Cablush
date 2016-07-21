@@ -5,7 +5,7 @@ class Cadastros::EtapasController < ApplicationController
   def new
     campeonato_uuid = params[:campeonato_uuid]
     campeonato = Campeonato.find_by_uuid(campeonato_uuid)
-    num_max_participates = @campeonato.max_competidores_categoria 
+    num_max_participates = campeonato.max_competidores_categoria 
     max_prova = campeonato.max_competidores_prova
     categorias = campeonato.categorias
     categorias.each do |categoria|
@@ -20,24 +20,24 @@ class Cadastros::EtapasController < ApplicationController
       num_max_participates = num_max_participates/campeonato.num_vencedores_prova
       end
     end
-    distribui_participates_por_provas(campeonato_id)
+    distribui_participates_por_provas(campeonato.id)
     redirect_to cadastros_campeonatos_path
   end
   
 
   def distribui_participates_por_provas(campeonato_id)
     campeonato = Campeonato.find_by_id(campeonato_id)
-    categoria = campeonato.categorias
-    num_max_participates = @campeonato.max_competidores_categoria 
-    categorias.each do 
-      participantes = Participante.where(categoria_id: categoria_id)
-      primeira_etapa = busca_primeira_etapa(categorias.etapas)
+    categorias = campeonato.categorias
+    num_max_participates = campeonato.max_competidores_categoria 
+    categorias.each do |categoria| 
+      participantes = Participante.where(categoria_id: categoria.id)
+      primeira_etapa = busca_primeira_etapa(categoria.etapas)
       provas = primeira_etapa.provas
       j = 0
       for i in 0..num_max_participates/2
-        ProvaParticipante.create(participante_id: participantes[i].id, prova_id: provas[j].id)#PRIMEIRO
+        ProvasParticipante.create(participante_id: participantes[i].id, prova_id: provas[j].id)#PRIMEIRO
         if participantes[num_max_participates-1-i].present?
-          ProvaParticipante.create(participante_id: participantes[num_max_participates-1-i].id, prova_id: provas[j].id)#ULTIMO
+          ProvasParticipante.create(participante_id: participantes[num_max_participates-1-i].id, prova_id: provas[j].id)#ULTIMO
         end
         if(j == provas.count)
           j = 0
@@ -54,7 +54,7 @@ class Cadastros::EtapasController < ApplicationController
       array_max.append(etapa.provas.count)
     end
     index =  array_max.index(array_max.max)
-    etapa[index]
+    etapas[index]
   end
 
   # Calcula o numero de participantes por etapa

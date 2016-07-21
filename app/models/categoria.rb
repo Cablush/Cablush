@@ -1,7 +1,7 @@
 class Categoria < ActiveRecord::Base
   belongs_to :campeonato
   has_many :participantes
-
+  has_many :etapas
   before_create :set_uuid
 
   validates :nome, presence: true, length: { maximum: 50 }
