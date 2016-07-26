@@ -67,9 +67,9 @@
     <%= f.check_box :fundo %>
   </div>
 
-  <%= render 'esportes/esportes_fields', f: f, esportes: @evento.esportes %>
+  <%= render 'cadastros/common/esportes_fields', f: f, esportes: @evento.esportes %>
 
-  <%= render 'locais/local_fields', f: f, type: 'Evento' %>
+  <%= render 'cadastros/common/local', f: f, type: 'Evento' %>
 
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>

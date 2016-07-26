@@ -34,11 +34,11 @@
     <%= f.text_field :video, class: 'inputbox'  %>
   </div>
 
-  <%= render 'esportes/esportes_fields', f: f, esportes: @pista.esportes %>
+  <%= render 'cadastros/common/esportes_fields', f: f, esportes: @pista.esportes %>
 
-  <%= render 'locais/local_fields', f: f, type: 'Pista' %>
+  <%= render 'cadastros/common/local', f: f, type: 'Pista' %>
 
-  <%= render 'horarios/horario_fields', f: f %>
+  <%= render 'cadastros/common/horario_fields', f: f %>
 
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>

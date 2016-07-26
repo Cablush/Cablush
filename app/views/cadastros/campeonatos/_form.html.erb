@@ -60,7 +60,7 @@
     <%= f.check_box :fundo %>
   </div>
 
-  <%= render 'esportes/esportes_fields', f: f, esportes: @campeonato.esportes %>
+  <%= render 'cadastros/common/esportes_fields', f: f, esportes: @campeonato.esportes %>
 
   <fieldset class="subfields">
     <legend><%= f.label :competidores_categoria %></legend>
@@ -91,7 +91,7 @@
 
   <%= render 'categorias', f: f, categorias: @campeonato.categorias %>
 
-  <%= render 'locais/local_fields', f: f, type: 'Campeonato' %>
+  <%= render 'cadastros/common/local', f: f, type: 'Campeonato' %>
 
   <div class="actions">
     <%= f.submit class: 'btn1 btn-primary btn-normal btn-inline' %>
