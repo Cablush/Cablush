@@ -1,6 +1,6 @@
 <fieldset class="subfields">
   <legend><%= f.label :endereco %></legend>
-  <%= f.fields_for :local do |l| %>
+  <%= f.fields_for :locais do |l| %>
     <%= render 'locais/l_fields', l: l, type: type %>
   <% end %>
 </fieldset>
