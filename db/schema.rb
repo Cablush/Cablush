@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102142810) do
+ActiveRecord::Schema.define(version: 20161102190021) do
 
   create_table "amizades", force: :cascade do |t|
     t.integer  "usuario_id"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20161102142810) do
     t.integer  "numero_inscricao"
     t.integer  "categoria_id"
     t.string   "classificacao"
+    t.integer  "campeonato_id"
   end
 
   add_index "campeonato_participantes", ["categoria_id"], name: "index_campeonato_participantes_on_categoria_id"

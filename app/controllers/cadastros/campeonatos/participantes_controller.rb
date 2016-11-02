@@ -24,7 +24,10 @@ class Cadastros::Campeonatos::ParticipantesController < ApplicationController
   def create
     participante = Campeonato::Participante.new(participante_params)
 
+    campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
     # TODO search for duplicated participantes before save
+
+    participante.campeonato = campeonato
 
     if participante.save
       render_json_success participante, 200
@@ -47,7 +50,7 @@ class Cadastros::Campeonatos::ParticipantesController < ApplicationController
   def update
     participante = Campeonato::Participante.find_by_uuid!(params[:uuid])
 
-    # TODO search for duplicated participantes before update
+    # TODO search for duplicated participantes before save
 
     if participante.update(participante_params)
       render_json_success participante, 200
