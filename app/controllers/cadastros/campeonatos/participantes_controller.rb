@@ -1,4 +1,4 @@
-class Cadastros::ParticipantesController < ApplicationController
+class Cadastros::Campeonatos::ParticipantesController < ApplicationController
   before_action :admin_only
 
   # GET /participantes(.:format)

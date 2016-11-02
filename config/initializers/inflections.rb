@@ -21,4 +21,5 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'localizavel', 'localizaveis'
   inflect.irregular 'categoria', 'categorias'
   inflect.irregular 'inscricao', 'inscricoes'
+  inflect.irregular 'gerencia', 'gerencias'
 end

@@ -55,12 +55,12 @@ Cablush::Application.routes.draw do
     resources :lojas, param: :uuid
     resources :eventos, param: :uuid
     resources :pistas, param: :uuid
-    resources :pistas, param: :uuid
     resources :campeonatos, param: :uuid do
       post :evento, on: :member
-      resources :participantes, param: :uuid
-      resources :gerencia, param: :uuid
-      resources :etapas, param: :uuid
+      scope module: 'campeonatos' do
+        resources :participantes, param: :uuid
+        resources :etapas, param: :uuid
+      end
     end
   end
 

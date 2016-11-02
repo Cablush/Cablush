@@ -1,4 +1,4 @@
-class Cadastros::EtapasController < ApplicationController
+class Cadastros::Campeonatos::EtapasController < ApplicationController
   before_action :admin_only
 
   def new
