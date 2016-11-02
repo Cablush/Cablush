@@ -1,4 +1,4 @@
-class Categoria < ActiveRecord::Base
+class Campeonato::Categoria < ActiveRecord::Base
   belongs_to :campeonato
   has_many :participantes
   has_many :etapas

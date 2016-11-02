@@ -6,7 +6,7 @@ class Cadastros::ParticipantesController < ApplicationController
     @campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
 
     if params[:categoria_id].present?
-      @categorias = Array.new(1, Categoria.find_by_id(params[:categoria_id]))
+      @categorias = Array.new(1, Campeonato::Categoria.find_by_id(params[:categoria_id]))
     else
       @categorias = @campeonato.categorias
     end
@@ -22,7 +22,7 @@ class Cadastros::ParticipantesController < ApplicationController
 
   # POST /participantes(.:format)
   def create
-    participante = Participante.new(participante_params)
+    participante = Campeonato::Participante.new(participante_params)
 
     # TODO search for duplicated participantes before save
 
@@ -35,7 +35,7 @@ class Cadastros::ParticipantesController < ApplicationController
 
   # GET /participantes/:uuid/edit(.:format)
   def edit
-    @participante = Participante.find_by_uuid!(params[:uuid])
+    @participante = Campeonato::Participante.find_by_uuid!(params[:uuid])
 
     respond_to do |format|
       format.js
@@ -45,7 +45,7 @@ class Cadastros::ParticipantesController < ApplicationController
 
   # PATCH/PUT /participantes/:uuid(.:format)
   def update
-    participante = Participante.find_by_uuid!(params[:uuid])
+    participante = Campeonato::Participante.find_by_uuid!(params[:uuid])
 
     # TODO search for duplicated participantes before update
 
@@ -58,7 +58,7 @@ class Cadastros::ParticipantesController < ApplicationController
 
   # DELETE /participantes/:uuid(.:format)
   def destroy
-    participante = Participante.find_by_uuid!(params[:uuid])
+    participante = Campeonato::Participante.find_by_uuid!(params[:uuid])
 
     participante.destroy
 
@@ -68,8 +68,7 @@ class Cadastros::ParticipantesController < ApplicationController
   private
 
   def participante_params
-    params.require(:participante)
-          .permit(:uuid, :nome, :numero_inscricao, :classificacao,
-                  :categoria_id)
+    params.require(:participante).permit(:uuid, :nome, :numero_inscricao,
+                                         :classificacao, :categoria_id)
   end
 end

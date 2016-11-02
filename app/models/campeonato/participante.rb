@@ -1,5 +1,4 @@
-class Participante < ActiveRecord::Base
-  
+class Campeonato::Participante < ActiveRecord::Base
   has_many :provas_participantes
   has_many :provas, through: :provas_participantes
 
@@ -20,7 +19,7 @@ class Participante < ActiveRecord::Base
 
   def as_json(options={})
     super(only: [:nome, :numero_inscricao, :classificacao, :uuid],
-      methods: [:categoria_id]
+          methods: [:categoria_id]
     )
   end
 
@@ -29,5 +28,4 @@ class Participante < ActiveRecord::Base
   def set_uuid
     self.uuid = SecureRandom.uuid
   end
-
 end

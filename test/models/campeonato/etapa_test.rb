@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class EtapaTest < ActiveSupport::TestCase
+class Campeonato::EtapaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

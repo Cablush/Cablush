@@ -1,6 +1,6 @@
 <div class="ui-hidden-widget">
   <div id="modal_categorias" class="modal-body">
-    <%= f.fields_for :categorias, Categoria.new do |n|%>
+    <%= f.fields_for :categorias, Campeonato::Categoria.new do |n|%>
       <div class="form-inputs">
         <fieldset class="subfields">
           <legend class="title_modal">
