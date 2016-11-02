@@ -1,13 +1,6 @@
 class Campeonato < ActiveRecord::Base
   belongs_to :responsavel, class_name: 'Usuario'
 
-  has_many :etapas, dependent: :destroy
-  accepts_nested_attributes_for :etapas, allow_destroy: true
-
-  has_many :categorias, dependent: :destroy, autosave: true
-  accepts_nested_attributes_for :categorias, allow_destroy: true,
-                                reject_if: proc { |att| att['nome'].blank? }
-
   has_one :local, as: :localizavel, dependent: :destroy
   accepts_nested_attributes_for :local, allow_destroy: true
 
@@ -15,7 +8,17 @@ class Campeonato < ActiveRecord::Base
   accepts_nested_attributes_for :horario, allow_destroy: true
 
   has_and_belongs_to_many :esportes
-  has_many :eventos
+
+  has_one :evento
+
+  has_many :categorias, dependent: :destroy, autosave: true
+  accepts_nested_attributes_for :categorias, allow_destroy: true,
+                                reject_if: proc { |att| att['nome'].blank? }
+
+  has_many :etapas, dependent: :destroy
+  accepts_nested_attributes_for :etapas, allow_destroy: true
+
+  has_many :participantes
 
   has_attached_file :flyer,
                     styles: {

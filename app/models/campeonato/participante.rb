@@ -1,9 +1,10 @@
 class Campeonato::Participante < ActiveRecord::Base
+  belongs_to :usuario
+  belongs_to :campeonato
+  belongs_to :categoria
+
   has_many :provas_participantes
   has_many :provas, through: :provas_participantes
-
-  belongs_to :usuario
-  belongs_to :categoria
 
   before_create :set_uuid
 
