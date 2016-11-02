@@ -7,7 +7,6 @@
             <%= t('views.cadastros.participante') %>
           </legend>
           <%= f.input :uuid, as: :hidden %>
-          <%= f.input :campeonato_id, as: :hidden %>
           <%= f.input :categoria_id do %>
             <%= f.select(:categoria_id, @categorias.collect {|c| [ c.nome, c.id ]},
               {prompt: t('views.cadastros.categoria')}, {class: 'selectbox'}) %>
