@@ -6,12 +6,7 @@ var Campeonatos = (function($) {
             url: 'evento',
             dataType: 'json',
             success: function(data) {
-                console.log(data)
-                if (data.success) {
-                    Utils.showMessage('success', data.message);
-                } else {
-                    Utils.showMessage('error', data.message);
-                }
+                Utils.showResponse(data);
             }
         });
     };

@@ -89,8 +89,7 @@ class Cadastros::CampeonatosController < ApplicationController
       render_json_success(evento, 200,
                           I18n.t('message.save_success', :evento))
     else
-      render_json_error(evento.errors, 500,
-                        I18n.t('message.save_error', :evento))
+      render_json_error(I18n.t('message.save_error', :evento), 500)
     end
   end
 

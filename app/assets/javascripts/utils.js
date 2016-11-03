@@ -12,6 +12,24 @@ var Utils = (function($) {
         window.scrollTo(0, 0);
     };
 
+    var _convertResponseMessage = function(responseMessage) {
+        if (responseMessage instanceof String) {
+            return responseMessage;
+        }
+        var convertedMessage = "";
+        $.each(responseMessage, function(field, messages) {
+            convertedMessage += messages + '</br>';
+        });
+        return convertedMessage;
+    };
+
+    var showResponse = function(data) {
+        var message = _convertResponseMessage(data.message);
+        if (message && message.length !== 0) {
+            showMessage(data.success ? 'success' : 'error', message);
+        }
+    };
+
     var openPopup = function(aClass, name) {
         $(aClass).click(function(e) {
             e.preventDefault();
@@ -31,6 +49,7 @@ var Utils = (function($) {
 
     var startLoading = function() {
         if (body != null) {
+            clearMessage();
             $(body).addClass("loading");
         }
     };
@@ -181,6 +200,7 @@ var Utils = (function($) {
         startLoading: startLoading,
         stopLoading: stopLoading,
         showMessage: showMessage,
+        showResponse: showResponse,
         clearMessage: clearMessage,
         openPopup: openPopup,
         initDialog: initDialog,

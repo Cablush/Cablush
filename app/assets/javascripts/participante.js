@@ -44,9 +44,11 @@ var Participante = (function($) {
                     if (data.success) {
                         _closeModal();
                         $('#categoria_categoria_id').trigger('change');
-                    } else {
-                        // TODO display errors
                     }
+                    Utils.showResponse(data);
+                },
+                error: function(data) {
+                    Utils.showResponse(data.responseJSON);
                 }
             });
         }

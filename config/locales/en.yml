@@ -43,6 +43,18 @@ en:
       campeonato:
         one: Championship
         other: Championships
+      campeonato/etapa:
+        one: Stage
+        other: Stages
+      campeonato/inscricao:
+        one: Registration
+        other: Registrations
+      campeonato/participante:
+        one: Participant
+        other: Participants
+      campeonato/prova:
+        one: Game
+        other: Games
       categoria:
         one: Category
         other: Categories
@@ -58,36 +70,32 @@ en:
       estado:
         one: State
         other: States
-      etapa:
-        one: Stage
-        other: Stages
       evento:
         one: Event
         other: Events
       horario:
         one: Schedule
         other: Schedules
-      inscricao:
-        one: Registration
-        other: Registrations
       local:
         one: Place
         other: Places
       loja:
         one: Store
         other: Stores
-      participante:
-        one: Participant
-        other: Participants
       pista:
         one: Spot
         other: Spots
-      prova:
-        one: Game
-        other: Games
       usuario:
         one: User
         other: Users
+    errors:
+      models:
+        campeonato/participante:
+          attributes:
+            numero_inscricao:
+              taken: Registration must be unique for championship.
+            classificacao:
+              taken: Classification must be unique for Category.
   views:
     index:
       title: Sports, spots and events.

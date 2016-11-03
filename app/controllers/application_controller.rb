@@ -45,17 +45,17 @@ class ApplicationController < ActionController::Base
 
   def render_json_success(resource, status, message = '')
     render json: {
-        success: true,
-        data: resource,
-        message: message
+      success: true,
+      data: resource,
+      message: message
     }, status: status
   end
 
-  def render_json_error(message, status)
-    logger.error message
+  def render_json_error(error, status)
+    logger.error error.is_a?(ActiveModel::Errors) ? error.messages : error
     render json: {
-        success: false,
-        message: message
+      success: false,
+      message: error
     }, status: status
   end
 end
