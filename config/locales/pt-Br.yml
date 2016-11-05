@@ -24,8 +24,8 @@ pt-BR:
     forbidden: Acesso não permitido.
     not_found: Página não encontrada.
     denied: Acesso negado.
-    save_success: '%{objeto} salvo com sucesso.'
-    save_error: 'Ocorreu um erro ao salvar o %{objeto}'
+    save_success: '%{model} salvo com sucesso.'
+    save_error: 'Ocorreu um erro ao salvar o %{model}'
   error:
     not_found: 'Nos desculpe, mas a página que você está procurando não pôde ser encontrado. <br>Experimente uma das opções do menu acima.'
     internal_server_error: 'Nos desculpe, algo inesperado aconteceu. <br>Nossos engenheiros serão alertados sobre esta questão, assim que eles retornarem de suas práticas desportivas.'

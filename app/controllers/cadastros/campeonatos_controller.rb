@@ -72,7 +72,7 @@ class Cadastros::CampeonatosController < ApplicationController
     campeonato = find_campeonato_by_uuid
 
     if campeonato.evento.present?
-      render_json_error(I18n.t('views.cadastros.event_already_exists', :evento),
+      render_json_error(I18n.t('views.cadastros.event_already_exists'),
                         200) and return
     end
 
@@ -91,10 +91,11 @@ class Cadastros::CampeonatosController < ApplicationController
                         campeonato: campeonato)
 
     if evento.save
-      render_json_success(evento, 200,
-                          I18n.t('message.save_success', :evento))
+      render_json_success(evento, 200, I18n.t('message.save_success',
+                                              model: Evento.model_name.human))
     else
-      render_json_error(I18n.t('message.save_error', :evento), 500)
+      render_json_error(I18n.t('message.save_error',
+                               model: Evento.model_name.human), 500)
     end
   end
 
