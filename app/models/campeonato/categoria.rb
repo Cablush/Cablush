@@ -2,7 +2,7 @@ class Campeonato::Categoria < ActiveRecord::Base
   belongs_to :campeonato
 
   has_many :participantes
-  has_many :etapas
+  has_many :etapas, dependent: :destroy
 
   before_create :set_uuid
 
@@ -12,6 +12,32 @@ class Campeonato::Categoria < ActiveRecord::Base
 
   def to_param
     uuid
+  end
+
+  def generate_etapas
+    if etapas.empty?
+      num_competidores = max_competidores_categoria
+      while num_competidores >= max_competidores_prova
+        etapa = Campeonato::Etapa.generate_etapa(self, num_competidores)
+        num_competidores = etapa.num_provas * num_vencedores_prova
+      end
+    end
+  end
+
+  def max_competidores_categoria
+    campeonato.max_competidores_categoria
+  end
+
+  def max_competidores_prova
+    campeonato.max_competidores_prova
+  end
+
+  def num_vencedores_prova
+    campeonato.num_vencedores_prova
+  end
+
+  def campeonato_id
+    campeonato.id
   end
 
   private

@@ -1,12 +1,12 @@
 <ul class="list1">
-  <% @provas.each do |count, prova| %>
+  <% provas.each do |prova| %>
     <li>
       <div class="elem-list">
         <div class="title_list">
-          <%= t('views.cadastros.prova_nome', prova: count) %>
+          <%= t('views.cadastros.prova_nome', prova: prova.id) %>
           <label class="tip">
-            <%= t('views.cadastros.participantes_numero',
-                  length: provas.participantes.length) %>
+            <!-- %= t('views.cadastros.participantes_numero',
+                  length: prova.participantes.length) % -->
           </label>
         </div>
         <!-- TODO participantes -->

@@ -114,6 +114,12 @@ class Campeonato < ActiveRecord::Base
     I18n.t('views.campeonatos.share', campeonato: nome)
   end
 
+  def generate_etapas
+    categorias.each do |categoria|
+      categoria.generate_etapas
+    end
+  end
+
   private
 
   def set_uuid

@@ -20,9 +20,13 @@ class Campeonato::Participante < ActiveRecord::Base
     categoria.id
   end
 
+  def campeonato_id
+    campeonato.id
+  end
+
   def as_json(options={})
     super(only: [:nome, :numero_inscricao, :classificacao, :uuid],
-          methods: [:categoria_id]
+          methods: [:categoria_id, :campeonato_id]
     )
   end
 

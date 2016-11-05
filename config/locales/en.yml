@@ -195,6 +195,8 @@ en:
       etapas_title: 'Manage Stages of the championship <p>%{campeonato}</p>'
       gerenciar_etapas: Manage Stages
       gerar_etapas: Generate Stages
+      gerar_etapas_success: Stages successfully generated.
+      gerar_etapas_error: Error generating Stages.
       etapa_nome: 'Stage: %{etapa}'
       provas_numero: '(games: %{length})'
       prova_nome: 'Game %{prova}'

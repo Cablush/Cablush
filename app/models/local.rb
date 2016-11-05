@@ -65,12 +65,12 @@ class Local < ActiveRecord::Base
     eventos.merge(Evento.find_by_esporte_categoria(categoria))
   }
 
-  scope :cameponatos_by_estado, ->(estado) {
-    cameponatos.where(estado: estado)
+  scope :campeonatos_by_estado, ->(estado) {
+    campeonatos.where(estado: estado)
   }
 
-  scope :cameponatos_by_esporte_categoria, ->(categoria) {
-    cameponatos.merge(Cameponato.find_by_esporte_categoria(categoria))
+  scope :campeonatos_by_esporte_categoria, ->(categoria) {
+    campeonatos.merge(Cameponato.find_by_esporte_categoria(categoria))
   }
 
   def self.localizaveis_active

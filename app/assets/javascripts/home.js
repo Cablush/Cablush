@@ -2,7 +2,6 @@ $(function() {
 
     var searchLocal = function (url, estado, esporte) {
         Utils.startLoading();
-        Utils.clearMessage();
         $.ajax({
             url: url,
             dataType: "script",

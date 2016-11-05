@@ -195,6 +195,8 @@ pt-BR:
       etapas_title: 'Gerenciar Etapas do campeonato <p>%{campeonato}</p>'
       gerenciar_etapas: Gerenciar Etapas
       gerar_etapas: Gerar Etapas
+      gerar_etapas_success: Etapas geradas com sucesso.
+      gerar_etapas_error: Erro ao gerar etapas.
       etapa_nome: 'Etapa: %{etapa}'
       provas_numero: '(provas: %{length})'
       prova_nome: 'Prova %{prova}'

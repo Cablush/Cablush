@@ -17,7 +17,18 @@ var Etapas = (function($) {
     };
 
     var _generateEtapas = function() {
-
+        Utils.startLoading();
+        $.ajax({
+            method: 'POST',
+            url: 'etapas/generate',
+            dataType: 'json',
+            success: function(data) {
+                Utils.showResponse(data);
+            },
+            error: function(data) {
+                Utils.showResponse(data.responseJSON);
+            }
+        });
     };
 
     var initEtapas = function() {
@@ -31,7 +42,7 @@ var Etapas = (function($) {
 
         $(".btn_etapas_generate").on('click', function(event) {
             event.preventDefault();
-
+            _generateEtapas();
         });
 
         $(".btn_etapa_add").on('click', function(event) {
