@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 20161102190021) do
   add_index "campeonato_participantes", ["categoria_id"], name: "index_campeonato_participantes_on_categoria_id"
   add_index "campeonato_participantes", ["usuario_id"], name: "index_campeonato_participantes_on_usuario_id"
 
+  create_table "campeonato_provas", force: :cascade do |t|
+    t.integer  "etapa_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "campeonato_provas", ["etapa_id"], name: "index_campeonato_provas_on_etapa_id"
+
   create_table "campeonato_provas_participantes", force: :cascade do |t|
     t.decimal  "pontuacao"
     t.integer  "participante_id"
@@ -339,14 +347,6 @@ ActiveRecord::Schema.define(version: 20161102190021) do
 
   add_index "pistas", ["responsavel_id"], name: "index_pistas_on_responsavel_id"
   add_index "pistas", ["uuid"], name: "index_pistas_on_uuid", unique: true
-
-  create_table "provas", force: :cascade do |t|
-    t.integer  "etapa_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "provas", ["etapa_id"], name: "index_provas_on_etapa_id"
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", null: false
