@@ -16,7 +16,7 @@ var Etapas = (function($) {
         });
     };
 
-    var _generateEtapas = funcion() {
+    var _generateEtapas = function() {
 
     };
 
