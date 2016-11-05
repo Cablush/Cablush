@@ -20,6 +20,10 @@ var Etapas = (function($) {
 
     };
 
+    var initEtapas = function() {
+
+    };
+
     var init = function() {
         $('#categoria_categoria_id').on('change', function(event) {
             _filterByCategoria($(this).val());
@@ -38,7 +42,8 @@ var Etapas = (function($) {
     }
 
     return {
-        init: init
+        init: init,
+        initEtapas: initEtapas
     };
 
 })(jQuery);
