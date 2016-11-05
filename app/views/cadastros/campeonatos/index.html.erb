@@ -15,9 +15,10 @@
             <%= button_to t('views.cadastros.gerenciar_participantes'),
               cadastros_campeonato_participantes_path(campeonato), method: "get",
               class: "btn1 btn-list", form_class: "float-rt pad-right" %>
-            <!-- %= button_to t('views.cadastros.gerenciar_campeonato'),
-              cadastros_campeonato_gerencia_path(campeonato), method: "get",
-              class: "btn1 btn-list", form_class: "float-rt pad-right" % -->
+
+            <%= button_to t('views.cadastros.gerenciar_etapas'),
+              cadastros_campeonato_etapas_path(campeonato), method: "get",
+              class: "btn1 btn-list", form_class: "float-rt pad-right" %>
           </div>
         </li>
       <% end %>

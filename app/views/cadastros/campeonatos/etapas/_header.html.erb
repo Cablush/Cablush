@@ -1,0 +1,13 @@
+<div class="content-head">
+    <div class="wrap">
+        <ul class="events">
+            <li class="<%= is_active(cadastros_campeonatos_path, true)%> ">
+              <%= link_to t('views.cadastros.campeonatos'), cadastros_campeonatos_path %>
+            </li>
+            <li class="<%= is_active(cadastros_campeonato_etapas_path, true)%> ">
+              <%=link_to t('views.cadastros.etapas'), '#' %>
+            </li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+</div>

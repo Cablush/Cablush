@@ -1,0 +1,34 @@
+<%= render "layouts/content_header" %>
+
+<%= render "header", option: 'New' %>
+
+<div class="main">
+  <div class="wrap">
+    <div class="search_box search_box_content float-lt">
+      <div class="field pad-horizontal title_list">
+        <%= t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome) %>
+        <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
+      </div>
+      <div class="field pad-horizontal" >
+        <%= select(:categoria, "categoria_id",
+          @categorias.collect {|c| [ c.nome, c.id ] },
+          {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
+      </div>
+      <div class="field pad-horizontal" >
+        <input type="button" value="<%= t('views.cadastros.gerar_etapas') %>"
+          class="btn_auto btn_etapas_generate btn-inline" />
+      </div>
+    </div>
+    <div id="etapas_categoria" class="float-lt">
+      <%= render 'etapas' %>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    Utils.initModal();
+    Etapas.init();
+  });
+</script>

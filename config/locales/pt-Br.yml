@@ -192,8 +192,14 @@ pt-BR:
       deletar_participante: Deletar Participante
       confirm_deletar_participante: Tem certeza que deseja deletar este participante?
 
+      etapas: Etapas
+      etapa: Etapa
+      add_etapa: Adicionar Etapa
+      etapas_title: 'Gerenciar Etapas do campeonato <p>%{campeonato}</p>'
+      gerenciar_etapas: Gerenciar Etapas
+      gerar_etapas: Gerar Etapas
+
       gerencia_title: 'Gerencie o campeonato %{campeonato}'
-      gerar_etapas: 'Gerar etapas'
       gerar_evento: Gerar evento
     devise:
       entrar_title: 'Olá esportista, <p>entre com seus dados de login!</p>'
