@@ -185,9 +185,6 @@ pt-BR:
       add_participante: Adicicionar Participante
       participante_title: 'Gerenciar participantes do campeonato <p>%{campeonato}</p>'
       gerenciar_participantes: Gerenciar participantes
-      select_categoria: Filtrar por Categoria
-      campeonato_nome: 'Campeonato: %{campeonato}'
-      categoria_nome: 'Categoria: %{categoria}'
       participantes_numero: '(participantes: %{length})'
       deletar_participante: Deletar Participante
       confirm_deletar_participante: Tem certeza que deseja deletar este participante?
@@ -198,6 +195,13 @@ pt-BR:
       etapas_title: 'Gerenciar Etapas do campeonato <p>%{campeonato}</p>'
       gerenciar_etapas: Gerenciar Etapas
       gerar_etapas: Gerar Etapas
+      etapa_nome: 'Etapa: %{etapa}'
+      provas_numero: '(provas: %{length})'
+      prova_nome: 'Prova %{prova}'
+
+      select_categoria: Filtrar por Categoria
+      campeonato_nome: 'Campeonato: %{campeonato}'
+      categoria_nome: 'Categoria: %{categoria}'
 
       gerencia_title: 'Gerencie o campeonato %{campeonato}'
       gerar_evento: Gerar evento

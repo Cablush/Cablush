@@ -185,9 +185,6 @@ en:
       add_participante: Add Participant
       participante_title: 'Manage participants of the championships <p>%{campeonato}</p>'
       gerenciar_participantes: Manage Participants
-      select_categoria: Filter by Category
-      campeonato_nome: 'Championship: %{campeonato}'
-      categoria_nome: 'Category: %{categoria}'
       participantes_numero: '(participants: %{length})'
       deletar_participante: Delete Participant
       confirm_deletar_participante: Are you sure you want to delete this participant?
@@ -198,6 +195,13 @@ en:
       etapas_title: 'Manage Stages of the championship <p>%{campeonato}</p>'
       gerenciar_etapas: Manage Stages
       gerar_etapas: Generate Stages
+      etapa_nome: 'Stage: %{etapa}'
+      provas_numero: '(games: %{length})'
+      prova_nome: 'Game %{prova}'
+
+      select_categoria: Filter by Category
+      campeonato_nome: 'Championship: %{campeonato}'
+      categoria_nome: 'Category: %{categoria}'
 
       gerencia_title: 'Manage the %{campeonato}'
       gerar_evento: Generate event

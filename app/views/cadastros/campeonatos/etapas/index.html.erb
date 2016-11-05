@@ -11,7 +11,7 @@
       </div>
       <div class="field pad-horizontal" >
         <%= select(:categoria, "categoria_id",
-          @categorias.collect {|c| [ c.nome, c.id ] },
+          @campeonato.categorias.collect {|c| [ c.nome, c.id ] },
           {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
       </div>
       <div class="field pad-horizontal" >

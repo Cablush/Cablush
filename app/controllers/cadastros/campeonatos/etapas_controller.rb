@@ -6,9 +6,7 @@ class Cadastros::Campeonatos::EtapasController < ApplicationController
     @campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
 
     if params[:categoria_id].present?
-      @categorias = Array.new(1, Campeonato::Categoria.find_by_id(params[:categoria_id]))
-    else
-      @categorias = @campeonato.categorias
+      @etapas = Campeonato::Etapa.find_by_categoria_id(params[:categoria_id])
     end
 
     @title = I18n.t('views.cadastros.etapas_title',
@@ -22,7 +20,8 @@ class Cadastros::Campeonatos::EtapasController < ApplicationController
 
   # POST /etapas/generate(.:format)
   def generate
-
+    campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
+    # TODO
   end
 
   # POST /etapas(.:format)

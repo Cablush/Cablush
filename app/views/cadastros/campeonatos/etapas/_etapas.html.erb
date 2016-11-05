@@ -1,0 +1,15 @@
+<ul class="list1">
+  <% @etapas.each do |etapa| %>
+    <li>
+      <div class="elem-list">
+        <div class="title_list">
+          <%= t('views.cadastros.etapa_nome', etapa: etapa.nome) %>
+          <label class="tip">
+            <%= t('views.cadastros.provas_numero', length: etapa.provas.length) %>
+          </label>
+        </div>
+        <%= render 'provas', provas: etapa.provas %>
+      </div>
+    </li>
+  <%end%>
+</ul>
