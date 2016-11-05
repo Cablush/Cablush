@@ -71,6 +71,11 @@ class Cadastros::CampeonatosController < ApplicationController
   def evento
     campeonato = find_campeonato_by_uuid
 
+    if campeonato.evento.present?
+      render_json_error(I18n.t('views.cadastros.event_already_exists', :evento),
+                        200) and return
+    end
+
     local = campeonato.local.dup
     esporte_ids = campeonato.esportes.map{ |esporte| esporte.id }
 

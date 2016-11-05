@@ -171,6 +171,7 @@ en:
       editar_campeonato: Edit Championship
       editar_campeonato_title: 'You are editing the championships <p>%{campeonato}</p>'
       gerenciar_campeonato: Manage Championships
+      event_already_exists: There is already an event for this championship.
 
       categorias: Categories
       categoria: Category

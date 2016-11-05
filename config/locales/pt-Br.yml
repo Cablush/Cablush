@@ -171,6 +171,7 @@ pt-BR:
       editar_campeonato: Editar Campeonato
       editar_campeonato_title: 'Você esta editando o campeonato<p>%{campeonato}</p>'
       gerenciar_campeonato: Gerenciar Campeonatos
+      event_already_exists: Já existe evento para este campeonato.
 
       categorias: Categorias
       categioria: Categoria

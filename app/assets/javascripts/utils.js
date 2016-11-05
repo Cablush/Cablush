@@ -12,8 +12,12 @@ var Utils = (function($) {
         window.scrollTo(0, 0);
     };
 
+    var _isString = function(str) {
+        return typeof(str) == 'string' || str instanceof String;
+    };
+
     var _convertResponseMessage = function(responseMessage) {
-        if (responseMessage instanceof String) {
+        if (_isString(responseMessage)) {
             return responseMessage;
         }
         var convertedMessage = "";
