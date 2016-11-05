@@ -1,17 +1,13 @@
 class LojasController < ApplicationController
-
   impressionist actions: [:index]
 
   # GET /lojas(.:format)
   def index
-
     load_lojas
 
     @title = I18n.t 'views.lojas.title'
 
-    if @locais.empty?
-      flash.now[:alert] = I18n.t 'views.lojas.not_found'
-    end
+    flash.now[:alert] = I18n.t 'views.lojas.not_found' if @locais.empty?
 
     respond_to do |format|
       format.html
@@ -22,10 +18,7 @@ class LojasController < ApplicationController
 
   # GET /lojas/:uuid(.:format)
   def show
-
-    unless request.xhr?
-      load_lojas
-    end
+    load_lojas unless request.xhr?
 
     @loja = Loja.find_by_uuid!(params[:uuid])
 
@@ -43,11 +36,10 @@ class LojasController < ApplicationController
   private
 
   def load_lojas
-    @locais = Local.lojas.paginate(:page => params[:page], :per_page => 9)
+    @locais = Local.lojas.paginate(page: params[:page], per_page: 9)
     @locais = @locais.lojas_by_estado(params[:estado]) if params[:estado].present?
     @locais = @locais.lojas_by_esporte_categoria(params[:esporte]) if params[:esporte].present?
 
     @clear = params[:filter] && params[:page].blank? || nil
   end
-
 end

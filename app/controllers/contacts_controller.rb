@@ -1,5 +1,4 @@
 class ContactsController < ApplicationController
-
   def index
     @title = I18n.t('views.contact.title').html_safe
     @contact = Contact.new
@@ -18,5 +17,4 @@ class ContactsController < ApplicationController
 
     render 'index'
   end
-
 end

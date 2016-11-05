@@ -6,9 +6,7 @@ class HomeController < ApplicationController
 
     @locais = Local.localizaveis_active
 
-    if @locais.empty?
-      flash.now[:alert] = I18n.t 'views.index.not_found'
-    end
+    flash.now[:alert] = I18n.t 'views.index.not_found' if @locais.empty?
 
     respond_to do |format|
       format.html { @locais }
