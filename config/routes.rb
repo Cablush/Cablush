@@ -67,10 +67,10 @@ Cablush::Application.routes.draw do
   end
 
   # AUTOCOMPLETE
-  resources :esportes do
+  resources :esportes, only: [] do
     get :autocomplete_esporte_nome, on: :collection
   end
-  resources :locais do
+  resources :locais, only: [] do
     get :autocomplete_cidade_nome, on: :collection
   end
 
