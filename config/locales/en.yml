@@ -204,6 +204,7 @@ en:
       select_categoria: Filter by Category
       campeonato_nome: 'Championship: %{campeonato}'
       categoria_nome: 'Category: %{categoria}'
+      message_select_categoria: Select a category to view the stages.
 
       gerencia_title: 'Manage the %{campeonato}'
       gerar_evento: Generate event

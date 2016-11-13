@@ -7,6 +7,7 @@ class Cadastros::Campeonatos::EtapasController < Cadastros::CadastrosController
       @etapas = Campeonato::Etapa.find_by_categoria_id(params[:categoria_id])
     else
       @etapas = Array.new(0)
+      flash.now[:alert] = I18n.t 'views.cadastros.message_select_categoria'
     end
 
     @title = I18n.t('views.cadastros.etapas_title',

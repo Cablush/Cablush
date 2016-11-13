@@ -204,6 +204,7 @@ pt-BR:
       select_categoria: Filtrar por Categoria
       campeonato_nome: 'Campeonato: %{campeonato}'
       categoria_nome: 'Categoria: %{categoria}'
+      message_select_categoria: selecione uma categoria para visualizar as etapas.
 
       gerencia_title: 'Gerencie o campeonato %{campeonato}'
       gerar_evento: Gerar evento
