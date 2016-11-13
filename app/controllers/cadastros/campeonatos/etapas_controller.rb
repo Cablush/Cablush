@@ -82,38 +82,4 @@ class Cadastros::Campeonatos::EtapasController < Cadastros::CadastrosController
   def etapa_params
     params.require(:etapa).permit(:nome, :campeonato_id, :categoria_id)
   end
-
-  def distribui_participates_por_provas(campeonato_id)
-    campeonato = find_campeonato_by_uuid(campeonato_id)
-    categorias = campeonato.categorias
-    max_categoria = campeonato.max_competidores_categoria
-    categorias.each do |categoria|
-      participantes = Campeonato::Participante.where(categoria_id: categoria.id)
-      primeira_etapa = busca_primeira_etapa(categoria.etapas)
-      provas = primeira_etapa.provas
-      j = 0
-      for i in 0..max_categoria / 2
-        Campeonato::ProvasParticipante.create(participante_id: participantes[i].id,
-                                              prova_id: provas[j].id) # PRIMEIRO
-        if participantes[max_categoria - 1 - i].present?
-          Campeonato::ProvasParticipante.create(participante_id: participantes[max_categoria - 1 - i].id,
-                                                prova_id: provas[j].id)#ULTIMO
-        end
-        if j == provas.count
-          j = 0
-        else
-          j += 1
-        end
-      end
-    end
-  end
-
-  def busca_primeira_etapa(etapas)
-    array_max = []
-    etapas.each do |etapa|
-      array_max.append(etapa.provas.count)
-    end
-    index = array_max.index(array_max.max)
-    etapas[index]
-  end
 end

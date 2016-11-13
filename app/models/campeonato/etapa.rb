@@ -8,6 +8,11 @@ class Campeonato::Etapa < ActiveRecord::Base
     eager_load(:provas).where('categoria_id = ?', categoria_id) if categoria_id.present?
   }
 
+  scope :get_first_etapa_by_categoria, ->(categoria_id) {
+    eager_load(:provas).where('categoria_id = ?', categoria_id)
+                       .order('etapa_id ASC').first if categoria_id.present?
+  }
+
   def num_provas
     provas.length
   end
@@ -26,5 +31,19 @@ class Campeonato::Etapa < ActiveRecord::Base
 
   def self.provas_por_etapa(num_competidores, max_competidores_prova)
     (num_competidores.to_f / max_competidores_prova.to_f).ceil
+  end
+
+  def allocate_participants(participants)
+    i = 0 # index to prova
+    for j in 0..((participants.length / 2.0).ceil - 1)
+      # allocate first participant
+      provas[i].allocate_participant(participants[j])
+      # allocate last participant, if exist
+      k = participants.length - 1 - j
+      provas[i].allocate_participant(participants[k]) if j < k
+      # change prova index
+      i += 1
+      i = 0 if i == provas.count
+    end
   end
 end

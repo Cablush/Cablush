@@ -19,6 +19,11 @@
           class="btn_auto btn_participante_add btn-inline" />
         <%= render 'form' %>
       </div>
+      <div class="field pad-horizontal" >
+        <input type="button" value="<%= t('views.cadastros.alocar_participantes') %>"
+          class="btn_auto btn_participants_allocate btn-inline" />
+        <%= render 'form' %>
+      </div>
     </div>
     <div id="lista_participantes" class="float-lt">
       <%= render 'participantes' %>

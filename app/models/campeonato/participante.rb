@@ -16,6 +16,11 @@ class Campeonato::Participante < ActiveRecord::Base
   validates_associated :usuario
   validates_associated :categoria
 
+  scope :find_by_categoria_order_by_classificacao, ->(categoria_id) {
+    where('categoria_id = ?', categoria_id)
+    .order('classificacao ASC') if categoria_id.present?
+  }
+
   def categoria_id
     categoria.id
   end

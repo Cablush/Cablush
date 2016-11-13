@@ -70,6 +70,21 @@ var Participante = (function($) {
         }
     };
 
+    var _allocateParticipants = function() {
+        Utils.startLoading();
+        $.ajax({
+            method: 'POST',
+            url: window.location.pathname + '/allocate',
+            dataType: 'json',
+            success: function(data) {
+                Utils.showResponse(data);
+            },
+            error: function(data) {
+                Utils.showResponse(data.responseJSON);
+            }
+        });
+    };
+
     var _checkFieldsParticipantesModal = function() {
         return $('.modal #participante_categoria_id').val().length > 0
             && $(".modal #participante_nome").val().length > 0
@@ -123,6 +138,11 @@ var Participante = (function($) {
             event.preventDefault();
             _openModal();
             _fillCategoria();
+        });
+
+        $(".btn_participants_allocate").on('click', function(event) {
+            event.preventDefault();
+            _allocateParticipants();
         });
 
         $(document.body).on('click', '.btn_participante_save', function(event) {

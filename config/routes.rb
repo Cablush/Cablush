@@ -58,7 +58,9 @@ Cablush::Application.routes.draw do
     resources :campeonatos, param: :uuid do
       post :evento, on: :member, to: 'campeonatos#create_evento'
       scope module: 'campeonatos' do
-        resources :participantes, param: :uuid
+        resources :participantes, param: :uuid do
+          post :allocate, on: :collection
+        end
         resources :etapas, param: :uuid do
           post :generate, on: :collection
         end

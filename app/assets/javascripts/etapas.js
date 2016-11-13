@@ -20,7 +20,7 @@ var Etapas = (function($) {
         Utils.startLoading();
         $.ajax({
             method: 'POST',
-            url: 'etapas/generate',
+            url: window.location.pathname + '/generate',
             dataType: 'json',
             success: function(data) {
                 Utils.showResponse(data);

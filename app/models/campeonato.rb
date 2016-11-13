@@ -118,6 +118,12 @@ class Campeonato < ActiveRecord::Base
     end
   end
 
+  def allocate_participants
+    categorias.each do |categoria|
+      categoria.allocate_participants
+    end
+  end
+
   private
 
   def set_uuid

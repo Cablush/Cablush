@@ -24,6 +24,14 @@ class Campeonato::Categoria < ActiveRecord::Base
     end
   end
 
+  def allocate_participants
+    if etapas.any? && participantes.any?
+      participantes = Campeonato::Participante.find_by_categoria_order_by_classificacao(id)
+      etapa = Campeonato::Etapa.get_first_etapa_by_categoria(id)
+      etapa.allocate_participants(participantes)
+    end
+  end
+
   def max_competidores_categoria
     campeonato.max_competidores_categoria
   end
