@@ -68,7 +68,7 @@ class Cadastros::CampeonatosController < Cadastros::CadastrosController
   end
 
   # POST /campeonatos/:uuid/evento(.:format)
-  def evento
+  def create_evento
     campeonato = find_campeonato_by_uuid(param[:uuid])
 
     if campeonato.evento.present?
