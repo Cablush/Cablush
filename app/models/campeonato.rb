@@ -86,9 +86,7 @@ class Campeonato < ActiveRecord::Base
   end
 
   def flyer_url
-    if flyer.exists?
-      flyer.url(:original).sub(/\?\d+$/, '')
-    end
+    flyer.url(:original).sub(/\?\d+$/, '') if flyer.exists?
   end
 
   def responsavel_uuid

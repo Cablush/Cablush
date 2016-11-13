@@ -60,9 +60,7 @@ class Loja < ActiveRecord::Base
   end
 
   def logo_url
-    if logo.exists?
-      logo.url(:original).sub(/\?\d+$/, '')
-    end
+    logo.url(:original).sub(/\?\d+$/, '') if logo.exists?
   end
 
   def responsavel_uuid

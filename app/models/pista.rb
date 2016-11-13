@@ -50,9 +50,7 @@ class Pista < ActiveRecord::Base
   }
 
   def foto_url
-    if foto.exists?
-      foto.url(:original).sub(/\?\d+$/, '')
-    end
+    foto.url(:original).sub(/\?\d+$/, '') if foto.exists?
   end
 
   def responsavel_uuid
