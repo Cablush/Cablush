@@ -1,7 +1,5 @@
-class Cadastros::LojasController < ApplicationController
+class Cadastros::LojasController < Cadastros::CadastrosController
   include EsportesUpdate
-
-  before_action :authenticate_usuario!
 
   # GET /lojas(.:format)
   def index

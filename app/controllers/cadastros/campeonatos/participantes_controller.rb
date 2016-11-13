@@ -1,9 +1,7 @@
-class Cadastros::Campeonatos::ParticipantesController < ApplicationController
-  before_action :admin_only
-
+class Cadastros::Campeonatos::ParticipantesController < Cadastros::CadastrosController
   # GET /participantes(.:format)
   def index
-    @campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
+    @campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
     if params[:categoria_id].present?
       @categorias = Array.new(1, Campeonato::Categoria.find_by_id(params[:categoria_id]))
@@ -22,7 +20,7 @@ class Cadastros::Campeonatos::ParticipantesController < ApplicationController
 
   # POST /participantes(.:format)
   def create
-    campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
+    campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
     participante = Campeonato::Participante.new(participante_params)
     participante.campeonato = campeonato

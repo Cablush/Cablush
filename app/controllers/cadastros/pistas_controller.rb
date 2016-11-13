@@ -1,7 +1,5 @@
-class Cadastros::PistasController < ApplicationController
+class Cadastros::PistasController < Cadastros::CadastrosController
   include EsportesUpdate
-
-  before_action :authenticate_usuario!
 
   # GET /pistas(.:format)
   def index

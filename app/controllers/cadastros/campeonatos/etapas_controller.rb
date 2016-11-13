@@ -1,9 +1,7 @@
-class Cadastros::Campeonatos::EtapasController < ApplicationController
-  before_action :admin_only
-
+class Cadastros::Campeonatos::EtapasController < Cadastros::CadastrosController
   # GET /etapas(.:format)
   def index
-    @campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
+    @campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
     if params[:categoria_id].present?
       @etapas = Campeonato::Etapa.find_by_categoria_id(params[:categoria_id])
@@ -22,7 +20,7 @@ class Cadastros::Campeonatos::EtapasController < ApplicationController
 
   # POST /etapas(.:format)
   def create
-    campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
+    campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
     etapa = Campeonato::Etapa.new(etapa_params)
     etapa.campeonato = campeonato
@@ -67,7 +65,7 @@ class Cadastros::Campeonatos::EtapasController < ApplicationController
   # POST /etapas/generate(.:format)
   def generate
     begin
-      campeonato = Campeonato.find_by_uuid(params[:campeonato_uuid])
+      campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
       campeonato.generate_etapas
 
@@ -85,7 +83,7 @@ class Cadastros::Campeonatos::EtapasController < ApplicationController
   end
 
   def distribui_participates_por_provas(campeonato_id)
-    campeonato = Campeonato.find_by_id(campeonato_id)
+    campeonato = find_campeonato_by_uuid(campeonato_id)
     categorias = campeonato.categorias
     max_categoria = campeonato.max_competidores_categoria
     categorias.each do |categoria|

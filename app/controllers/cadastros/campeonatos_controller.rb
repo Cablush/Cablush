@@ -1,7 +1,7 @@
-class Cadastros::CampeonatosController < ApplicationController
+class Cadastros::CampeonatosController < Cadastros::CadastrosController
   include EsportesUpdate
 
-  before_action :admin_only
+  before_action :admin_only # TODO change to
 
   # GET /campeonatos(.:format)
   def index
@@ -36,7 +36,7 @@ class Cadastros::CampeonatosController < ApplicationController
 
   # GET /campeonatos/:uuid/edit(.:format)
   def edit
-    @campeonato = find_campeonato_by_uuid
+    @campeonato = find_campeonato_by_uuid(param[:uuid])
 
     if @campeonato.local.blank?
       @campeonato.build_local
@@ -48,7 +48,7 @@ class Cadastros::CampeonatosController < ApplicationController
 
   # PATCH/PUT /campeonatos/:uuid(.:format)
   def update
-    @campeonato = find_campeonato_by_uuid
+    @campeonato = find_campeonato_by_uuid(param[:uuid])
 
     update_esporte_ids(params[:campeonato])
 
@@ -61,7 +61,7 @@ class Cadastros::CampeonatosController < ApplicationController
 
   # DELETE /campeonatos/:uuid(.:format)
   def destroy
-    @campeonato = find_campeonato_by_uuid
+    @campeonato = find_campeonato_by_uuid(param[:uuid])
 
     @campeonato.destroy
     redirect_to cadastros_campeonatos_path
@@ -69,7 +69,7 @@ class Cadastros::CampeonatosController < ApplicationController
 
   # POST /campeonatos/:uuid/evento(.:format)
   def evento
-    campeonato = find_campeonato_by_uuid
+    campeonato = find_campeonato_by_uuid(param[:uuid])
 
     if campeonato.evento.present?
       render_json_error(I18n.t('views.cadastros.event_already_exists'),
@@ -100,14 +100,6 @@ class Cadastros::CampeonatosController < ApplicationController
   end
 
   private
-
-  def find_campeonato_by_uuid
-    if current_usuario.admin?
-      Campeonato.find_by_uuid!(params[:uuid])
-    else
-      current_usuario.campeonatos.find_by_uuid!(params[:uuid])
-    end
-  end
 
   def campeonato_params
     params.require(:campeonato)

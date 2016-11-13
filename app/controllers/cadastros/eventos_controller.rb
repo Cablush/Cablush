@@ -1,7 +1,5 @@
-class Cadastros::EventosController < ApplicationController
+class Cadastros::EventosController < Cadastros::CadastrosController
   include EsportesUpdate
-
-  before_action :authenticate_usuario!
 
   # GET /eventos(.:format)
   def index
