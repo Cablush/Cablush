@@ -2713,8 +2713,19 @@ ul.list1 li a {
     font-size:1em;
     color:#777;
 }
-ul.list1 li a:hover{
+ul.list1 li a:hover {
     color:#000;
+}
+.stages li {
+    float: left;
+    padding: 0 10px 10px 0;
+}
+.games li {
+    float: none;
+    padding: 0 10px 10px 10px;
+}
+.participants {
+
 }
 .tags li {
     float: left;
@@ -2729,7 +2740,7 @@ ul.list1 li a:hover{
     color: #777;
     background:#E4E4E4;
 }
-.tags li a:hover{
+.tags li a:hover {
     background:#E84D23;
     color:#fff;
 }

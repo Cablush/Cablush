@@ -1,4 +1,4 @@
-<ul class="list1">
+<ul>
   <% @etapas.each do |etapa| %>
     <li>
       <div class="elem-list">
@@ -8,7 +8,9 @@
             <%= t('views.cadastros.provas_numero', length: etapa.provas.length) %>
           </label>
         </div>
-        <%= render 'provas', provas: etapa.provas %>
+        <div class="games">
+          <%= render 'provas', provas: etapa.provas %>
+        </div>
       </div>
     </li>
   <% end %>

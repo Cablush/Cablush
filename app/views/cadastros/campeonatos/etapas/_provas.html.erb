@@ -1,4 +1,4 @@
-<ul class="list1">
+<ul>
   <% provas.each do |prova| %>
     <li>
       <div class="elem-list">
@@ -9,7 +9,9 @@
                   length: prova.participantes.length) % -->
           </label>
         </div>
-        <!-- TODO participantes -->
+        <div class="participants">
+          <!-- TODO display participants -->
+        </div>
       </div>
     </li>
   <%end%>
