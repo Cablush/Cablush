@@ -36,7 +36,7 @@ class Cadastros::CampeonatosController < Cadastros::CadastrosController
 
   # GET /campeonatos/:uuid/edit(.:format)
   def edit
-    @campeonato = find_campeonato_by_uuid(param[:uuid])
+    @campeonato = find_campeonato_by_uuid(params[:uuid])
 
     if @campeonato.local.blank?
       @campeonato.build_local
@@ -48,7 +48,7 @@ class Cadastros::CampeonatosController < Cadastros::CadastrosController
 
   # PATCH/PUT /campeonatos/:uuid(.:format)
   def update
-    @campeonato = find_campeonato_by_uuid(param[:uuid])
+    @campeonato = find_campeonato_by_uuid(params[:uuid])
 
     update_esporte_ids(params[:campeonato])
 
@@ -61,7 +61,7 @@ class Cadastros::CampeonatosController < Cadastros::CadastrosController
 
   # DELETE /campeonatos/:uuid(.:format)
   def destroy
-    @campeonato = find_campeonato_by_uuid(param[:uuid])
+    @campeonato = find_campeonato_by_uuid(params[:uuid])
 
     @campeonato.destroy
     redirect_to cadastros_campeonatos_path
@@ -69,7 +69,7 @@ class Cadastros::CampeonatosController < Cadastros::CadastrosController
 
   # POST /campeonatos/:uuid/evento(.:format)
   def create_evento
-    campeonato = find_campeonato_by_uuid(param[:uuid])
+    campeonato = find_campeonato_by_uuid(params[:uuid])
 
     if campeonato.evento.present?
       render_json_error(I18n.t('views.cadastros.event_already_exists'),
