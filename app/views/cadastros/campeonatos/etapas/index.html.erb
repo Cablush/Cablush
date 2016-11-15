@@ -6,7 +6,8 @@
   <div class="wrap">
     <div class="search_box search_box_content float-lt">
       <div class="field pad-horizontal title_list">
-        <%= t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome) %>
+        <%= link_to t('views.cadastros.campeonato_nome', campeonato: @campeonato.nome),
+                edit_cadastros_campeonato_path(@campeonato) %>
         <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
       </div>
       <div class="field pad-horizontal" >
