@@ -65,16 +65,14 @@ class Cadastros::Campeonatos::EtapasController < Cadastros::CadastrosController
 
   # POST /etapas/generate(.:format)
   def generate
-    begin
-      campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
+    campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
-      campeonato.generate_etapas
+    campeonato.generate_etapas
 
-      render_json_success nil, 200, I18n.t('views.cadastros.gerar_etapas_success')
-    rescue => ex
-      logger.error ex.message
-      render_json_error I18n.t('views.cadastros.gerar_etapas_error'), 500
-    end
+    render_json_success nil, 200, I18n.t('views.cadastros.gerar_etapas_success')
+  rescue => ex
+    logger.error ex.message
+    render_json_error I18n.t('views.cadastros.gerar_etapas_error'), 500
   end
 
   private

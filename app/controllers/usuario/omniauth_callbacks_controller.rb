@@ -30,7 +30,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       logger.debug 'Profile: ' + profile.to_s
       omniauth = omniauth_hash_from_facebook(profile, access_token)
       authenticate_omniauth(omniauth)
-    rescue Exception => ex
+    rescue => ex
       logger.error "Caught exception #{ex}!"
       render_json_error ex.message, 500
     end
@@ -52,7 +52,7 @@ class Usuario::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       else
         render_json_error 'Error validating token!', 500
       end
-    rescue Exception => ex
+    rescue => ex
       logger.error "Caught exception #{ex}!"
       render_json_error ex.message, 500
     end

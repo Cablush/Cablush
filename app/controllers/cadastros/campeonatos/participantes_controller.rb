@@ -64,16 +64,14 @@ class Cadastros::Campeonatos::ParticipantesController < Cadastros::CadastrosCont
 
   # POST /participantes/allocate(.:format)
   def allocate
-    begin
-      campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
+    campeonato = find_campeonato_by_uuid(params[:campeonato_uuid])
 
-      campeonato.allocate_participants
+    campeonato.allocate_participants
 
-      render_json_success nil, 200, I18n.t('views.cadastros.alocar_participantes_success')
-    rescue => ex
-      logger.error ex.message
-      render_json_error I18n.t('views.cadastros.alocar_participantes_error'), 500
-    end
+    render_json_success nil, 200, I18n.t('views.cadastros.alocar_participantes_success')
+  rescue => ex
+    logger.error ex.message
+    render_json_error I18n.t('views.cadastros.alocar_participantes_error'), 500
   end
 
   private
