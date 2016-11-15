@@ -326,6 +326,7 @@ en:
         numero_inscricao: Registration
         classificacao: Classification
         categoria: Category
+        proxima_prova: Next Game
     submit:
       contact:
         create: Send Message

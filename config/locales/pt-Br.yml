@@ -326,6 +326,7 @@ pt-BR:
         numero_inscricao: Nº Inscrição
         classificacao: Classificação
         categoria: Categoria
+        proxima_prova: Próxima Prova
     submit:
       contact:
         create: Enviar Mensagem

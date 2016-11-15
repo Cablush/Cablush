@@ -8,9 +8,8 @@ class Campeonato::Etapa < ActiveRecord::Base
     eager_load(:provas).where('categoria_id = ?', categoria_id) if categoria_id.present?
   }
 
-  scope :get_first_etapa_by_categoria, ->(categoria_id) {
-    eager_load(:provas).where('categoria_id = ?', categoria_id)
-                       .order('etapa_id ASC').first if categoria_id.present?
+  scope :first_by_id, -> {
+    order('id ASC').first
   }
 
   def num_provas

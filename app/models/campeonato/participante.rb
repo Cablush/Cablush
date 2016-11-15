@@ -16,9 +16,8 @@ class Campeonato::Participante < ActiveRecord::Base
   validates_associated :usuario
   validates_associated :categoria
 
-  scope :find_by_categoria_order_by_classificacao, ->(categoria_id) {
-    where('categoria_id = ?', categoria_id)
-    .order('classificacao ASC') if categoria_id.present?
+  scope :ordered_by_classificacao, -> {
+    order('classificacao ASC')
   }
 
   def categoria_id
@@ -29,9 +28,13 @@ class Campeonato::Participante < ActiveRecord::Base
     campeonato.id
   end
 
+  def next_prova
+    provas_participantes.next.prova_id if provas_participantes.any?
+  end
+
   def as_json(options={})
     super(only: [:nome, :numero_inscricao, :classificacao, :uuid],
-          methods: [:categoria_id, :campeonato_id]
+          methods: [:categoria_id, :campeonato_id, :next_prova]
     )
   end
 

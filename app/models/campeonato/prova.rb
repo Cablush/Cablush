@@ -4,8 +4,8 @@ class Campeonato::Prova < ActiveRecord::Base
   has_many :provas_participantes
   has_many :participantes, through: :participantes
 
-  def allocate_participant(participant)
-    Campeonato::ProvasParticipante.create(participante_id: participant.id,
-                                          prova_id: id)
+  def allocate_participant(participante)
+    Campeonato::ProvasParticipante.create(participante_id: participante.id,
+                                         prova_id: id)
   end
 end

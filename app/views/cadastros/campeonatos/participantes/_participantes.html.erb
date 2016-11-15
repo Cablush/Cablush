@@ -21,6 +21,7 @@
               <th><%= t 'helpers.label.participante.classificacao' %></th>
               <th><%= t 'helpers.label.participante.nome' %></th>
               <th><%= t 'helpers.label.participante.numero_inscricao' %></th>
+              <th><%= t 'helpers.label.participante.proxima_prova' %></th>
             </tr>
           </thead>
           <tbody>
@@ -30,6 +31,7 @@
                 <td><%= participante.classificacao %></td>
                 <td><%= participante.nome %></td>
                 <td><%= participante.numero_inscricao %></td>
+                <td><%= participante.next_prova %></td>
               </tr>
             <% end %>
           </tbody>

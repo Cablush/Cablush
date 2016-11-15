@@ -28,9 +28,8 @@ class Campeonato::Categoria < ActiveRecord::Base
 
   def allocate_participants
     if etapas.any? && participantes.any?
-      participantes = Campeonato::Participante.find_by_categoria_order_by_classificacao(id)
-      etapa = Campeonato::Etapa.get_first_etapa_by_categoria(id)
-      etapa.allocate_participants(participantes)
+      etapa = etapas.first_by_id
+      etapa.allocate_participants(participantes.ordered_by_classificacao)
     end
   end
 
