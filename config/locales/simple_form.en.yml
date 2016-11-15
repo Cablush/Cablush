@@ -9,3 +9,8 @@ en:
         current_password: Current Password
         remember_me: Remember me
         esportes: Favorite Sports
+      participante:
+        nome: Name
+        numero_inscricao: Registration number
+        classificacao: Classification
+        categoria_id: Category

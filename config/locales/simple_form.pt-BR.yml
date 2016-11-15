@@ -9,3 +9,8 @@ pt-BR:
         current_password: Senha Atual
         remember_me: Permanecer Logado
         esportes: Esportes Favoritos
+      participante:
+        nome: Nome
+        numero_inscricao: Número de Inscrição
+        classificacao: Classificação
+        categoria_id: Categoria
