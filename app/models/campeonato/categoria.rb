@@ -1,4 +1,6 @@
 class Campeonato::Categoria < ActiveRecord::Base
+  require "exceptions"
+
   belongs_to :campeonato
 
   has_many :participantes
@@ -36,8 +38,16 @@ class Campeonato::Categoria < ActiveRecord::Base
     campeonato.max_competidores_categoria
   end
 
+  def min_competidores_categoria
+    campeonato.min_competidores_categoria
+  end
+
   def max_competidores_prova
     campeonato.max_competidores_prova
+  end
+
+  def min_competidores_prova
+    campeonato.min_competidores_prova
   end
 
   def num_vencedores_prova

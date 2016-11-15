@@ -5,8 +5,10 @@
         <div class="title_list">
           <%= t('views.cadastros.categoria_nome', categoria: categoria.nome) %>
           <label class="tip">
-            <%= t('views.cadastros.participantes_numero',
-              length: categoria.participantes.length) %>
+            <%= t('views.cadastros.participantes_tip',
+                  actual: categoria.participantes.length,
+                  min: categoria.min_competidores_categoria,
+                  max: categoria.max_competidores_categoria) %>
           </label>
         </div>
         <label class="tip float-rt pad-right">
