@@ -20,6 +20,11 @@ class Campeonato::Participante < ActiveRecord::Base
     order('classificacao ASC')
   }
 
+  scope :in_etapa, ->(etapa_id) {
+    joins(provas_participantes: :prova)
+    .where('campeonato_provas.etapa_id = ?', etapa_id)
+  }
+
   def categoria_id
     categoria.id
   end

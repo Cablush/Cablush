@@ -32,17 +32,29 @@ class Campeonato::Etapa < ActiveRecord::Base
     (num_competidores.to_f / max_competidores_prova.to_f).ceil
   end
 
-  def allocate_participants(participants)
+  def allocate_participants(participantes)
+    participantes = participantes_not_in_this_etapa(participantes)
     i = 0 # index to prova
-    for j in 0..((participants.length / 2.0).ceil - 1)
-      # allocate first participant
-      provas[i].allocate_participant(participants[j])
-      # allocate last participant, if exist
-      k = participants.length - 1 - j
-      provas[i].allocate_participant(participants[k]) if j < k
+    for j in 0..((participantes.length / 2.0).ceil - 1)
+      if provas[i].num_participantes < categoria.max_competidores_prova
+        # allocate first participant
+        provas[i].allocate_participant(participantes[j])
+        # allocate last participant, if exist
+        k = participantes.length - 1 - j
+        provas[i].allocate_participant(participantes[k]) if j < k
+      end
       # change prova index
       i += 1
       i = 0 if i == provas.count
     end
+  end
+
+  private
+
+  def participantes_not_in_this_etapa(participantes)
+    etapa_participantes = Campeonato::Participante.in_etapa(id)
+    participantes.select { |participante|
+      etapa_participantes.include?(participante) == false
+    }
   end
 end
