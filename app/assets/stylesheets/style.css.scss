@@ -2716,16 +2716,24 @@ ul.list1 li a {
 ul.list1 li a:hover {
     color:#000;
 }
-.stages li {
-    float: left;
+.stages ul {
+    display:table-row;
+}
+.stages ul li {
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
     padding: 0 10px 10px 0;
 }
-.games li {
-    float: none;
-    padding: 0 10px 10px 10px;
+.games ul {
+    display: block;
 }
-.participants {
-
+.games ul li {
+    display: list-item;
+    padding: 0 10px 20px 10px;
+}
+.participants ul li {
+    padding: 0 10px 10px 10px;
 }
 .tags li {
     float: left;
