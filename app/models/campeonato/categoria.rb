@@ -1,5 +1,5 @@
 class Campeonato::Categoria < ActiveRecord::Base
-  require "exceptions"
+  require 'exceptions'
 
   belongs_to :campeonato
 
@@ -14,23 +14,6 @@ class Campeonato::Categoria < ActiveRecord::Base
 
   def to_param
     uuid
-  end
-
-  def generate_etapas
-    if etapas.empty?
-      num_competidores = max_competidores_categoria
-      while num_competidores >= max_competidores_prova
-        etapa = Campeonato::Etapa.generate_etapa(self, num_competidores)
-        num_competidores = etapa.num_provas * num_vencedores_prova
-      end
-    end
-  end
-
-  def allocate_participants
-    if etapas.any? && participantes.any?
-      etapa = etapas.first_by_id
-      etapa.allocate_participants(participantes.ordered_by_classificacao)
-    end
   end
 
   def max_competidores_categoria
@@ -55,6 +38,23 @@ class Campeonato::Categoria < ActiveRecord::Base
 
   def campeonato_id
     campeonato.id
+  end
+
+  def generate_etapas
+    if etapas.empty?
+      num_competidores = max_competidores_categoria
+      while num_competidores >= max_competidores_prova
+        etapa = Campeonato::Etapa.generate_etapa(self, num_competidores)
+        num_competidores = etapa.num_provas * num_vencedores_prova
+      end
+    end
+  end
+
+  def allocate_participants
+    if etapas.any? && participantes.any?
+      etapa = etapas.first_by_id
+      etapa.allocate_participants(participantes.ordered_by_classificacao)
+    end
   end
 
   private

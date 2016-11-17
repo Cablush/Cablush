@@ -1,16 +1,17 @@
 <ul>
-  <% provas.each do |prova| %>
+  <% etapa.provas.each do |prova| %>
     <li>
       <div class="elem-list">
         <div class="title_list">
           <%= t('views.cadastros.prova_nome', prova: prova.id) %>
           <label class="tip">
-            <!-- %= t('views.cadastros.participantes_numero',
-                  length: prova.participantes.length) % -->
+            <%= t('views.cadastros.prova_tip',
+                  current: prova.participantes.length,
+                  max: etapa.max_competidores_prova) %>
           </label>
         </div>
         <div class="participants">
-          <!-- TODO display participants -->
+          <%= render 'participantes', etapa: etapa %>
         </div>
       </div>
     </li>

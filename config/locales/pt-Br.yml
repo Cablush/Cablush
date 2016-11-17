@@ -185,7 +185,7 @@ pt-BR:
       add_participante: Adicicionar Participante
       participante_title: 'Gerenciar participantes do campeonato <p>%{campeonato}</p>'
       gerenciar_participantes: Gerenciar participantes
-      participantes_tip: '(participantes: atuais %{actual} / min %{min} / max %{max})'
+      participantes_tip: '(participantes: atuais %{current} / min %{min} / max %{max})'
       deletar_participante: Deletar Participante
       confirm_deletar_participante: Tem certeza que deseja deletar este participante?
 
@@ -200,6 +200,8 @@ pt-BR:
       etapa_nome: 'Etapa: %{etapa}'
       etapa_tip: '(Provas: %{provas})'
       prova_nome: 'Prova %{prova}'
+      prova_tip: '(Participantes: atual %{current} / max %{max}'
+      participante_nome: 'Participante %{participante}'
       alocar_participantes: Alocar participantes
       alocar_participantes_success: Participantes alocados com sucesso.
       alocar_participantes_error: Erro ao alocar participantes.

@@ -12,8 +12,30 @@ class Campeonato::Etapa < ActiveRecord::Base
     order('id ASC').first
   }
 
+  def max_competidores_prova
+    categoria.max_competidores_prova
+  end
+
+  def min_competidores_prova
+    categoria.min_competidores_prova
+  end
+
+  def num_vencedores_prova
+    categoria.num_vencedores_prova
+  end
+
   def num_provas
     provas.length
+  end
+
+  def as_json(options={})
+    super(only: [:uuid, :nome, :descricao, :regras],
+          methods: [:max_competidores_prova, :min_competidores_prova,
+                    :num_vencedores_prova, :num_provas],
+          include: {
+            provas: { except: [:created_at, :updated_at] }
+          }
+    )
   end
 
   def self.generate_etapa(categoria, num_competidores)

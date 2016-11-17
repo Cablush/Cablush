@@ -1,0 +1,11 @@
+<ul>
+  <% (1..etapa.max_competidores_prova).each do |i| %>
+    <li>
+      <div class="elem-list">
+        <div class="title_list">
+          <%= t('views.cadastros.participante_nome', participante: i.to_s) %>
+        </div>
+      </div>
+    </li>
+  <%end%>
+</ul>
