@@ -202,7 +202,7 @@ en:
       etapa_tip: '(Games: %{provas})'
       prova_nome: 'Game %{prova}'
       prova_tip: '(Participants: current %{current} / max %{max})'
-      participante_nome: 'Participant %{participante}'
+      participante_nome: 'Participant #%{participante}'
       alocar_participantes: Allocate participants
       alocar_participantes_success: Participants successfully allocated.
       alocar_participantes_error: Error allocating participants.

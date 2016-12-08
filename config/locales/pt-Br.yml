@@ -202,7 +202,7 @@ pt-BR:
       etapa_tip: '(Provas: %{provas})'
       prova_nome: 'Prova %{prova}'
       prova_tip: '(Participantes: atual %{current} / max %{max})'
-      participante_nome: 'Participante %{participante}'
+      participante_nome: 'Participante nº%{participante}'
       alocar_participantes: Alocar participantes
       alocar_participantes_success: Participantes alocados com sucesso.
       alocar_participantes_error: Erro ao alocar participantes.

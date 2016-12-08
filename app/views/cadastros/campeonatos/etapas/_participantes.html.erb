@@ -5,7 +5,13 @@
         <div class="title_list">
           <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
           <% unless prova.participantes[i].nil? %>
-            <p><%= prova.participantes[i].nome %></p>
+            <p>
+              <%= prova.participantes[i].nome %>
+            </p>
+            <p class='tip'>
+              <%= t 'helpers.label.participante.numero_inscricao' %>
+              <%= prova.participantes[i].numero_inscricao %>
+            </p>
           <% end %>
         </div>
       </div>
