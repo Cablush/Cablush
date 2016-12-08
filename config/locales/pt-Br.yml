@@ -142,6 +142,7 @@ pt-BR:
       title_esportista: 'Olá %{usuario}! <p>Ajude seu esporte, divulgando as lojas, pistas e eventos de sua região!</p>'
       esportes_tip: (Digite o nome do esporte para selecionar, ou clique no '+' para adicionar)
       datatable_tip: (Clique na linha da tabela para editar)
+      content: 'Ajude seu esporte favorito, divulgando lojas, pistas e eventos de sua região!'
 
       lojas: Lojas
       lojas_title: Você já cadastrou %{length} lojas.

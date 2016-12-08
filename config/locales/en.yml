@@ -142,6 +142,7 @@ en:
       title_esportista: 'Hello %{usuario}! <p>Help your sport, promoting the shops, places and events in your area!</p>'
       esportes_tip: (Enter the sport name to select, or click on '+' to add a new one)
       datatable_tip: (Click on table line to edit)
+      content: 'Help your favorite sport, promoting the shops, places and events in your area!'
 
       lojas: Stores
       lojas_title: You have already registered %{length} stores.

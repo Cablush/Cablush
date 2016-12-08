@@ -1,9 +1,22 @@
 <%= render "layouts/content_header" %>
 
 <div class="main">
-    <div class="content"> 
-        
+  <div class="flex-wrap">
+    <div class="content-head">
+        <ul class="events">
+            <li class="active"><a href="index.html"><%= t 'views.index.content_head_1' %></a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+    <div class="content-head order_3">
+        <div class="clear"></div>
+    </div>
+
+    <div class="content-box">
+        <div class="content">
+        <p><%= t 'views.cadastros.content' %></p>
     </div>
     <div class="clear"></div>
+  </div>
 </div>
 
