@@ -4,13 +4,13 @@
       <div class="elem-list">
         <div class="title_list">
           <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
-          <% unless prova.participantes[i].nil? %>
+          <% unless prova.participantes[i-1].nil? %>
             <p>
-              <%= prova.participantes[i].nome %>
+              <%= prova.participantes[i-1].nome %>
             </p>
             <p class='tip'>
               <%= t 'helpers.label.participante.numero_inscricao' %>
-              <%= prova.participantes[i].numero_inscricao %>
+              <%= prova.participantes[i-1].numero_inscricao %>
             </p>
           <% end %>
         </div>
