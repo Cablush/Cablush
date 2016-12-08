@@ -3,7 +3,10 @@
     <li>
       <div class="elem-list">
         <div class="title_list">
-          <%= t('views.cadastros.participante_nome', participante: i.to_s) %>
+          <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
+          <% unless prova.participantes[i].nil? %>
+            <p><%= prova.participantes[i].nome %></p>
+          <% end %>
         </div>
       </div>
     </li>

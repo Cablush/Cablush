@@ -201,7 +201,7 @@ pt-BR:
       etapa_nome: 'Etapa: %{etapa}'
       etapa_tip: '(Provas: %{provas})'
       prova_nome: 'Prova %{prova}'
-      prova_tip: '(Participantes: atual %{current} / max %{max}'
+      prova_tip: '(Participantes: atual %{current} / max %{max})'
       participante_nome: 'Participante %{participante}'
       alocar_participantes: Alocar participantes
       alocar_participantes_success: Participantes alocados com sucesso.

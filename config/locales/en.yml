@@ -201,7 +201,7 @@ en:
       etapa_nome: 'Stage: %{etapa}'
       etapa_tip: '(Games: %{provas})'
       prova_nome: 'Game %{prova}'
-      prova_tip: '(Participants: current %{current} / max %{max}'
+      prova_tip: '(Participants: current %{current} / max %{max})'
       participante_nome: 'Participant %{participante}'
       alocar_participantes: Allocate participants
       alocar_participantes_success: Participants successfully allocated.
