@@ -206,6 +206,7 @@ pt-BR:
       alocar_participantes: Alocar participantes
       alocar_participantes_success: Participantes alocados com sucesso.
       alocar_participantes_error: Erro ao alocar participantes.
+      manage_stage: Manage Stage
 
       select_categoria: Filtrar por Categoria
       campeonato_nome: 'Campeonato: %{campeonato}'

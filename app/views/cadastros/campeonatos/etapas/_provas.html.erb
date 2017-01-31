@@ -5,7 +5,9 @@
         <div class="title_list">
           <%= t('views.cadastros.prova_nome', prova: prova.id) %>
           <label class="tip">
-           //TODO criar botao de manage e abrir modal com classificação
+          <input type="button" value="<%= t('views.cadastros.manage_stage') %>"
+          class="btn_auto btn_manage_stage btn-inline" />
+            
             <%= t('views.cadastros.prova_tip',
                   current: prova.participantes.length,
                   max: etapa.max_competidores_prova) %>

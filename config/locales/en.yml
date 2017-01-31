@@ -206,6 +206,7 @@ en:
       alocar_participantes: Allocate participants
       alocar_participantes_success: Participants successfully allocated.
       alocar_participantes_error: Error allocating participants.
+      manage_stage: Manage Stage
 
       select_categoria: Filter by Category
       campeonato_nome: 'Championship: %{campeonato}'

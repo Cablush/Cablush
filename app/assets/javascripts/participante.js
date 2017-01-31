@@ -42,7 +42,7 @@ var Participante = (function($) {
                 data: $("#participant_form").serializeObject(),
                 success: function(data) {
                     if (data.success) {
-                        //_closeModal();
+                        _closeModal();
                         _clearForm();
                         $('#categoria_categoria_id').trigger('change');
                     }
