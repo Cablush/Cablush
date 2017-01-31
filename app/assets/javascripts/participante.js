@@ -29,7 +29,7 @@ var Participante = (function($) {
         if (_checkFieldsParticipantesModal()) {
             var url = window.location.pathname;
             var method = 'POST';
-            var participante_uuid = $('.modal #participante_uuid').val();
+            var participante_uuid = $('#participante_uuid').val();
             if (participante_uuid.length > 0) {
                 url = url + "/" + participante_uuid;
                 method = 'PUT';
@@ -39,10 +39,11 @@ var Participante = (function($) {
                 method: method,
                 url: url,
                 dataType: "json",
-                data: $(".modal #participant_form").serializeObject(),
+                data: $("#participant_form").serializeObject(),
                 success: function(data) {
                     if (data.success) {
-                        _closeModal();
+                        //_closeModal();
+                        _clearForm();
                         $('#categoria_categoria_id').trigger('change');
                     }
                     Utils.showResponse(data);
@@ -86,17 +87,17 @@ var Participante = (function($) {
     };
 
     var _checkFieldsParticipantesModal = function() {
-        return $('.modal #participante_categoria_id').val().length > 0
-            && $(".modal #participante_nome").val().length > 0
-            && $(".modal #participante_numero_inscricao").val().length > 0
-            && $(".modal #participante_classificacao").val().length > 0;
+        return $('#participante_categoria_id').val().length > 0
+            && $("#participante_nome").val().length > 0
+            && $("#participante_numero_inscricao").val().length > 0
+            && $("#participante_classificacao").val().length > 0;
     };
 
     var _clearForm = function() {
-        $('.modal #participante_categoria_id').val("");
-        $(".modal #participante_nome").val("");
-        $(".modal #participante_numero_inscricao").val("");
-        $(".modal #participante_classificacao").val("");
+        $('#participante_categoria_id').val("");
+        $("#participante_nome").val("");
+        $("#participante_numero_inscricao").val("");
+        $("#participante_classificacao").val("");
     };
 
     var _openModal = function() {

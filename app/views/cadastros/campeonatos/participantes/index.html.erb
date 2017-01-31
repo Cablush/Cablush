@@ -10,20 +10,19 @@
                 edit_cadastros_campeonato_path(@campeonato) %>
         <%= hidden_field_tag "campeonato_uuid", @campeonato.uuid %>
       </div>
+      
       <div class="field pad-horizontal" >
         <%= select(:categoria, "categoria_id",
           @categorias.collect {|c| [ c.nome, c.id ] },
           {prompt: t('views.cadastros.select_categoria')}, {class: 'selectbox'}) %>
       </div>
       <div class="field pad-horizontal" >
-        <input type="button" value="<%= t('views.cadastros.add_participante') %>"
-          class="btn_auto btn_participante_add btn-inline" />
-        <%= render 'form' %>
-      </div>
-      <div class="field pad-horizontal" >
         <input type="button" value="<%= t('views.cadastros.alocar_participantes') %>"
           class="btn_auto btn_participants_allocate btn-inline" />
       </div>
+    </div>
+    <div id="add_participantes" class="float-lt">
+      <%= render 'form' %>
     </div>
     <div id="lista_participantes" class="float-lt">
       <%= render 'participantes' %>
