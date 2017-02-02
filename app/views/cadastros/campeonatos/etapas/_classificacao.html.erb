@@ -1,25 +1,18 @@
 <div class= "wrap">
   <div id="modal_classificacao" class="modal-body">
     <%= simple_form_for :etapa, html: { id: 'stage_form' } do |f|%>
-      <ul>
-        <% (1..etapa.max_competidores_prova).each do |i| %>
-          <li>
-            <div class="elem-list">
-              <div class="title_list">
-                <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
-                <% unless prova.participantes[i-1].nil? %>
-                  <p>
-                    <%= prova.participantes[i-1].nome %>
-                  </p>
-                  <p class='tip'>
-                    <%= t 'helpers.label.participante.numero_inscricao' %>
-                    <%= prova.participantes[i-1].numero_inscricao %>
-                  </p>
-                <% end %>
-              </div>
+      <% (1..etapa.max_competidores_prova).each do |i| %>
+          <div class="elem-list">
+            <div class="title_list">
+              <% unless prova.participantes[i-1].nil? %>
+                  <%= prova.participantes[i-1].nome %>
+                  <%= f.input :pontuacao, class: 'inputbox' %>
+              <% else %>
+                  <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
+              <% end %>
             </div>
-          </li>
-        <%end%>
-      </ul>
+          </div>
+        <%= f.button :submit class: "btn_classificacao_save btn1 btn-primary btn-normal btn-inline"%>
+      <%end%>
   </div>
 </div>
