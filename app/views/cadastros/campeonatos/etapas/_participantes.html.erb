@@ -2,16 +2,17 @@
   <% (1..etapa.max_competidores_prova).each do |i| %>
     <li>
       <div class="elem-list">
-        <div class="title_list">
-          <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
+        <div class="title_sub_list">
           <% unless prova.participantes[i-1].nil? %>
             <p>
               <%= prova.participantes[i-1].nome %>
+              <label class='tip'>
+                <%#= t 'helpers.label.participante.numero_inscricao' %>
+                #<%= prova.participantes[i-1].numero_inscricao %>
+              </label>
             </p>
-            <p class='tip'>
-              <%= t 'helpers.label.participante.numero_inscricao' %>
-              <%= prova.participantes[i-1].numero_inscricao %>
-            </p>
+            <% else %>
+              <p><%= t('views.cadastros.participante_nome', participante: i.to_s) %></p>
           <% end %>
         </div>
       </div>

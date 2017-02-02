@@ -123,6 +123,9 @@ ActiveRecord::Schema.define(version: 20161102190021) do
     t.boolean  "fundo",                      default: false
   end
 
+  add_index "campeonatos", ["responsavel_id"], name: "index_campeonatos_on_responsavel_id"
+  add_index "campeonatos", ["uuid"], name: "index_campeonatos_on_uuid", unique: true
+
   create_table "campeonatos_esportes", id: false, force: :cascade do |t|
     t.integer "campeonato_id", null: false
     t.integer "esporte_id",    null: false

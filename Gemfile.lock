@@ -185,7 +185,6 @@ GEM
     multi_json (1.12.0)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.21)
     nenv (0.3.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -387,7 +386,6 @@ DEPENDENCIES
   launchy
   mail_form
   mina
-  mysql2 (~> 0.3.18)
   omniauth-facebook
   omniauth-google-oauth2
   paperclip (~> 4.3.6)

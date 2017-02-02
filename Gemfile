@@ -90,7 +90,7 @@ end
 
 group :production do
   # A simple, fast Mysql library for Ruby, binding to libmysql
-  gem 'mysql2', '~> 0.3.18'
+  #gem 'mysql2', '~> 0.3.18'
   # A modern web server and application server for Ruby, Python and Node.js
   gem 'passenger'
   # Really fast deployer and server automation tool.

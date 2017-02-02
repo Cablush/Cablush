@@ -2,16 +2,14 @@
   <% etapa.provas.each do |prova| %>
     <li>
       <div class="elem-list">
-        <div class="title_list">
+        <div class="title_head_list">
           <%= t('views.cadastros.prova_nome', prova: prova.id) %>
-          <label class="tip">
-          <input type="button" value="<%= t('views.cadastros.manage_stage') %>"
-          class="btn_auto btn_manage_stage btn-inline" />
-            
+
+          <p class="tip">
             <%= t('views.cadastros.prova_tip',
                   current: prova.participantes.length,
                   max: etapa.max_competidores_prova) %>
-          </label>
+          </p>
         </div>
         <div class="participants">
           <%= render 'participantes', etapa: etapa, prova: prova %>
