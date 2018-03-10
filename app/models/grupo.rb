@@ -1,4 +1,4 @@
-class Grupo < ActiveRecord::Base
+class Grupo < ApplicationRecord
   belongs_to :responsavel, class_name: "Usuario"
 
   has_and_belongs_to_many :esportes

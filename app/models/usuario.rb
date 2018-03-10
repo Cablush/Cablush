@@ -1,4 +1,4 @@
-class Usuario < ActiveRecord::Base
+class Usuario < ApplicationRecord
   enum role: [:admin, :lojista, :esportista]
 
   has_many :usuario_provider, dependent: :destroy

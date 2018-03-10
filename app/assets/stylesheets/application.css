@@ -10,11 +10,7 @@
  *
  *= require_self
  *= require font-awesome
- *= require jquery-ui/core
- *= require jquery-ui/theme
- *= require jquery-ui/datepicker
- *= require jquery-ui/autocomplete
- *= require jquery-ui/dialog
+ *= require jquery-ui
  *= require fancybox
  *= require dataTables/jquery.dataTables
  *= require_tree .

@@ -1,4 +1,4 @@
-class UsuarioProvider < ActiveRecord::Base
+class UsuarioProvider < ApplicationRecord
   belongs_to :usuario, class_name: 'Usuario'
 
   def self.usuario_from_omniauth(auth)

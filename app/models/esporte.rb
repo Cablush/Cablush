@@ -1,4 +1,4 @@
-class Esporte < ActiveRecord::Base
+class Esporte < ApplicationRecord
   enum categoria: {atletismo: "atletismo", automobilismo: "automobilismo", bike: "bike",
                    moto: "moto", patins: "patins", skate: "skate", outros: "outros"}
 

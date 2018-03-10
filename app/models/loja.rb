@@ -1,4 +1,4 @@
-class Loja < ActiveRecord::Base
+class Loja < ApplicationRecord
   belongs_to :responsavel, class_name: 'Usuario'
 
   has_many :locais, as: :localizavel, dependent: :destroy

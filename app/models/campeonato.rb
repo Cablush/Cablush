@@ -1,4 +1,4 @@
-class Campeonato < ActiveRecord::Base
+class Campeonato < ApplicationRecord
   belongs_to :responsavel, class_name: 'Usuario'
 
   has_one :local, as: :localizavel, dependent: :destroy

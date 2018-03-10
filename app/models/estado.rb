@@ -1,4 +1,4 @@
-class Estado < ActiveRecord::Base
+class Estado < ApplicationRecord
   belongs_to :country, :class_name => 'Country'
   has_many :cidade
 

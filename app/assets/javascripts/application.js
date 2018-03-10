@@ -13,14 +13,7 @@
 //= require_self
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/core
-//= require jquery-ui/widget
-//= require jquery-ui/mouse
-//= require jquery-ui/position
-//= require jquery-ui/datepicker
-//= require jquery-ui/datepicker-pt-BR
-//= require jquery-ui/autocomplete
-//= require jquery-ui/dialog
+//= require jquery-ui
 //= require jquery.infinitescroll
 //= require jquery.mask
 //= require jquery.cookie

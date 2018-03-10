@@ -1,17 +1,9 @@
 development:
-    storage: :s3
-    bucket: <%= Rails.application.secrets.aws_s3_bucket %>
-    s3_host_name: "localhost"
-    url: ":s3_alias_url"
-    s3_host_alias: "localhost:10001/<%= Rails.application.secrets.aws_s3_bucket %>"
     hash_data: ":class/:attachment/:id/:updated_at"
     hash_secret: <%= Rails.application.secrets.paperclip_secret%>
     path: "/:class/:uuid/:hash_:style.:extension"
 
 production:
-    storage: :s3
-    bucket: <%= Rails.application.secrets.aws_s3_bucket %>
-    url: ":s3_domain_url"
     hash_data: ":class/:attachment/:id/:updated_at"
     hash_secret: <%= Rails.application.secrets.paperclip_secret%>
     path: "/:class/:uuid/:hash_:style.:extension"

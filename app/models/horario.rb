@@ -1,3 +1,3 @@
-class Horario < ActiveRecord::Base
+class Horario < ApplicationRecord
   belongs_to :funcionamento, polymorphic: true
 end

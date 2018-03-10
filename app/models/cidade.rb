@@ -1,4 +1,4 @@
-class Cidade < ActiveRecord::Base
+class Cidade < ApplicationRecord
   belongs_to :estado, class_name: 'Estado'
 
   scope :find_like_nome, ->(nome) {

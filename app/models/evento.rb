@@ -1,4 +1,4 @@
-class Evento < ActiveRecord::Base
+class Evento < ApplicationRecord
   belongs_to :responsavel, class_name: 'Usuario'
 
   has_one :local, as: :localizavel, dependent: :destroy
@@ -6,7 +6,7 @@ class Evento < ActiveRecord::Base
 
   has_and_belongs_to_many :esportes
 
-  belongs_to :campeonato
+  belongs_to :campeonato, optional: true
 
   has_attached_file :flyer,
                     styles: {

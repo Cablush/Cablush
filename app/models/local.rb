@@ -1,4 +1,4 @@
-class Local < ActiveRecord::Base
+class Local < ApplicationRecord
   validates :latitude, presence: true
   validates :longitude, presence: true
   validates :logradouro, length: { maximum: 100 }
@@ -21,16 +21,16 @@ class Local < ActiveRecord::Base
   # Permite fazer join com os modelos localizaveis
   belongs_to :loja, -> {
     where(locais: { localizavel_type: 'Loja' })
-  }, foreign_key: 'localizavel_id'
+  }, foreign_key: 'localizavel_id', optional: true
   belongs_to :pista, -> {
     where(locais: { localizavel_type: 'Pista' })
-  }, foreign_key: 'localizavel_id'
+  }, foreign_key: 'localizavel_id', optional: true
   belongs_to :evento, -> {
     where(locais: { localizavel_type: 'Evento' })
-  }, foreign_key: 'localizavel_id'
+  }, foreign_key: 'localizavel_id', optional: true
   belongs_to :campeonato, -> {
     where(locais: { localizavel_type: 'Campeonato' })
-  }, foreign_key: 'localizavel_id'
+  }, foreign_key: 'localizavel_id', optional: true
 
   scope :lojas, -> { joins(:loja) }
   scope :pistas, -> { joins(:pista) }

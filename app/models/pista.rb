@@ -1,4 +1,4 @@
-class Pista < ActiveRecord::Base
+class Pista < ApplicationRecord
   belongs_to :responsavel, class_name: 'Usuario'
 
   has_one :local, as: :localizavel, dependent: :destroy
